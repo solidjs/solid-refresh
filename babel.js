@@ -6,35 +6,37 @@ module.exports = ({ types: t }) => {
         const decl = path.node.declaration;
         const HotComponent = t.identifier("$HotComponent");
         const HotImport = t.identifier("_$hot");
-        const pathToHot = t.memberExpression(
-          t.memberExpression(t.identifier("import"), t.identifier("meta")),
-          t.identifier("hot")
-        );
-        path.replaceWithMultiple([
-          t.importDeclaration(
-            [t.importSpecifier(HotImport, t.identifier(opts.bundler || "vite"))],
-            t.stringLiteral("solid-refresh")
-          ),
-          t.exportNamedDeclaration(
-            t.variableDeclaration("const", [
-              t.variableDeclarator(
-                HotComponent,
-                t.isFunctionDeclaration(decl)
-                  ? t.functionExpression(decl.id, decl.params, decl.body)
-                  : decl
-              )
-            ])
-          ),
-          t.exportDefaultDeclaration(
-            t.callExpression(HotImport, [
-              HotComponent,
-              t.logicalExpression(
+        const pathToHot =
+          opts.bundler !== "vite"
+            ? t.memberExpression(t.identifier("module"), t.identifier("hot"))
+            : t.memberExpression(
+                t.memberExpression(t.identifier("import"), t.identifier("meta")),
+                t.identifier("hot")
+              );
+        const rename = t.variableDeclaration("const", [
+          t.variableDeclarator(
+            HotComponent,
+            t.isFunctionDeclaration(decl)
+              ? t.functionExpression(decl.id, decl.params, decl.body)
+              : decl
+          )
+        ]);
+        const HotIdentifier =
+          opts.bundler !== "vite"
+            ? pathToHot
+            : t.logicalExpression(
                 "&&",
                 pathToHot,
                 t.memberExpression(pathToHot, t.identifier("accept"))
-              )
-            ])
-          )
+              );
+
+        path.replaceWithMultiple([
+          t.importDeclaration(
+            [t.importSpecifier(HotImport, t.identifier(opts.bundler || "standard"))],
+            t.stringLiteral("solid-refresh")
+          ),
+          opts.bundler !== "vite" ? rename : t.exportNamedDeclaration(rename),
+          t.exportDefaultDeclaration(t.callExpression(HotImport, [HotComponent, HotIdentifier]))
         ]);
         path.stop();
       }
