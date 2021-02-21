@@ -5,6 +5,7 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 * Webpack
 * Vite (with option `bundler: "vite"`)
 * Parcel
+* Rollup/Nollup
 
 ## How it works
 
