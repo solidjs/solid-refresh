@@ -1,6 +1,6 @@
 # Solid Refresh
 
-This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Overtime I hope to add different bundlers. Today it supports:
+This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Over time I hope to add different bundlers. Today it supports:
 
 * Webpack
 * Vite (with option `bundler: "vite"`)
