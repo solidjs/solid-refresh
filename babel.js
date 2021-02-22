@@ -3,6 +3,14 @@ module.exports = ({ types: t }) => {
     name: "Solid Refresh",
     visitor: {
       ExportDefaultDeclaration(path, { opts }) {
+        if (path.hub.file.metadata.processedHot) return;
+        if (
+          path.hub.file.opts.parserOpts.sourceFileName &&
+          !path.hub.file.opts.parserOpts.sourceFileName.endsWith(".jsx") &&
+          !path.hub.file.opts.parserOpts.sourceFileName.endsWith(".tsx")
+        )
+          return;
+        path.hub.file.metadata.processedHot = true;
         const decl = path.node.declaration;
         const HotComponent = t.identifier("$HotComponent");
         const HotImport = t.identifier("_$hot");
@@ -38,7 +46,6 @@ module.exports = ({ types: t }) => {
           opts.bundler !== "vite" ? rename : t.exportNamedDeclaration(rename),
           t.exportDefaultDeclaration(t.callExpression(HotImport, [HotComponent, HotIdentifier]))
         ]);
-        path.stop();
       }
     }
   };
