@@ -1,4 +1,4 @@
-import { createSignal, createMemo, createComponent } from "solid-js";
+import { createSignal, createMemo, untrack } from "solid-js";
 
 export default function hot(Comp, hot) {
   if (hot) {
@@ -9,7 +9,8 @@ export default function hot(Comp, hot) {
     }
     hot.dispose(data => (data.setComp = prev ? prev.setComp : setComp));
     hot.accept();
-    return props => createMemo(() => createComponent(comp(), props));
+    let c;
+    return props => createMemo(() => (c = comp()) && untrack(() => c(props)));
   }
   return Comp;
 }
