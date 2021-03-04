@@ -10,12 +10,13 @@ module.exports = ({ types: t }) => {
           !path.hub.file.opts.parserOpts.sourceFileName.endsWith(".tsx")
         )
           return;
+        if (opts.bundler === "vite") opts.bundler = "esm";
         path.hub.file.metadata.processedHot = true;
         const decl = path.node.declaration;
         const HotComponent = t.identifier("$HotComponent");
         const HotImport = t.identifier("_$hot");
         const pathToHot =
-          opts.bundler !== "vite"
+          opts.bundler !== "esm"
             ? t.memberExpression(t.identifier("module"), t.identifier("hot"))
             : t.memberExpression(
                 t.memberExpression(t.identifier("import"), t.identifier("meta")),
@@ -29,23 +30,48 @@ module.exports = ({ types: t }) => {
               : decl
           )
         ]);
-        const HotIdentifier =
-          opts.bundler !== "vite"
-            ? pathToHot
-            : t.logicalExpression(
-                "&&",
-                pathToHot,
-                t.memberExpression(pathToHot, t.identifier("accept"))
-              );
+        let replacement;
+        if (opts.bundler === "esm") {
+          const handlerId = t.identifier("_$handler");
+          const componentId = t.identifier("_$Component");
+          replacement = [
+            t.importDeclaration(
+              [t.importSpecifier(HotImport, t.identifier(opts.bundler || "standard"))],
+              t.stringLiteral("solid-refresh")
+            ),
+            t.exportNamedDeclaration(rename),
+            t.variableDeclaration("const", [
+              t.variableDeclarator(
+                t.objectPattern([
+                  t.objectProperty(handlerId, handlerId, false, true),
+                  t.objectProperty(componentId, componentId, false, true)
+                ]),
+                t.callExpression(HotImport, [
+                  HotComponent,
+                  t.unaryExpression("!", t.unaryExpression("!", pathToHot))
+                ])
+              )
+            ]),
+            t.ifStatement(
+              pathToHot,
+              t.expressionStatement(
+                t.callExpression(t.memberExpression(pathToHot, t.identifier("accept")), [handlerId])
+              )
+            ),
+            t.exportDefaultDeclaration(componentId)
+          ];
+        } else {
+          replacement = [
+            t.importDeclaration(
+              [t.importSpecifier(HotImport, t.identifier(opts.bundler || "standard"))],
+              t.stringLiteral("solid-refresh")
+            ),
+            rename,
+            t.exportDefaultDeclaration(t.callExpression(HotImport, [HotComponent, pathToHot]))
+          ];
+        }
 
-        path.replaceWithMultiple([
-          t.importDeclaration(
-            [t.importSpecifier(HotImport, t.identifier(opts.bundler || "standard"))],
-            t.stringLiteral("solid-refresh")
-          ),
-          opts.bundler !== "vite" ? rename : t.exportNamedDeclaration(rename),
-          t.exportDefaultDeclaration(t.callExpression(HotImport, [HotComponent, HotIdentifier]))
-        ]);
+        path.replaceWithMultiple(replacement);
       }
     }
   };
