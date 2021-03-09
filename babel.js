@@ -71,7 +71,7 @@ module.exports = ({ types: t }) => {
           ];
         }
 
-        path.replaceWithMultiple(replacement);
+        path.replaceWithMultiple(replacement).forEach(declaration => path.scope.registerDeclaration(declaration));
       }
     }
   };
