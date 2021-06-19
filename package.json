@@ -3,7 +3,7 @@
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
-  "version": "0.1.2",
+  "version": "0.2.0-rc.0",
   "homepage": "https://github.com/solidui/solid-refresh#readme",
   "repository": {
     "type": "git",
@@ -21,9 +21,9 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "11.2.1",
-    "rollup": "^2.45.0",
-    "solid-js": "^0.26.3"
+    "@rollup/plugin-node-resolve": "13.0.0",
+    "rollup": "^2.52.1",
+    "solid-js": "next"
   },
   "peerDependencies": {
     "solid-js": "*"
