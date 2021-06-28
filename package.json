@@ -3,11 +3,11 @@
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
-  "version": "0.2.0",
-  "homepage": "https://github.com/solidui/solid-refresh#readme",
+  "version": "0.2.1",
+  "homepage": "https://github.com/solidjs/solid-refresh#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solidui/solid-refresh"
+    "url": "https://github.com/solidjs/solid-refresh"
   },
   "main": "dist/solid-refresh.js",
   "module": "dist/solid-refresh.mjs",
