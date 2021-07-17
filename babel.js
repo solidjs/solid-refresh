@@ -2,6 +2,40 @@ module.exports = ({ types: t }) => {
   return {
     name: "Solid Refresh",
     visitor: {
+      Program(path, { opts }) {
+        const comments = path.hub.file.ast.comments;
+        for (let i = 0; i < comments.length; i++) {
+          const comment = comments[i];
+          const index = comment.value.indexOf("@refresh");
+          if (index > -1) {
+            if (comment.value.slice(index).includes("skip")) {
+              path.hub.file.metadata.processedHot = true;
+              return;
+            }
+            if (comment.value.slice(index).includes("reload")) {
+              if (opts.bundler === "vite") opts.bundler = "esm";
+              path.hub.file.metadata.processedHot = true;
+              const pathToHot =
+                opts.bundler !== "esm"
+                  ? t.memberExpression(t.identifier("module"), t.identifier("hot"))
+                  : t.memberExpression(
+                      t.memberExpression(t.identifier("import"), t.identifier("meta")),
+                      t.identifier("hot")
+                    );
+              path.pushContainer(
+                "body",
+                t.ifStatement(
+                  pathToHot,
+                  t.expressionStatement(
+                    t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                  )
+                )
+              );
+              return;
+            }
+          }
+        }
+      },
       ExportDefaultDeclaration(path, { opts }) {
         if (path.hub.file.metadata.processedHot) return;
         if (
@@ -71,7 +105,9 @@ module.exports = ({ types: t }) => {
           ];
         }
 
-        path.replaceWithMultiple(replacement).forEach(declaration => path.scope.registerDeclaration(declaration));
+        path
+          .replaceWithMultiple(replacement)
+          .forEach(declaration => path.scope.registerDeclaration(declaration));
       }
     }
   };
