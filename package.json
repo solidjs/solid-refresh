@@ -15,6 +15,9 @@
     "dist",
     "babel.js"
   ],
+  "contributors": [
+    "Alexis Munsayac"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
