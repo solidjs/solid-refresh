@@ -88,12 +88,15 @@ function createStandardHot(
   const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
   const pathToHot = getHotIdentifier(opts.bundler);
   const statementPath = getStatementPath(path);
+  const code = generator(rename);
+  const result = crypto.createHash('sha256').update(code.code).digest('hex');
   if (statementPath) {
     statementPath.insertBefore(rename);
   }
   return t.callExpression(HotImport, [
     HotComponent,
     t.stringLiteral(HotComponent.name),
+    t.stringLiteral(result),
     pathToHot,
   ]);
 }
