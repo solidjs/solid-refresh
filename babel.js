@@ -102,6 +102,7 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
             ]), t__namespace.callExpression(HotImport, [
                 HotComponent,
                 t__namespace.stringLiteral(HotComponent.name),
+                t__namespace.memberExpression(signaturesMap, HotComponent),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
             ]))
         ]));

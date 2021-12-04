@@ -15,6 +15,7 @@ interface HotModule {
 export default function hot<P>(
   Comp: HotComponent<P>,
   id: string,
+  initialSignature: string,
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
@@ -29,7 +30,7 @@ export default function hot<P>(
   }
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
-    const [signature, setSignature] = createSignal('');
+    const [signature, setSignature] = createSignal(initialSignature);
     Comp.setComp = setComp;
     Comp.setSign = setSignature;
     Comp.sign = signature;
