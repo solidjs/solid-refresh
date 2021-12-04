@@ -1,7 +1,11 @@
 'use strict';
 
 var t = require('@babel/types');
+var generator = require('@babel/generator');
 var helperModuleImports = require('@babel/helper-module-imports');
+var crypto = require('crypto');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
@@ -24,6 +28,8 @@ function _interopNamespace(e) {
 }
 
 var t__namespace = /*#__PURE__*/_interopNamespace(t);
+var generator__default = /*#__PURE__*/_interopDefaultLegacy(generator);
+var crypto__default = /*#__PURE__*/_interopDefaultLegacy(crypto);
 
 function isComponentishName(name) {
     return typeof name === 'string' && name[0] >= 'A' && name[0] <= 'Z';
@@ -52,14 +58,14 @@ function getStatementPath(path) {
     }
     return null;
 }
-function createRegistrationMap(hooks, path) {
-    const current = hooks.get('$$registrations');
+function createHotMap(hooks, path, name) {
+    const current = hooks.get(name);
     if (current) {
         return current;
     }
-    const newID = t__namespace.identifier('$$registrations');
+    const newID = t__namespace.identifier(name);
     path.insertBefore(t__namespace.exportNamedDeclaration(t__namespace.variableDeclaration('const', [t__namespace.variableDeclarator(newID, t__namespace.objectExpression([]))])));
-    hooks.set('$$registrations', newID);
+    hooks.set(name, newID);
     return newID;
 }
 function createStandardHot(path, hooks, opts, HotComponent, rename) {
@@ -82,9 +88,13 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
     const componentId = path.scope.generateUidIdentifier("Component");
     const statementPath = getStatementPath(path);
     if (statementPath) {
-        const registrationMap = createRegistrationMap(hooks, statementPath);
+        const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
+        const signaturesMap = createHotMap(hooks, statementPath, '$$signatures');
         statementPath.insertBefore(rename);
         statementPath.insertBefore(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), HotComponent));
+        const code = generator__default['default'](rename);
+        const result = crypto__default['default'].createHash('sha256').update(code.code).digest('hex');
+        statementPath.insertBefore(t__namespace.assignmentExpression('=', t__namespace.memberExpression(signaturesMap, HotComponent), t__namespace.stringLiteral(result)));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
                 t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),

@@ -1,6 +1,8 @@
 import * as babel from '@babel/core';
 import * as t from '@babel/types';
+import generator from '@babel/generator';
 import { addNamed } from '@babel/helper-module-imports';
+import crypto from 'crypto';
 
 type ImportHook = Map<string, t.Identifier>
 
@@ -51,15 +53,16 @@ function getStatementPath(path: babel.NodePath): babel.NodePath | null {
   return null;
 }
 
-function createRegistrationMap(
+function createHotMap(
   hooks: ImportHook,
   path: babel.NodePath,
+  name: string,
 ): t.Identifier {
-  const current = hooks.get('$$registrations');
+  const current = hooks.get(name);
   if (current) {
     return current;
   }
-  const newID = t.identifier('$$registrations');
+  const newID = t.identifier(name);
   path.insertBefore(
     t.exportNamedDeclaration(
       t.variableDeclaration(
@@ -71,7 +74,7 @@ function createRegistrationMap(
       ),
     ),
   );
-  hooks.set('$$registrations', newID);
+  hooks.set(name, newID);
   return newID;
 }
 
@@ -108,7 +111,8 @@ function createESMHot(
   const componentId = path.scope.generateUidIdentifier("Component");
   const statementPath = getStatementPath(path);
   if (statementPath) {
-    const registrationMap = createRegistrationMap(hooks, statementPath);
+    const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
+    const signaturesMap = createHotMap(hooks, statementPath, '$$signatures');
     statementPath.insertBefore(rename);
     statementPath.insertBefore(
       t.assignmentExpression(
@@ -118,6 +122,19 @@ function createESMHot(
           HotComponent,
         ),
         HotComponent,
+      ),
+    );
+    const code = generator(rename);
+    const result = crypto.createHash('sha256').update(code.code).digest('hex');
+
+    statementPath.insertBefore(
+      t.assignmentExpression(
+        '=',
+        t.memberExpression(
+          signaturesMap,
+          HotComponent,
+        ),
+        t.stringLiteral(result),
       ),
     );
     statementPath.insertBefore(

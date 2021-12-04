@@ -23,7 +23,7 @@ export default [
       file: './babel.js',
       format: 'cjs',
     }],
-    external: ['@babel/core', '@babel/types', '@babel/helper-module-imports'],
+    external: ['@babel/core', '@babel/types', '@babel/helper-module-imports', '@babel/generator', 'crypto'],
     plugins: [
       nodeResolve(),
       typescript(),
