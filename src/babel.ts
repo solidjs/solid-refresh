@@ -171,10 +171,13 @@ function createHot(
   path: babel.NodePath,
   hooks: ImportHook,
   opts: Options,
+  name: t.Identifier | undefined,
   expression: t.Expression,
 ) {
   if (opts.bundler === "vite") opts.bundler = "esm";
-  const HotComponent = path.scope.generateUidIdentifier('HotComponent');
+  const HotComponent = name
+    ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
+    : path.scope.generateUidIdentifier('HotComponent');
   const rename = t.variableDeclaration("const", [
     t.variableDeclarator(
       HotComponent,
@@ -238,6 +241,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                     path,
                     hooks,
                     opts,
+                    decl.id,
                     t.functionExpression(
                       decl.id,
                       decl.params,
@@ -275,6 +279,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               path,
               hooks,
               opts,
+              identifier,
               init,
             );
           }
@@ -298,6 +303,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               path,
               hooks,
               opts,
+              decl.id,
               t.functionExpression(
                 decl.id,
                 decl.params,
@@ -328,6 +334,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               path,
               hooks,
               opts,
+              undefined,
               t.functionExpression(
                 null,
                 decl.params,

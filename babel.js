@@ -115,10 +115,12 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
     }
     return componentId;
 }
-function createHot(path, hooks, opts, expression) {
+function createHot(path, hooks, opts, name, expression) {
     if (opts.bundler === "vite")
         opts.bundler = "esm";
-    const HotComponent = path.scope.generateUidIdentifier('HotComponent');
+    const HotComponent = name
+        ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
+        : path.scope.generateUidIdentifier('HotComponent');
     const rename = t__namespace.variableDeclaration("const", [
         t__namespace.variableDeclarator(HotComponent, expression),
     ]);
@@ -170,7 +172,7 @@ function solidRefreshPlugin() {
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
                         path.node.declaration = t__namespace.variableDeclaration('const', [
-                            t__namespace.variableDeclarator(decl.id, createHot(path, hooks, opts, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
+                            t__namespace.variableDeclarator(decl.id, createHot(path, hooks, opts, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
                         ]);
                     }
                 }
@@ -191,7 +193,7 @@ function solidRefreshPlugin() {
                         (t__namespace.isFunctionExpression(init) && !(init.async || init.generator))
                             // Check for valid ArrowFunctionExpression
                             || (t__namespace.isArrowFunctionExpression(init) && !(init.async || init.generator)))) {
-                        path.node.init = createHot(path, hooks, opts, init);
+                        path.node.init = createHot(path, hooks, opts, identifier, init);
                     }
                 }
             },
@@ -207,7 +209,7 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        const replacement = createHot(path, hooks, opts, t__namespace.functionExpression(decl.id, decl.params, decl.body));
+                        const replacement = createHot(path, hooks, opts, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
                         if (t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
                             path.replaceWith(replacement);
                         }
@@ -222,7 +224,7 @@ function solidRefreshPlugin() {
                         && t__namespace.isIdentifier(decl.params[0])
                         && decl.params[0].name === 'props'
                         && t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
-                        const replacement = createHot(path, hooks, opts, t__namespace.functionExpression(null, decl.params, decl.body));
+                        const replacement = createHot(path, hooks, opts, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
                         path.replaceWith(replacement);
                     }
                 }
