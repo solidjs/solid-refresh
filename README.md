@@ -8,6 +8,7 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 
 * Vite (with option `bundler: "esm"`)
 * Snowpack (with option `bundler: "esm"`, need to confirm)
+
 ## How it works
 
 The babel plugin will transform files with `.jsx` or `.tsx` extensions with default exports (assuming they are component files) to wrap the default export with `createMemo` call so component can be swapped at will.
@@ -15,11 +16,13 @@ The babel plugin will transform files with `.jsx` or `.tsx` extensions with defa
 Today we don't preserve state below the change.
 
 On a per file basis, use comments at top of file to opt out(change moves up to parent):
+
 ```js
 /* @refresh skip */
 ```
+
 Or force reload:
+
 ```js
 /* @refresh reload */
 ```
-
