@@ -129,7 +129,7 @@ function createESMHot(
             HotComponent,
           ),
           t.objectExpression([
-            t.objectProperty(t.identifier('component'), componentId),
+            t.objectProperty(t.identifier('component'), HotComponent),
             t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignature(rename))),
           ]),
         ),
