@@ -1,5 +1,5 @@
 {
-  "name": "solid-refresh",
+  "name": "@lxsmnsyc/solid-refresh",
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
@@ -15,6 +15,9 @@
     "dist",
     "babel.js"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "contributors": [
     "Alexis Munsayac"
   ],
