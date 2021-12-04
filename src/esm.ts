@@ -1,31 +1,33 @@
 import { createSignal, createMemo, untrack, JSX } from "solid-js";
 
-interface ESMHot {
-  data: Record<string, (action: () => (props: any) => JSX.Element) => void>;
-  accept: (cb: () => void) => void;
-  dispose: (cb: (data: Record<string, unknown>) => void) => void;
+interface HotComponent<P> {
+  (props: P): JSX.Element;
+  setComp: (action: () => HotComponent<P>) => void;
+}
+
+interface HotModule {
+  $$registrations: Record<string, HotComponent<any>>;
 }
 
 export default function hot<P>(
-  Comp: (props: P) => JSX.Element,
+  Comp: HotComponent<P>,
   id: string,
-  hot: ESMHot,
+  isHot: boolean,
 ) {
-  if (hot) {
+  let Component: (props: P) => JSX.Element = Comp;
+  function handler(newModule: HotModule) {
+    newModule.$$registrations[id].setComp = Comp.setComp;
+    Comp.setComp(() => newModule.$$registrations[id]);
+  }
+  if (isHot) {
     const [comp, setComp] = createSignal(Comp);
-    hot.accept(() => {
-      const prev = hot.data;
-      if (prev && prev[id]) {
-        prev[id](() => Comp);
-      }
-    });
-    hot.dispose(() => (hot.data[id] = hot.data[id] || setComp));
+    Comp.setComp = setComp;
     let c: typeof Comp;
-    return new Proxy((props: P) => createMemo(() => (c = comp()) && untrack(() => c(props))), {
+    Component = new Proxy((props: P) => createMemo(() => (c = comp()) && untrack(() => c(props))), {
       get(_, property) {
         return comp()[property];
       }
     });
   }
-  return Comp;
+  return { Component, handler };
 }
