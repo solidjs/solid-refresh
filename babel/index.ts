@@ -31,6 +31,30 @@ function getSolidRefreshIdentifier(
   return newID;
 }
 
+function createRegistrationMap(
+  hooks: ImportHook,
+  path: babel.NodePath,
+): t.Identifier {
+  const current = hooks.get('$$registrations');
+  if (current) {
+    return current;
+  }
+  const newID = t.identifier('$$registrations');
+  path.insertBefore(
+    t.exportNamedDeclaration(
+      t.variableDeclaration(
+        'const',
+        [t.variableDeclarator(
+          newID,
+          t.objectExpression([]),
+        )],
+      ),
+    ),
+  );
+  hooks.set('$$registrations', newID);
+  return newID;
+}
+
 function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
   if (bundler === 'esm') {
     return t.memberExpression(
@@ -64,7 +88,11 @@ function createStandardHot(
   if (statementPath) {
     statementPath.insertBefore(rename);
   }
-  return t.callExpression(HotImport, [HotComponent, pathToHot]);
+  return t.callExpression(HotImport, [
+    HotComponent,
+    t.stringLiteral(HotComponent.name),
+    pathToHot,
+  ]);
 }
 
 function createESMHot(
@@ -80,16 +108,28 @@ function createESMHot(
   const componentId = path.scope.generateUidIdentifier("Component");
   const statementPath = getStatementPath(path);
   if (statementPath) {
+    const registrationMap = createRegistrationMap(hooks, statementPath);
     statementPath.insertBefore(rename);
+    statementPath.insertBefore(
+      t.assignmentExpression(
+        '=',
+        t.memberExpression(
+          registrationMap,
+          HotComponent,
+        ),
+        HotComponent,
+      ),
+    );
     statementPath.insertBefore(
       t.variableDeclaration("const", [
         t.variableDeclarator(
           t.objectPattern([
-            t.objectProperty(t.identifier('_$handler'), handlerId, false, true),
-            t.objectProperty(t.identifier('_$Component'), componentId, false, true)
+            t.objectProperty(t.identifier('handler'), handlerId, false, true),
+            t.objectProperty(t.identifier('Component'), componentId, false, true)
           ]),
           t.callExpression(HotImport, [
             HotComponent,
+            t.stringLiteral(HotComponent.name),
             t.unaryExpression("!", t.unaryExpression("!", pathToHot))
           ])
         )

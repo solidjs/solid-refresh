@@ -37,6 +37,16 @@ function getSolidRefreshIdentifier(hooks, path, name) {
     hooks.set(name, newID);
     return newID;
 }
+function createRegistrationMap(hooks, path) {
+    const current = hooks.get('$$registrations');
+    if (current) {
+        return current;
+    }
+    const newID = t__namespace.identifier('$$registrations');
+    path.insertBefore(t__namespace.exportNamedDeclaration(t__namespace.variableDeclaration('const', [t__namespace.variableDeclarator(newID, t__namespace.objectExpression([]))])));
+    hooks.set('$$registrations', newID);
+    return newID;
+}
 function getHotIdentifier(bundler) {
     if (bundler === 'esm') {
         return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('hot'));
@@ -59,7 +69,11 @@ function createStandardHot(path, hooks, opts, HotComponent, rename) {
     if (statementPath) {
         statementPath.insertBefore(rename);
     }
-    return t__namespace.callExpression(HotImport, [HotComponent, pathToHot]);
+    return t__namespace.callExpression(HotImport, [
+        HotComponent,
+        t__namespace.stringLiteral(HotComponent.name),
+        pathToHot,
+    ]);
 }
 function createESMHot(path, hooks, opts, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
@@ -68,13 +82,16 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
     const componentId = path.scope.generateUidIdentifier("Component");
     const statementPath = getStatementPath(path);
     if (statementPath) {
+        const registrationMap = createRegistrationMap(hooks, statementPath);
         statementPath.insertBefore(rename);
+        statementPath.insertBefore(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), HotComponent));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
-                t__namespace.objectProperty(t__namespace.identifier('_$handler'), handlerId, false, true),
-                t__namespace.objectProperty(t__namespace.identifier('_$Component'), componentId, false, true)
+                t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),
+                t__namespace.objectProperty(t__namespace.identifier('Component'), componentId, false, true)
             ]), t__namespace.callExpression(HotImport, [
                 HotComponent,
+                t__namespace.stringLiteral(HotComponent.name),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
             ]))
         ]));
