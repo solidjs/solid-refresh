@@ -3,7 +3,7 @@ import typescript from '@rollup/plugin-typescript'
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [{
       file: 'dist/solid-refresh.js',
       format: 'cjs'
@@ -13,11 +13,12 @@ export default [
     }],
     external: ['solid-js'],
     plugins: [
-      nodeResolve()
+      nodeResolve(),
+      typescript(),
     ]
   },
   {
-    input: 'babel/index.ts',
+    input: 'src/babel.ts',
     output: [{
       file: './babel.js',
       format: 'cjs',

@@ -9,7 +9,7 @@ export const Foo = () => <h1>Hello Foo</h1>;
 export const Bar = () => <h1>Hello Bar</h1>;
 `, {
   plugins: [
-    [plugin, { bundler: 'standard' }],
+    [plugin, { bundler: 'esm' }],
   ],
   parserOpts: {
     plugins: [
