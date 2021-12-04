@@ -7,9 +7,13 @@ interface HotComponent<P> {
   sign: () => string;
 }
 
-interface HotModule {
-  $$registrations: Record<string, HotComponent<any>>;
-  $$signatures: Record<string, string>;
+interface HotRegistration<P> {
+  component: HotComponent<P>;
+  signature: string;
+}
+
+interface HotModule<P> {
+  $$registrations: Record<string, HotRegistration<P>>;
 }
 
 export default function hot<P>(
@@ -19,13 +23,14 @@ export default function hot<P>(
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
-  function handler(newModule: HotModule) {
-    newModule.$$registrations[id].setComp = Comp.setComp;
-    newModule.$$registrations[id].setSign = Comp.setSign;
-    newModule.$$registrations[id].sign = Comp.sign;
-    if (newModule.$$signatures[id] !== Comp.sign()) {
-      Comp.setSign(() => newModule.$$signatures[id]);
-      Comp.setComp(() => newModule.$$registrations[id]);
+  function handler(newModule: HotModule<P>) {
+    const registration = newModule.$$registrations[id];
+    registration.component.setComp = Comp.setComp;
+    registration.component.setSign = Comp.setSign;
+    registration.component.sign = Comp.sign;
+    if (registration.signature !== Comp.sign()) {
+      Comp.setSign(() => registration.signature);
+      Comp.setComp(() => registration.component);
     }
   }
   if (isHot) {

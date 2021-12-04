@@ -68,6 +68,11 @@ function createHotMap(hooks, path, name) {
     hooks.set(name, newID);
     return newID;
 }
+function createSignature(node) {
+    const code = generator__default['default'](node);
+    const result = crypto__default['default'].createHash('sha256').update(code.code).digest('base64');
+    return result;
+}
 function createStandardHot(path, hooks, opts, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
     const pathToHot = getHotIdentifier(opts.bundler);
@@ -78,6 +83,7 @@ function createStandardHot(path, hooks, opts, HotComponent, rename) {
     return t__namespace.callExpression(HotImport, [
         HotComponent,
         t__namespace.stringLiteral(HotComponent.name),
+        t__namespace.stringLiteral(createSignature(rename)),
         pathToHot,
     ]);
 }
@@ -89,12 +95,11 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
     const statementPath = getStatementPath(path);
     if (statementPath) {
         const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
-        const signaturesMap = createHotMap(hooks, statementPath, '$$signatures');
         statementPath.insertBefore(rename);
-        statementPath.insertBefore(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), HotComponent));
-        const code = generator__default['default'](rename);
-        const result = crypto__default['default'].createHash('sha256').update(code.code).digest('hex');
-        statementPath.insertBefore(t__namespace.assignmentExpression('=', t__namespace.memberExpression(signaturesMap, HotComponent), t__namespace.stringLiteral(result)));
+        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), t__namespace.objectExpression([
+            t__namespace.objectProperty(t__namespace.identifier('component'), componentId),
+            t__namespace.objectProperty(t__namespace.identifier('signature'), t__namespace.stringLiteral(createSignature(rename))),
+        ]))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
                 t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),
@@ -102,7 +107,7 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
             ]), t__namespace.callExpression(HotImport, [
                 HotComponent,
                 t__namespace.stringLiteral(HotComponent.name),
-                t__namespace.memberExpression(signaturesMap, HotComponent),
+                t__namespace.memberExpression(t__namespace.memberExpression(registrationMap, HotComponent), t__namespace.identifier('signature')),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
             ]))
         ]));

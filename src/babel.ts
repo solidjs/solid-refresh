@@ -78,6 +78,12 @@ function createHotMap(
   return newID;
 }
 
+function createSignature(node: t.Node): string {
+  const code = generator(node);
+  const result = crypto.createHash('sha256').update(code.code).digest('base64');
+  return result;
+}
+
 function createStandardHot(
   path: babel.NodePath,
   hooks: ImportHook,
@@ -88,15 +94,13 @@ function createStandardHot(
   const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
   const pathToHot = getHotIdentifier(opts.bundler);
   const statementPath = getStatementPath(path);
-  const code = generator(rename);
-  const result = crypto.createHash('sha256').update(code.code).digest('hex');
   if (statementPath) {
     statementPath.insertBefore(rename);
   }
   return t.callExpression(HotImport, [
     HotComponent,
     t.stringLiteral(HotComponent.name),
-    t.stringLiteral(result),
+    t.stringLiteral(createSignature(rename)),
     pathToHot,
   ]);
 }
@@ -115,30 +119,21 @@ function createESMHot(
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
-    const signaturesMap = createHotMap(hooks, statementPath, '$$signatures');
     statementPath.insertBefore(rename);
     statementPath.insertBefore(
-      t.assignmentExpression(
-        '=',
-        t.memberExpression(
-          registrationMap,
-          HotComponent,
+      t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(
+            registrationMap,
+            HotComponent,
+          ),
+          t.objectExpression([
+            t.objectProperty(t.identifier('component'), componentId),
+            t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignature(rename))),
+          ]),
         ),
-        HotComponent,
-      ),
-    );
-    const code = generator(rename);
-    const result = crypto.createHash('sha256').update(code.code).digest('hex');
-
-    statementPath.insertBefore(
-      t.assignmentExpression(
-        '=',
-        t.memberExpression(
-          signaturesMap,
-          HotComponent,
-        ),
-        t.stringLiteral(result),
-      ),
+      )
     );
     statementPath.insertBefore(
       t.variableDeclaration("const", [
@@ -151,11 +146,14 @@ function createESMHot(
             HotComponent,
             t.stringLiteral(HotComponent.name),
             t.memberExpression(
-              signaturesMap,
-              HotComponent,
+              t.memberExpression(
+                registrationMap,
+                HotComponent,
+              ),
+              t.identifier('signature'),
             ),
             t.unaryExpression("!", t.unaryExpression("!", pathToHot))
-          ])
+          ]),
         )
       ])
     );
