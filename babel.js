@@ -43,30 +43,14 @@ function getHotIdentifier(bundler) {
     }
     return t__namespace.memberExpression(t__namespace.identifier("module"), t__namespace.identifier("hot"));
 }
-function getStatementPath(path) {
-    if (t__namespace.isStatement(path.node)) {
-        return path;
-    }
-    if (path.parentPath) {
-        return getStatementPath(path.parentPath);
-    }
-    return null;
-}
 function createHot(path, hooks, opts, expression) {
     if (opts.bundler === "vite")
         opts.bundler = "esm";
     const HotComponent = path.scope.generateUidIdentifier('HotComponent');
-    const rename = t__namespace.variableDeclaration("const", [
-        t__namespace.variableDeclarator(HotComponent, expression),
-    ]);
     const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
     const pathToHot = getHotIdentifier(opts.bundler);
-    const statementPath = getStatementPath(path);
-    if (statementPath) {
-        statementPath.insertBefore(rename);
-    }
     return t__namespace.callExpression(HotImport, [
-        HotComponent,
+        expression,
         t__namespace.stringLiteral(HotComponent.name),
         pathToHot,
     ]);
@@ -141,7 +125,8 @@ function solidRefreshPlugin() {
             },
             FunctionDeclaration(path, { opts, hooks }) {
                 // if (path.hub.file.metadata.processedHot) return;
-                if (!t__namespace.isProgram(path.parentPath.node)) {
+                if (!(t__namespace.isProgram(path.parentPath.node)
+                    || t__namespace.isExportDefaultDeclaration(path.parentPath.node))) {
                     return;
                 }
                 const decl = path.node;
@@ -150,11 +135,24 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        path.replaceWith(t__namespace.variableDeclaration('var', [
-                            t__namespace.variableDeclarator(decl.id, createHot(path, hooks, opts, t__namespace.functionExpression(decl.id, decl.params, decl.body))),
-                        ]));
+                        const replacement = createHot(path, hooks, opts, t__namespace.functionExpression(decl.id, decl.params, decl.body));
+                        if (t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
+                            path.replaceWith(replacement);
+                        }
+                        else {
+                            path.replaceWith(t__namespace.variableDeclaration('var', [
+                                t__namespace.variableDeclarator(decl.id, replacement),
+                            ]));
+                        }
                     }
-                    // TODO Check for props identifier
+                    else if (!decl.id
+                        && decl.params.length === 1
+                        && t__namespace.isIdentifier(decl.params[0])
+                        && decl.params[0].name === 'props'
+                        && t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
+                        const replacement = createHot(path, hooks, opts, t__namespace.functionExpression(null, decl.params, decl.body));
+                        path.replaceWith(replacement);
+                    }
                 }
             }
         },

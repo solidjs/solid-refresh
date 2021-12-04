@@ -4,9 +4,20 @@ const plugin = require('./babel');
 
 
 
+
+
+
+
+
+
+
 babel.transformAsync(`
 export const Foo = () => <h1>Hello Foo</h1>;
 export const Bar = () => <h1>Hello Bar</h1>;
+
+export default function (props) {
+  return <h1>Hello {props.message}</h1>;
+}
 `, {
   plugins: [
     [plugin, { bundler: 'esm' }],

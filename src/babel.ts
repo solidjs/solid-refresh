@@ -41,16 +41,6 @@ function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
 }
 
-function getStatementPath(path: babel.NodePath): babel.NodePath | null {
-  if (t.isStatement(path.node)) {
-    return path;
-  }
-  if (path.parentPath) {
-    return getStatementPath(path.parentPath);
-  }
-  return null;
-}
-
 function createHot(
   path: babel.NodePath,
   hooks: ImportHook,
@@ -59,20 +49,10 @@ function createHot(
 ) {
   if (opts.bundler === "vite") opts.bundler = "esm";
   const HotComponent = path.scope.generateUidIdentifier('HotComponent');
-  const rename = t.variableDeclaration("const", [
-    t.variableDeclarator(
-      HotComponent,
-      expression,
-    ),
-  ]);
   const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
   const pathToHot = getHotIdentifier(opts.bundler);
-  const statementPath = getStatementPath(path);
-  if (statementPath) {
-    statementPath.insertBefore(rename);
-  }
   return t.callExpression(HotImport, [
-    HotComponent,
+    expression,
     t.stringLiteral(HotComponent.name),
     pathToHot,
   ]);
@@ -173,7 +153,10 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       },
       FunctionDeclaration(path, { opts, hooks }) {
         // if (path.hub.file.metadata.processedHot) return;
-        if (!t.isProgram(path.parentPath.node)) {
+        if (!(
+          t.isProgram(path.parentPath.node)
+          || t.isExportDefaultDeclaration(path.parentPath.node)
+        )) {
           return;
         }
         const decl = path.node;
@@ -182,29 +165,48 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
-            path.replaceWith(
-              t.variableDeclaration(
+            const replacement = createHot(
+              path,
+              hooks,
+              opts,
+              t.functionExpression(
+                decl.id,
+                decl.params,
+                decl.body,
+              )
+            );
+            if (t.isExportDefaultDeclaration(path.parentPath.node)) {
+              path.replaceWith(replacement);
+            } else {
+              path.replaceWith(t.variableDeclaration(
                 'var',
                 [
                   t.variableDeclarator(
                     decl.id,
-                    createHot(
-                      path,
-                      hooks,
-                      opts,
-                      t.functionExpression(
-                        decl.id,
-                        decl.params,
-                        decl.body,
-                      )
-                    ),
+                    replacement,
                   ),
                 ]
-              ),
+              ));
+            }
+          } else if (
+            !decl.id
+            && decl.params.length === 1
+            && t.isIdentifier(decl.params[0])
+            && decl.params[0].name === 'props'
+            && t.isExportDefaultDeclaration(path.parentPath.node)
+          ) {
+            const replacement = createHot(
+              path,
+              hooks,
+              opts,
+              t.functionExpression(
+                null,
+                decl.params,
+                decl.body,
+              )
             );
+            path.replaceWith(replacement);
           }
-
-          // TODO Check for props identifier
         }
       }
     },
