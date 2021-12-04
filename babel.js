@@ -97,7 +97,7 @@ function createESMHot(path, hooks, opts, HotComponent, rename) {
         const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
         statementPath.insertBefore(rename);
         statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), t__namespace.objectExpression([
-            t__namespace.objectProperty(t__namespace.identifier('component'), componentId),
+            t__namespace.objectProperty(t__namespace.identifier('component'), HotComponent),
             t__namespace.objectProperty(t__namespace.identifier('signature'), t__namespace.stringLiteral(createSignature(rename))),
         ]))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
