@@ -27,7 +27,7 @@ export default function hot<P>(
       prev[id].setComp(() => Comp);
     }
     hot.dispose(data => {
-      data[id] = prev[id] || {
+      data[id] = prev ? prev[id] : {
         setComp,
         sign,
         setSign,
