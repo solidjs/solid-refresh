@@ -15,24 +15,35 @@ interface StandardHot {
 export default function hot<P>(
   Comp: (props: P) => JSX.Element,
   id: string,
-  initialSignature: string,
+  initialSignature: string | undefined,
   hot: StandardHot,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
-    const [sign, setSign] = createSignal(initialSignature);
     const prev = hot.data;
-    if (prev && prev[id] && prev[id].sign() !== initialSignature) {
-      prev[id].setSign(() => initialSignature);
-      prev[id].setComp(() => Comp);
+    if (initialSignature) {
+      const [sign, setSign] = createSignal(initialSignature);
+      if (prev && prev[id] && prev[id].sign() !== initialSignature) {
+        prev[id].setSign(() => initialSignature);
+        prev[id].setComp(() => Comp);
+      }
+      hot.dispose(data => {
+        data[id] = prev ? prev[id] : {
+          setComp,
+          sign,
+          setSign,
+        };
+      });
+    } else {
+      if (prev && prev[id]) {
+        prev[id].setComp(() => Comp);
+      }
+      hot.dispose(data => {
+        data[id] = prev ? prev[id] : {
+          setComp,
+        };
+      });
     }
-    hot.dispose(data => {
-      data[id] = prev ? prev[id] : {
-        setComp,
-        sign,
-        setSign,
-      };
-    });
     hot.accept();
     return new Proxy((props: P) => (
       createMemo(() => {
@@ -44,7 +55,7 @@ export default function hot<P>(
       })
     ), {
       get(_, property: keyof typeof Comp) {
-        return Comp[property];
+        return comp()[property];
       }
     });
   }

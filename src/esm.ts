@@ -19,26 +19,32 @@ interface HotModule<P> {
 export default function hot<P>(
   Comp: HotComponent<P>,
   id: string,
-  initialSignature: string,
+  initialSignature: string | undefined,
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
     const registration = newModule.$$registrations[id];
     registration.component.setComp = Comp.setComp;
-    registration.component.setSign = Comp.setSign;
-    registration.component.sign = Comp.sign;
-    if (registration.signature !== Comp.sign()) {
-      Comp.setSign(() => registration.signature);
+    if (initialSignature) {
+      registration.component.setSign = Comp.setSign;
+      registration.component.sign = Comp.sign;
+      if (registration.signature !== Comp.sign()) {
+        Comp.setSign(() => registration.signature);
+        Comp.setComp(() => registration.component);
+      }
+    } else {
       Comp.setComp(() => registration.component);
     }
   }
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
-    const [signature, setSignature] = createSignal(initialSignature);
     Comp.setComp = setComp;
-    Comp.setSign = setSignature;
-    Comp.sign = signature;
+    if (initialSignature) {
+      const [signature, setSignature] = createSignal(initialSignature);
+      Comp.setSign = setSignature;
+      Comp.sign = signature;
+    }
     Component = new Proxy((props: P) => (
       createMemo(() => {
         const c = comp();
@@ -49,7 +55,7 @@ export default function hot<P>(
       })
     ), {
       get(_, property: keyof typeof Comp) {
-        return Comp[property];
+        return comp()[property];
       }
     });
   }
