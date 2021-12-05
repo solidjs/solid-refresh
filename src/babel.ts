@@ -208,28 +208,25 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       Program(path, { opts, processed }) {
         const comments = path.hub.file.ast.comments;
         for (let i = 0; i < comments.length; i++) {
-          const comment = comments[i];
-          const index = comment.value.indexOf("@refresh");
-          if (index > -1) {
-            if (comment.value.slice(index).includes("skip")) {
-              processed.value = true;
-              return;
-            }
-            if (comment.value.slice(index).includes("reload")) {
-              if (opts.bundler === "vite") opts.bundler = "esm";
-              processed.value = true;
-              const pathToHot = getHotIdentifier(opts.bundler);
-              path.pushContainer(
-                "body",
-                t.ifStatement(
-                  pathToHot,
-                  t.expressionStatement(
-                    t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
-                  )
+          const comment = comments[i].value;
+          if (/^\s*@refresh skip\s*$/.test(comment)) {
+            processed.value = true;
+            return;
+          }
+          if (/^\s*@refresh reload\s*$/.test(comment)) {
+            if (opts.bundler === "vite") opts.bundler = "esm";
+            processed.value = true;
+            const pathToHot = getHotIdentifier(opts.bundler);
+            path.pushContainer(
+              "body",
+              t.ifStatement(
+                pathToHot,
+                t.expressionStatement(
+                  t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
                 )
-              );
-              return;
-            }
+              )
+            );
+            return;
           }
         }
       },
@@ -265,7 +262,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           }
         }
       },
-      VariableDeclarator(path, { opts, hooks }) {
+      VariableDeclarator(path, { opts, hooks, processed }) {
         if (processed.value) {
           return;
         }
@@ -299,7 +296,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           }
         }
       },
-      FunctionDeclaration(path, { opts, hooks }) {
+      FunctionDeclaration(path, { opts, hooks, processed }) {
         if (processed.value) {
           return;
         }

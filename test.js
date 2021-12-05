@@ -12,6 +12,7 @@ const plugin = require('./babel');
 
 
 babel.transformAsync(`
+// @refresh reload
 export const Foo = () => <h1>Hello Foo</h1>;
 export const Bar = () => <h1>Hello Bar</h1>;
 

@@ -134,37 +134,33 @@ function solidRefreshPlugin() {
         name: 'Solid Refresh',
         pre() {
             this.hooks = new Map();
+            this.processed = {
+                value: false,
+            };
         },
         visitor: {
-            Program(path, { opts }) {
-                // const comments = path.hub.file.ast.comments;
-                // for (let i = 0; i < comments.length; i++) {
-                //   const comment = comments[i];
-                //   const index = comment.value.indexOf("@refresh");
-                //   if (index > -1) {
-                //     if (comment.value.slice(index).includes("skip")) {
-                //       path.hub.file.metadata.processedHot = true;
-                //       return;
-                //     }
-                //     if (comment.value.slice(index).includes("reload")) {
-                //       if (opts.bundler === "vite") opts.bundler = "esm";
-                //       path.hub.file.metadata.processedHot = true;
-                //       const pathToHot = getHotIdentifier(opts.bundler);
-                //       path.pushContainer(
-                //         "body",
-                //         t.ifStatement(
-                //           pathToHot,
-                //           t.expressionStatement(
-                //             t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
-                //           )
-                //         )
-                //       );
-                //       return;
-                //     }
-                //   }
-                // }
+            Program(path, { opts, processed }) {
+                const comments = path.hub.file.ast.comments;
+                for (let i = 0; i < comments.length; i++) {
+                    const comment = comments[i].value;
+                    if (/^\s*@refresh skip\s*$/.test(comment)) {
+                        processed.value = true;
+                        return;
+                    }
+                    if (/^\s*@refresh reload\s*$/.test(comment)) {
+                        if (opts.bundler === "vite")
+                            opts.bundler = "esm";
+                        processed.value = true;
+                        const pathToHot = getHotIdentifier(opts.bundler);
+                        path.pushContainer("body", t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
+                        return;
+                    }
+                }
             },
-            ExportNamedDeclaration(path, { opts, hooks }) {
+            ExportNamedDeclaration(path, { opts, hooks, processed }) {
+                if (processed.value) {
+                    return;
+                }
                 const decl = path.node.declaration;
                 // Check if declaration is FunctionDeclaration
                 if (t__namespace.isFunctionDeclaration(decl) && !(decl.generator || decl.async)) {
@@ -177,8 +173,11 @@ function solidRefreshPlugin() {
                     }
                 }
             },
-            VariableDeclarator(path, { opts, hooks }) {
+            VariableDeclarator(path, { opts, hooks, processed }) {
                 var _a, _b;
+                if (processed.value) {
+                    return;
+                }
                 const grandParentNode = (_b = (_a = path.parentPath) === null || _a === void 0 ? void 0 : _a.parentPath) === null || _b === void 0 ? void 0 : _b.node;
                 // Check if the parent of the VariableDeclaration
                 // is either a Program or an ExportNamedDeclaration
@@ -197,8 +196,10 @@ function solidRefreshPlugin() {
                     }
                 }
             },
-            FunctionDeclaration(path, { opts, hooks }) {
-                // if (path.hub.file.metadata.processedHot) return;
+            FunctionDeclaration(path, { opts, hooks, processed }) {
+                if (processed.value) {
+                    return;
+                }
                 if (!(t__namespace.isProgram(path.parentPath.node)
                     || t__namespace.isExportDefaultDeclaration(path.parentPath.node))) {
                     return;
