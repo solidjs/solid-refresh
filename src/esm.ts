@@ -39,10 +39,17 @@ export default function hot<P>(
     Comp.setComp = setComp;
     Comp.setSign = setSignature;
     Comp.sign = signature;
-    let c: typeof Comp;
-    Component = new Proxy((props: P) => createMemo(() => (c = comp()) && untrack(() => c(props))), {
-      get(_, property) {
-        return comp()[property];
+    Component = new Proxy((props: P) => (
+      createMemo(() => {
+        const c = comp();
+        if (c) {
+          return untrack(() => c(props));
+        }
+        return undefined;
+      })
+    ), {
+      get(_, property: keyof typeof Comp) {
+        return Comp[property];
       }
     });
   }

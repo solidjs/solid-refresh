@@ -34,10 +34,17 @@ export default function hot<P>(
       };
     });
     hot.accept();
-    let c: typeof Comp;
-    return new Proxy((props: P) => createMemo(() => (c = comp()) && untrack(() => c(props))), {
-      get(_, property) {
-        return comp()[property];
+    return new Proxy((props: P) => (
+      createMemo(() => {
+        const c = comp();
+        if (c) {
+          return untrack(() => c(props));
+        }
+        return undefined;
+      })
+    ), {
+      get(_, property: keyof typeof Comp) {
+        return Comp[property];
       }
     });
   }
