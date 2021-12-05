@@ -22,7 +22,7 @@ export default function hot<P>(
     const [comp, setComp] = createSignal(Comp);
     const [sign, setSign] = createSignal(initialSignature);
     const prev = hot.data;
-    if (prev && prev[id] && prev[id].sign() !== initialSignature) {
+    if (prev && prev[id] /*&& prev[id].sign() !== initialSignature*/) {
       prev[id].setSign(() => initialSignature);
       prev[id].setComp(() => Comp);
     }

@@ -28,10 +28,10 @@ export default function hot<P>(
     registration.component.setComp = Comp.setComp;
     registration.component.setSign = Comp.setSign;
     registration.component.sign = Comp.sign;
-    if (registration.signature !== Comp.sign()) {
-      Comp.setSign(() => registration.signature);
-      Comp.setComp(() => registration.component);
-    }
+    //if (registration.signature !== Comp.sign()) {
+    Comp.setSign(() => registration.signature);
+    Comp.setComp(() => registration.component);
+    //}
   }
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
