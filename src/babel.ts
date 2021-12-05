@@ -10,9 +10,14 @@ interface Options {
   bundler?: 'esm' | 'standard' | 'vite';
 }
 
+interface Ref<T> {
+  value: T;
+}
+
 interface State extends babel.PluginPass {
   hooks: ImportHook;
   opts: Options;
+  processed: Ref<boolean>;
 }
 
 function isComponentishName(name: string) {
@@ -195,37 +200,43 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     name: 'Solid Refresh',
     pre() {
       this.hooks = new Map();
+      this.processed = {
+        value: false,
+      };
     },
     visitor: {
-      Program(path, { opts }) {
-        // const comments = path.hub.file.ast.comments;
-        // for (let i = 0; i < comments.length; i++) {
-        //   const comment = comments[i];
-        //   const index = comment.value.indexOf("@refresh");
-        //   if (index > -1) {
-        //     if (comment.value.slice(index).includes("skip")) {
-        //       path.hub.file.metadata.processedHot = true;
-        //       return;
-        //     }
-        //     if (comment.value.slice(index).includes("reload")) {
-        //       if (opts.bundler === "vite") opts.bundler = "esm";
-        //       path.hub.file.metadata.processedHot = true;
-        //       const pathToHot = getHotIdentifier(opts.bundler);
-        //       path.pushContainer(
-        //         "body",
-        //         t.ifStatement(
-        //           pathToHot,
-        //           t.expressionStatement(
-        //             t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
-        //           )
-        //         )
-        //       );
-        //       return;
-        //     }
-        //   }
-        // }
+      Program(path, { opts, processed }) {
+        const comments = path.hub.file.ast.comments;
+        for (let i = 0; i < comments.length; i++) {
+          const comment = comments[i];
+          const index = comment.value.indexOf("@refresh");
+          if (index > -1) {
+            if (comment.value.slice(index).includes("skip")) {
+              processed.value = true;
+              return;
+            }
+            if (comment.value.slice(index).includes("reload")) {
+              if (opts.bundler === "vite") opts.bundler = "esm";
+              processed.value = true;
+              const pathToHot = getHotIdentifier(opts.bundler);
+              path.pushContainer(
+                "body",
+                t.ifStatement(
+                  pathToHot,
+                  t.expressionStatement(
+                    t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                  )
+                )
+              );
+              return;
+            }
+          }
+        }
       },
-      ExportNamedDeclaration(path, { opts, hooks }) {
+      ExportNamedDeclaration(path, { opts, hooks, processed }) {
+        if (processed.value) {
+          return;
+        }
         const decl = path.node.declaration;
         // Check if declaration is FunctionDeclaration
         if (t.isFunctionDeclaration(decl) && !(decl.generator || decl.async)) {
@@ -255,6 +266,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
       },
       VariableDeclarator(path, { opts, hooks }) {
+        if (processed.value) {
+          return;
+        }
         const grandParentNode = path.parentPath?.parentPath?.node;
         // Check if the parent of the VariableDeclaration
         // is either a Program or an ExportNamedDeclaration
@@ -286,7 +300,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
       },
       FunctionDeclaration(path, { opts, hooks }) {
-        // if (path.hub.file.metadata.processedHot) return;
+        if (processed.value) {
+          return;
+        }
         if (!(
           t.isProgram(path.parentPath.node)
           || t.isExportDefaultDeclaration(path.parentPath.node)
