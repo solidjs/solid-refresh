@@ -176,7 +176,11 @@ function solidRefreshPlugin() {
                 }
                 const decl = path.node.declaration;
                 // Check if declaration is FunctionDeclaration
-                if (t__namespace.isFunctionDeclaration(decl) && !(decl.generator || decl.async)) {
+                if (t__namespace.isFunctionDeclaration(decl)
+                    && !(decl.generator || decl.async)
+                    // Might be component-like, but the only valid components
+                    // have zero or one parameter
+                    && decl.params.length < 2) {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
@@ -204,7 +208,10 @@ function solidRefreshPlugin() {
                         // Check for valid FunctionExpression
                         (t__namespace.isFunctionExpression(init) && !(init.async || init.generator))
                             // Check for valid ArrowFunctionExpression
-                            || (t__namespace.isArrowFunctionExpression(init) && !(init.async || init.generator)))) {
+                            || (t__namespace.isArrowFunctionExpression(init) && !(init.async || init.generator)))
+                        // Might be component-like, but the only valid components
+                        // have zero or one parameter
+                        && init.params.length < 2) {
                         path.node.init = createHot(path, state, identifier, init);
                     }
                 }
@@ -219,7 +226,10 @@ function solidRefreshPlugin() {
                 }
                 const decl = path.node;
                 // Check if declaration is FunctionDeclaration
-                if (!(decl.generator || decl.async)) {
+                if (!(decl.generator || decl.async)
+                    // Might be component-like, but the only valid components
+                    // have zero or one parameter
+                    && decl.params.length < 2) {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
