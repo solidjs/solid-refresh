@@ -32,7 +32,7 @@ export default function (props) {
 }
 ```
 
-The components are wrapped and memoized. When the module receives an update, it tries to detect if the component's content has changed between updates, prompting a remount for the changed component (which allows the ancestor components to retain their lifecycle.).
+The components are wrapped and memoized. When the module receives an update, it replaces the old components from the old module with the new components.
 
 ## Pragma
 
@@ -47,3 +47,16 @@ Or force reload:
 ```js
 /* @refresh reload */
 ```
+
+### `@refresh granular`
+
+By default, components from the old module are replaced with the new ones from the replacement module, which might cause components that hasn't really changed to unmount abruptly.
+
+Adding `@refresh granular` comment pragma in the file allows components to opt-in to granular replacement: If the component has changed *code-wise*, it will be replaced, otherwise, it will be retained, which allows unchanged ancestor components to preserve lifecycles.
+
+The downside of this mode is that local bindings that are part of the module that which the components depends on won't be detected as a change and thus will not trigger a replacement. This also means that the component may be accessing a different instance of that binding (e.g. createContext). This is currently a known limitation.
+
+## Limitations
+
+- Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
+- No HOC support.

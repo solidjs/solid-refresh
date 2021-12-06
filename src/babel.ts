@@ -18,6 +18,7 @@ interface State extends babel.PluginPass {
   hooks: ImportHook;
   opts: Options;
   processed: Ref<boolean>;
+  granular: Ref<boolean>;
 }
 
 function isComponentishName(name: string) {
@@ -91,13 +92,16 @@ function createSignature(node: t.Node): string {
 
 function createStandardHot(
   path: babel.NodePath,
-  hooks: ImportHook,
-  opts: Options,
+  state: State,
   HotComponent: t.Identifier,
   rename: t.VariableDeclaration,
 ) {
-  const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
-  const pathToHot = getHotIdentifier(opts.bundler);
+  const HotImport = getSolidRefreshIdentifier(
+    state.hooks,
+    path,
+    state.opts.bundler || 'standard',
+  );
+  const pathToHot = getHotIdentifier(state.opts.bundler);
   const statementPath = getStatementPath(path);
   if (statementPath) {
     statementPath.insertBefore(rename);
@@ -105,25 +109,28 @@ function createStandardHot(
   return t.callExpression(HotImport, [
     HotComponent,
     t.stringLiteral(HotComponent.name),
-    t.stringLiteral(createSignature(rename)),
+    state.granular.value ? t.stringLiteral(createSignature(rename)) : t.identifier('undefined'),
     pathToHot,
   ]);
 }
 
 function createESMHot(
   path: babel.NodePath,
-  hooks: ImportHook,
-  opts: Options,
+  state: State,
   HotComponent: t.Identifier,
   rename: t.VariableDeclaration,
 ) {
-  const HotImport = getSolidRefreshIdentifier(hooks, path, opts.bundler || 'standard');
-  const pathToHot = getHotIdentifier(opts.bundler);
+  const HotImport = getSolidRefreshIdentifier(
+    state.hooks,
+    path,
+    state.opts.bundler || 'standard',
+  );
+  const pathToHot = getHotIdentifier(state.opts.bundler);
   const handlerId = path.scope.generateUidIdentifier("handler");
   const componentId = path.scope.generateUidIdentifier("Component");
   const statementPath = getStatementPath(path);
   if (statementPath) {
-    const registrationMap = createHotMap(hooks, statementPath, '$$registrations');
+    const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
     statementPath.insertBefore(rename);
     statementPath.insertBefore(
       t.expressionStatement(
@@ -133,10 +140,16 @@ function createESMHot(
             registrationMap,
             HotComponent,
           ),
-          t.objectExpression([
-            t.objectProperty(t.identifier('component'), HotComponent),
-            t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignature(rename))),
-          ]),
+          t.objectExpression(
+            state.granular.value
+              ? [
+                t.objectProperty(t.identifier('component'), HotComponent),
+                t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignature(rename))),
+              ]
+              : [
+                t.objectProperty(t.identifier('component'), HotComponent),
+              ]
+          ),
         ),
       )
     );
@@ -150,13 +163,16 @@ function createESMHot(
           t.callExpression(HotImport, [
             HotComponent,
             t.stringLiteral(HotComponent.name),
-            t.memberExpression(
-              t.memberExpression(
-                registrationMap,
-                HotComponent,
-              ),
-              t.identifier('signature'),
-            ),
+            state.granular.value
+              ? t.memberExpression(
+                t.memberExpression(
+                  registrationMap,
+                  HotComponent,
+                ),
+                t.identifier('signature'),
+              )
+              : t.identifier('undefined')
+            ,
             t.unaryExpression("!", t.unaryExpression("!", pathToHot))
           ]),
         )
@@ -174,12 +190,11 @@ function createESMHot(
 
 function createHot(
   path: babel.NodePath,
-  hooks: ImportHook,
-  opts: Options,
+  state: State,
   name: t.Identifier | undefined,
   expression: t.Expression,
 ) {
-  if (opts.bundler === "vite") opts.bundler = "esm";
+  if (state.opts.bundler === "vite") state.opts.bundler = "esm";
   const HotComponent = name
     ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
     : path.scope.generateUidIdentifier('HotComponent');
@@ -189,10 +204,10 @@ function createHot(
       expression,
     ),
   ]);
-  if (opts.bundler === "esm") {
-    return createESMHot(path, hooks, opts, HotComponent, rename);
+  if (state.opts.bundler === "esm") {
+    return createESMHot(path, state, HotComponent, rename);
   }
-  return createStandardHot(path, hooks, opts, HotComponent, rename);
+  return createStandardHot(path, state, HotComponent, rename);
 }
 
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
@@ -203,12 +218,19 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       this.processed = {
         value: false,
       };
+      this.granular = {
+        value: false,
+      };
     },
     visitor: {
-      Program(path, { opts, processed }) {
+      Program(path, { opts, processed, granular }) {
         const comments = path.hub.file.ast.comments;
         for (let i = 0; i < comments.length; i++) {
           const comment = comments[i].value;
+          if (/^\s*@refresh granular\s*$/.test(comment)) {
+            granular.value = true;
+            return;
+          }
           if (/^\s*@refresh skip\s*$/.test(comment)) {
             processed.value = true;
             return;
@@ -230,13 +252,19 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           }
         }
       },
-      ExportNamedDeclaration(path, { opts, hooks, processed }) {
-        if (processed.value) {
+      ExportNamedDeclaration(path, state) {
+        if (state.processed.value) {
           return;
         }
         const decl = path.node.declaration;
         // Check if declaration is FunctionDeclaration
-        if (t.isFunctionDeclaration(decl) && !(decl.generator || decl.async)) {
+        if (
+          t.isFunctionDeclaration(decl)
+          && !(decl.generator || decl.async)
+          // Might be component-like, but the only valid components
+          // have zero or one parameter
+          && decl.params.length < 2
+        ) {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
@@ -247,8 +275,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                   decl.id,
                   createHot(
                     path,
-                    hooks,
-                    opts,
+                    state,
                     decl.id,
                     t.functionExpression(
                       decl.id,
@@ -262,8 +289,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           }
         }
       },
-      VariableDeclarator(path, { opts, hooks, processed }) {
-        if (processed.value) {
+      VariableDeclarator(path, state) {
+        if (state.processed.value) {
           return;
         }
         const grandParentNode = path.parentPath?.parentPath?.node;
@@ -285,19 +312,21 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               // Check for valid ArrowFunctionExpression
               || (t.isArrowFunctionExpression(init) && !(init.async || init.generator))
             )
+            // Might be component-like, but the only valid components
+            // have zero or one parameter
+            && init.params.length < 2
           ) {
             path.node.init = createHot(
               path,
-              hooks,
-              opts,
+              state,
               identifier,
               init,
             );
           }
         }
       },
-      FunctionDeclaration(path, { opts, hooks, processed }) {
-        if (processed.value) {
+      FunctionDeclaration(path, state) {
+        if (state.processed.value) {
           return;
         }
         if (!(
@@ -308,14 +337,18 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
         const decl = path.node;
         // Check if declaration is FunctionDeclaration
-        if (!(decl.generator || decl.async)) {
+        if (
+          !(decl.generator || decl.async)
+          // Might be component-like, but the only valid components
+          // have zero or one parameter
+          && decl.params.length < 2
+        ) {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
             const replacement = createHot(
               path,
-              hooks,
-              opts,
+              state,
               decl.id,
               t.functionExpression(
                 decl.id,
@@ -345,8 +378,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           ) {
             const replacement = createHot(
               path,
-              hooks,
-              opts,
+              state,
               undefined,
               t.functionExpression(
                 null,
