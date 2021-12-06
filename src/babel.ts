@@ -258,7 +258,13 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
         const decl = path.node.declaration;
         // Check if declaration is FunctionDeclaration
-        if (t.isFunctionDeclaration(decl) && !(decl.generator || decl.async)) {
+        if (
+          t.isFunctionDeclaration(decl)
+          && !(decl.generator || decl.async)
+          // Might be component-like, but the only valid components
+          // have zero or one parameter
+          && decl.params.length < 2
+        ) {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
@@ -306,6 +312,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               // Check for valid ArrowFunctionExpression
               || (t.isArrowFunctionExpression(init) && !(init.async || init.generator))
             )
+            // Might be component-like, but the only valid components
+            // have zero or one parameter
+            && init.params.length < 2
           ) {
             path.node.init = createHot(
               path,
@@ -328,7 +337,12 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
         const decl = path.node;
         // Check if declaration is FunctionDeclaration
-        if (!(decl.generator || decl.async)) {
+        if (
+          !(decl.generator || decl.async)
+          // Might be component-like, but the only valid components
+          // have zero or one parameter
+          && decl.params.length < 2
+        ) {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
