@@ -1,4 +1,5 @@
-import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import { createSignal, JSX } from "solid-js";
+import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
 interface HotData {
@@ -32,10 +33,7 @@ export default function hot<P>(
     const [deps, setDeps] = createSignal(dependencies);
     const prev = hot.data;
     // Check if there's previous data
-    if (
-      prev
-      && prev[id]
-    ) {
+    if (prev && prev[id]) {
       // Check if there's a new signature and dependency
       // This is always new in standard HMR
       if (signature && dependencies) {
@@ -64,19 +62,7 @@ export default function hot<P>(
       };
     });
     hot.accept();
-    return new Proxy((props: P) => (
-      createMemo(() => {
-        const c = comp();
-        if (c) {
-          return untrack(() => c(props));
-        }
-        return undefined;
-      })
-    ), {
-      get(_, property: keyof typeof Comp) {
-        return comp()[property];
-      }
-    });
+    return createProxy<typeof Comp, P>(comp);
   }
   return Comp;
 }

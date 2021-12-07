@@ -1,4 +1,5 @@
-import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import { createSignal, JSX } from "solid-js";
+import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
 interface HotComponent<P> {
@@ -60,19 +61,7 @@ export default function hot<P>(
     const [deps, setDeps] = createSignal(dependencies);
     Comp.setDeps = setDeps;
     Comp.deps = deps;
-    Component = new Proxy((props: P) => (
-      createMemo(() => {
-        const c = comp();
-        if (c) {
-          return untrack(() => c(props));
-        }
-        return undefined;
-      })
-    ), {
-      get(_, property: keyof typeof Comp) {
-        return comp()[property];
-      }
-    });
+    Component = createProxy(comp);
   }
   return { Component, handler };
 }
