@@ -1,9 +1,12 @@
 import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import isListUpdated from "./is-list-updated";
 
 interface HotData {
   setComp: (action: () => (props: any) => JSX.Element) => void;
   setSign: (action: () => string) => void;
   sign: () => string;
+  setDeps: (action: () => any[]) => void;
+  deps: () => any[];
 }
 
 interface StandardHot {
@@ -12,19 +15,31 @@ interface StandardHot {
   dispose: (cb: (data: Record<string, unknown>) => void) => void;
 }
 
+interface HotSignature {
+  id: string;
+  value?: string;
+  dependencies?: any[];
+}
+
 export default function hot<P>(
   Comp: (props: P) => JSX.Element,
-  id: string,
-  initialSignature: string | undefined,
+  { id, value, dependencies }: HotSignature,
   hot: StandardHot,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
     const prev = hot.data;
-    if (initialSignature) {
-      const [sign, setSign] = createSignal(initialSignature);
-      if (prev && prev[id] && prev[id].sign() !== initialSignature) {
-        prev[id].setSign(() => initialSignature);
+    if (value && dependencies) {
+      const [sign, setSign] = createSignal(value);
+      const [deps, setDeps] = createSignal(dependencies);
+      if (prev
+          && prev[id]
+          && (prev[id].sign() !== value
+            || isListUpdated(prev[id].deps(), dependencies)
+          )
+        ) {
+        prev[id].setDeps(() => dependencies);
+        prev[id].setSign(() => value);
         prev[id].setComp(() => Comp);
       }
       hot.dispose(data => {
@@ -32,6 +47,8 @@ export default function hot<P>(
           setComp,
           sign,
           setSign,
+          deps,
+          setDeps,
         };
       });
     } else {

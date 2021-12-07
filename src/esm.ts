@@ -1,35 +1,50 @@
 import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import isListUpdated from "./is-list-updated";
 
 interface HotComponent<P> {
   (props: P): JSX.Element;
   setComp: (action: () => HotComponent<P>) => void;
   setSign: (action: () => string) => void;
   sign: () => string;
+  setDeps: (action: () => any[]) => void;
+  deps: () => any[];
 }
 
 interface HotRegistration<P> {
   component: HotComponent<P>;
   signature: string;
+  dependencies: any[];
 }
 
 interface HotModule<P> {
   $$registrations: Record<string, HotRegistration<P>>;
 }
 
+interface HotSignature {
+  id: string;
+  value?: string;
+  dependencies?: any[];
+}
+
 export default function hot<P>(
   Comp: HotComponent<P>,
-  id: string,
-  initialSignature: string | undefined,
+  { id, value, dependencies }: HotSignature,
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
     const registration = newModule.$$registrations[id];
     registration.component.setComp = Comp.setComp;
-    if (initialSignature) {
+    if (value) {
       registration.component.setSign = Comp.setSign;
       registration.component.sign = Comp.sign;
-      if (registration.signature !== Comp.sign()) {
+      registration.component.setDeps = Comp.setDeps;
+      registration.component.deps = Comp.deps;
+      if (
+        registration.signature !== Comp.sign()
+        || isListUpdated(registration.dependencies, Comp.deps())
+      ) {
+        Comp.setDeps(() => registration.dependencies);
         Comp.setSign(() => registration.signature);
         Comp.setComp(() => registration.component);
       }
@@ -40,10 +55,15 @@ export default function hot<P>(
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
     Comp.setComp = setComp;
-    if (initialSignature) {
-      const [signature, setSignature] = createSignal(initialSignature);
-      Comp.setSign = setSignature;
-      Comp.sign = signature;
+    if (value) {
+      const [sign, setSign] = createSignal(value);
+      Comp.setSign = setSign;
+      Comp.sign = sign;
+    }
+    if (dependencies) {
+      const [deps, setDeps] = createSignal(dependencies);
+      Comp.setDeps = setDeps;
+      Comp.deps = deps;
     }
     Component = new Proxy((props: P) => (
       createMemo(() => {
