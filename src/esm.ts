@@ -57,6 +57,7 @@ export default function hot<P>(
       // No granular update, remount
       Comp.setComp(() => registration.component);
     }
+    return false;
   }
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
