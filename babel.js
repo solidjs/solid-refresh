@@ -73,6 +73,18 @@ function createSignatureValue(node) {
     const result = crypto__default['default'].createHash('sha256').update(code.code).digest('base64');
     return result;
 }
+function isForeignBinding(source, current, name) {
+    if (source === current) {
+        return true;
+    }
+    if (current.scope.hasOwnBinding(name)) {
+        return false;
+    }
+    if (current.parentPath) {
+        return isForeignBinding(source, current.parentPath, name);
+    }
+    return true;
+}
 function createHotSignature(component, sign, deps) {
     if (sign && deps) {
         return t__namespace.objectExpression([
@@ -91,15 +103,20 @@ function getBindings(path) {
     const identifiers = [];
     path.traverse({
         Expression(p) {
-            if (t__namespace.isIdentifier(p.node)) {
-                let current = p;
-                while (current && current !== path) {
-                    if (current.scope.hasOwnBinding(p.node.name)) {
-                        return;
-                    }
-                    current = current.parentPath;
-                }
+            if (t__namespace.isIdentifier(p.node)
+                && !t__namespace.isTypeScript(p.parentPath.node)
+                && isForeignBinding(path, p, p.node.name)) {
                 identifiers.push(p.node);
+            }
+            if (t__namespace.isJSXElement(p.node)
+                && t__namespace.isJSXMemberExpression(p.node.openingElement.name)) {
+                let base = p.node.openingElement.name;
+                while (t__namespace.isJSXMemberExpression(base)) {
+                    base = base.object;
+                }
+                if (isForeignBinding(path, p, base.name)) {
+                    identifiers.push(t__namespace.identifier(base.name));
+                }
             }
         }
     });

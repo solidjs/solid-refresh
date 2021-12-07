@@ -90,6 +90,22 @@ function createSignatureValue(node: t.Node): string {
   return result;
 }
 
+function isForeignBinding(
+  source: babel.NodePath,
+  current: babel.NodePath,
+  name: string): boolean {
+  if (source === current) {
+    return true;
+  }
+  if (current.scope.hasOwnBinding(name)) {
+    return false;
+  }
+  if (current.parentPath) {
+    return isForeignBinding(source, current.parentPath, name);
+  }
+  return true;
+}
+
 function createHotSignature(
   component: t.Identifier,
   sign?: t.Expression,
@@ -133,15 +149,24 @@ function getBindings(
   const identifiers: t.Identifier[] = [];
   path.traverse({
     Expression(p) {
-      if (t.isIdentifier(p.node)) {
-        let current: babel.NodePath | null = p;
-        while (current && current !== path) {
-          if (current.scope.hasOwnBinding(p.node.name)) {
-            return;
-          }
-          current = current.parentPath;
-        }
+      if (
+        t.isIdentifier(p.node)
+        && !t.isTypeScript(p.parentPath.node)
+        && isForeignBinding(path, p, p.node.name)
+      ) {
         identifiers.push(p.node);
+      }
+      if (
+        t.isJSXElement(p.node)
+        && t.isJSXMemberExpression(p.node.openingElement.name)
+      ) {
+        let base: t.JSXMemberExpression | t.JSXIdentifier = p.node.openingElement.name;
+        while (t.isJSXMemberExpression(base)) {
+          base = base.object;
+        }
+        if (isForeignBinding(path, p, base.name)) {
+          identifiers.push(t.identifier(base.name));
+        }
       }
     }
   });
