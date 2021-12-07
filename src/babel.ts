@@ -91,45 +91,19 @@ function createSignatureValue(node: t.Node): string {
 }
 
 function createHotSignature(
-  id: t.StringLiteral,
+  component: t.Identifier,
   sign?: t.Expression,
   deps?: t.Identifier[],
 ) {
   if (sign && deps) {
     return t.objectExpression([
       t.objectProperty(
-        t.identifier('id'),
-        id,
-      ),
-      t.objectProperty(
-        t.identifier('value'),
-        sign,
-      ),
-      t.objectProperty(
-        t.identifier('dependencies'),
-        t.arrayExpression(deps),
-      ),
-    ]);
-  }
-  return t.objectExpression([
-    t.objectProperty(
-      t.identifier('id'),
-      id,
-    ),
-  ]);
-}
-
-
-function createRegistration(
-  id: t.Identifier,
-  sign?: t.StringLiteral,
-  deps?: t.Identifier[],
-) {
-  if (sign && deps) {
-    return t.objectExpression([
-      t.objectProperty(
         t.identifier('component'),
-        id,
+        component,
+      ),
+      t.objectProperty(
+        t.identifier('id'),
+        t.stringLiteral(component.name),
       ),
       t.objectProperty(
         t.identifier('signature'),
@@ -144,7 +118,11 @@ function createRegistration(
   return t.objectExpression([
     t.objectProperty(
       t.identifier('component'),
-      id,
+      component,
+    ),
+    t.objectProperty(
+      t.identifier('id'),
+      t.stringLiteral(component.name),
     ),
   ]);
 }
@@ -166,9 +144,8 @@ function createStandardHot(
     statementPath.insertBefore(rename);
   }
   return t.callExpression(HotImport, [
-    HotComponent,
     createHotSignature(
-      t.stringLiteral(HotComponent.name),
+      HotComponent,
       state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
       state.granular.value ? [] : undefined,
     ),
@@ -202,7 +179,7 @@ function createESMHot(
             registrationMap,
             HotComponent,
           ),
-          createRegistration(
+          createHotSignature(
             HotComponent,
             state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
             state.granular.value ? [] : undefined,
@@ -218,17 +195,9 @@ function createESMHot(
             t.objectProperty(t.identifier('Component'), componentId, false, true)
           ]),
           t.callExpression(HotImport, [
-            HotComponent,
-            createHotSignature(
-              t.stringLiteral(HotComponent.name),
-              t.memberExpression(
-                t.memberExpression(
-                  registrationMap,
-                  HotComponent,
-                ),
-                t.identifier('signature'),
-              ),
-              state.granular.value ? [] : undefined,
+            t.memberExpression(
+              registrationMap,
+              HotComponent,
             ),
             t.unaryExpression("!", t.unaryExpression("!", pathToHot))
           ]),

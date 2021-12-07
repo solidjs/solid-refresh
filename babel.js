@@ -73,28 +73,18 @@ function createSignatureValue(node) {
     const result = crypto__default['default'].createHash('sha256').update(code.code).digest('base64');
     return result;
 }
-function createHotSignature(id, sign, deps) {
+function createHotSignature(component, sign, deps) {
     if (sign && deps) {
         return t__namespace.objectExpression([
-            t__namespace.objectProperty(t__namespace.identifier('id'), id),
-            t__namespace.objectProperty(t__namespace.identifier('value'), sign),
-            t__namespace.objectProperty(t__namespace.identifier('dependencies'), t__namespace.arrayExpression(deps)),
-        ]);
-    }
-    return t__namespace.objectExpression([
-        t__namespace.objectProperty(t__namespace.identifier('id'), id),
-    ]);
-}
-function createRegistration(id, sign, deps) {
-    if (sign && deps) {
-        return t__namespace.objectExpression([
-            t__namespace.objectProperty(t__namespace.identifier('component'), id),
+            t__namespace.objectProperty(t__namespace.identifier('component'), component),
+            t__namespace.objectProperty(t__namespace.identifier('id'), t__namespace.stringLiteral(component.name)),
             t__namespace.objectProperty(t__namespace.identifier('signature'), sign),
             t__namespace.objectProperty(t__namespace.identifier('dependencies'), t__namespace.arrayExpression(deps)),
         ]);
     }
     return t__namespace.objectExpression([
-        t__namespace.objectProperty(t__namespace.identifier('component'), id),
+        t__namespace.objectProperty(t__namespace.identifier('component'), component),
+        t__namespace.objectProperty(t__namespace.identifier('id'), t__namespace.stringLiteral(component.name)),
     ]);
 }
 function createStandardHot(path, state, HotComponent, rename) {
@@ -106,7 +96,7 @@ function createStandardHot(path, state, HotComponent, rename) {
     }
     return t__namespace.callExpression(HotImport, [
         HotComponent,
-        createHotSignature(t__namespace.stringLiteral(HotComponent.name), state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined),
+        createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined),
         pathToHot,
     ]);
 }
@@ -119,14 +109,13 @@ function createESMHot(path, state, HotComponent, rename) {
     if (statementPath) {
         const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
         statementPath.insertBefore(rename);
-        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createRegistration(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined))));
+        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
                 t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),
                 t__namespace.objectProperty(t__namespace.identifier('Component'), componentId, false, true)
             ]), t__namespace.callExpression(HotImport, [
-                HotComponent,
-                createHotSignature(t__namespace.stringLiteral(HotComponent.name), t__namespace.memberExpression(t__namespace.memberExpression(registrationMap, HotComponent), t__namespace.identifier('signature')), state.granular.value ? [] : undefined),
+                t__namespace.memberExpression(registrationMap, HotComponent),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
             ]))
         ]));
