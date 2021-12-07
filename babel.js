@@ -100,13 +100,13 @@ function createHotSignature(component, sign, deps) {
     ]);
 }
 function getBindings(path) {
-    const identifiers = [];
+    const identifiers = new Set();
     path.traverse({
         Expression(p) {
             if (t__namespace.isIdentifier(p.node)
                 && !t__namespace.isTypeScript(p.parentPath.node)
                 && isForeignBinding(path, p, p.node.name)) {
-                identifiers.push(p.node);
+                identifiers.add(p.node.name);
             }
             if (t__namespace.isJSXElement(p.node)
                 && t__namespace.isJSXMemberExpression(p.node.openingElement.name)) {
@@ -115,26 +115,28 @@ function getBindings(path) {
                     base = base.object;
                 }
                 if (isForeignBinding(path, p, base.name)) {
-                    identifiers.push(t__namespace.identifier(base.name));
+                    identifiers.add(base.name);
                 }
             }
         }
     });
-    return identifiers;
+    return [...identifiers].map((value) => t__namespace.identifier(value));
 }
-function createStandardHot(path, state, HotComponent, rename) {
+function createStandardHot(path, state, mode, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(state.hooks, path, state.opts.bundler || 'standard');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const statementPath = getStatementPath(path);
     if (statementPath) {
         statementPath.insertBefore(rename);
     }
+    const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
     return t__namespace.callExpression(HotImport, [
-        createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? getBindings(path) : undefined),
+        createHotSignature(HotComponent, isGranular ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, isGranular ? getBindings(path) : undefined),
         pathToHot,
+        t__namespace.stringLiteral(mode),
     ]);
 }
-function createESMHot(path, state, HotComponent, rename) {
+function createESMHot(path, state, mode, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(state.hooks, path, state.opts.bundler || 'standard');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const handlerId = path.scope.generateUidIdentifier("handler");
@@ -143,21 +145,34 @@ function createESMHot(path, state, HotComponent, rename) {
     if (statementPath) {
         const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
         statementPath.insertBefore(rename);
-        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? getBindings(path) : undefined))));
+        const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
+        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, isGranular
+            ? t__namespace.stringLiteral(createSignatureValue(rename))
+            : undefined, isGranular
+            ? getBindings(path)
+            : undefined))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
                 t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),
                 t__namespace.objectProperty(t__namespace.identifier('Component'), componentId, false, true)
             ]), t__namespace.callExpression(HotImport, [
                 t__namespace.memberExpression(registrationMap, HotComponent),
-                t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
+                t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot)),
+                t__namespace.stringLiteral(mode),
             ]))
         ]));
-        statementPath.insertBefore(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("accept")), [handlerId]))));
+        const mod = path.scope.generateUidIdentifier('mod');
+        statementPath.insertBefore(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("accept")), [
+            mode === 'reload'
+                ? (t__namespace.arrowFunctionExpression([mod], t__namespace.blockStatement([
+                    t__namespace.ifStatement(t__namespace.callExpression(handlerId, [mod]), t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("invalidate")), []))),
+                ])))
+                : handlerId
+        ]))));
     }
     return componentId;
 }
-function createHot(path, state, name, expression) {
+function createHot(path, state, mode, name, expression) {
     if (state.opts.bundler === "vite")
         state.opts.bundler = "esm";
     const HotComponent = name
@@ -167,9 +182,27 @@ function createHot(path, state, name, expression) {
         t__namespace.variableDeclarator(HotComponent, expression),
     ]);
     if (state.opts.bundler === "esm") {
-        return createESMHot(path, state, HotComponent, rename);
+        return createESMHot(path, state, mode, HotComponent, rename);
     }
-    return createStandardHot(path, state, HotComponent, rename);
+    return createStandardHot(path, state, mode, HotComponent, rename);
+}
+function getLocalMode(node) {
+    const comments = node.leadingComments;
+    if (comments) {
+        for (let i = 0, len = comments.length; i < len; i++) {
+            const comment = comments[i].value;
+            if (/^\s*@refresh local-skip\s*$/.test(comment)) {
+                return 'skip';
+            }
+            if (/^\s*@refresh local-reload\s*$/.test(comment)) {
+                return 'reload';
+            }
+            if (/^\s*@refresh local-granular\s*$/.test(comment)) {
+                return 'granular';
+            }
+        }
+    }
+    return 'none';
 }
 function solidRefreshPlugin() {
     return {
@@ -220,8 +253,12 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
+                        const mode = getLocalMode(decl);
+                        if (mode === 'skip') {
+                            return;
+                        }
                         path.node.declaration = t__namespace.variableDeclaration('const', [
-                            t__namespace.variableDeclarator(decl.id, createHot(path, state, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
+                            t__namespace.variableDeclarator(decl.id, createHot(path, state, mode, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
                         ]);
                     }
                 }
@@ -248,7 +285,11 @@ function solidRefreshPlugin() {
                         // Might be component-like, but the only valid components
                         // have zero or one parameter
                         && init.params.length < 2) {
-                        path.node.init = createHot(path, state, identifier, init);
+                        const mode = getLocalMode(init);
+                        if (mode === 'skip') {
+                            return;
+                        }
+                        path.node.init = createHot(path, state, mode, identifier, init);
                     }
                 }
             },
@@ -269,7 +310,11 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        const replacement = createHot(path, state, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
+                        const mode = getLocalMode(decl);
+                        if (mode === 'skip') {
+                            return;
+                        }
+                        const replacement = createHot(path, state, mode, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
                         if (t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
                             path.replaceWith(replacement);
                         }
@@ -284,7 +329,11 @@ function solidRefreshPlugin() {
                         && t__namespace.isIdentifier(decl.params[0])
                         && decl.params[0].name === 'props'
                         && t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
-                        const replacement = createHot(path, state, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
+                        const mode = getLocalMode(decl);
+                        if (mode === 'skip') {
+                            return;
+                        }
+                        const replacement = createHot(path, state, mode, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
                         path.replaceWith(replacement);
                     }
                 }

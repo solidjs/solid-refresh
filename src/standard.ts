@@ -14,6 +14,18 @@ interface StandardHot {
   data: Record<string, HotData>;
   accept: () => void;
   dispose: (cb: (data: Record<string, unknown>) => void) => void;
+  decline?: () => void;
+  invalidate?: () => void;
+}
+
+function invalidate(hot: StandardHot) {
+  if (hot.invalidate) {
+    hot.invalidate();
+  } else if (hot.decline) {
+    hot.decline();
+  } else if (typeof window !== 'undefined') {
+    window.location.reload();
+  }
 }
 
 interface HotSignature<P> {
@@ -26,6 +38,7 @@ interface HotSignature<P> {
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
+  mode: 'reload' | 'granular' | 'none',
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
@@ -43,11 +56,17 @@ export default function hot<P>(
           prev[id].sign() !== signature
           || isListUpdated(prev[id].deps(), dependencies)
         ) {
-          // Remount
-          prev[id].setDeps(() => dependencies);
-          prev[id].setSign(() => signature);
-          prev[id].setComp(() => Comp);
+          if (mode === 'reload') {
+            invalidate(hot);
+          } else {
+            // Remount
+            prev[id].setDeps(() => dependencies);
+            prev[id].setSign(() => signature);
+            prev[id].setComp(() => Comp);
+          }
         }
+      } else if (mode === 'reload') {
+        invalidate(hot);
       } else {
         prev[id].setComp(() => Comp);
       }

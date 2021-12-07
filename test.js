@@ -9,7 +9,7 @@ const plugin = require('./babel');
 
 
 babel.transformAsync(`
-// @refresh granular
+// @refresh local-granular
 function Foo() {
   return <h1>{foo} {bar} {baz}</h1>
 }
