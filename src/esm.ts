@@ -30,6 +30,10 @@ export default function hot<P>(
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
     const registration = newModule.$$registrations[id];
+    if (!registration) {
+      // For some reason, the registration was lost, invalidate
+      return true;
+    }
     registration.component.setComp = Comp.setComp;
     registration.component.setSign = Comp.setSign;
     registration.component.sign = Comp.sign;
