@@ -146,7 +146,7 @@ function createHotSignature(
 function getBindings(
   path: babel.NodePath,
 ): t.Identifier[] {
-  const identifiers: t.Identifier[] = [];
+  const identifiers = new Set();
   path.traverse({
     Expression(p) {
       if (
@@ -154,7 +154,7 @@ function getBindings(
         && !t.isTypeScript(p.parentPath.node)
         && isForeignBinding(path, p, p.node.name)
       ) {
-        identifiers.push(p.node);
+        identifiers.add(p.node.name);
       }
       if (
         t.isJSXElement(p.node)
@@ -165,12 +165,12 @@ function getBindings(
           base = base.object;
         }
         if (isForeignBinding(path, p, base.name)) {
-          identifiers.push(t.identifier(base.name));
+          identifiers.add(base.name);
         }
       }
     }
   });
-  return identifiers;
+  return [...identifiers].map((value) => t.identifier(value));
 }
 
 function createStandardHot(
