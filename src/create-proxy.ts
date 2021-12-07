@@ -1,6 +1,10 @@
 import { JSX, createMemo, untrack } from 'solid-js';
 
-export default function createProxy<C extends ((props: P) => JSX.Element), P>(
+interface BaseComponent<P> {
+  (props: P): JSX.Element;
+}
+
+export default function createProxy<C extends BaseComponent<P>, P>(
   source: () => C,
 ): (props: P) => JSX.Element {
   return new Proxy((props: P) => (
@@ -12,11 +16,12 @@ export default function createProxy<C extends ((props: P) => JSX.Element), P>(
       return undefined;
     })
   ), {
-    get(_, property, receiver) {
-      return Reflect.get(source(), property, receiver);
+    get(_, property: keyof C) {
+      return source()[property];
     },
-    set(_, property, value, receiver) {
-      return Reflect.set(source(), property, value, receiver);
+    set(_, property: keyof C, value) {
+      source()[property] = value;
+      return true;
     },
   });
 }
