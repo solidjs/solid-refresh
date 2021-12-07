@@ -15,31 +15,31 @@ interface StandardHot {
   dispose: (cb: (data: Record<string, unknown>) => void) => void;
 }
 
-interface HotSignature {
+interface HotSignature<P> {
+  component: (props: P) => JSX.Element
   id: string;
-  value?: string;
+  signature?: string;
   dependencies?: any[];
 }
 
 export default function hot<P>(
-  Comp: (props: P) => JSX.Element,
-  { id, value, dependencies }: HotSignature,
+  { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
     const prev = hot.data;
-    if (value && dependencies) {
-      const [sign, setSign] = createSignal(value);
+    if (signature && dependencies) {
+      const [sign, setSign] = createSignal(signature);
       const [deps, setDeps] = createSignal(dependencies);
       if (prev
           && prev[id]
-          && (prev[id].sign() !== value
+          && (prev[id].sign() !== signature
             || isListUpdated(prev[id].deps(), dependencies)
           )
         ) {
         prev[id].setDeps(() => dependencies);
-        prev[id].setSign(() => value);
+        prev[id].setSign(() => signature);
         prev[id].setComp(() => Comp);
       }
       hot.dispose(data => {

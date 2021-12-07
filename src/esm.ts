@@ -10,42 +10,36 @@ interface HotComponent<P> {
   deps: () => any[];
 }
 
-interface HotRegistration<P> {
+interface HotSignature<P> {
   component: HotComponent<P>;
-  signature: string;
-  dependencies: any[];
-}
-
-interface HotModule<P> {
-  $$registrations: Record<string, HotRegistration<P>>;
-}
-
-interface HotSignature {
   id: string;
-  value?: string;
+  signature?: string;
   dependencies?: any[];
 }
 
+interface HotModule<P> {
+  $$registrations: Record<string, HotSignature<P>>;
+}
+
 export default function hot<P>(
-  Comp: HotComponent<P>,
-  { id, value, dependencies }: HotSignature,
+  { component: Comp, id, signature, dependencies }: HotSignature<P>,
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
     const registration = newModule.$$registrations[id];
     registration.component.setComp = Comp.setComp;
-    if (value) {
+    if (signature) {
       registration.component.setSign = Comp.setSign;
       registration.component.sign = Comp.sign;
       registration.component.setDeps = Comp.setDeps;
       registration.component.deps = Comp.deps;
       if (
         registration.signature !== Comp.sign()
-        || isListUpdated(registration.dependencies, Comp.deps())
+        || isListUpdated(registration.dependencies ?? [], Comp.deps())
       ) {
-        Comp.setDeps(() => registration.dependencies);
-        Comp.setSign(() => registration.signature);
+        Comp.setDeps(() => registration.dependencies ?? []);
+        Comp.setSign(() => registration.signature ?? '');
         Comp.setComp(() => registration.component);
       }
     } else {
@@ -55,8 +49,8 @@ export default function hot<P>(
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
     Comp.setComp = setComp;
-    if (value) {
-      const [sign, setSign] = createSignal(value);
+    if (signature) {
+      const [sign, setSign] = createSignal(signature);
       Comp.setSign = setSign;
       Comp.sign = sign;
     }
