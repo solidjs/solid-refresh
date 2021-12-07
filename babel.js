@@ -87,6 +87,72 @@ function createHotSignature(component, sign, deps) {
         t__namespace.objectProperty(t__namespace.identifier('id'), t__namespace.stringLiteral(component.name)),
     ]);
 }
+function isValidIdentifier(p) {
+    // { x }
+    if (t__namespace.isObjectMethod(p.parent) && p.parent.key === p.node) {
+        return false;
+    }
+    if (t__namespace.isObjectProperty(p.parent) && p.parent.key === p.node) {
+        return false;
+    }
+    // const x
+    if (t__namespace.isVariableDeclarator(p.parent)) {
+        if (p.parent.id === p.node) {
+            return false;
+        }
+    }
+    // const [x]
+    if (t__namespace.isArrayPattern(p.parent) && p.parent.elements.includes(p.node)) {
+        return false;
+    }
+    // (x) => {}
+    if (t__namespace.isArrowFunctionExpression(p.parent) && p.parent.params.includes(p.node)) {
+        return false;
+    }
+    // function (x)
+    if (t__namespace.isFunctionExpression(p.parent) && p.parent.params.includes(p.node)) {
+        return false;
+    }
+    if (t__namespace.isFunctionDeclaration(p.parent) && p.parent.params.includes(p.node)) {
+        return false;
+    }
+    // x:
+    if (t__namespace.isLabeledStatement(p.parent) && p.parent.label === p.node) {
+        return false;
+    }
+    // obj.x
+    if (t__namespace.isMemberExpression(p.parent) && !p.parent.computed && p.parent.property === p.node) {
+        return false;
+    }
+    // function x() {}
+    if (t__namespace.isFunctionDeclaration(p.parent) && p.parent.id === p.node) {
+        return false;
+    }
+    // (y = x) => {}
+    // function z(y = x) {}
+    if (t__namespace.isAssignmentPattern(p.parent)
+        && p.parent.left === p.node
+        && ((t__namespace.isArrowFunctionExpression(p.parentPath.parent)
+            && p.parentPath.parent.params.includes(p.parent))
+            || (t__namespace.isFunctionDeclaration(p.parentPath.parent)
+                && p.parentPath.parent.params.includes(p.parent))
+            || (t__namespace.isFunctionExpression(p.parentPath.parent)
+                && p.parentPath.parent.params.includes(p.parent)))) {
+        return false;
+    }
+    return true;
+}
+function getBindings(path) {
+    const identifiers = [];
+    path.traverse({
+        Identifier(p) {
+            if (!p.scope.hasOwnBinding(p.node.name) && isValidIdentifier(p)) {
+                identifiers.push(p.node);
+            }
+        },
+    });
+    return identifiers;
+}
 function createStandardHot(path, state, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(state.hooks, path, state.opts.bundler || 'standard');
     const pathToHot = getHotIdentifier(state.opts.bundler);
@@ -95,8 +161,7 @@ function createStandardHot(path, state, HotComponent, rename) {
         statementPath.insertBefore(rename);
     }
     return t__namespace.callExpression(HotImport, [
-        HotComponent,
-        createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined),
+        createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? getBindings(path) : undefined),
         pathToHot,
     ]);
 }
@@ -109,7 +174,7 @@ function createESMHot(path, state, HotComponent, rename) {
     if (statementPath) {
         const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
         statementPath.insertBefore(rename);
-        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? [] : undefined))));
+        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? getBindings(path) : undefined))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
             t__namespace.variableDeclarator(t__namespace.objectPattern([
                 t__namespace.objectProperty(t__namespace.identifier('handler'), handlerId, false, true),

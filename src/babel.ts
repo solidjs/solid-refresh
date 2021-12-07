@@ -127,6 +127,88 @@ function createHotSignature(
   ]);
 }
 
+function isValidIdentifier(
+  p: babel.NodePath<t.Identifier>,
+): boolean {
+  // { x }
+  if (t.isObjectMethod(p.parent) && p.parent.key === p.node) {
+    return false;
+  }
+  if (t.isObjectProperty(p.parent) && p.parent.key === p.node) {
+    return false;
+  }
+  // const x
+  if (t.isVariableDeclarator(p.parent)) {
+    if (p.parent.id === p.node) {
+      return false;
+    }
+  }
+  // const [x]
+  if (t.isArrayPattern(p.parent) && p.parent.elements.includes(p.node)) {
+    return false;
+  }
+  // (x) => {}
+  if (t.isArrowFunctionExpression(p.parent) && p.parent.params.includes(p.node)) {
+    return false;
+  }
+  // function (x)
+  if (t.isFunctionExpression(p.parent) && p.parent.params.includes(p.node)) {
+    return false;
+  }
+  if (t.isFunctionDeclaration(p.parent) && p.parent.params.includes(p.node)) {
+    return false;
+  }
+  // x:
+  if (t.isLabeledStatement(p.parent) && p.parent.label === p.node) {
+    return false;
+  }
+  // obj.x
+  if (t.isMemberExpression(p.parent) && !p.parent.computed && p.parent.property === p.node) {
+    return false;
+  }
+  // function x() {}
+  if (t.isFunctionDeclaration(p.parent) && p.parent.id === p.node) {
+    return false;
+  }
+  // (y = x) => {}
+  // function z(y = x) {}
+  if (
+    t.isAssignmentPattern(p.parent)
+    && p.parent.left === p.node
+    && (
+      (
+        t.isArrowFunctionExpression(p.parentPath.parent)
+        && p.parentPath.parent.params.includes(p.parent)
+      )
+      || (
+        t.isFunctionDeclaration(p.parentPath.parent)
+        && p.parentPath.parent.params.includes(p.parent)
+      )
+      || (
+        t.isFunctionExpression(p.parentPath.parent)
+        && p.parentPath.parent.params.includes(p.parent)
+      )
+    )
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function getBindings(
+  path: babel.NodePath,
+): t.Identifier[] {
+  const identifiers: t.Identifier[] = [];
+  path.traverse({
+    Identifier(p) {
+      if (!p.scope.hasOwnBinding(p.node.name) && isValidIdentifier(p)) {
+        identifiers.push(p.node);
+      }
+    },
+  });
+  return identifiers;
+}
+
 function createStandardHot(
   path: babel.NodePath,
   state: State,
@@ -147,7 +229,7 @@ function createStandardHot(
     createHotSignature(
       HotComponent,
       state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
-      state.granular.value ? [] : undefined,
+      state.granular.value ? getBindings(path) : undefined,
     ),
     pathToHot,
   ]);
@@ -182,7 +264,7 @@ function createESMHot(
           createHotSignature(
             HotComponent,
             state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
-            state.granular.value ? [] : undefined,
+            state.granular.value ? getBindings(path) : undefined,
           ),
         ),
       )
