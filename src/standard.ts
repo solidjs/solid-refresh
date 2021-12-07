@@ -3,10 +3,10 @@ import isListUpdated from "./is-list-updated";
 
 interface HotData {
   setComp: (action: () => (props: any) => JSX.Element) => void;
-  setSign: (action: () => string) => void;
-  sign: () => string;
-  setDeps: (action: () => any[]) => void;
-  deps: () => any[];
+  setSign: (action: () => string | undefined) => void;
+  sign: () => string | undefined;
+  setDeps: (action: () => any[] | undefined) => void;
+  deps: () => any[] | undefined;
 }
 
 interface StandardHot {
@@ -28,39 +28,41 @@ export default function hot<P>(
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
+    const [sign, setSign] = createSignal(signature);
+    const [deps, setDeps] = createSignal(dependencies);
     const prev = hot.data;
-    if (signature && dependencies) {
-      const [sign, setSign] = createSignal(signature);
-      const [deps, setDeps] = createSignal(dependencies);
-      if (prev
-          && prev[id]
-          && (prev[id].sign() !== signature
-            || isListUpdated(prev[id].deps(), dependencies)
-          )
+    // Check if there's previous data
+    if (
+      prev
+      && prev[id]
+    ) {
+      // Check if there's a new signature and dependency
+      // This is always new in standard HMR
+      if (signature && dependencies) {
+        // Check if signature changed
+        // or dependencies changed
+        if (
+          prev[id].sign() !== signature
+          || isListUpdated(prev[id].deps(), dependencies)
         ) {
-        prev[id].setDeps(() => dependencies);
-        prev[id].setSign(() => signature);
+          // Remount
+          prev[id].setDeps(() => dependencies);
+          prev[id].setSign(() => signature);
+          prev[id].setComp(() => Comp);
+        }
+      } else {
         prev[id].setComp(() => Comp);
       }
-      hot.dispose(data => {
-        data[id] = prev ? prev[id] : {
-          setComp,
-          sign,
-          setSign,
-          deps,
-          setDeps,
-        };
-      });
-    } else {
-      if (prev && prev[id]) {
-        prev[id].setComp(() => Comp);
-      }
-      hot.dispose(data => {
-        data[id] = prev ? prev[id] : {
-          setComp,
-        };
-      });
     }
+    hot.dispose(data => {
+      data[id] = prev ? prev[id] : {
+        setComp,
+        sign,
+        setSign,
+        deps,
+        setDeps,
+      };
+    });
     hot.accept();
     return new Proxy((props: P) => (
       createMemo(() => {
