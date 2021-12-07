@@ -35,7 +35,8 @@ export default function hot<P>(
       registration.component.setDeps = Comp.setDeps;
       registration.component.deps = Comp.deps;
       if (
-        registration.signature !== Comp.sign()
+        !registration.signature
+        || registration.signature !== Comp.sign()
         || isListUpdated(registration.dependencies ?? [], Comp.deps())
       ) {
         Comp.setDeps(() => registration.dependencies ?? []);
