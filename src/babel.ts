@@ -200,7 +200,7 @@ function createStandardHot(
       isGranular ? getBindings(path) : undefined,
     ),
     pathToHot,
-    t.stringLiteral(mode),
+    t.booleanLiteral(mode === 'reload'),
   ]);
 }
 
@@ -258,7 +258,7 @@ function createESMHot(
               HotComponent,
             ),
             t.unaryExpression("!", t.unaryExpression("!", pathToHot)),
-            t.stringLiteral(mode),
+            t.booleanLiteral(mode === 'reload'),
           ]),
         )
       ])
@@ -345,32 +345,33 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       };
     },
     visitor: {
-      Program(path, { opts, processed, granular }) {
-        const comments = path.hub.file.ast.comments;
-        for (let i = 0; i < comments.length; i++) {
-          const comment = comments[i].value;
-          if (/^\s*@refresh granular\s*$/.test(comment)) {
-            granular.value = true;
-            return;
-          }
-          if (/^\s*@refresh skip\s*$/.test(comment)) {
-            processed.value = true;
-            return;
-          }
-          if (/^\s*@refresh reload\s*$/.test(comment)) {
-            if (opts.bundler === "vite") opts.bundler = "esm";
-            processed.value = true;
-            const pathToHot = getHotIdentifier(opts.bundler);
-            path.pushContainer(
-              "body",
-              t.ifStatement(
-                pathToHot,
-                t.expressionStatement(
-                  t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+      File(path, { opts, processed, granular }) {
+        const comments = path.node.comments;
+        if (comments) {
+          for (let i = 0; i < comments.length; i++) {
+            const comment = comments[i].value;
+            if (/^\s*@refresh granular\s*$/.test(comment)) {
+              granular.value = true;
+              return;
+            }
+            if (/^\s*@refresh skip\s*$/.test(comment)) {
+              processed.value = true;
+              return;
+            }
+            if (/^\s*@refresh reload\s*$/.test(comment)) {
+              if (opts.bundler === "vite") opts.bundler = "esm";
+              processed.value = true;
+              const pathToHot = getHotIdentifier(opts.bundler);
+              path.node.program.body.push(
+                t.ifStatement(
+                  pathToHot,
+                  t.expressionStatement(
+                    t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                  )
                 )
-              )
-            );
-            return;
+              );
+              return;
+            }
           }
         }
       },
