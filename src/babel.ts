@@ -345,8 +345,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       };
     },
     visitor: {
-      File(path, { opts, processed, granular }) {
-        const comments = path.node.comments;
+      Program(path, { file, opts, processed, granular }) {
+        const comments = file.ast.comments;
         if (comments) {
           for (let i = 0; i < comments.length; i++) {
             const comment = comments[i].value;
@@ -362,7 +362,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               if (opts.bundler === "vite") opts.bundler = "esm";
               processed.value = true;
               const pathToHot = getHotIdentifier(opts.bundler);
-              path.node.program.body.push(
+              path.pushContainer(
+                'body',
                 t.ifStatement(
                   pathToHot,
                   t.expressionStatement(

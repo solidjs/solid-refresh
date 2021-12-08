@@ -1,0 +1,921 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
+"export default
+/* @refresh local-skip */
+function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+export default function Foo() {
+  return <h1>Foo</h1>;
+}
+if (module.hot) module.hot.decline();"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+export default function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"export default function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default
+/* @refresh local-granular */
+_standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export default
+/* @refresh local-granular */
+_standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export default
+/* @refresh local-granular */
+_standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default
+/* @refresh local-reload */
+_standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, true);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _HotComponent = function (props) {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _HotComponent,
+  id: \\"_HotComponent\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
+"export
+/* @refresh local-skip */
+function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+export function Foo() {
+  return <h1>Foo</h1>;
+}
+if (module.hot) module.hot.decline();"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+export function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"export function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, true);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh local-skip 1`] = `
+"// @refresh local-skip
+function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh reload 1`] = `
+"// @refresh reload
+function Foo() {
+  return <h1>Foo</h1>;
+}
+
+if (module.hot) module.hot.decline();"
+`;
+
+exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh skip 1`] = `
+"// @refresh skip
+function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm FunctionDeclaration should skip FunctionDeclaration with invalid Component name 1`] = `
+"function foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm FunctionDeclaration should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+"function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh local-granular
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const example = 'Foo'; // @refresh local-granular
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const Example = createContext(); // @refresh local-granular
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-reload 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh local-reload
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot, true);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh local-skip 1`] = `
+"const Foo =
+/* @refresh local-skip */
+() => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+const Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+if (module.hot) module.hot.decline();"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+const Foo = () => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+"const foo = () => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"const Foo = (a, b) => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = () => {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = () => {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+() => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"+3ZEWm+CKyHfaRcBnjwOFUYRtM15JlGwyQ9s4/sMZHg=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const example = 'Foo';
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+() => {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"oSX1YG3DP9Up+z36FjhImYHrko1G9mFFt75jFnIGo+E=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const Example = createContext();
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+() => {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BLn2Huf9PcKX9KTh7hMuPmeuyqYFd37OE8JjWiFNW2o=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-reload 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo =
+/* @refresh local-reload */
+() => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"KapQSx7PmDCBlKNABRm77wl/pIM+nhDrn4Kxa90QOsw=\\",
+  dependencies: []
+}, module.hot, true);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = props => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh local-skip 1`] = `
+"const Foo =
+/* @refresh local-skip */
+function () {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+const Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+if (module.hot) module.hot.decline();"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+const Foo = function () {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+"const foo = function () {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"const Foo = function (a, b) {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function () {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function () {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+function () {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"7umk3QPlnZQ/Iy823XyrSwGePBuFAuskI69HXWfRs7k=\\",
+  dependencies: []
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const example = 'Foo';
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+function () {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"Cl96p9i5y+Qj7phAuWL2seZKE1e7Z/Xxm0wCNsBMw54=\\",
+  dependencies: [example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+const Example = createContext();
+
+const _Hot$$Foo =
+/* @refresh local-granular */
+function () {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"VExYPT8YMBs+MM0nYaF6ooQEfZn3ID5Cr3+DoPEfTEE=\\",
+  dependencies: [Example]
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-reload 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo =
+/* @refresh local-reload */
+function () {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"nYg7kYxi80z6cJu3TNul1/gVIQznBhoX66yzG3jKYnA=\\",
+  dependencies: []
+}, module.hot, true);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;
+
+exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function (props) {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot, false);"
+`;

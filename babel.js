@@ -133,7 +133,7 @@ function createStandardHot(path, state, mode, HotComponent, rename) {
     return t__namespace.callExpression(HotImport, [
         createHotSignature(HotComponent, isGranular ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, isGranular ? getBindings(path) : undefined),
         pathToHot,
-        t__namespace.stringLiteral(mode),
+        t__namespace.booleanLiteral(mode === 'reload'),
     ]);
 }
 function createESMHot(path, state, mode, HotComponent, rename) {
@@ -158,7 +158,7 @@ function createESMHot(path, state, mode, HotComponent, rename) {
             ]), t__namespace.callExpression(HotImport, [
                 t__namespace.memberExpression(registrationMap, HotComponent),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot)),
-                t__namespace.stringLiteral(mode),
+                t__namespace.booleanLiteral(mode === 'reload'),
             ]))
         ]));
         const mod = path.scope.generateUidIdentifier('mod');
@@ -217,25 +217,27 @@ function solidRefreshPlugin() {
             };
         },
         visitor: {
-            Program(path, { opts, processed, granular }) {
-                const comments = path.hub.file.ast.comments;
-                for (let i = 0; i < comments.length; i++) {
-                    const comment = comments[i].value;
-                    if (/^\s*@refresh granular\s*$/.test(comment)) {
-                        granular.value = true;
-                        return;
-                    }
-                    if (/^\s*@refresh skip\s*$/.test(comment)) {
-                        processed.value = true;
-                        return;
-                    }
-                    if (/^\s*@refresh reload\s*$/.test(comment)) {
-                        if (opts.bundler === "vite")
-                            opts.bundler = "esm";
-                        processed.value = true;
-                        const pathToHot = getHotIdentifier(opts.bundler);
-                        path.pushContainer("body", t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
-                        return;
+            Program(path, { file, opts, processed, granular }) {
+                const comments = file.ast.comments;
+                if (comments) {
+                    for (let i = 0; i < comments.length; i++) {
+                        const comment = comments[i].value;
+                        if (/^\s*@refresh granular\s*$/.test(comment)) {
+                            granular.value = true;
+                            return;
+                        }
+                        if (/^\s*@refresh skip\s*$/.test(comment)) {
+                            processed.value = true;
+                            return;
+                        }
+                        if (/^\s*@refresh reload\s*$/.test(comment)) {
+                            if (opts.bundler === "vite")
+                                opts.bundler = "esm";
+                            processed.value = true;
+                            const pathToHot = getHotIdentifier(opts.bundler);
+                            path.pushContainer('body', t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
+                            return;
+                        }
                     }
                 }
             },
