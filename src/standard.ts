@@ -19,6 +19,10 @@ interface StandardHot {
 }
 
 function invalidate(hot: StandardHot) {
+  // Some Webpack-like HMR doesn't have `invalidate` or `decline`
+  // methods (e.g. Parcel) so we need to shim this module invalidation
+  // by calling either of the two methods (if it exists) or reloading
+  // the entire page
   if (hot.invalidate) {
     hot.invalidate();
   } else if (hot.decline) {
@@ -38,7 +42,7 @@ interface HotSignature<P> {
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
-  mode: 'reload' | 'granular' | 'none',
+  shouldReload: boolean,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
@@ -56,7 +60,7 @@ export default function hot<P>(
           prev[id].sign() !== signature
           || isListUpdated(prev[id].deps(), dependencies)
         ) {
-          if (mode === 'reload') {
+          if (shouldReload) {
             invalidate(hot);
           } else {
             // Remount
@@ -65,7 +69,7 @@ export default function hot<P>(
             prev[id].setComp(() => Comp);
           }
         }
-      } else if (mode === 'reload') {
+      } else if (shouldReload) {
         invalidate(hot);
       } else {
         prev[id].setComp(() => Comp);

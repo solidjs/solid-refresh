@@ -25,7 +25,7 @@ interface HotModule<P> {
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
   isHot: boolean,
-  mode: 'reload' | 'granular' | 'none',
+  shouldReload: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
@@ -47,7 +47,7 @@ export default function hot<P>(
         registration.signature !== Comp.sign()
         || isListUpdated(registration.dependencies, Comp.deps())
       ) {
-        if (mode === 'reload') {
+        if (shouldReload) {
           return true;
         }
         // Remount
@@ -55,7 +55,7 @@ export default function hot<P>(
         Comp.setSign(() => registration.signature);
         Comp.setComp(() => registration.component);
       }
-    } else if (mode === 'reload') {
+    } else if (shouldReload) {
       return true;
     } else {
       // No granular update, remount
