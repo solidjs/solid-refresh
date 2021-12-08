@@ -43,8 +43,14 @@ function getSolidRefreshIdentifier(hooks, path, name) {
     hooks.set(name, newID);
     return newID;
 }
+function isESMHMR(bundler) {
+    // The currently known ESM HMR implementations
+    // esm - the original ESM HMR Spec
+    // vite - Vite's implementation
+    return bundler === 'esm' || bundler === 'vite';
+}
 function getHotIdentifier(bundler) {
-    if (bundler === 'esm') {
+    if (isESMHMR(bundler)) {
         return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('hot'));
     }
     return t__namespace.memberExpression(t__namespace.identifier("module"), t__namespace.identifier("hot"));
@@ -123,7 +129,7 @@ function getBindings(path) {
     return [...identifiers].map((value) => t__namespace.identifier(value));
 }
 function createStandardHot(path, state, mode, HotComponent, rename) {
-    const HotImport = getSolidRefreshIdentifier(state.hooks, path, state.opts.bundler || 'standard');
+    const HotImport = getSolidRefreshIdentifier(state.hooks, path, 'standard');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const statementPath = getStatementPath(path);
     if (statementPath) {
@@ -137,7 +143,7 @@ function createStandardHot(path, state, mode, HotComponent, rename) {
     ]);
 }
 function createESMHot(path, state, mode, HotComponent, rename) {
-    const HotImport = getSolidRefreshIdentifier(state.hooks, path, state.opts.bundler || 'standard');
+    const HotImport = getSolidRefreshIdentifier(state.hooks, path, 'esm');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const handlerId = path.scope.generateUidIdentifier("handler");
     const componentId = path.scope.generateUidIdentifier("Component");
@@ -163,25 +169,26 @@ function createESMHot(path, state, mode, HotComponent, rename) {
         ]));
         const mod = path.scope.generateUidIdentifier('mod');
         statementPath.insertBefore(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("accept")), [
-            mode === 'reload'
-                ? (t__namespace.arrowFunctionExpression([mod], t__namespace.blockStatement([
-                    t__namespace.ifStatement(t__namespace.callExpression(handlerId, [mod]), t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("invalidate")), []))),
-                ])))
-                : handlerId
+            t__namespace.arrowFunctionExpression([mod], t__namespace.blockStatement([
+                t__namespace.ifStatement(t__namespace.callExpression(handlerId, [
+                    // Vite interprets this differently
+                    state.opts.bundler === 'esm'
+                        ? t__namespace.memberExpression(mod, t__namespace.identifier('module'))
+                        : mod
+                ]), t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("invalidate")), []))),
+            ]))
         ]))));
     }
     return componentId;
 }
 function createHot(path, state, mode, name, expression) {
-    if (state.opts.bundler === "vite")
-        state.opts.bundler = "esm";
     const HotComponent = name
         ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
         : path.scope.generateUidIdentifier('HotComponent');
     const rename = t__namespace.variableDeclaration("const", [
         t__namespace.variableDeclarator(HotComponent, expression),
     ]);
-    if (state.opts.bundler === "esm") {
+    if (isESMHMR(state.opts.bundler)) {
         return createESMHot(path, state, mode, HotComponent, rename);
     }
     return createStandardHot(path, state, mode, HotComponent, rename);
@@ -231,11 +238,11 @@ function solidRefreshPlugin() {
                             return;
                         }
                         if (/^\s*@refresh reload\s*$/.test(comment)) {
-                            if (opts.bundler === "vite")
-                                opts.bundler = "esm";
                             processed.value = true;
                             const pathToHot = getHotIdentifier(opts.bundler);
-                            path.pushContainer('body', t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
+                            path.pushContainer('body', isESMHMR(opts.bundler)
+                                ? (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))))
+                                : (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.conditionalExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []), t__namespace.callExpression(t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("window"), t__namespace.identifier("location")), t__namespace.identifier("reload")), []))))));
                             return;
                         }
                     }

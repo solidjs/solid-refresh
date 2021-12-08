@@ -13,7 +13,7 @@ exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDe
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (module.hot) module.hot.decline();"
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
 `;
 
 exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -214,7 +214,7 @@ exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportName
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (module.hot) module.hot.decline();"
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
 `;
 
 exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -394,7 +394,7 @@ function Foo() {
   return <h1>Foo</h1>;
 }
 
-if (module.hot) module.hot.decline();"
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
 `;
 
 exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh skip 1`] = `
@@ -570,7 +570,7 @@ const Foo = () => {
   return <h1>Foo</h1>;
 };
 
-if (module.hot) module.hot.decline();"
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
 `;
 
 exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
@@ -752,7 +752,7 @@ const Foo = function () {
   return <h1>Foo</h1>;
 };
 
-if (module.hot) module.hot.decline();"
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
 `;
 
 exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `

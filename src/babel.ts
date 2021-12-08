@@ -41,8 +41,15 @@ function getSolidRefreshIdentifier(
   return newID;
 }
 
+function isESMHMR(bundler: Options['bundler']) {
+  // The currently known ESM HMR implementations
+  // esm - the original ESM HMR Spec
+  // vite - Vite's implementation
+  return bundler === 'esm' || bundler === 'vite';
+}
+
 function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
-  if (bundler === 'esm') {
+  if (isESMHMR(bundler)) {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('hot'),
@@ -185,7 +192,7 @@ function createStandardHot(
   const HotImport = getSolidRefreshIdentifier(
     state.hooks,
     path,
-    state.opts.bundler || 'standard',
+    'standard',
   );
   const pathToHot = getHotIdentifier(state.opts.bundler);
   const statementPath = getStatementPath(path);
@@ -214,7 +221,7 @@ function createESMHot(
   const HotImport = getSolidRefreshIdentifier(
     state.hooks,
     path,
-    state.opts.bundler || 'standard',
+    'esm',
   );
   const pathToHot = getHotIdentifier(state.opts.bundler);
   const handlerId = path.scope.generateUidIdentifier("handler");
@@ -268,21 +275,22 @@ function createESMHot(
       pathToHot,
       t.expressionStatement(
         t.callExpression(t.memberExpression(pathToHot, t.identifier("accept")), [
-          mode === 'reload'
-            ? (
-              t.arrowFunctionExpression(
-                [mod],
-                t.blockStatement([
-                  t.ifStatement(
-                    t.callExpression(handlerId, [mod]),
-                    t.expressionStatement(
-                      t.callExpression(t.memberExpression(pathToHot, t.identifier("invalidate")), []),
-                    ),
-                  ),
+          t.arrowFunctionExpression(
+            [mod],
+            t.blockStatement([
+              t.ifStatement(
+                t.callExpression(handlerId, [
+                  // Vite interprets this differently
+                  state.opts.bundler === 'esm'
+                    ? t.memberExpression(mod, t.identifier('module'))
+                    : mod
                 ]),
-              )
-            )
-            : handlerId
+                t.expressionStatement(
+                  t.callExpression(t.memberExpression(pathToHot, t.identifier("invalidate")), []),
+                ),
+              ),
+            ]),
+          )
         ]),
       ),
     ));
@@ -297,7 +305,6 @@ function createHot(
   name: t.Identifier | undefined,
   expression: t.Expression,
 ) {
-  if (state.opts.bundler === "vite") state.opts.bundler = "esm";
   const HotComponent = name
     ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
     : path.scope.generateUidIdentifier('HotComponent');
@@ -307,7 +314,7 @@ function createHot(
       expression,
     ),
   ]);
-  if (state.opts.bundler === "esm") {
+  if (isESMHMR(state.opts.bundler)) {
     return createESMHot(path, state, mode, HotComponent, rename);
   }
   return createStandardHot(path, state, mode, HotComponent, rename);
@@ -359,17 +366,37 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               return;
             }
             if (/^\s*@refresh reload\s*$/.test(comment)) {
-              if (opts.bundler === "vite") opts.bundler = "esm";
               processed.value = true;
               const pathToHot = getHotIdentifier(opts.bundler);
               path.pushContainer(
                 'body',
-                t.ifStatement(
-                  pathToHot,
-                  t.expressionStatement(
-                    t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                isESMHMR(opts.bundler)
+                  ? (
+                    t.ifStatement(
+                      pathToHot,
+                      t.expressionStatement(
+                        t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                      )
+                    )
                   )
-                )
+                  : (
+                    t.ifStatement(
+                      pathToHot,
+                      t.expressionStatement(
+                        t.conditionalExpression(
+                          t.memberExpression(pathToHot, t.identifier("decline")),
+                          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), []),
+                          t.callExpression(
+                            t.memberExpression(
+                              t.memberExpression(t.identifier("window"), t.identifier("location")),
+                              t.identifier("reload"),
+                            ),
+                            [],
+                          ),
+                        )
+                      )
+                    )
+                  )
               );
               return;
             }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
 "export default
 /* @refresh local-skip */
 function Foo() {
@@ -8,7 +8,7 @@ function Foo() {
 }"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
@@ -16,14 +16,14 @@ export default function Foo() {
 if (import.meta.hot) import.meta.hot.decline();"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 export default function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -42,18 +42,18 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "export default function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -74,13 +74,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh granular
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -103,12 +103,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -131,12 +131,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -159,12 +159,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const example = 'Foo';
 export const $$registrations = {};
@@ -188,12 +188,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const Example = createContext();
 export const $$registrations = {};
@@ -217,12 +217,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -245,12 +245,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -269,12 +269,12 @@ const {
 } = _esm($$registrations._HotComponent, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -293,12 +293,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -317,12 +317,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
 "export
 /* @refresh local-skip */
 function Foo() {
@@ -330,7 +330,7 @@ function Foo() {
 }"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
@@ -338,14 +338,14 @@ export function Foo() {
 if (import.meta.hot) import.meta.hot.decline();"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 export function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -364,18 +364,18 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "export function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -396,13 +396,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh granular
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -425,12 +425,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -453,12 +453,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -479,12 +479,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const example = 'Foo';
 export const $$registrations = {};
@@ -506,12 +506,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const Example = createContext();
 export const $$registrations = {};
@@ -533,12 +533,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -559,12 +559,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -583,12 +583,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -607,19 +607,19 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh local-skip 1`] = `
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with @refresh local-skip 1`] = `
 "// @refresh local-skip
 function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh reload 1`] = `
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with @refresh reload 1`] = `
 "// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
@@ -628,26 +628,26 @@ function Foo() {
 if (import.meta.hot) import.meta.hot.decline();"
 `;
 
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh skip 1`] = `
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with @refresh skip 1`] = `
 "// @refresh skip
 function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with invalid Component name 1`] = `
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with invalid Component name 1`] = `
 "function foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
 "function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 1`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -668,13 +668,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh granular
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 2`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -697,12 +697,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh granular 3`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -725,12 +725,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 1`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -751,13 +751,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh local-granular
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 2`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const example = 'Foo'; // @refresh local-granular
 
@@ -780,12 +780,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 3`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const Example = createContext(); // @refresh local-granular
 
@@ -808,12 +808,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-reload 1`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh local-reload 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -834,13 +834,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh local-reload
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 1`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -859,12 +859,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 2`] = `
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -883,12 +883,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh local-skip 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh local-skip 1`] = `
 "const Foo =
 /* @refresh local-skip */
 () => {
@@ -896,7 +896,7 @@ exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDecl
 };"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
@@ -905,26 +905,26 @@ const Foo = () => {
 if (import.meta.hot) import.meta.hot.decline();"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 const Foo = () => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
 "const foo = () => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
 "const Foo = (a, b) => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -945,13 +945,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh granular
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -974,12 +974,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -1002,12 +1002,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1030,12 +1030,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 2`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const example = 'Foo';
 export const $$registrations = {};
@@ -1059,12 +1059,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 3`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const Example = createContext();
 export const $$registrations = {};
@@ -1088,12 +1088,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-reload 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-reload 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1116,12 +1116,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1140,12 +1140,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1164,12 +1164,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh local-skip 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh local-skip 1`] = `
 "const Foo =
 /* @refresh local-skip */
 function () {
@@ -1177,7 +1177,7 @@ function () {
 };"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
@@ -1186,26 +1186,26 @@ const Foo = function () {
 if (import.meta.hot) import.meta.hot.decline();"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 const Foo = function () {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
 "const foo = function () {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "const Foo = function (a, b) {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1226,13 +1226,13 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 // @refresh granular
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -1255,12 +1255,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -1283,12 +1283,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1311,12 +1311,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 2`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const example = 'Foo';
 export const $$registrations = {};
@@ -1340,12 +1340,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 3`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 const Example = createContext();
 export const $$registrations = {};
@@ -1369,12 +1369,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-reload 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-reload 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1397,12 +1397,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1421,12 +1421,12 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
 
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
 export const $$registrations = {};
 
@@ -1445,7 +1445,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  if (_handler(_mod)) import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
