@@ -278,14 +278,15 @@ function createESMHot(
           t.arrowFunctionExpression(
             [mod],
             t.blockStatement([
-              t.ifStatement(
-                t.callExpression(handlerId, [
-                  // Vite interprets this differently
-                  state.opts.bundler === 'esm'
-                    ? t.memberExpression(mod, t.identifier('module'))
-                    : mod
-                ]),
-                t.expressionStatement(
+              t.expressionStatement(
+                t.logicalExpression(
+                  '&&',
+                  t.callExpression(handlerId, [
+                    // Vite interprets this differently
+                    state.opts.bundler === 'esm'
+                      ? t.memberExpression(mod, t.identifier('module'))
+                      : mod
+                  ]),
                   t.callExpression(t.memberExpression(pathToHot, t.identifier("invalidate")), []),
                 ),
               ),

@@ -170,12 +170,12 @@ function createESMHot(path, state, mode, HotComponent, rename) {
         const mod = path.scope.generateUidIdentifier('mod');
         statementPath.insertBefore(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("accept")), [
             t__namespace.arrowFunctionExpression([mod], t__namespace.blockStatement([
-                t__namespace.ifStatement(t__namespace.callExpression(handlerId, [
+                t__namespace.expressionStatement(t__namespace.logicalExpression('&&', t__namespace.callExpression(handlerId, [
                     // Vite interprets this differently
                     state.opts.bundler === 'esm'
                         ? t__namespace.memberExpression(mod, t__namespace.identifier('module'))
                         : mod
-                ]), t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("invalidate")), []))),
+                ]), t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("invalidate")), []))),
             ]))
         ]))));
     }

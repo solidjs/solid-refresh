@@ -42,7 +42,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -74,7 +74,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
 export default _Component;"
@@ -103,7 +103,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -131,7 +131,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -159,7 +159,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -188,7 +188,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -217,7 +217,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -245,7 +245,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -269,7 +269,7 @@ const {
 } = _esm($$registrations._HotComponent, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -293,7 +293,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -317,7 +317,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
 `;
@@ -364,7 +364,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -396,7 +396,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
 export const Foo = _Component;"
@@ -425,7 +425,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -453,7 +453,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -479,7 +479,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -506,7 +506,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -533,7 +533,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -559,7 +559,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -583,7 +583,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -607,7 +607,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
 `;
@@ -668,7 +668,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
 var Foo = _Component;"
@@ -697,7 +697,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -725,7 +725,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -751,7 +751,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh local-granular
 var Foo = _Component;"
@@ -780,7 +780,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -808,7 +808,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -834,7 +834,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh local-reload
 var Foo = _Component;"
@@ -859,7 +859,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -883,7 +883,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
 `;
@@ -945,7 +945,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
 const Foo = _Component;"
@@ -974,7 +974,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1002,7 +1002,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1030,7 +1030,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1059,7 +1059,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1088,7 +1088,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1116,7 +1116,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1140,7 +1140,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1164,7 +1164,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1226,7 +1226,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
 const Foo = _Component;"
@@ -1255,7 +1255,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1283,7 +1283,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1311,7 +1311,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1340,7 +1340,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1369,7 +1369,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1397,7 +1397,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1421,7 +1421,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
@@ -1445,7 +1445,7 @@ const {
 } = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
-  if (_handler(_mod.module)) import.meta.hot.invalidate();
+  _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
 `;
