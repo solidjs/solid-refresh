@@ -20,7 +20,7 @@ async function transform(code: string) {
   throw new Error('Missing code');
 }
 
-describe('esm', () => {
+describe('vite', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(await transform(`
@@ -56,25 +56,9 @@ describe('esm', () => {
       }
       `)).toMatchSnapshot();
     });
-    it('should skip FunctionDeclaration with @refresh local-skip', async () => {
-      expect(await transform(`
-      // @refresh local-skip
-      function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
     it('should skip FunctionDeclaration with @refresh reload', async () => {
       expect(await transform(`
       // @refresh reload
-      function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform FunctionDeclaration with @refresh local-reload', async () => {
-      expect(await transform(`
-      // @refresh local-reload
       function Foo() {
         return <h1>Foo</h1>;
       }
@@ -97,28 +81,6 @@ describe('esm', () => {
       expect(await transform(`
       // @refresh granular
       const Example = createContext();
-      function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform FunctionDeclaration with @refresh local-granular', async () => {
-      expect(await transform(`
-      // @refresh local-granular
-      function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const example = 'Foo';
-      // @refresh local-granular
-      function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const Example = createContext();
-      // @refresh local-granular
       function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
@@ -161,24 +123,10 @@ describe('esm', () => {
         }
         `)).toMatchSnapshot();
       });
-      it('should skip VariableDeclarator w/ FunctionExpression with @refresh local-skip', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-skip */ function() {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-      });
       it('should skip VariableDeclarator w/ FunctionExpression with @refresh reload', async () => {
         expect(await transform(`
         // @refresh reload
         const Foo = function() {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-      });
-      it('should transform VariableDeclarator w/ FunctionExpression with @refresh local-reload', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-reload */ function() {
           return <h1>Foo</h1>;
         }
         `)).toMatchSnapshot();
@@ -201,25 +149,6 @@ describe('esm', () => {
         // @refresh granular
         const Example = createContext();
         const Foo = function() {
-          return <Example.Provider>Foo</Example.Provider>;
-        }
-        `)).toMatchSnapshot();
-      });
-      it('should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-granular */ function() {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-        expect(await transform(`
-        const example = 'Foo';
-        const Foo = /* @refresh local-granular */ function() {
-          return <h1>{example}</h1>;
-        }
-        `)).toMatchSnapshot();
-        expect(await transform(`
-        const Example = createContext();
-        const Foo = /* @refresh local-granular */ function() {
           return <Example.Provider>Foo</Example.Provider>;
         }
         `)).toMatchSnapshot();
@@ -260,24 +189,10 @@ describe('esm', () => {
         }
         `)).toMatchSnapshot();
       });
-      it('should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh local-skip', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-skip */ () => {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-      });
       it('should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload', async () => {
         expect(await transform(`
         // @refresh reload
         const Foo = () => {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-      });
-      it('should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-reload', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-reload */  () => {
           return <h1>Foo</h1>;
         }
         `)).toMatchSnapshot();
@@ -300,25 +215,6 @@ describe('esm', () => {
         // @refresh granular
         const Example = createContext();
         const Foo = () => {
-          return <Example.Provider>Foo</Example.Provider>;
-        }
-        `)).toMatchSnapshot();
-      });
-      it('should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular', async () => {
-        expect(await transform(`
-        const Foo = /* @refresh local-granular */ () => {
-          return <h1>Foo</h1>;
-        }
-        `)).toMatchSnapshot();
-        expect(await transform(`
-        const example = 'Foo';
-        const Foo = /* @refresh local-granular */ () => {
-          return <h1>{example}</h1>;
-        }
-        `)).toMatchSnapshot();
-        expect(await transform(`
-        const Example = createContext();
-        const Foo = /* @refresh local-granular */ () => {
           return <Example.Provider>Foo</Example.Provider>;
         }
         `)).toMatchSnapshot();
@@ -360,24 +256,10 @@ describe('esm', () => {
       }
       `)).toMatchSnapshot();
     });
-    it('should skip ExportNamedDeclaration w/ FunctionExpression with @refresh local-skip', async () => {
-      expect(await transform(`
-      export /* @refresh local-skip */ function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload', async () => {
       expect(await transform(`
       // @refresh reload
       export function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-reload', async () => {
-      expect(await transform(`
-      export /* @refresh local-reload */ function Foo() {
         return <h1>Foo</h1>;
       }
       `)).toMatchSnapshot();
@@ -400,25 +282,6 @@ describe('esm', () => {
       // @refresh granular
       const Example = createContext();
       export function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular', async () => {
-      expect(await transform(`
-      export /* @refresh local-granular */ function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const example = 'Foo';
-      export /* @refresh local-granular */ function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const Example = createContext();
-      export /* @refresh local-granular */ function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
       `)).toMatchSnapshot();
@@ -466,24 +329,10 @@ describe('esm', () => {
       }
       `)).toMatchSnapshot();
     });
-    it('should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh local-skip', async () => {
-      expect(await transform(`
-      export default /* @refresh local-skip */ function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
     it('should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload', async () => {
       expect(await transform(`
       // @refresh reload
       export default function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-reload', async () => {
-      expect(await transform(`
-      export default /* @refresh local-reload */ function Foo() {
         return <h1>Foo</h1>;
       }
       `)).toMatchSnapshot();
@@ -506,25 +355,6 @@ describe('esm', () => {
       // @refresh granular
       const Example = createContext();
       export default function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `)).toMatchSnapshot();
-    });
-    it('should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular', async () => {
-      expect(await transform(`
-      export default /* @refresh local-granular */ function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const example = 'Foo';
-      export default /* @refresh local-granular */ function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `)).toMatchSnapshot();
-      expect(await transform(`
-      const Example = createContext();
-      export default /* @refresh local-granular */ function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
       `)).toMatchSnapshot();

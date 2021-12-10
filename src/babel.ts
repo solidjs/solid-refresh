@@ -4,8 +4,6 @@ import generator from '@babel/generator';
 import { addNamed } from '@babel/helper-module-imports';
 import crypto from 'crypto';
 
-type LocalMode = 'granular' | 'skip' | 'reload' | 'none';
-
 type ImportHook = Map<string, t.Identifier>
 
 interface Options {
@@ -185,7 +183,6 @@ function getBindings(
 function createStandardHot(
   path: babel.NodePath,
   state: State,
-  mode: LocalMode,
   HotComponent: t.Identifier,
   rename: t.VariableDeclaration,
 ) {
@@ -199,22 +196,19 @@ function createStandardHot(
   if (statementPath) {
     statementPath.insertBefore(rename);
   }
-  const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
   return t.callExpression(HotImport, [
     createHotSignature(
       HotComponent,
-      isGranular ? t.stringLiteral(createSignatureValue(rename)) : undefined,
-      isGranular ? getBindings(path) : undefined,
+      state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
+      state.granular.value ? getBindings(path) : undefined,
     ),
     pathToHot,
-    t.booleanLiteral(mode === 'reload'),
   ]);
 }
 
 function createESMHot(
   path: babel.NodePath,
   state: State,
-  mode: LocalMode,
   HotComponent: t.Identifier,
   rename: t.VariableDeclaration,
 ) {
@@ -231,7 +225,6 @@ function createESMHot(
     const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
     statementPath.insertBefore(rename);
 
-    const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
     statementPath.insertBefore(
       t.expressionStatement(
         t.assignmentExpression(
@@ -242,10 +235,10 @@ function createESMHot(
           ),
           createHotSignature(
             HotComponent,
-            isGranular
+            state.granular.value
               ? t.stringLiteral(createSignatureValue(rename))
               : undefined,
-            isGranular
+              state.granular.value
               ? getBindings(path)
               : undefined,
           ),
@@ -265,7 +258,6 @@ function createESMHot(
               HotComponent,
             ),
             t.unaryExpression("!", t.unaryExpression("!", pathToHot)),
-            t.booleanLiteral(mode === 'reload'),
           ]),
         )
       ])
@@ -302,7 +294,6 @@ function createESMHot(
 function createHot(
   path: babel.NodePath,
   state: State,
-  mode: LocalMode,
   name: t.Identifier | undefined,
   expression: t.Expression,
 ) {
@@ -316,28 +307,9 @@ function createHot(
     ),
   ]);
   if (isESMHMR(state.opts.bundler)) {
-    return createESMHot(path, state, mode, HotComponent, rename);
+    return createESMHot(path, state, HotComponent, rename);
   }
-  return createStandardHot(path, state, mode, HotComponent, rename);
-}
-
-function getLocalMode(node: t.Node): LocalMode {
-  const comments = node.leadingComments;
-  if (comments) {
-    for (let i = 0, len = comments.length; i < len; i++) {
-      const comment = comments[i].value;
-      if (/^\s*@refresh local-skip\s*$/.test(comment)) {
-        return 'skip';
-      }
-      if (/^\s*@refresh local-reload\s*$/.test(comment)) {
-        return 'reload';
-      }
-      if (/^\s*@refresh local-granular\s*$/.test(comment)) {
-        return 'granular';
-      }
-    }
-  }
-  return 'none';
+  return createStandardHot(path, state, HotComponent, rename);
 }
 
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
@@ -420,10 +392,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
-            const mode = getLocalMode(decl);
-            if (mode === 'skip') {
-              return;
-            }
             path.node.declaration = t.variableDeclaration(
               'const',
               [
@@ -432,7 +400,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                   createHot(
                     path,
                     state,
-                    mode,
                     decl.id,
                     t.functionExpression(
                       decl.id,
@@ -473,14 +440,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             // have zero or one parameter
             && init.params.length < 2
           ) {
-            const mode = getLocalMode(init);
-            if (mode === 'skip') {
-              return;
-            }
             path.node.init = createHot(
               path,
               state,
-              mode,
               identifier,
               init,
             );
@@ -508,14 +470,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           // Check if the declaration has an identifier, and then check 
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
-            const mode = getLocalMode(decl);
-            if (mode === 'skip') {
-              return;
-            }
             const replacement = createHot(
               path,
               state,
-              mode,
               decl.id,
               t.functionExpression(
                 decl.id,
@@ -543,14 +500,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             && decl.params[0].name === 'props'
             && t.isExportDefaultDeclaration(path.parentPath.node)
           ) {
-            const mode = getLocalMode(decl);
-            if (mode === 'skip') {
-              return;
-            }
             const replacement = createHot(
               path,
               state,
-              mode,
               undefined,
               t.functionExpression(
                 null,

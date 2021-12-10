@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
-"export default
-/* @refresh local-skip */
-function Foo() {
-  return <h1>Foo</h1>;
-}"
-`;
-
 exports[`esm ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 export default function Foo() {
@@ -39,7 +31,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -71,7 +63,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -100,7 +92,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -128,121 +120,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;"
-`;
-
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component:
-  /* @refresh local-granular */
-  _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;"
-`;
-
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component:
-  /* @refresh local-granular */
-  _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;"
-`;
-
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component:
-  /* @refresh local-granular */
-  _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;"
-`;
-
-exports[`esm ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component:
-  /* @refresh local-reload */
-  _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -266,7 +144,7 @@ $$registrations._HotComponent = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._HotComponent, !!import.meta.hot, false);
+} = _esm($$registrations._HotComponent, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -290,7 +168,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -314,20 +192,12 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export default _Component;"
-`;
-
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh local-skip 1`] = `
-"export
-/* @refresh local-skip */
-function Foo() {
-  return <h1>Foo</h1>;
-}"
 `;
 
 exports[`esm ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
@@ -361,7 +231,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -393,7 +263,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -422,7 +292,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -450,113 +320,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export const Foo = _Component;"
-`;
-
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export const Foo = _Component;"
-`;
-
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export const Foo = _Component;"
-`;
-
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export const Foo = _Component;"
-`;
-
-exports[`esm ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh local-reload 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -580,7 +344,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -604,19 +368,12 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 export const Foo = _Component;"
-`;
-
-exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh local-skip 1`] = `
-"// @refresh local-skip
-function Foo() {
-  return <h1>Foo</h1>;
-}"
 `;
 
 exports[`esm FunctionDeclaration should skip FunctionDeclaration with @refresh reload 1`] = `
@@ -665,7 +422,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -694,7 +451,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -722,121 +479,11 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-var Foo = _Component;"
-`;
-
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-// @refresh local-granular
-var Foo = _Component;"
-`;
-
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const example = 'Foo'; // @refresh local-granular
-
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-var Foo = _Component;"
-`;
-
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const Example = createContext(); // @refresh local-granular
-
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-var Foo = _Component;"
-`;
-
-exports[`esm FunctionDeclaration should transform FunctionDeclaration with @refresh local-reload 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-// @refresh local-reload
 var Foo = _Component;"
 `;
 
@@ -856,7 +503,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -880,20 +527,12 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 var Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh local-skip 1`] = `
-"const Foo =
-/* @refresh local-skip */
-() => {
-  return <h1>Foo</h1>;
-};"
 `;
 
 exports[`esm VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
@@ -942,7 +581,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -971,7 +610,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -999,121 +638,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-() => {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"+3ZEWm+CKyHfaRcBnjwOFUYRtM15JlGwyQ9s4/sMZHg=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-() => {
-  return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"oSX1YG3DP9Up+z36FjhImYHrko1G9mFFt75jFnIGo+E=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-() => {
-  return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BLn2Huf9PcKX9KTh7hMuPmeuyqYFd37OE8JjWiFNW2o=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh local-reload 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-reload */
-() => {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"KapQSx7PmDCBlKNABRm77wl/pIM+nhDrn4Kxa90QOsw=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1137,7 +662,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1161,20 +686,12 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh local-skip 1`] = `
-"const Foo =
-/* @refresh local-skip */
-function () {
-  return <h1>Foo</h1>;
-};"
 `;
 
 exports[`esm VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
@@ -1223,7 +740,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1252,7 +769,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1280,121 +797,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-function () {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"7umk3QPlnZQ/Iy823XyrSwGePBuFAuskI69HXWfRs7k=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-function () {
-  return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"Cl96p9i5y+Qj7phAuWL2seZKE1e7Z/Xxm0wCNsBMw54=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-granular */
-function () {
-  return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"VExYPT8YMBs+MM0nYaF6ooQEfZn3ID5Cr3+DoPEfTEE=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-const Foo = _Component;"
-`;
-
-exports[`esm VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh local-reload 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo =
-/* @refresh local-reload */
-function () {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"nYg7kYxi80z6cJu3TNul1/gVIQznBhoX66yzG3jKYnA=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, true);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1418,7 +821,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
@@ -1442,7 +845,7 @@ $$registrations._Hot$$Foo = {
 const {
   handler: _handler,
   Component: _Component
-} = _esm($$registrations._Hot$$Foo, !!import.meta.hot, false);
+} = _esm($$registrations._Hot$$Foo, !!import.meta.hot);
 
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
