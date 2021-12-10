@@ -128,21 +128,19 @@ function getBindings(path) {
     });
     return [...identifiers].map((value) => t__namespace.identifier(value));
 }
-function createStandardHot(path, state, mode, HotComponent, rename) {
+function createStandardHot(path, state, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(state.hooks, path, 'standard');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const statementPath = getStatementPath(path);
     if (statementPath) {
         statementPath.insertBefore(rename);
     }
-    const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
     return t__namespace.callExpression(HotImport, [
-        createHotSignature(HotComponent, isGranular ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, isGranular ? getBindings(path) : undefined),
+        createHotSignature(HotComponent, state.granular.value ? t__namespace.stringLiteral(createSignatureValue(rename)) : undefined, state.granular.value ? getBindings(path) : undefined),
         pathToHot,
-        t__namespace.booleanLiteral(mode === 'reload'),
     ]);
 }
-function createESMHot(path, state, mode, HotComponent, rename) {
+function createESMHot(path, state, HotComponent, rename) {
     const HotImport = getSolidRefreshIdentifier(state.hooks, path, 'esm');
     const pathToHot = getHotIdentifier(state.opts.bundler);
     const handlerId = path.scope.generateUidIdentifier("handler");
@@ -151,10 +149,9 @@ function createESMHot(path, state, mode, HotComponent, rename) {
     if (statementPath) {
         const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
         statementPath.insertBefore(rename);
-        const isGranular = mode === 'reload' || mode === 'granular' || state.granular.value;
-        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, isGranular
+        statementPath.insertBefore(t__namespace.expressionStatement(t__namespace.assignmentExpression('=', t__namespace.memberExpression(registrationMap, HotComponent), createHotSignature(HotComponent, state.granular.value
             ? t__namespace.stringLiteral(createSignatureValue(rename))
-            : undefined, isGranular
+            : undefined, state.granular.value
             ? getBindings(path)
             : undefined))));
         statementPath.insertBefore(t__namespace.variableDeclaration("const", [
@@ -164,7 +161,6 @@ function createESMHot(path, state, mode, HotComponent, rename) {
             ]), t__namespace.callExpression(HotImport, [
                 t__namespace.memberExpression(registrationMap, HotComponent),
                 t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot)),
-                t__namespace.booleanLiteral(mode === 'reload'),
             ]))
         ]));
         const mod = path.scope.generateUidIdentifier('mod');
@@ -181,7 +177,7 @@ function createESMHot(path, state, mode, HotComponent, rename) {
     }
     return componentId;
 }
-function createHot(path, state, mode, name, expression) {
+function createHot(path, state, name, expression) {
     const HotComponent = name
         ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
         : path.scope.generateUidIdentifier('HotComponent');
@@ -189,27 +185,9 @@ function createHot(path, state, mode, name, expression) {
         t__namespace.variableDeclarator(HotComponent, expression),
     ]);
     if (isESMHMR(state.opts.bundler)) {
-        return createESMHot(path, state, mode, HotComponent, rename);
+        return createESMHot(path, state, HotComponent, rename);
     }
-    return createStandardHot(path, state, mode, HotComponent, rename);
-}
-function getLocalMode(node) {
-    const comments = node.leadingComments;
-    if (comments) {
-        for (let i = 0, len = comments.length; i < len; i++) {
-            const comment = comments[i].value;
-            if (/^\s*@refresh local-skip\s*$/.test(comment)) {
-                return 'skip';
-            }
-            if (/^\s*@refresh local-reload\s*$/.test(comment)) {
-                return 'reload';
-            }
-            if (/^\s*@refresh local-granular\s*$/.test(comment)) {
-                return 'granular';
-            }
-        }
-    }
-    return 'none';
+    return createStandardHot(path, state, HotComponent, rename);
 }
 function solidRefreshPlugin() {
     return {
@@ -262,12 +240,8 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        const mode = getLocalMode(decl);
-                        if (mode === 'skip') {
-                            return;
-                        }
                         path.node.declaration = t__namespace.variableDeclaration('const', [
-                            t__namespace.variableDeclarator(decl.id, createHot(path, state, mode, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
+                            t__namespace.variableDeclarator(decl.id, createHot(path, state, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
                         ]);
                     }
                 }
@@ -294,11 +268,7 @@ function solidRefreshPlugin() {
                         // Might be component-like, but the only valid components
                         // have zero or one parameter
                         && init.params.length < 2) {
-                        const mode = getLocalMode(init);
-                        if (mode === 'skip') {
-                            return;
-                        }
-                        path.node.init = createHot(path, state, mode, identifier, init);
+                        path.node.init = createHot(path, state, identifier, init);
                     }
                 }
             },
@@ -319,11 +289,7 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check 
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        const mode = getLocalMode(decl);
-                        if (mode === 'skip') {
-                            return;
-                        }
-                        const replacement = createHot(path, state, mode, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
+                        const replacement = createHot(path, state, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
                         if (t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
                             path.replaceWith(replacement);
                         }
@@ -338,11 +304,7 @@ function solidRefreshPlugin() {
                         && t__namespace.isIdentifier(decl.params[0])
                         && decl.params[0].name === 'props'
                         && t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
-                        const mode = getLocalMode(decl);
-                        if (mode === 'skip') {
-                            return;
-                        }
-                        const replacement = createHot(path, state, mode, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
+                        const replacement = createHot(path, state, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
                         path.replaceWith(replacement);
                     }
                 }
