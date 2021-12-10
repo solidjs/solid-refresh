@@ -1,3 +1,7 @@
+<p>
+  <img width="100%" src="https://raw.githubusercontent.com/solidjs/solid-refresh/master/banner.png" alt="Solid Refresh">
+</p>
+
 # Solid Refresh
 
 ```bash
