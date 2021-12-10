@@ -4,10 +4,8 @@ import isListUpdated from "./is-list-updated";
 
 interface HotData {
   setComp: (action: () => (props: any) => JSX.Element) => void;
-  setSign: (action: () => string | undefined) => void;
-  sign: () => string | undefined;
-  setDeps: (action: () => any[] | undefined) => void;
-  deps: () => any[] | undefined;
+  signature?: string;
+  dependencies?: any[];
 }
 
 interface StandardHot {
@@ -16,20 +14,6 @@ interface StandardHot {
   dispose: (cb: (data: Record<string, unknown>) => void) => void;
   decline?: () => void;
   invalidate?: () => void;
-}
-
-function invalidate(hot: StandardHot) {
-  // Some Webpack-like HMR doesn't have `invalidate` or `decline`
-  // methods (e.g. Parcel) so we need to shim this module invalidation
-  // by calling either of the two methods (if it exists) or reloading
-  // the entire page
-  if (hot.invalidate) {
-    hot.invalidate();
-  } else if (hot.decline) {
-    hot.decline();
-  } else if (typeof window !== 'undefined') {
-    window.location.reload();
-  }
 }
 
 interface HotSignature<P> {
@@ -42,12 +26,9 @@ interface HotSignature<P> {
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
-  shouldReload: boolean,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
-    const [sign, setSign] = createSignal(signature);
-    const [deps, setDeps] = createSignal(dependencies);
     const prev = hot.data;
     // Check if there's previous data
     if (prev && prev[id]) {
@@ -57,20 +38,14 @@ export default function hot<P>(
         // Check if signature changed
         // or dependencies changed
         if (
-          prev[id].sign() !== signature
-          || isListUpdated(prev[id].deps(), dependencies)
+          prev[id].signature !== signature
+          || isListUpdated(prev[id].dependencies, dependencies)
         ) {
-          if (shouldReload) {
-            invalidate(hot);
-          } else {
-            // Remount
-            prev[id].setDeps(() => dependencies);
-            prev[id].setSign(() => signature);
-            prev[id].setComp(() => Comp);
-          }
+          // Remount
+          prev[id].dependencies = dependencies;
+          prev[id].signature = signature;
+          prev[id].setComp(() => Comp);
         }
-      } else if (shouldReload) {
-        invalidate(hot);
       } else {
         prev[id].setComp(() => Comp);
       }
@@ -78,10 +53,8 @@ export default function hot<P>(
     hot.dispose(data => {
       data[id] = prev ? prev[id] : {
         setComp,
-        sign,
-        setSign,
-        deps,
-        setDeps,
+        signature,
+        dependencies,
       };
     });
     hot.accept();
