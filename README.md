@@ -134,8 +134,6 @@ By default, components from the old module are replaced with the new ones from t
 
 Adding `@refresh granular` comment pragma in the file allows components to opt-in to granular replacement: If the component has changed *code-wise*, it will be replaced, otherwise, it will be retained, which allows unchanged ancestor components to preserve lifecycles.
 
-The downside of this mode is that local bindings that are part of the module that which the components depends on won't be detected as a change and thus will not trigger a replacement. This also means that the component may be accessing a different instance of that binding (e.g. createContext). This is currently a known limitation.
-
 ## Limitations
 
 - Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
