@@ -1,63 +1,64 @@
-import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import { createSignal, JSX } from "solid-js";
+import createProxy from "./create-proxy";
+import isListUpdated from "./is-list-updated";
 
 interface HotData {
   setComp: (action: () => (props: any) => JSX.Element) => void;
-  setSign: (action: () => string) => void;
-  sign: () => string;
+  signature?: string;
+  dependencies?: any[];
 }
 
 interface StandardHot {
   data: Record<string, HotData>;
   accept: () => void;
   dispose: (cb: (data: Record<string, unknown>) => void) => void;
+  decline?: () => void;
+  invalidate?: () => void;
+}
+
+interface HotSignature<P> {
+  component: (props: P) => JSX.Element
+  id: string;
+  signature?: string;
+  dependencies?: any[];
 }
 
 export default function hot<P>(
-  Comp: (props: P) => JSX.Element,
-  id: string,
-  initialSignature: string | undefined,
+  { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
     const prev = hot.data;
-    if (initialSignature) {
-      const [sign, setSign] = createSignal(initialSignature);
-      if (prev && prev[id] && prev[id].sign() !== initialSignature) {
-        prev[id].setSign(() => initialSignature);
-        prev[id].setComp(() => Comp);
-      }
-      hot.dispose(data => {
-        data[id] = prev ? prev[id] : {
-          setComp,
-          sign,
-          setSign,
-        };
-      });
-    } else {
-      if (prev && prev[id]) {
-        prev[id].setComp(() => Comp);
-      }
-      hot.dispose(data => {
-        data[id] = prev ? prev[id] : {
-          setComp,
-        };
-      });
-    }
-    hot.accept();
-    return new Proxy((props: P) => (
-      createMemo(() => {
-        const c = comp();
-        if (c) {
-          return untrack(() => c(props));
+    // Check if there's previous data
+    if (prev && prev[id]) {
+      // Check if there's a new signature and dependency
+      // This is always new in standard HMR
+      if (signature && dependencies) {
+        // Check if signature changed
+        // or dependencies changed
+        if (
+          prev[id].signature !== signature
+          || isListUpdated(prev[id].dependencies, dependencies)
+        ) {
+          // Remount
+          prev[id].dependencies = dependencies;
+          prev[id].signature = signature;
+          prev[id].setComp(() => Comp);
         }
-        return undefined;
-      })
-    ), {
-      get(_, property: keyof typeof Comp) {
-        return comp()[property];
+      } else {
+        prev[id].setComp(() => Comp);
       }
+    }
+    hot.dispose(data => {
+      data[id] = prev ? prev[id] : {
+        setComp,
+        signature,
+        dependencies,
+      };
     });
+    hot.accept();
+    return createProxy<typeof Comp, P>(comp);
   }
   return Comp;
 }

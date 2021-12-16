@@ -1,0 +1,546 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+export default function Foo() {
+  return <h1>Foo</h1>;
+}
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+export default function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"export default function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _HotComponent = function (props) {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _HotComponent,
+  id: \\"_HotComponent\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportDefaultDeclaration w/ FunctionExpression should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+export default _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+export function Foo() {
+  return <h1>Foo</h1>;
+}
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+export function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"export function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite ExportNamedDeclaration w/ FunctionExpression should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+export const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with @refresh reload 1`] = `
+"// @refresh reload
+function Foo() {
+  return <h1>Foo</h1>;
+}
+
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+`;
+
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with @refresh skip 1`] = `
+"// @refresh skip
+function Foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with invalid Component name 1`] = `
+"function foo() {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite FunctionDeclaration should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+"function Foo(a, b) {
+  return <h1>Foo</h1>;
+}"
+`;
+
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+  dependencies: []
+}, module.hot);"
+`;
+
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function Foo() {
+  return <h1>{example}</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+  dependencies: [example]
+}, module.hot);"
+`;
+
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function Foo() {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+  dependencies: [Example]
+}, module.hot);"
+`;
+
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo() {
+  return <h1>Foo</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite FunctionDeclaration should transform FunctionDeclaration with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function Foo(props) {
+  return <h1>Foo</h1>;
+};
+
+var Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+const Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+const Foo = () => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+"const foo = () => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"const Foo = (a, b) => {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
+  dependencies: []
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = () => {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
+  dependencies: [example]
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = () => {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
+  dependencies: [Example]
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = () => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator ArrowFunctionExpression should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = props => {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+"// @refresh reload
+const Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+"// @refresh skip
+const Foo = function () {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+"const foo = function () {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"const Foo = function (a, b) {
+  return <h1>Foo</h1>;
+};"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+// @refresh granular
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
+  dependencies: []
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const example = 'Foo';
+
+const _Hot$$Foo = function () {
+  return <h1>{example}</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
+  dependencies: [example]
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+// @refresh granular
+const Example = createContext();
+
+const _Hot$$Foo = function () {
+  return <Example.Provider>Foo</Example.Provider>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\",
+  signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
+  dependencies: [Example]
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function () {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;
+
+exports[`vite VariableDeclarator FunctionExpression should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+"import { standard as _standard } from \\"solid-refresh\\";
+
+const _Hot$$Foo = function (props) {
+  return <h1>Foo</h1>;
+};
+
+const Foo = _standard({
+  component: _Hot$$Foo,
+  id: \\"_Hot$$Foo\\"
+}, module.hot);"
+`;

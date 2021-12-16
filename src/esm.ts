@@ -1,63 +1,67 @@
-import { createSignal, createMemo, untrack, JSX } from "solid-js";
+import { createSignal, JSX } from "solid-js";
+import createProxy from "./create-proxy";
+import isListUpdated from "./is-list-updated";
 
 interface HotComponent<P> {
   (props: P): JSX.Element;
   setComp: (action: () => HotComponent<P>) => void;
-  setSign: (action: () => string) => void;
-  sign: () => string;
+  signature?: string;
+  dependencies?: any[];
 }
 
-interface HotRegistration<P> {
+interface HotSignature<P> {
   component: HotComponent<P>;
-  signature: string;
+  id: string;
+  signature?: string;
+  dependencies?: any[];
 }
 
 interface HotModule<P> {
-  $$registrations: Record<string, HotRegistration<P>>;
+  $$registrations: Record<string, HotSignature<P>>;
 }
 
 export default function hot<P>(
-  Comp: HotComponent<P>,
-  id: string,
-  initialSignature: string | undefined,
+  { component: Comp, id, signature, dependencies }: HotSignature<P>,
   isHot: boolean,
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
     const registration = newModule.$$registrations[id];
+    if (!registration) {
+      // For some reason, the registration was lost, invalidate
+      return true;
+    }
     registration.component.setComp = Comp.setComp;
-    if (initialSignature) {
-      registration.component.setSign = Comp.setSign;
-      registration.component.sign = Comp.sign;
-      if (registration.signature !== Comp.sign()) {
-        Comp.setSign(() => registration.signature);
+    registration.component.signature = Comp.signature;
+    registration.component.dependencies = Comp.dependencies;
+
+    // Check if incoming module has signature
+    if (registration.signature && registration.dependencies) {
+      // Compare old signature and dependencies
+      if (
+        registration.signature !== Comp.signature
+        || isListUpdated(registration.dependencies, Comp.dependencies)
+      ) {
+        // Remount
+        Comp.dependencies = registration.dependencies;
+        Comp.signature = registration.signature;
         Comp.setComp(() => registration.component);
       }
     } else {
+      // No granular update, remount
       Comp.setComp(() => registration.component);
     }
+
+    registration.component.signature = Comp.signature;
+    registration.component.dependencies = Comp.dependencies;
+    return false;
   }
   if (isHot) {
     const [comp, setComp] = createSignal(Comp);
     Comp.setComp = setComp;
-    if (initialSignature) {
-      const [signature, setSignature] = createSignal(initialSignature);
-      Comp.setSign = setSignature;
-      Comp.sign = signature;
-    }
-    Component = new Proxy((props: P) => (
-      createMemo(() => {
-        const c = comp();
-        if (c) {
-          return untrack(() => c(props));
-        }
-        return undefined;
-      })
-    ), {
-      get(_, property: keyof typeof Comp) {
-        return comp()[property];
-      }
-    });
+    Comp.dependencies = dependencies;
+    Comp.signature = signature;
+    Component = createProxy(comp);
   }
   return { Component, handler };
 }

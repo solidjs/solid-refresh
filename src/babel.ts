@@ -39,8 +39,15 @@ function getSolidRefreshIdentifier(
   return newID;
 }
 
+function isESMHMR(bundler: Options['bundler']) {
+  // The currently known ESM HMR implementations
+  // esm - the original ESM HMR Spec
+  // vite - Vite's implementation
+  return bundler === 'esm' || bundler === 'vite';
+}
+
 function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
-  if (bundler === 'esm') {
+  if (isESMHMR(bundler)) {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('hot'),
@@ -84,10 +91,93 @@ function createHotMap(
   return newID;
 }
 
-function createSignature(node: t.Node): string {
+function createSignatureValue(node: t.Node): string {
   const code = generator(node);
   const result = crypto.createHash('sha256').update(code.code).digest('base64');
   return result;
+}
+
+function isForeignBinding(
+  source: babel.NodePath,
+  current: babel.NodePath,
+  name: string): boolean {
+  if (source === current) {
+    return true;
+  }
+  if (current.scope.hasOwnBinding(name)) {
+    return false;
+  }
+  if (current.parentPath) {
+    return isForeignBinding(source, current.parentPath, name);
+  }
+  return true;
+}
+
+function createHotSignature(
+  component: t.Identifier,
+  sign?: t.Expression,
+  deps?: t.Identifier[],
+) {
+  if (sign && deps) {
+    return t.objectExpression([
+      t.objectProperty(
+        t.identifier('component'),
+        component,
+      ),
+      t.objectProperty(
+        t.identifier('id'),
+        t.stringLiteral(component.name),
+      ),
+      t.objectProperty(
+        t.identifier('signature'),
+        sign,
+      ),
+      t.objectProperty(
+        t.identifier('dependencies'),
+        t.arrayExpression(deps),
+      ),
+    ]);
+  }
+  return t.objectExpression([
+    t.objectProperty(
+      t.identifier('component'),
+      component,
+    ),
+    t.objectProperty(
+      t.identifier('id'),
+      t.stringLiteral(component.name),
+    ),
+  ]);
+}
+
+function getBindings(
+  path: babel.NodePath,
+): t.Identifier[] {
+  const identifiers = new Set<string>();
+  path.traverse({
+    Expression(p) {
+      if (
+        t.isIdentifier(p.node)
+        && !t.isTypeScript(p.parentPath.node)
+        && isForeignBinding(path, p, p.node.name)
+      ) {
+        identifiers.add(p.node.name);
+      }
+      if (
+        t.isJSXElement(p.node)
+        && t.isJSXMemberExpression(p.node.openingElement.name)
+      ) {
+        let base: t.JSXMemberExpression | t.JSXIdentifier = p.node.openingElement.name;
+        while (t.isJSXMemberExpression(base)) {
+          base = base.object;
+        }
+        if (isForeignBinding(path, p, base.name)) {
+          identifiers.add(base.name);
+        }
+      }
+    }
+  });
+  return [...identifiers].map((value) => t.identifier(value));
 }
 
 function createStandardHot(
@@ -99,7 +189,7 @@ function createStandardHot(
   const HotImport = getSolidRefreshIdentifier(
     state.hooks,
     path,
-    state.opts.bundler || 'standard',
+    'standard',
   );
   const pathToHot = getHotIdentifier(state.opts.bundler);
   const statementPath = getStatementPath(path);
@@ -107,9 +197,11 @@ function createStandardHot(
     statementPath.insertBefore(rename);
   }
   return t.callExpression(HotImport, [
-    HotComponent,
-    t.stringLiteral(HotComponent.name),
-    state.granular.value ? t.stringLiteral(createSignature(rename)) : t.identifier('undefined'),
+    createHotSignature(
+      HotComponent,
+      state.granular.value ? t.stringLiteral(createSignatureValue(rename)) : undefined,
+      state.granular.value ? getBindings(path) : undefined,
+    ),
     pathToHot,
   ]);
 }
@@ -123,7 +215,7 @@ function createESMHot(
   const HotImport = getSolidRefreshIdentifier(
     state.hooks,
     path,
-    state.opts.bundler || 'standard',
+    'esm',
   );
   const pathToHot = getHotIdentifier(state.opts.bundler);
   const handlerId = path.scope.generateUidIdentifier("handler");
@@ -132,6 +224,7 @@ function createESMHot(
   if (statementPath) {
     const registrationMap = createHotMap(state.hooks, statementPath, '$$registrations');
     statementPath.insertBefore(rename);
+
     statementPath.insertBefore(
       t.expressionStatement(
         t.assignmentExpression(
@@ -140,15 +233,14 @@ function createESMHot(
             registrationMap,
             HotComponent,
           ),
-          t.objectExpression(
+          createHotSignature(
+            HotComponent,
             state.granular.value
-              ? [
-                t.objectProperty(t.identifier('component'), HotComponent),
-                t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignature(rename))),
-              ]
-              : [
-                t.objectProperty(t.identifier('component'), HotComponent),
-              ]
+              ? t.stringLiteral(createSignatureValue(rename))
+              : undefined,
+              state.granular.value
+              ? getBindings(path)
+              : undefined,
           ),
         ),
       )
@@ -161,28 +253,39 @@ function createESMHot(
             t.objectProperty(t.identifier('Component'), componentId, false, true)
           ]),
           t.callExpression(HotImport, [
-            HotComponent,
-            t.stringLiteral(HotComponent.name),
-            state.granular.value
-              ? t.memberExpression(
-                t.memberExpression(
-                  registrationMap,
-                  HotComponent,
-                ),
-                t.identifier('signature'),
-              )
-              : t.identifier('undefined')
-            ,
-            t.unaryExpression("!", t.unaryExpression("!", pathToHot))
+            t.memberExpression(
+              registrationMap,
+              HotComponent,
+            ),
+            t.unaryExpression("!", t.unaryExpression("!", pathToHot)),
           ]),
         )
       ])
     );
+    const mod = path.scope.generateUidIdentifier('mod');
     statementPath.insertBefore(t.ifStatement(
       pathToHot,
       t.expressionStatement(
-        t.callExpression(t.memberExpression(pathToHot, t.identifier("accept")), [handlerId])
-      )
+        t.callExpression(t.memberExpression(pathToHot, t.identifier("accept")), [
+          t.arrowFunctionExpression(
+            [mod],
+            t.blockStatement([
+              t.expressionStatement(
+                t.logicalExpression(
+                  '&&',
+                  t.callExpression(handlerId, [
+                    // Vite interprets this differently
+                    state.opts.bundler === 'esm'
+                      ? t.memberExpression(mod, t.identifier('module'))
+                      : mod
+                  ]),
+                  t.callExpression(t.memberExpression(pathToHot, t.identifier("invalidate")), []),
+                ),
+              ),
+            ]),
+          )
+        ]),
+      ),
     ));
   }
   return componentId;
@@ -194,7 +297,6 @@ function createHot(
   name: t.Identifier | undefined,
   expression: t.Expression,
 ) {
-  if (state.opts.bundler === "vite") state.opts.bundler = "esm";
   const HotComponent = name
     ? path.scope.generateUidIdentifier(`Hot$$${name.name}`)
     : path.scope.generateUidIdentifier('HotComponent');
@@ -204,7 +306,7 @@ function createHot(
       expression,
     ),
   ]);
-  if (state.opts.bundler === "esm") {
+  if (isESMHMR(state.opts.bundler)) {
     return createESMHot(path, state, HotComponent, rename);
   }
   return createStandardHot(path, state, HotComponent, rename);
@@ -223,32 +325,54 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       };
     },
     visitor: {
-      Program(path, { opts, processed, granular }) {
-        const comments = path.hub.file.ast.comments;
-        for (let i = 0; i < comments.length; i++) {
-          const comment = comments[i].value;
-          if (/^\s*@refresh granular\s*$/.test(comment)) {
-            granular.value = true;
-            return;
-          }
-          if (/^\s*@refresh skip\s*$/.test(comment)) {
-            processed.value = true;
-            return;
-          }
-          if (/^\s*@refresh reload\s*$/.test(comment)) {
-            if (opts.bundler === "vite") opts.bundler = "esm";
-            processed.value = true;
-            const pathToHot = getHotIdentifier(opts.bundler);
-            path.pushContainer(
-              "body",
-              t.ifStatement(
-                pathToHot,
-                t.expressionStatement(
-                  t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
-                )
-              )
-            );
-            return;
+      Program(path, { file, opts, processed, granular }) {
+        const comments = file.ast.comments;
+        if (comments) {
+          for (let i = 0; i < comments.length; i++) {
+            const comment = comments[i].value;
+            if (/^\s*@refresh granular\s*$/.test(comment)) {
+              granular.value = true;
+              return;
+            }
+            if (/^\s*@refresh skip\s*$/.test(comment)) {
+              processed.value = true;
+              return;
+            }
+            if (/^\s*@refresh reload\s*$/.test(comment)) {
+              processed.value = true;
+              const pathToHot = getHotIdentifier(opts.bundler);
+              path.pushContainer(
+                'body',
+                isESMHMR(opts.bundler)
+                  ? (
+                    t.ifStatement(
+                      pathToHot,
+                      t.expressionStatement(
+                        t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+                      )
+                    )
+                  )
+                  : (
+                    t.ifStatement(
+                      pathToHot,
+                      t.expressionStatement(
+                        t.conditionalExpression(
+                          t.memberExpression(pathToHot, t.identifier("decline")),
+                          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), []),
+                          t.callExpression(
+                            t.memberExpression(
+                              t.memberExpression(t.identifier("window"), t.identifier("location")),
+                              t.identifier("reload"),
+                            ),
+                            [],
+                          ),
+                        )
+                      )
+                    )
+                  )
+              );
+              return;
+            }
           }
         }
       },
