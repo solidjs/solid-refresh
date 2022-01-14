@@ -1,4 +1,4 @@
-import { createSignal, JSX } from "solid-js";
+import { createSignal, JSX, DEV } from "solid-js";
 import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
@@ -23,11 +23,19 @@ interface HotSignature<P> {
   dependencies?: any[];
 }
 
+let warned = false;
+
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
   hot: StandardHot,
 ) {
-  if (hot) {
+  if (!(DEV && Object.keys(DEV).length)) {
+    if (!warned) {
+      console.warn("To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.");
+      warned = true;
+    }
+    if (hot && hot.decline) hot.decline();
+  } else if (hot) {
     const [comp, setComp] = createSignal(Comp);
     const prev = hot.data;
     // Check if there's previous data
