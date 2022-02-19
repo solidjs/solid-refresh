@@ -1,4 +1,4 @@
-import { JSX, createMemo, untrack, $DEVCOMP } from 'solid-js';
+import { JSX, createMemo, untrack, $DEVCOMP, createUniqueId } from 'solid-js';
 
 interface BaseComponent<P> {
   (props: P): JSX.Element;
@@ -16,7 +16,7 @@ export default function createProxy<C extends BaseComponent<P>, P>(
           return untrack(() => c(props));
         }
         return undefined;
-      });
+      }, undefined, { name: 'sr-' + createUniqueId() });
     }
     // no $DEVCOMP means it did not go through devComponent so source() is a regular function, not a component
     return s.call(this, props, ...rest);
