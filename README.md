@@ -1,5 +1,5 @@
 <p>
-  <img width="100%" src="https://raw.githubusercontent.com/solidjs/solid-refresh/master/banner.png" alt="Solid Refresh">
+  <img width="100%" src="https://assets.solidjs.com/banner?project=Refresh&type=core" alt="Solid Refresh">
 </p>
 
 # Solid Refresh
