@@ -60,7 +60,7 @@ Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader)
 }
 ```
 
-### Nollup
+### Rollup
 
 Requires the use of [`@rollup/plugin-babel`](https://www.npmjs.com/package/@rollup/plugin-babel). Add the following to `.babelrc`:
 
