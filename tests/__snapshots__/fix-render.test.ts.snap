@@ -1,0 +1,43 @@
+// Vitest Snapshot v1
+
+exports[`fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
+"import * as solidWeb from 'solid-js/web';
+
+const _cleanup = solidWeb.render(() => <App />, root);
+
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
+"import { render } from 'solid-js/web';
+
+const _cleanup = render(() => <App />, root);
+
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
+"import { render as Render } from 'solid-js/web';
+
+const _cleanup = Render(() => <App />, root);
+
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
+"import { 'render' as Render } from 'solid-js/web';
+
+const _cleanup = Render(() => <App />, root);
+
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`fix render > top-level statements > should work with IfStatement 1`] = `
+"import { render } from 'solid-js/web';
+
+if (root) {
+  const _cleanup = render(() => <App />, root);
+
+  if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}"
+`;
