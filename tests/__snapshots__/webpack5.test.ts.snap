@@ -1,21 +1,21 @@
 // Vitest Snapshot v1
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 export default function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -25,16 +25,16 @@ const _Hot$$Foo = function Foo() {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "export default function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -47,10 +47,10 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -64,10 +64,10 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -81,10 +81,10 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _HotComponent = function (props) {
@@ -94,10 +94,10 @@ const _HotComponent = function (props) {
 export default _standard({
   component: _HotComponent,
   id: \\"_HotComponent\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -107,10 +107,10 @@ const _Hot$$Foo = function Foo() {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
@@ -120,25 +120,25 @@ const _Hot$$Foo = function Foo(props) {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 export function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -148,16 +148,16 @@ const _Hot$$Foo = function Foo() {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "export function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -170,10 +170,10 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -187,10 +187,10 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -204,10 +204,10 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -217,10 +217,10 @@ const _Hot$$Foo = function Foo() {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
@@ -230,38 +230,38 @@ const _Hot$$Foo = function Foo(props) {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
+exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
 "// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 
-if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();"
 `;
 
-exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
+exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
 "// @refresh skip
 function Foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
+exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
 "function foo() {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
 "function Foo(a, b) {
   return <h1>Foo</h1>;
 }"
 `;
 
-exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
+exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -274,10 +274,10 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
+exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -291,10 +291,10 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
+exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -308,10 +308,10 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
+exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
@@ -321,10 +321,10 @@ const _Hot$$Foo = function Foo() {
 var Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
+exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
@@ -334,38 +334,38 @@ const _Hot$$Foo = function Foo(props) {
 var Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 
-if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 const Foo = () => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
 "const foo = () => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
 "const Foo = (a, b) => {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = () => {
@@ -378,10 +378,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
   dependencies: []
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -395,10 +395,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
   dependencies: [example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -412,10 +412,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
   dependencies: [Example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = () => {
@@ -425,10 +425,10 @@ const _Hot$$Foo = () => {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = props => {
@@ -438,38 +438,38 @@ const _Hot$$Foo = props => {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
 "// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 
-if (module.hot) module.hot.decline ? module.hot.decline() : window.location.reload();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
 "// @refresh skip
 const Foo = function () {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
 "const foo = function () {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "const Foo = function (a, b) {
   return <h1>Foo</h1>;
 };"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function () {
@@ -482,10 +482,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
   dependencies: []
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
@@ -499,10 +499,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
   dependencies: [example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
@@ -516,10 +516,10 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
   dependencies: [Example]
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function () {
@@ -529,10 +529,10 @@ const _Hot$$Foo = function () {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;
 
-exports[`vite > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function (props) {
@@ -542,5 +542,5 @@ const _Hot$$Foo = function (props) {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, module.hot);"
+}, import.meta.webpackHot);"
 `;

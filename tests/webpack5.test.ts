@@ -5,7 +5,7 @@ import plugin from '../src/babel';
 async function transform(code: string) {
   const result = await babel.transformAsync(code, {
     plugins: [
-      [plugin, { bundler: 'vite' }],
+      [plugin, { bundler: 'webpack5' }],
     ],
     parserOpts: {
       plugins: [
@@ -21,7 +21,7 @@ async function transform(code: string) {
   throw new Error('Missing code');
 }
 
-describe('vite', () => {
+describe('webpack5', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(await transform(`

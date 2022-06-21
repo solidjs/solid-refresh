@@ -16,14 +16,12 @@ function _interopNamespace(e) {
                 var d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
-                    get: function () {
-                        return e[k];
-                    }
+                    get: function () { return e[k]; }
                 });
             }
         });
     }
-    n['default'] = e;
+    n["default"] = e;
     return Object.freeze(n);
 }
 
@@ -75,8 +73,8 @@ function createHotMap(hooks, path, name) {
     return newID;
 }
 function createSignatureValue(node) {
-    const code = generator__default['default'](node);
-    const result = crypto__default['default'].createHash('sha256').update(code.code).digest('base64');
+    const code = generator__default["default"](node);
+    const result = crypto__default["default"].createHash('sha256').update(code.code).digest('base64');
     return result;
 }
 function isForeignBinding(source, current, name) {
@@ -189,6 +187,96 @@ function createHot(path, state, name, expression) {
     }
     return createStandardHot(path, state, HotComponent, rename);
 }
+const SOURCE_MODULE = 'solid-js/web';
+function isValidSpecifier(specifier, keyword) {
+    return ((t__namespace.isIdentifier(specifier.imported) && specifier.imported.name === keyword)
+        || (t__namespace.isStringLiteral(specifier.imported) && specifier.imported.value === keyword));
+}
+function captureValidIdentifiers(path) {
+    const validIdentifiers = new Set();
+    path.traverse({
+        ImportDeclaration(p) {
+            if (p.node.source.value === SOURCE_MODULE) {
+                for (let i = 0, len = p.node.specifiers.length; i < len; i += 1) {
+                    const specifier = p.node.specifiers[i];
+                    if (t__namespace.isImportSpecifier(specifier)
+                        && (isValidSpecifier(specifier, 'render')
+                            || isValidSpecifier(specifier, 'hydrate'))) {
+                        validIdentifiers.add(specifier.local);
+                    }
+                }
+            }
+        }
+    });
+    return validIdentifiers;
+}
+function captureValidNamespaces(path) {
+    const validNamespaces = new Set();
+    path.traverse({
+        ImportDeclaration(p) {
+            if (p.node.source.value === SOURCE_MODULE) {
+                for (let i = 0, len = p.node.specifiers.length; i < len; i += 1) {
+                    const specifier = p.node.specifiers[i];
+                    if (t__namespace.isImportNamespaceSpecifier(specifier)) {
+                        validNamespaces.add(specifier.local);
+                    }
+                }
+            }
+        }
+    });
+    return validNamespaces;
+}
+function isValidCallee(path, { callee }, validIdentifiers, validNamespaces) {
+    if (t__namespace.isIdentifier(callee)) {
+        const binding = path.scope.getBinding(callee.name);
+        return binding && validIdentifiers.has(binding.identifier);
+    }
+    if (t__namespace.isMemberExpression(callee)
+        && !callee.computed
+        && t__namespace.isIdentifier(callee.object)
+        && t__namespace.isIdentifier(callee.property)) {
+        const binding = path.scope.getBinding(callee.object.name);
+        return (binding
+            && validNamespaces.has(binding.identifier)
+            && (callee.property.name === 'render' || callee.property.name === 'hydrate'));
+    }
+    return false;
+}
+function checkValidRenderCall(path) {
+    let currentPath = path.parentPath;
+    while (currentPath) {
+        console.log(currentPath.node.type);
+        if (t__namespace.isProgram(currentPath.node)) {
+            return true;
+        }
+        if (!t__namespace.isStatement(currentPath.node)) {
+            return false;
+        }
+        currentPath = path.parentPath;
+    }
+    return false;
+}
+function fixRenderCalls(path, opts) {
+    const validIdentifiers = captureValidIdentifiers(path);
+    const validNamespaces = captureValidNamespaces(path);
+    path.traverse({
+        ExpressionStatement(p) {
+            console.log(p.node.type);
+            if (t__namespace.isCallExpression(p.node.expression)
+                && checkValidRenderCall(p)
+                && isValidCallee(p, p.node.expression, validIdentifiers, validNamespaces)) {
+                // Replace with variable declaration
+                const id = p.scope.generateUidIdentifier("cleanup");
+                p.replaceWith(t__namespace.variableDeclaration('const', [
+                    t__namespace.variableDeclarator(id, p.node.expression),
+                ]));
+                const pathToHot = getHotIdentifier(opts.bundler);
+                p.insertAfter(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier('dispose')), [id]))));
+                p.skip();
+            }
+        },
+    });
+}
 function solidRefreshPlugin() {
     return {
         name: 'Solid Refresh',
@@ -203,6 +291,7 @@ function solidRefreshPlugin() {
         },
         visitor: {
             Program(path, { file, opts, processed, granular }) {
+                let shouldReload = false;
                 const comments = file.ast.comments;
                 if (comments) {
                     for (let i = 0; i < comments.length; i++) {
@@ -217,6 +306,7 @@ function solidRefreshPlugin() {
                         }
                         if (/^\s*@refresh reload\s*$/.test(comment)) {
                             processed.value = true;
+                            shouldReload = true;
                             const pathToHot = getHotIdentifier(opts.bundler);
                             path.pushContainer('body', isESMHMR(opts.bundler)
                                 ? (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))))
@@ -224,6 +314,10 @@ function solidRefreshPlugin() {
                             return;
                         }
                     }
+                }
+                if (!shouldReload) {
+                    console.log('Starting render fixes');
+                    fixRenderCalls(path, opts);
                 }
             },
             ExportNamedDeclaration(path, state) {

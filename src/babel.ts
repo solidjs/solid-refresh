@@ -7,7 +7,8 @@ import crypto from 'crypto';
 type ImportHook = Map<string, t.Identifier>
 
 interface Options {
-  bundler?: 'esm' | 'standard' | 'vite';
+  bundler?: 'esm' | 'standard' | 'vite' | 'webpack5';
+  fixRender?: boolean;
 }
 
 interface Ref<T> {
@@ -51,6 +52,12 @@ function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('hot'),
+    );
+  }
+  if (bundler === 'webpack5') {
+    return t.memberExpression(
+      t.memberExpression(t.identifier('import'), t.identifier('meta')),
+      t.identifier('webpackHot'),
     );
   }
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
@@ -312,6 +319,199 @@ function createHot(
   return createStandardHot(path, state, HotComponent, rename);
 }
 
+const SOURCE_MODULE = 'solid-js/web';
+
+function isValidSpecifier(specifier: t.ImportSpecifier, keyword: string): boolean {
+  return (
+    (t.isIdentifier(specifier.imported) && specifier.imported.name === keyword)
+    || (t.isStringLiteral(specifier.imported) && specifier.imported.value === keyword)
+  );
+}
+
+function captureValidIdentifiers(
+  path: babel.NodePath,
+): Set<t.Identifier> {
+  const validIdentifiers = new Set<t.Identifier>();
+
+  path.traverse({
+    ImportDeclaration(p) {
+      if (p.node.source.value === SOURCE_MODULE) {
+        for (let i = 0, len = p.node.specifiers.length; i < len; i += 1) {
+          const specifier = p.node.specifiers[i];
+          if (
+            t.isImportSpecifier(specifier)
+            && (
+              isValidSpecifier(specifier, 'render')
+              || isValidSpecifier(specifier, 'hydrate')
+            )
+          ) {
+            validIdentifiers.add(specifier.local);
+          }
+        }
+      }
+    }
+  });
+
+  return validIdentifiers;
+}
+
+function captureValidNamespaces(
+  path: babel.NodePath,
+): Set<t.Identifier> {
+  const validNamespaces = new Set<t.Identifier>();
+
+  path.traverse({
+    ImportDeclaration(p) {
+      if (p.node.source.value === SOURCE_MODULE) {
+        for (let i = 0, len = p.node.specifiers.length; i < len; i += 1) {
+          const specifier = p.node.specifiers[i];
+          if (t.isImportNamespaceSpecifier(specifier)) {
+            validNamespaces.add(specifier.local);
+          }
+        }
+      }
+    }
+  });
+
+  return validNamespaces;
+}
+
+function isValidCallee(
+  path: babel.NodePath,
+  { callee }: t.CallExpression,
+  validIdentifiers: Set<t.Identifier>,
+  validNamespaces: Set<t.Identifier>,
+) {
+  if (t.isIdentifier(callee)) {
+    const binding = path.scope.getBinding(callee.name);
+    return binding && validIdentifiers.has(binding.identifier);
+  }
+
+  if (
+    t.isMemberExpression(callee)
+    && !callee.computed
+    && t.isIdentifier(callee.object)
+    && t.isIdentifier(callee.property)
+  ) {
+    const binding = path.scope.getBinding(callee.object.name);
+    return (
+      binding
+      && validNamespaces.has(binding.identifier)
+      && (callee.property.name === 'render' || callee.property.name === 'hydrate')
+    );
+  }
+
+  return false;
+}
+
+function checkValidRenderCall(
+  path: babel.NodePath,
+): boolean {
+  let currentPath = path.parentPath;
+
+  while (currentPath) {
+    if (t.isProgram(currentPath.node)) {
+      return true;
+    }
+    if (!t.isStatement(currentPath.node)) {
+      return false;
+    }
+    currentPath = currentPath.parentPath;
+  }
+
+  return false;
+}
+
+function fixRenderCalls(
+  path: babel.NodePath<t.Program>,
+  opts: Options,
+) {
+  const validIdentifiers = captureValidIdentifiers(path);
+  const validNamespaces = captureValidNamespaces(path);
+
+  path.traverse({
+    ExpressionStatement(p) {
+      if (
+        t.isCallExpression(p.node.expression)
+        && checkValidRenderCall(p)
+        && isValidCallee(p, p.node.expression, validIdentifiers, validNamespaces)
+      ) {
+        // Replace with variable declaration
+        const id = p.scope.generateUidIdentifier("cleanup");
+        p.replaceWith(
+          t.variableDeclaration(
+            'const',
+            [
+              t.variableDeclarator(
+                id,
+                p.node.expression,
+              ),
+            ],
+          ),
+        );
+        const pathToHot = getHotIdentifier(opts.bundler);
+        p.insertAfter(
+          t.ifStatement(
+            pathToHot,
+            t.expressionStatement(
+              t.callExpression(
+                t.memberExpression(pathToHot, t.identifier('dispose')),
+                [id],
+              ),
+            ),
+          ),
+        );
+        p.skip();
+      }
+    },
+  });
+}
+
+function getHMRDecline(
+  opts: Options,
+  pathToHot: t.Expression,
+) {
+  if (isESMHMR(opts.bundler)) {
+    return (
+      t.ifStatement(
+        pathToHot,
+        t.expressionStatement(
+          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
+        )
+      )
+    );
+  }
+  if (opts.bundler === 'webpack5') {
+    return (
+      t.ifStatement(
+        pathToHot,
+        t.expressionStatement(
+          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), []),
+        ),
+      )
+    );
+  }
+  
+  return (
+    t.ifStatement(
+      pathToHot,
+      t.expressionStatement(
+        t.conditionalExpression(
+          t.memberExpression(pathToHot, t.identifier("decline")),
+          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), []),
+          t.callExpression(
+            t.memberExpression(
+              t.memberExpression(t.identifier("window"), t.identifier("location")),
+              t.identifier("reload"),
+            ),
+            [],
+          ),
+        )
+      )
+    )
+  );
+}
+
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
   return {
     name: 'Solid Refresh',
@@ -326,6 +526,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     },
     visitor: {
       Program(path, { file, opts, processed, granular }) {
+        let shouldReload = false;
         const comments = file.ast.comments;
         if (comments) {
           for (let i = 0; i < comments.length; i++) {
@@ -340,40 +541,19 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             }
             if (/^\s*@refresh reload\s*$/.test(comment)) {
               processed.value = true;
+              shouldReload = true;
               const pathToHot = getHotIdentifier(opts.bundler);
               path.pushContainer(
                 'body',
-                isESMHMR(opts.bundler)
-                  ? (
-                    t.ifStatement(
-                      pathToHot,
-                      t.expressionStatement(
-                        t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), [])
-                      )
-                    )
-                  )
-                  : (
-                    t.ifStatement(
-                      pathToHot,
-                      t.expressionStatement(
-                        t.conditionalExpression(
-                          t.memberExpression(pathToHot, t.identifier("decline")),
-                          t.callExpression(t.memberExpression(pathToHot, t.identifier("decline")), []),
-                          t.callExpression(
-                            t.memberExpression(
-                              t.memberExpression(t.identifier("window"), t.identifier("location")),
-                              t.identifier("reload"),
-                            ),
-                            [],
-                          ),
-                        )
-                      )
-                    )
-                  )
+                getHMRDecline(opts, pathToHot),
               );
               return;
             }
           }
+        }
+
+        if (!shouldReload && (opts.fixRender ?? true)) {
+          fixRenderCalls(path, opts);
         }
       },
       ExportNamedDeclaration(path, state) {

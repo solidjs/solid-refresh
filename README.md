@@ -18,7 +18,7 @@ pnpm add -D solid-refresh
 
 This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Over time I hope to add different bundlers. Today it supports:
 
-* Webpack
+* Webpack (for strict ESM, use option `bundler: "webpack5"`)
 * Parcel
 * Nollup
 * Vite (with option `bundler: "vite"`)
@@ -55,6 +55,18 @@ Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader)
   "env": {
     "development": {
       "plugins": ["solid-refresh/babel"]
+    }
+  }
+}
+```
+
+If you're using strict ESM:
+
+```json
+{
+  "env": {
+    "development": {
+      "plugins": ["solid-refresh/babel", { "bundler": "webpack5" }]
     }
   }
 }
@@ -117,6 +129,12 @@ export default function (props) {
 ```
 
 The components are wrapped and memoized. When the module receives an update, it replaces the old components from the old module with the new components.
+
+## Automatic Render Cleanup
+
+The plugin automatically handles cleanups for unhandled `render` and `hydrate` calls from `solid-js/web`.
+
+You can disable this feature entirely through the option `"fixRender": false`.
 
 ## Pragma
 

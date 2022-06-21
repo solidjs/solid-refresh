@@ -1,4 +1,5 @@
 import * as babel from '@babel/core';
+import { describe, it, expect } from 'vitest';
 import plugin from '../src/babel';
 
 async function transform(code: string) {
