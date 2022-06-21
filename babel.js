@@ -51,6 +51,9 @@ function getHotIdentifier(bundler) {
     if (isESMHMR(bundler)) {
         return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('hot'));
     }
+    if (bundler === 'webpack5') {
+        return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('webpackHot'));
+    }
     return t__namespace.memberExpression(t__namespace.identifier("module"), t__namespace.identifier("hot"));
 }
 function getStatementPath(path) {
@@ -245,14 +248,13 @@ function isValidCallee(path, { callee }, validIdentifiers, validNamespaces) {
 function checkValidRenderCall(path) {
     let currentPath = path.parentPath;
     while (currentPath) {
-        console.log(currentPath.node.type);
         if (t__namespace.isProgram(currentPath.node)) {
             return true;
         }
         if (!t__namespace.isStatement(currentPath.node)) {
             return false;
         }
-        currentPath = path.parentPath;
+        currentPath = currentPath.parentPath;
     }
     return false;
 }
@@ -261,7 +263,6 @@ function fixRenderCalls(path, opts) {
     const validNamespaces = captureValidNamespaces(path);
     path.traverse({
         ExpressionStatement(p) {
-            console.log(p.node.type);
             if (t__namespace.isCallExpression(p.node.expression)
                 && checkValidRenderCall(p)
                 && isValidCallee(p, p.node.expression, validIdentifiers, validNamespaces)) {
@@ -277,6 +278,15 @@ function fixRenderCalls(path, opts) {
         },
     });
 }
+function getHMRDecline(opts, pathToHot) {
+    if (isESMHMR(opts.bundler)) {
+        return (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
+    }
+    if (opts.bundler === 'webpack5') {
+        return (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
+    }
+    return (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.conditionalExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []), t__namespace.callExpression(t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("window"), t__namespace.identifier("location")), t__namespace.identifier("reload")), [])))));
+}
 function solidRefreshPlugin() {
     return {
         name: 'Solid Refresh',
@@ -291,6 +301,7 @@ function solidRefreshPlugin() {
         },
         visitor: {
             Program(path, { file, opts, processed, granular }) {
+                var _a;
                 let shouldReload = false;
                 const comments = file.ast.comments;
                 if (comments) {
@@ -308,15 +319,12 @@ function solidRefreshPlugin() {
                             processed.value = true;
                             shouldReload = true;
                             const pathToHot = getHotIdentifier(opts.bundler);
-                            path.pushContainer('body', isESMHMR(opts.bundler)
-                                ? (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))))
-                                : (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.conditionalExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []), t__namespace.callExpression(t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("window"), t__namespace.identifier("location")), t__namespace.identifier("reload")), []))))));
+                            path.pushContainer('body', getHMRDecline(opts, pathToHot));
                             return;
                         }
                     }
                 }
-                if (!shouldReload) {
-                    console.log('Starting render fixes');
+                if (!shouldReload && ((_a = opts.fixRender) !== null && _a !== void 0 ? _a : true)) {
                     fixRenderCalls(path, opts);
                 }
             },
