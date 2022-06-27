@@ -1,11 +1,17 @@
 // Vitest Snapshot v1
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -17,6 +23,7 @@ export default function Foo() {
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -25,17 +32,29 @@ const _Hot$$Foo = function Foo() {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"export default function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+export default function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
 }"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -47,11 +66,17 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 
@@ -64,11 +89,17 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 
@@ -81,11 +112,17 @@ export default _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _HotComponent = function (props) {
   return <h1>Foo</h1>;
@@ -94,11 +131,17 @@ const _HotComponent = function (props) {
 export default _standard({
   component: _HotComponent,
   id: \\"_HotComponent\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -107,11 +150,17 @@ const _Hot$$Foo = function Foo() {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
   return <h1>Foo</h1>;
@@ -120,15 +169,26 @@ const _Hot$$Foo = function Foo(props) {
 export default _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -140,6 +200,7 @@ export function Foo() {
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -148,17 +209,29 @@ const _Hot$$Foo = function Foo() {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"export function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+export function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -170,11 +243,17 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 
@@ -187,11 +266,17 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 
@@ -204,11 +289,17 @@ export const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -217,11 +308,17 @@ const _Hot$$Foo = function Foo() {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
   return <h1>Foo</h1>;
@@ -230,16 +327,28 @@ const _Hot$$Foo = function Foo(props) {
 export const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 
-if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
@@ -250,19 +359,34 @@ function Foo() {
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"function foo() {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+function foo() {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -274,11 +398,17 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
   dependencies: []
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 
@@ -291,11 +421,17 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 
@@ -308,11 +444,17 @@ var Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo() {
   return <h1>Foo</h1>;
@@ -321,11 +463,17 @@ const _Hot$$Foo = function Foo() {
 var Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function Foo(props) {
   return <h1>Foo</h1>;
@@ -334,16 +482,28 @@ const _Hot$$Foo = function Foo(props) {
 var Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 
-if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
@@ -354,19 +514,34 @@ const Foo = () => {
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"const foo = () => {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const foo = () => {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"const Foo = (a, b) => {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const Foo = (a, b) => {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = () => {
   return <h1>Foo</h1>;
@@ -378,11 +553,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
   dependencies: []
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 
@@ -395,11 +576,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
   dependencies: [example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 
@@ -412,11 +599,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = () => {
   return <h1>Foo</h1>;
@@ -425,11 +618,17 @@ const _Hot$$Foo = () => {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = props => {
   return <h1>Foo</h1>;
@@ -438,16 +637,28 @@ const _Hot$$Foo = props => {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 
-if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) import.meta.webpackHot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
@@ -458,19 +669,34 @@ const Foo = function () {
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"const foo = function () {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const foo = function () {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"const Foo = function (a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const Foo = function (a, b) {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function () {
   return <h1>Foo</h1>;
@@ -482,11 +708,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
   dependencies: []
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 
@@ -499,11 +731,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
   dependencies: [example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 
@@ -516,11 +754,17 @@ const Foo = _standard({
   id: \\"_Hot$$Foo\\",
   signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function () {
   return <h1>Foo</h1>;
@@ -529,11 +773,17 @@ const _Hot$$Foo = function () {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
 "import { standard as _standard } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 
 const _Hot$$Foo = function (props) {
   return <h1>Foo</h1>;
@@ -542,5 +792,10 @@ const _Hot$$Foo = function (props) {
 const Foo = _standard({
   component: _Hot$$Foo,
   id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);"
+}, import.meta.webpackHot);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.webpackHot) import.meta.webpackHot.decline();
+}"
 `;

@@ -1,11 +1,17 @@
 // Vitest Snapshot v1
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) import.meta.hot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -17,6 +23,7 @@ export default function Foo() {
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -36,17 +43,29 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"export default function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+export default function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
 }"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -69,11 +88,17 @@ if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 export const $$registrations = {};
@@ -97,11 +122,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 export const $$registrations = {};
@@ -125,11 +156,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _HotComponent = function (props) {
@@ -149,11 +186,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -173,11 +216,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo(props) {
@@ -197,15 +246,26 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export default _Component;"
+export default _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) import.meta.hot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -217,6 +277,7 @@ export function Foo() {
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -236,17 +297,29 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"export function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+export function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
 }"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -269,11 +342,17 @@ if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 export const $$registrations = {};
@@ -297,11 +376,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 export const $$registrations = {};
@@ -325,11 +410,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -349,11 +440,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo(props) {
@@ -373,16 +470,28 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-export const Foo = _Component;"
+export const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 
-if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) import.meta.hot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
@@ -393,19 +502,34 @@ function Foo() {
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"function foo() {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+function foo() {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
 }"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"function Foo(a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+function Foo(a, b) {
   return <h1>Foo</h1>;
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
 }"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -428,11 +552,17 @@ if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
-var Foo = _Component;"
+var Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 export const $$registrations = {};
@@ -456,11 +586,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-var Foo = _Component;"
+var Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 export const $$registrations = {};
@@ -484,11 +620,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-var Foo = _Component;"
+var Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo() {
@@ -508,11 +650,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-var Foo = _Component;"
+var Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function Foo(props) {
@@ -532,16 +680,28 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-var Foo = _Component;"
+var Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 
-if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) import.meta.hot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
@@ -552,19 +712,34 @@ const Foo = () => {
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"const foo = () => {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const foo = () => {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"const Foo = (a, b) => {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const Foo = (a, b) => {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = () => {
@@ -587,11 +762,17 @@ if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 export const $$registrations = {};
@@ -615,11 +796,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 export const $$registrations = {};
@@ -643,11 +830,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = () => {
@@ -667,11 +860,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = props => {
@@ -691,16 +890,28 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 
-if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) import.meta.hot.decline();
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
@@ -711,19 +922,34 @@ const Foo = function () {
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"const foo = function () {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const foo = function () {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"const Foo = function (a, b) {
+"import { DEV as _DEV } from \\"solid-refresh\\";
+
+const Foo = function (a, b) {
   return <h1>Foo</h1>;
-};"
+};
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function () {
@@ -746,11 +972,17 @@ if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
 // @refresh granular
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const example = 'Foo';
 export const $$registrations = {};
@@ -774,11 +1006,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 // @refresh granular
 const Example = createContext();
 export const $$registrations = {};
@@ -802,11 +1040,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function () {
@@ -826,11 +1070,17 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
 "import { esm as _esm } from \\"solid-refresh\\";
+import { DEV as _DEV } from \\"solid-refresh\\";
 export const $$registrations = {};
 
 const _Hot$$Foo = function (props) {
@@ -850,5 +1100,10 @@ const {
 if (import.meta.hot) import.meta.hot.accept(_mod => {
   _handler(_mod.module) && import.meta.hot.invalidate();
 });
-const Foo = _Component;"
+const Foo = _Component;
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;

@@ -1,43 +1,73 @@
 // Vitest Snapshot v1
 
 exports[`fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
-"import * as solidWeb from 'solid-js/web';
+"import { DEV as _DEV } from \\"solid-refresh\\";
+import * as solidWeb from 'solid-js/web';
 
 const _cleanup = solidWeb.render(() => <App />, root);
 
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
-"import { render } from 'solid-js/web';
+"import { DEV as _DEV } from \\"solid-refresh\\";
+import { render } from 'solid-js/web';
 
 const _cleanup = render(() => <App />, root);
 
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
-"import { render as Render } from 'solid-js/web';
+"import { DEV as _DEV } from \\"solid-refresh\\";
+import { render as Render } from 'solid-js/web';
 
 const _cleanup = Render(() => <App />, root);
 
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
-"import { 'render' as Render } from 'solid-js/web';
+"import { DEV as _DEV } from \\"solid-refresh\\";
+import { 'render' as Render } from 'solid-js/web';
 
 const _cleanup = Render(() => <App />, root);
 
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
+}"
 `;
 
 exports[`fix render > top-level statements > should work with IfStatement 1`] = `
-"import { render } from 'solid-js/web';
+"import { DEV as _DEV } from \\"solid-refresh\\";
+import { render } from 'solid-js/web';
 
 if (root) {
   const _cleanup = render(() => <App />, root);
 
   if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}
+
+if (!(_DEV && Object.keys(_DEV).length)) {
+  console.warn(\\"To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.\\");
+  if (import.meta.hot) import.meta.hot.decline();
 }"
 `;
