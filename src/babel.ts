@@ -530,43 +530,12 @@ function createDevWarning(
   hooks: ImportHook,
   opts: Options,
 ) {
-  const id = getModuleIdentifier(hooks, path, 'DEV', 'solid-refresh')
-  const pathToHot = getHotIdentifier(opts.bundler);
   path.pushContainer('body', t.ifStatement(
-    // !(DEV && Object.keys(DEV).length)
-    t.unaryExpression(
-      '!',
-      t.logicalExpression(
-        '&&',
-        id,
-        t.memberExpression(
-          t.callExpression(
-            t.memberExpression(
-              t.identifier('Object'),
-              t.identifier('keys'),
-            ),
-            [id],
-          ),
-          t.identifier('length'),
-        ),
-      ),
+    t.callExpression(
+      getModuleIdentifier(hooks, path, 'shouldWarnAndDecline', 'solid-refresh'),
+      [],
     ),
-    t.blockStatement([
-      t.expressionStatement(
-        t.callExpression(
-          t.memberExpression(
-            t.identifier('console'),
-            t.identifier('warn'),
-          ),
-          [
-            t.stringLiteral(
-              'To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the \'development\' condition turned on.'
-            ),
-          ],
-        ),
-      ),
-      getHMRDecline(opts, pathToHot),
-    ]),
+    getHMRDecline(opts, getHotIdentifier(opts.bundler)),
   ));
 }
 
