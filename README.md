@@ -105,6 +105,12 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 * [`wmr`](https://wmr.dev/) - SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
 * [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot) - The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
 
+### Development Environment
+
+In any case, your build system needs to support conditional exports and have the `development` condition set.
+
+**Note**: in some standard HMR implementations, this may cause your app to reload frequently if the development environment isn't properly set!
+
 ## How it works
 
 The babel plugin will transform components with matching Pascal-cased names (indicating that they are components). This detection is supported in variable declarations, function declarations and named exports:
