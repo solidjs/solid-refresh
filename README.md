@@ -66,9 +66,18 @@ If you're using strict ESM:
 {
   "env": {
     "development": {
-      "plugins": ["solid-refresh/babel", { "bundler": "webpack5" }]
+      "plugins": [["solid-refresh/babel", { "bundler": "webpack5" }]]
     }
   }
+}
+```
+
+In your webpack config, be sure to have the following options:
+
+```js
+devServer: {
+  liveReload: false,
+  hot: true,
 }
 ```
 
