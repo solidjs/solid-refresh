@@ -32,14 +32,18 @@ var crypto__default = /*#__PURE__*/_interopDefaultLegacy(crypto);
 function isComponentishName(name) {
     return typeof name === 'string' && name[0] >= 'A' && name[0] <= 'Z';
 }
-function getSolidRefreshIdentifier(hooks, path, name) {
-    const current = hooks.get(name);
+function getModuleIdentifier(hooks, path, name, mod) {
+    const target = `${mod}[${name}]`;
+    const current = hooks.get(target);
     if (current) {
         return current;
     }
-    const newID = helperModuleImports.addNamed(path, name, 'solid-refresh');
-    hooks.set(name, newID);
+    const newID = helperModuleImports.addNamed(path, name, mod);
+    hooks.set(target, newID);
     return newID;
+}
+function getSolidRefreshIdentifier(hooks, path, name) {
+    return getModuleIdentifier(hooks, path, name, 'solid-refresh');
 }
 function isESMHMR(bundler) {
     // The currently known ESM HMR implementations
@@ -48,12 +52,15 @@ function isESMHMR(bundler) {
     return bundler === 'esm' || bundler === 'vite';
 }
 function getHotIdentifier(bundler) {
+    // vite/esm uses `import.meta.hot`
     if (isESMHMR(bundler)) {
         return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('hot'));
     }
+    // webpack 5 uses `import.meta.webpackHot`
     if (bundler === 'webpack5') {
         return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier('import'), t__namespace.identifier('meta')), t__namespace.identifier('webpackHot'));
     }
+    // `module.hot` is the default.
     return t__namespace.memberExpression(t__namespace.identifier("module"), t__namespace.identifier("hot"));
 }
 function getStatementPath(path) {
@@ -278,6 +285,14 @@ function fixRenderCalls(path, opts) {
         },
     });
 }
+function createDevWarning(hooks, path) {
+    const id = getModuleIdentifier(hooks, path, 'DEV', 'solid-refresh');
+    path.pushContainer('body', t__namespace.ifStatement(
+    // !(DEV && Object.keys(DEV).length)
+    t__namespace.unaryExpression('!', t__namespace.logicalExpression('&&', id, t__namespace.memberExpression(t__namespace.callExpression(t__namespace.memberExpression(t__namespace.identifier('Object'), t__namespace.identifier('keys')), [id]), t__namespace.identifier('length')))), t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(t__namespace.identifier('console'), t__namespace.identifier('warn')), [
+        t__namespace.stringLiteral('To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the \'development\' condition turned on.'),
+    ]))));
+}
 function getHMRDecline(opts, pathToHot) {
     if (isESMHMR(opts.bundler)) {
         return (t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline")), []))));
@@ -300,7 +315,7 @@ function solidRefreshPlugin() {
             };
         },
         visitor: {
-            Program(path, { file, opts, processed, granular }) {
+            Program(path, { file, opts, processed, granular, hooks }) {
                 var _a;
                 let shouldReload = false;
                 const comments = file.ast.comments;
@@ -327,6 +342,7 @@ function solidRefreshPlugin() {
                 if (!shouldReload && ((_a = opts.fixRender) !== null && _a !== void 0 ? _a : true)) {
                     fixRenderCalls(path, opts);
                 }
+                createDevWarning(hooks, path);
             },
             ExportNamedDeclaration(path, state) {
                 if (state.processed.value) {

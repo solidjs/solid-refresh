@@ -26,18 +26,28 @@ function isComponentishName(name: string) {
   return typeof name === 'string' && name[0] >= 'A' && name[0] <= 'Z';
 }
 
+function getModuleIdentifier(
+  hooks: ImportHook,
+  path: babel.NodePath,
+  name: string,
+  mod: string,
+) {
+  const target = `${mod}[${name}]`
+  const current = hooks.get(target);
+  if (current) {
+    return current;
+  }
+  const newID = addNamed(path, name, mod);
+  hooks.set(target, newID);
+  return newID;
+}
+
 function getSolidRefreshIdentifier(
   hooks: ImportHook,
   path: babel.NodePath,
   name: string,
 ): t.Identifier {
-  const current = hooks.get(name);
-  if (current) {
-    return current;
-  }
-  const newID = addNamed(path, name, 'solid-refresh');
-  hooks.set(name, newID);
-  return newID;
+  return getModuleIdentifier(hooks, path, name, 'solid-refresh');
 }
 
 function isESMHMR(bundler: Options['bundler']) {
@@ -48,18 +58,21 @@ function isESMHMR(bundler: Options['bundler']) {
 }
 
 function getHotIdentifier(bundler: Options['bundler']): t.MemberExpression {
+  // vite/esm uses `import.meta.hot`
   if (isESMHMR(bundler)) {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('hot'),
     );
   }
+  // webpack 5 uses `import.meta.webpackHot`
   if (bundler === 'webpack5') {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('webpackHot'),
     );
   }
+  // `module.hot` is the default.
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
 }
 
@@ -512,6 +525,20 @@ function getHMRDecline(
   );
 }
 
+function createDevWarning(
+  path: babel.NodePath<t.Program>,
+  hooks: ImportHook,
+  opts: Options,
+) {
+  path.pushContainer('body', t.ifStatement(
+    t.callExpression(
+      getModuleIdentifier(hooks, path, 'shouldWarnAndDecline', 'solid-refresh'),
+      [],
+    ),
+    getHMRDecline(opts, getHotIdentifier(opts.bundler)),
+  ));
+}
+
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
   return {
     name: 'Solid Refresh',
@@ -525,19 +552,21 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       };
     },
     visitor: {
-      Program(path, { file, opts, processed, granular }) {
+      Program(path, { file, opts, processed, granular, hooks }) {
         let shouldReload = false;
+        let shouldSkip = false;
         const comments = file.ast.comments;
         if (comments) {
           for (let i = 0; i < comments.length; i++) {
             const comment = comments[i].value;
             if (/^\s*@refresh granular\s*$/.test(comment)) {
               granular.value = true;
-              return;
+              break;
             }
             if (/^\s*@refresh skip\s*$/.test(comment)) {
               processed.value = true;
-              return;
+              shouldSkip = true;
+              break;
             }
             if (/^\s*@refresh reload\s*$/.test(comment)) {
               processed.value = true;
@@ -547,13 +576,16 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                 'body',
                 getHMRDecline(opts, pathToHot),
               );
-              return;
+              break;
             }
           }
         }
 
         if (!shouldReload && (opts.fixRender ?? true)) {
           fixRenderCalls(path, opts);
+        }
+        if (!shouldSkip) {
+          createDevWarning(path, hooks, opts);
         }
       },
       ExportNamedDeclaration(path, state) {
