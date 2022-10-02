@@ -28,7 +28,7 @@ export default function hot<P>(
   hot: StandardHot
 ) {
   if (hot) {
-    const [comp, setComp] = createSignal(Comp);
+    const [comp, setComp] = createSignal(Comp, { internal: true });
     const prev = hot.data;
     // Check if there's previous data
     if (prev && prev[id]) {
