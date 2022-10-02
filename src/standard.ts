@@ -17,7 +17,7 @@ interface StandardHot {
 }
 
 interface HotSignature<P> {
-  component: (props: P) => JSX.Element
+  component: (props: P) => JSX.Element;
   id: string;
   signature?: string;
   dependencies?: any[];
@@ -25,7 +25,7 @@ interface HotSignature<P> {
 
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
-  hot: StandardHot,
+  hot: StandardHot
 ) {
   if (hot) {
     const [comp, setComp] = createSignal(Comp);
@@ -38,8 +38,8 @@ export default function hot<P>(
         // Check if signature changed
         // or dependencies changed
         if (
-          prev[id].signature !== signature
-          || isListUpdated(prev[id].dependencies, dependencies)
+          prev[id].signature !== signature ||
+          isListUpdated(prev[id].dependencies, dependencies)
         ) {
           // Remount
           prev[id].dependencies = dependencies;
@@ -51,11 +51,13 @@ export default function hot<P>(
       }
     }
     hot.dispose(data => {
-      data[id] = prev ? prev[id] : {
-        setComp,
-        signature,
-        dependencies,
-      };
+      data[id] = prev
+        ? prev[id]
+        : {
+            setComp,
+            signature,
+            dependencies
+          };
     });
     hot.accept();
     return createProxy<typeof Comp, P>(comp);
