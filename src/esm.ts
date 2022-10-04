@@ -22,7 +22,7 @@ interface HotModule<P> {
 
 export default function hot<P>(
   { component: Comp, id, signature, dependencies }: HotSignature<P>,
-  isHot: boolean,
+  isHot: boolean
 ) {
   let Component: (props: P) => JSX.Element = Comp;
   function handler(newModule: HotModule<P>) {
@@ -39,8 +39,8 @@ export default function hot<P>(
     if (registration.signature && registration.dependencies) {
       // Compare old signature and dependencies
       if (
-        registration.signature !== Comp.signature
-        || isListUpdated(registration.dependencies, Comp.dependencies)
+        registration.signature !== Comp.signature ||
+        isListUpdated(registration.dependencies, Comp.dependencies)
       ) {
         // Remount
         Comp.dependencies = registration.dependencies;
@@ -57,7 +57,7 @@ export default function hot<P>(
     return false;
   }
   if (isHot) {
-    const [comp, setComp] = createSignal(Comp);
+    const [comp, setComp] = createSignal(Comp, { internal: true });
     Comp.setComp = setComp;
     Comp.dependencies = dependencies;
     Comp.signature = signature;

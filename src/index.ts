@@ -13,7 +13,9 @@ export function shouldWarnAndDecline(): boolean {
   }
 
   if (!warned) {
-    console.warn('To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the \'development\' condition turned on.');
+    console.warn(
+      "To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on."
+    );
     warned = true;
   }
   return true;
