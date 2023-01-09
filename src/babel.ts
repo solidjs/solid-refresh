@@ -214,7 +214,7 @@ function createESMHot(
           ]),
           t.callExpression(HotImport, [
             t.memberExpression(registrationMap, HotComponent),
-            t.unaryExpression("!", t.unaryExpression("!", pathToHot))
+            pathToHot
           ])
         )
       ])
