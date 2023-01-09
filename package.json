@@ -3,7 +3,7 @@
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "homepage": "https://github.com/solidjs/solid-refresh#readme",
   "repository": {
     "type": "git",
@@ -31,15 +31,15 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@rollup/plugin-node-resolve": "13.3.0",
-    "@rollup/plugin-typescript": "^8.3.3",
+    "@rollup/plugin-typescript": "^8.5.0",
     "@types/babel__core": "^7.1.19",
     "@types/babel__generator": "^7.6.4",
-    "@types/node": "^18.7.23",
-    "prettier": "^2.7.1",
+    "@types/node": "^18.11.18",
+    "prettier": "^2.8.2",
     "rollup": "^2.75.7",
-    "solid-js": "^1.4.4",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4",
+    "solid-js": "^1.6.8",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4",
     "vitest": "^0.16.0"
   },
   "peerDependencies": {
