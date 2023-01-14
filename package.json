@@ -25,6 +25,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "vitest",
+    "test:CI": "vitest --no-threads",
     "prepublishOnly": "npm run build",
     "format": "prettier -w \"{tests,src}/**/*.{js,ts}\""
   },
