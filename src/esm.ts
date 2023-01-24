@@ -15,7 +15,7 @@ interface HotData<P> {
 }
 
 interface EsmHot<P> {
-  data: {
+  data?: {
     "solid-refresh-ctx": Record<string, HotData<P>>;
   };
 }
@@ -69,7 +69,7 @@ export default function hot<P>(
     registration.component.dependencies = Comp.dependencies;
     return false;
   }
-  if (hot) {
+  if (hot && hot.data) {
     const refreshData = (hot.data[HOT_DATA_PREFIX] = hot.data[HOT_DATA_PREFIX] || {});
     if (refreshData[id]) {
       Comp.setComp = refreshData[id].Comp.setComp;
