@@ -163,7 +163,7 @@ function createESMHot(path, state, HotComponent, rename) {
                 t__namespace.objectProperty(t__namespace.identifier("Component"), componentId, false, true)
             ]), t__namespace.callExpression(HotImport, [
                 t__namespace.memberExpression(registrationMap, HotComponent),
-                t__namespace.unaryExpression("!", t__namespace.unaryExpression("!", pathToHot))
+                pathToHot
             ]))
         ]));
         const mod = path.scope.generateUidIdentifier("mod");
