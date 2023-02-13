@@ -1,5 +1,5 @@
 {
-  "name": "solid-refresh",
+  "name": "@lxsmnsyc/solid-refresh",
   "type": "module",
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
