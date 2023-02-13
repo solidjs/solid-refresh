@@ -1,9 +1,13 @@
 import * as babel from "@babel/core";
 import * as t from "@babel/types";
-import generator from "@babel/generator";
+import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
 import crypto from "crypto";
 import { forEach } from "./utils";
+
+// Babel is a CJS package and uses `default` as named binding (`exports.default =`).
+// https://github.com/babel/babel/issues/15269.
+const generator = (_generator as any)['default'] as typeof _generator
 
 interface Options {
   bundler?: "esm" | "standard" | "vite" | "webpack5";
