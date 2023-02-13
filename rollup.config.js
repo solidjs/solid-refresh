@@ -5,7 +5,7 @@ export default [
   {
     input: 'src/index.ts',
     output: [{
-      file: 'dist/solid-refresh.js',
+      file: 'dist/solid-refresh.cjs',
       format: 'cjs'
     }, {
       file: 'dist/solid-refresh.mjs',
@@ -20,7 +20,7 @@ export default [
   {
     input: 'src/babel.ts',
     output: [{
-      file: './babel.js',
+      file: './babel.cjs',
       format: 'cjs',
     }, {
       file: './babel.mjs',

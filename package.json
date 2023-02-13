@@ -10,13 +10,13 @@
     "type": "git",
     "url": "https://github.com/solidjs/solid-refresh"
   },
-  "main": "dist/solid-refresh.js",
+  "main": "dist/solid-refresh.cjs",
   "module": "dist/solid-refresh.mjs",
   "exports": {
     ".": {
       "import": "./dist/solid-refresh.mjs",
-      "require": "./dist/solid-refresh.js",
-      "default": "./dist/solid-refresh.js"
+      "require": "./dist/solid-refresh.cjs",
+      "default": "./dist/solid-refresh.cjs"
     },
     "./babel": {
       "import": "./babel.mjs",
