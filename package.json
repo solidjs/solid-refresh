@@ -1,5 +1,6 @@
 {
   "name": "solid-refresh",
+  "type": "module",
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
@@ -11,6 +12,18 @@
   },
   "main": "dist/solid-refresh.js",
   "module": "dist/solid-refresh.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/solid-refresh.mjs",
+      "require": "./dist/solid-refresh.js",
+      "default": "./dist/solid-refresh.js"
+    },
+    "./babel": {
+      "import": "./babel.mjs",
+      "require": "./babel.js",
+      "default": "./babel.js"
+    }
+  },
   "files": [
     "dist",
     "babel.js"

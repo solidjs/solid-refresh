@@ -22,6 +22,9 @@ export default [
     output: [{
       file: './babel.js',
       format: 'cjs',
+    }, {
+      file: './babel.mjs',
+      format: 'es'
     }],
     external: ['@babel/core', '@babel/types', '@babel/helper-module-imports', '@babel/generator', 'crypto'],
     plugins: [

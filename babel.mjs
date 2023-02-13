@@ -1,28 +1,7 @@
-'use strict';
-
-var t = require('@babel/types');
-var generator = require('@babel/generator');
-var helperModuleImports = require('@babel/helper-module-imports');
-var crypto = require('crypto');
-
-function _interopNamespaceDefault(e) {
-    var n = Object.create(null);
-    if (e) {
-        Object.keys(e).forEach(function (k) {
-            if (k !== 'default') {
-                var d = Object.getOwnPropertyDescriptor(e, k);
-                Object.defineProperty(n, k, d.get ? d : {
-                    enumerable: true,
-                    get: function () { return e[k]; }
-                });
-            }
-        });
-    }
-    n.default = e;
-    return Object.freeze(n);
-}
-
-var t__namespace = /*#__PURE__*/_interopNamespaceDefault(t);
+import * as t from '@babel/types';
+import generator from '@babel/generator';
+import { addNamed } from '@babel/helper-module-imports';
+import crypto from 'crypto';
 
 function forEach(arr, callback) {
     for (let i = 0, len = arr.length; i < len; i += 1) {
@@ -54,7 +33,7 @@ function getSolidRefreshIdentifier(state, path, name) {
     if (current) {
         return current;
     }
-    const newID = helperModuleImports.addNamed(path, name, SOLID_REFRESH_MODULE);
+    const newID = addNamed(path, name, SOLID_REFRESH_MODULE);
     state.hooks.set(target, newID);
     return newID;
 }
@@ -62,22 +41,22 @@ function getHotIdentifier(state) {
     const bundler = state.opts.bundler;
     // vite/esm uses `import.meta.hot`
     if (isESMHMR(bundler)) {
-        return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("import"), t__namespace.identifier("meta")), t__namespace.identifier("hot"));
+        return t.memberExpression(t.memberExpression(t.identifier("import"), t.identifier("meta")), t.identifier("hot"));
     }
     // webpack 5 uses `import.meta.webpackHot`
     if (bundler === "webpack5") {
-        return t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("import"), t__namespace.identifier("meta")), t__namespace.identifier("webpackHot"));
+        return t.memberExpression(t.memberExpression(t.identifier("import"), t.identifier("meta")), t.identifier("webpackHot"));
     }
     // `module.hot` is the default.
-    return t__namespace.memberExpression(t__namespace.identifier("module"), t__namespace.identifier("hot"));
+    return t.memberExpression(t.identifier("module"), t.identifier("hot"));
 }
 function getWindowReloadCall() {
-    return t__namespace.callExpression(t__namespace.memberExpression(t__namespace.memberExpression(t__namespace.identifier("window"), t__namespace.identifier("location")), t__namespace.identifier("reload")), []);
+    return t.callExpression(t.memberExpression(t.memberExpression(t.identifier("window"), t.identifier("location")), t.identifier("reload")), []);
 }
 function getHMRDeclineCall(state) {
     const pathToHot = getHotIdentifier(state);
-    const hmrDecline = t__namespace.memberExpression(pathToHot, t__namespace.identifier("decline"));
-    const hmrDeclineCall = t__namespace.callExpression(hmrDecline, []);
+    const hmrDecline = t.memberExpression(pathToHot, t.identifier("decline"));
+    const hmrDeclineCall = t.callExpression(hmrDecline, []);
     if (isESMHMR(state.opts.bundler) || state.opts.bundler === 'webpack5') {
         // if (import.meta.hot) {
         //   import.meta.hot.decline();
@@ -85,16 +64,16 @@ function getHMRDeclineCall(state) {
         // if (import.meta.webpackHot) {
         //   import.meta.webpackHot.decline();
         // }
-        return t__namespace.ifStatement(pathToHot, t__namespace.blockStatement([
-            t__namespace.expressionStatement(hmrDeclineCall)
+        return t.ifStatement(pathToHot, t.blockStatement([
+            t.expressionStatement(hmrDeclineCall)
         ]));
     }
-    return t__namespace.ifStatement(pathToHot, t__namespace.blockStatement([
-        t__namespace.expressionStatement(t__namespace.conditionalExpression(hmrDecline, hmrDeclineCall, getWindowReloadCall())),
+    return t.ifStatement(pathToHot, t.blockStatement([
+        t.expressionStatement(t.conditionalExpression(hmrDecline, hmrDeclineCall, getWindowReloadCall())),
     ]));
 }
 function getStatementPath(path) {
-    if (t__namespace.isStatement(path.node)) {
+    if (t.isStatement(path.node)) {
         return path;
     }
     if (path.parentPath) {
@@ -114,15 +93,15 @@ function createRegistry(state, path) {
     program.push({
         id: identifier,
         kind: 'const',
-        init: t__namespace.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.registry), []),
+        init: t.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.registry), []),
     });
     const hotPath = getHotIdentifier(state);
     program.path.pushContainer('body', [
-        t__namespace.ifStatement(hotPath, t__namespace.blockStatement([
-            t__namespace.expressionStatement(t__namespace.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.refresh), [
-                t__namespace.objectExpression([
-                    t__namespace.objectProperty(t__namespace.identifier('type'), t__namespace.stringLiteral((_a = state.opts.bundler) !== null && _a !== void 0 ? _a : 'standard')),
-                    t__namespace.objectProperty(t__namespace.identifier('hot'), hotPath),
+        t.ifStatement(hotPath, t.blockStatement([
+            t.expressionStatement(t.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.refresh), [
+                t.objectExpression([
+                    t.objectProperty(t.identifier('type'), t.stringLiteral((_a = state.opts.bundler) !== null && _a !== void 0 ? _a : 'standard')),
+                    t.objectProperty(t.identifier('hot'), hotPath),
                 ]),
                 identifier,
             ])),
@@ -152,14 +131,14 @@ function getBindings(path) {
     const identifiers = new Set();
     path.traverse({
         Expression(p) {
-            if (t__namespace.isIdentifier(p.node) &&
-                !t__namespace.isTypeScript(p.parentPath.node) &&
+            if (t.isIdentifier(p.node) &&
+                !t.isTypeScript(p.parentPath.node) &&
                 isForeignBinding(path, p, p.node.name)) {
                 identifiers.add(p.node.name);
             }
-            if (t__namespace.isJSXElement(p.node) && t__namespace.isJSXMemberExpression(p.node.openingElement.name)) {
+            if (t.isJSXElement(p.node) && t.isJSXMemberExpression(p.node.openingElement.name)) {
                 let base = p.node.openingElement.name;
-                while (t__namespace.isJSXMemberExpression(base)) {
+                while (t.isJSXMemberExpression(base)) {
                     base = base.object;
                 }
                 if (isForeignBinding(path, p, base.name)) {
@@ -168,7 +147,7 @@ function getBindings(path) {
             }
         }
     });
-    return [...identifiers].map(value => t__namespace.identifier(value));
+    return [...identifiers].map(value => t.identifier(value));
 }
 const IMPORT_IDENTITIES = [
     { name: 'createContext', source: 'solid-js' },
@@ -177,8 +156,8 @@ const IMPORT_IDENTITIES = [
     { name: 'hydrate', source: 'solid-js/web' },
 ];
 function isValidSpecifier(specifier, keyword) {
-    return ((t__namespace.isIdentifier(specifier.imported) && specifier.imported.name === keyword) ||
-        (t__namespace.isStringLiteral(specifier.imported) && specifier.imported.value === keyword));
+    return ((t.isIdentifier(specifier.imported) && specifier.imported.name === keyword) ||
+        (t.isStringLiteral(specifier.imported) && specifier.imported.value === keyword));
 }
 function captureIdentifiers(state, path) {
     path.traverse({
@@ -186,11 +165,11 @@ function captureIdentifiers(state, path) {
             forEach(IMPORT_IDENTITIES, (id) => {
                 if (p.node.source.value === id.source) {
                     forEach(p.node.specifiers, (specifier) => {
-                        if (t__namespace.isImportSpecifier(specifier)
+                        if (t.isImportSpecifier(specifier)
                             && isValidSpecifier(specifier, id.name)) {
                             state.imports.identifiers.set(specifier.local, id);
                         }
-                        else if (t__namespace.isImportNamespaceSpecifier(specifier)) {
+                        else if (t.isImportNamespaceSpecifier(specifier)) {
                             state.imports.namespaces.set(specifier.local, id);
                         }
                     });
@@ -200,7 +179,7 @@ function captureIdentifiers(state, path) {
     });
 }
 function isValidCallee(state, path, { callee }, target) {
-    if (t__namespace.isIdentifier(callee)) {
+    if (t.isIdentifier(callee)) {
         const binding = path.scope.getBindingIdentifier(callee.name);
         if (binding) {
             const result = state.imports.identifiers.get(binding);
@@ -210,10 +189,10 @@ function isValidCallee(state, path, { callee }, target) {
         }
         return false;
     }
-    if (t__namespace.isMemberExpression(callee) &&
+    if (t.isMemberExpression(callee) &&
         !callee.computed &&
-        t__namespace.isIdentifier(callee.object) &&
-        t__namespace.isIdentifier(callee.property)) {
+        t.isIdentifier(callee.object) &&
+        t.isIdentifier(callee.property)) {
         const binding = path.scope.getBinding(callee.object.name);
         return (binding
             && state.imports.namespaces.has(binding.identifier)
@@ -224,10 +203,10 @@ function isValidCallee(state, path, { callee }, target) {
 function checkValidRenderCall(path) {
     let currentPath = path.parentPath;
     while (currentPath) {
-        if (t__namespace.isProgram(currentPath.node)) {
+        if (t.isProgram(currentPath.node)) {
             return true;
         }
-        if (!t__namespace.isStatement(currentPath.node)) {
+        if (!t.isStatement(currentPath.node)) {
             return false;
         }
         currentPath = currentPath.parentPath;
@@ -237,15 +216,15 @@ function checkValidRenderCall(path) {
 function fixRenderCalls(state, path) {
     path.traverse({
         ExpressionStatement(p) {
-            if (t__namespace.isCallExpression(p.node.expression) &&
+            if (t.isCallExpression(p.node.expression) &&
                 checkValidRenderCall(p) &&
                 (isValidCallee(state, p, p.node.expression, 'render') ||
                     isValidCallee(state, p, p.node.expression, 'hydrate'))) {
                 // Replace with variable declaration
                 const id = p.scope.generateUidIdentifier("cleanup");
-                p.replaceWith(t__namespace.variableDeclaration("const", [t__namespace.variableDeclarator(id, p.node.expression)]));
+                p.replaceWith(t.variableDeclaration("const", [t.variableDeclarator(id, p.node.expression)]));
                 const pathToHot = getHotIdentifier(state);
-                p.insertAfter(t__namespace.ifStatement(pathToHot, t__namespace.expressionStatement(t__namespace.callExpression(t__namespace.memberExpression(pathToHot, t__namespace.identifier("dispose")), [id]))));
+                p.insertAfter(t.ifStatement(pathToHot, t.expressionStatement(t.callExpression(t.memberExpression(pathToHot, t.identifier("dispose")), [id]))));
                 p.skip();
             }
         }
@@ -257,20 +236,20 @@ function wrapComponent(state, path, identifier, component) {
         const registry = createRegistry(state, statementPath);
         const hotID = identifier ? `Component$$${identifier.name}` : `HotComponent`;
         const hotComponent = path.scope.generateUidIdentifier(hotID);
-        const hotName = t__namespace.stringLiteral(hotComponent.name);
+        const hotName = t.stringLiteral(hotComponent.name);
         const componentCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.component);
         if (state.granular) {
-            return t__namespace.callExpression(componentCall, [
+            return t.callExpression(componentCall, [
                 registry,
                 hotName,
                 component,
-                t__namespace.objectExpression([
-                    t__namespace.objectProperty(t__namespace.identifier('signature'), t__namespace.stringLiteral(createSignatureValue(component))),
-                    t__namespace.objectProperty(t__namespace.identifier('dependencies'), t__namespace.arrayExpression(getBindings(path))),
+                t.objectExpression([
+                    t.objectProperty(t.identifier('signature'), t.stringLiteral(createSignatureValue(component))),
+                    t.objectProperty(t.identifier('dependencies'), t.arrayExpression(getBindings(path))),
                 ]),
             ]);
         }
-        return t__namespace.callExpression(componentCall, [
+        return t.callExpression(componentCall, [
             registry,
             hotName,
             component,
@@ -284,9 +263,9 @@ function wrapContext(state, path, identifier, context) {
         const registry = createRegistry(state, statementPath);
         const hotID = identifier ? `Context$$${identifier.name}` : `HotContext`;
         const hotContext = path.scope.generateUidIdentifier(hotID);
-        const hotName = t__namespace.stringLiteral(hotContext.name);
+        const hotName = t.stringLiteral(hotContext.name);
         const contextCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.context);
-        return t__namespace.callExpression(contextCall, [
+        return t.callExpression(contextCall, [
             registry,
             hotName,
             context,
@@ -341,7 +320,7 @@ function solidRefreshPlugin() {
                 }
                 const decl = path.node.declaration;
                 // Check if declaration is FunctionDeclaration
-                if (t__namespace.isFunctionDeclaration(decl) &&
+                if (t.isFunctionDeclaration(decl) &&
                     !(decl.generator || decl.async) &&
                     // Might be component-like, but the only valid components
                     // have zero or one parameter
@@ -349,8 +328,8 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        path.node.declaration = t__namespace.variableDeclaration("const", [
-                            t__namespace.variableDeclarator(decl.id, wrapComponent(state, path, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body)))
+                        path.node.declaration = t.variableDeclaration("const", [
+                            t.variableDeclarator(decl.id, wrapComponent(state, path, decl.id, t.functionExpression(decl.id, decl.params, decl.body)))
                         ]);
                     }
                 }
@@ -363,22 +342,22 @@ function solidRefreshPlugin() {
                 const grandParentNode = (_b = (_a = path.parentPath) === null || _a === void 0 ? void 0 : _a.parentPath) === null || _b === void 0 ? void 0 : _b.node;
                 // Check if the parent of the VariableDeclaration
                 // is either a Program or an ExportNamedDeclaration
-                if (t__namespace.isProgram(grandParentNode) || t__namespace.isExportNamedDeclaration(grandParentNode)) {
+                if (t.isProgram(grandParentNode) || t.isExportNamedDeclaration(grandParentNode)) {
                     const identifier = path.node.id;
                     const init = path.node.init;
-                    if (t__namespace.isIdentifier(identifier) &&
+                    if (t.isIdentifier(identifier) &&
                         isComponentishName(identifier.name) &&
                         // Check for valid FunctionExpression
-                        ((t__namespace.isFunctionExpression(init) && !(init.async || init.generator)) ||
+                        ((t.isFunctionExpression(init) && !(init.async || init.generator)) ||
                             // Check for valid ArrowFunctionExpression
-                            (t__namespace.isArrowFunctionExpression(init) && !(init.async || init.generator))) &&
+                            (t.isArrowFunctionExpression(init) && !(init.async || init.generator))) &&
                         // Might be component-like, but the only valid components
                         // have zero or one parameter
                         init.params.length < 2) {
                         path.node.init = wrapComponent(state, path, identifier, init);
                     }
-                    if (t__namespace.isCallExpression(init) && isValidCallee(state, path, init, 'createContext')) {
-                        path.node.init = wrapContext(state, path, t__namespace.isIdentifier(identifier) ? identifier : undefined, init);
+                    if (t.isCallExpression(init) && isValidCallee(state, path, init, 'createContext')) {
+                        path.node.init = wrapContext(state, path, t.isIdentifier(identifier) ? identifier : undefined, init);
                     }
                 }
             },
@@ -386,7 +365,7 @@ function solidRefreshPlugin() {
                 if (state.processed) {
                     return;
                 }
-                if (!(t__namespace.isProgram(path.parentPath.node) || t__namespace.isExportDefaultDeclaration(path.parentPath.node))) {
+                if (!(t.isProgram(path.parentPath.node) || t.isExportDefaultDeclaration(path.parentPath.node))) {
                     return;
                 }
                 const decl = path.node;
@@ -398,20 +377,20 @@ function solidRefreshPlugin() {
                     // Check if the declaration has an identifier, and then check
                     // if the name is component-ish
                     if (decl.id && isComponentishName(decl.id.name)) {
-                        const replacement = wrapComponent(state, path, decl.id, t__namespace.functionExpression(decl.id, decl.params, decl.body));
-                        if (t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
+                        const replacement = wrapComponent(state, path, decl.id, t.functionExpression(decl.id, decl.params, decl.body));
+                        if (t.isExportDefaultDeclaration(path.parentPath.node)) {
                             path.replaceWith(replacement);
                         }
                         else {
-                            path.replaceWith(t__namespace.variableDeclaration("var", [t__namespace.variableDeclarator(decl.id, replacement)]));
+                            path.replaceWith(t.variableDeclaration("var", [t.variableDeclarator(decl.id, replacement)]));
                         }
                     }
                     else if (!decl.id &&
                         decl.params.length === 1 &&
-                        t__namespace.isIdentifier(decl.params[0]) &&
+                        t.isIdentifier(decl.params[0]) &&
                         decl.params[0].name === "props" &&
-                        t__namespace.isExportDefaultDeclaration(path.parentPath.node)) {
-                        const replacement = wrapComponent(state, path, undefined, t__namespace.functionExpression(null, decl.params, decl.body));
+                        t.isExportDefaultDeclaration(path.parentPath.node)) {
+                        const replacement = wrapComponent(state, path, undefined, t.functionExpression(null, decl.params, decl.body));
                         path.replaceWith(replacement);
                     }
                 }
@@ -420,4 +399,4 @@ function solidRefreshPlugin() {
     };
 }
 
-module.exports = solidRefreshPlugin;
+export { solidRefreshPlugin as default };
