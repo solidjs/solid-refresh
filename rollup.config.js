@@ -20,10 +20,10 @@ export default [
   {
     input: 'src/babel.ts',
     output: [{
-      file: './babel.cjs',
+      file: './dist/babel.cjs',
       format: 'cjs',
     }, {
-      file: './babel.mjs',
+      file: './dist/babel.mjs',
       format: 'es'
     }],
     external: ['@babel/core', '@babel/types', '@babel/helper-module-imports', '@babel/generator', 'crypto'],
