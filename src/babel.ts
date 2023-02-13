@@ -1,9 +1,17 @@
 import * as babel from "@babel/core";
 import * as t from "@babel/types";
-import generator from "@babel/generator";
+import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
 import crypto from "crypto";
 import { forEach } from "./utils";
+
+// https://github.com/babel/babel/issues/15269
+let generator: typeof _generator;
+if (typeof _generator !== 'function') {
+  generator = (_generator as any).default;
+} else {
+  generator = _generator;
+}
 
 interface Options {
   bundler?: "esm" | "standard" | "vite" | "webpack5";
