@@ -1,10 +1,10 @@
 {
-  "name": "@lxsmnsyc/solid-refresh",
+  "name": "solid-refresh",
   "type": "module",
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
-  "version": "0.4.6",
+  "version": "0.4.3",
   "homepage": "https://github.com/solidjs/solid-refresh#readme",
   "repository": {
     "type": "git",
