@@ -1,11 +1,11 @@
-import { JSX, createMemo, untrack, $DEVCOMP } from "solid-js";
+import { JSX, createMemo, untrack, $DEVCOMP, Accessor } from "solid-js";
 
-interface BaseComponent<P> {
+export interface BaseComponent<P> {
   (props: P): JSX.Element;
 }
 
 export default function createProxy<C extends BaseComponent<P>, P>(
-  source: () => C
+  source: Accessor<C>
 ): (props: P) => JSX.Element {
   return new Proxy(
     function hmrCompWrapper(this: any, props: P, ...rest) {

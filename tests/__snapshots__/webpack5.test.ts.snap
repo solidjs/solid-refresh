@@ -1,13 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-// @refresh reload
+"// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.webpackHot) import.meta.webpackHot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -18,137 +18,145 @@ export default function Foo() {
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export default function Foo(a, b) {
+"export default function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  signature: \\"Yx3VedZqwcCwsoAiPFTAol2CV63L9Y1+KiNTj8jnMmU=\\",
   dependencies: []
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-
-const _Hot$$Foo = function Foo() {
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+}, {
+  signature: \\"Q5A0mGeKm2HS77FCJfpNZh8SDXu5GHShuZd2hsxEcY8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-
-const _Hot$$Foo = function Foo() {
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+}, {
+  signature: \\"8c+xQLXDirVOFqPQAAPTnRTVIJ2p2AC+Q4j2KqZi4vY=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _HotComponent = function (props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"_HotComponent\\", function (props) {
   return <h1>Foo</h1>;
-};
-
-export default _standard({
-  component: _HotComponent,
-  id: \\"_HotComponent\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-export default _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-// @refresh reload
+"// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.webpackHot) import.meta.webpackHot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -159,124 +167,129 @@ export function Foo() {
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export function Foo(a, b) {
+"export function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  signature: \\"Yx3VedZqwcCwsoAiPFTAol2CV63L9Y1+KiNTj8jnMmU=\\",
   dependencies: []
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-
-const _Hot$$Foo = function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+}, {
+  signature: \\"Q5A0mGeKm2HS77FCJfpNZh8SDXu5GHShuZd2hsxEcY8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-
-const _Hot$$Foo = function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+}, {
+  signature: \\"8c+xQLXDirVOFqPQAAPTnRTVIJ2p2AC+Q4j2KqZi4vY=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-export const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-// @refresh reload
+"// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
-
-if (import.meta.webpackHot) import.meta.webpackHot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
@@ -287,126 +300,119 @@ function Foo() {
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-function foo() {
+"function foo() {
   return <h1>Foo</h1>;
-}
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-function Foo(a, b) {
+"function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-var Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
+var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  signature: \\"Yx3VedZqwcCwsoAiPFTAol2CV63L9Y1+KiNTj8jnMmU=\\",
   dependencies: []
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-
-const _Hot$$Foo = function Foo() {
+var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-var Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
+}, {
+  signature: \\"Q5A0mGeKm2HS77FCJfpNZh8SDXu5GHShuZd2hsxEcY8=\\",
   dependencies: [example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-
-const _Hot$$Foo = function Foo() {
+var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-var Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
+}, {
+  signature: \\"8c+xQLXDirVOFqPQAAPTnRTVIJ2p2AC+Q4j2KqZi4vY=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-var Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-var Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-// @refresh reload
+"// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
-
-if (import.meta.webpackHot) import.meta.webpackHot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
@@ -417,126 +423,119 @@ const Foo = () => {
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const foo = () => {
+"const foo = () => {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+};"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const Foo = (a, b) => {
+"const Foo = (a, b) => {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+};"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = () => {
-  return <h1>Foo</h1>;
-};
-
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
+  return <h1>Foo</h1>;
+}, {
+  signature: \\"ohMOLldTmIt0umVFCQfoHptZz1zqOrHkiLLs7zQBEek=\\",
   dependencies: []
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-
-const _Hot$$Foo = () => {
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
   return <h1>{example}</h1>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
+}, {
+  signature: \\"R7CNV+ZtPhBqKHeZvLntlm1fQdDUqfu8fhvmc4jwlxo=\\",
   dependencies: [example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-
-const _Hot$$Foo = () => {
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
+}, {
+  signature: \\"fw7xLxmlE3BUDEniOzMHGSoCGnFLHYMo+gHcoeKVy9s=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = () => {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
   return <h1>Foo</h1>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = props => {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", props => {
   return <h1>Foo</h1>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-// @refresh reload
+"// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
-
-if (import.meta.webpackHot) import.meta.webpackHot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.decline();
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
@@ -547,112 +546,154 @@ const Foo = function () {
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const foo = function () {
+"const foo = function () {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+};"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const Foo = function (a, b) {
+"const Foo = function (a, b) {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+};"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function () {
-  return <h1>Foo</h1>;
-};
-
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
+  return <h1>Foo</h1>;
+}, {
+  signature: \\"WULrexGvMyUIZ8sZxWjItf2+JebYhwIfwnKmsjyiZYc=\\",
   dependencies: []
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-
-const _Hot$$Foo = function () {
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
   return <h1>{example}</h1>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
+}, {
+  signature: \\"1+FZ9hihKA3hDeuNzLWO9AlW4w8wruZA7TsU8RJJpsI=\\",
   dependencies: [example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-
-const _Hot$$Foo = function () {
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
+}, {
+  signature: \\"dOwIjly1ayshba6oiCuhDcuKtbSUFJmuiAbu2x1b+20=\\",
   dependencies: [Example]
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function () {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
   return <h1>Foo</h1>;
-};
-
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
-
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { standard as _standard } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const _Hot$$Foo = function (props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function (props) {
   return <h1>Foo</h1>;
-};
+});
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
+`;
 
-const Foo = _standard({
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-}, import.meta.webpackHot);
+exports[`webpack5 > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
+"import * as solidWeb from 'solid-js/web';
+const _cleanup = solidWeb.render(() => <App />, root);
+if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);"
+`;
 
-if (_shouldWarnAndDecline()) if (import.meta.webpackHot) import.meta.webpackHot.decline();"
+exports[`webpack5 > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
+"import { render } from 'solid-js/web';
+const _cleanup = render(() => <App />, root);
+if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);"
+`;
+
+exports[`webpack5 > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
+"import { render as Render } from 'solid-js/web';
+const _cleanup = Render(() => <App />, root);
+if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);"
+`;
+
+exports[`webpack5 > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
+"import { 'render' as Render } from 'solid-js/web';
+const _cleanup = Render(() => <App />, root);
+if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);"
+`;
+
+exports[`webpack5 > fix render > top-level statements > should work with IfStatement 1`] = `
+"import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => <App />, root);
+  if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);
+}"
+`;
+
+exports[`webpack5 > should support Context API 1`] = `
+"import { $$context as _$$context } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+const Example = _$$context(_REGISTRY, \\"_Context$$Example\\", createContext());
+if (import.meta.webpackHot) {
+  _$$refresh({
+    type: \\"webpack5\\",
+    hot: import.meta.webpackHot
+  }, _REGISTRY);
+}"
 `;
