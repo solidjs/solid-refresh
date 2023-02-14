@@ -426,9 +426,7 @@ function wrapComponent(
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
-    const hotID = `Component$$${identifier.name}`;
-    const hotComponent = path.scope.generateUidIdentifier(hotID);
-    const hotName = t.stringLiteral(hotComponent.name);
+    const hotName = t.stringLiteral(identifier.name);
     const componentCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.component);
     if (state.granular) {
       const properties: t.ObjectProperty[] = [
@@ -472,15 +470,13 @@ function wrapComponent(
 function wrapContext(
   state: State,
   path: babel.NodePath,
-  identifier: t.Identifier | undefined,
+  identifier: t.Identifier,
   context: t.CallExpression,
 ) {
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
-    const hotID = identifier ? `Context$$${identifier.name}` : `HotContext`;
-    const hotContext = path.scope.generateUidIdentifier(hotID);
-    const hotName = t.stringLiteral(hotContext.name);
+    const hotName = t.stringLiteral(identifier.name);
     const contextCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.context);
     
     return t.callExpression(
@@ -576,10 +572,10 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         if (t.isProgram(grandParentNode) || t.isExportNamedDeclaration(grandParentNode)) {
           const identifier = path.node.id;
           const init = path.node.init;
-          if (!init) {
+          if (!init || !t.isIdentifier(identifier)) {
             return;
           }
-          if (t.isIdentifier(identifier) && isComponentishName(identifier.name)) {
+          if (isComponentishName(identifier.name)) {
             const trueFuncExpr = unwrapExpression(init, t.isFunctionExpression)
               || unwrapExpression(init, t.isArrowFunctionExpression);
             // Check for valid FunctionExpression or ArrowFunctionExpression
@@ -600,7 +596,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             path.node.init = wrapContext(
               state,
               path,
-              t.isIdentifier(identifier) ? identifier : undefined,
+              identifier,
               trueCallExpr,
             );
           }

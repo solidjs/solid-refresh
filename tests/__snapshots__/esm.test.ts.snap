@@ -35,7 +35,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
   signature: \\"83fbb41\\"
@@ -55,7 +55,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
   signature: \\"c479f38e\\",
@@ -76,7 +76,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   signature: \\"f8fa9630\\",
@@ -95,7 +95,7 @@ exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -111,7 +111,7 @@ exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -144,7 +144,7 @@ exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip Export
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -167,7 +167,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
   signature: \\"83fbb41\\"
@@ -187,7 +187,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
   signature: \\"c479f38e\\",
@@ -208,7 +208,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   signature: \\"f8fa9630\\",
@@ -227,7 +227,7 @@ exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform E
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -243,7 +243,7 @@ exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform E
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -289,7 +289,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
-var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
   signature: \\"83fbb41\\"
@@ -309,7 +309,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
   signature: \\"c479f38e\\",
@@ -330,7 +330,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   signature: \\"f8fa9630\\",
@@ -349,7 +349,7 @@ exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with v
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -365,7 +365,7 @@ exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with v
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo(props) {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -411,7 +411,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
 }, {
   signature: \\"dd474849\\"
@@ -431,7 +431,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>{example}</h1>;
 }, {
   signature: \\"42ac2326\\",
@@ -452,7 +452,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   signature: \\"23378462\\",
@@ -471,7 +471,7 @@ exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform V
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -487,7 +487,7 @@ exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform V
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", props => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", props => {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -533,7 +533,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
 }, {
   signature: \\"a8bc6ac4\\"
@@ -553,7 +553,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>{example}</h1>;
 }, {
   signature: \\"2264ba41\\",
@@ -574,7 +574,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   signature: \\"b3df1897\\",
@@ -593,7 +593,7 @@ exports[`esm > VariableDeclarator > FunctionExpression > should transform Variab
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -609,7 +609,7 @@ exports[`esm > VariableDeclarator > FunctionExpression > should transform Variab
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function (props) {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function (props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
@@ -658,7 +658,7 @@ import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
-const Example = _$$context(_REGISTRY, \\"_Context$$Example\\", createContext());
+const Example = _$$context(_REGISTRY, \\"Example\\", createContext());
 if (import.meta.hot) {
   _$$refresh({
     type: \\"esm\\",
