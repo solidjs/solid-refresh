@@ -61,6 +61,7 @@
   "dependencies": {
     "@babel/generator": "^7.20.14",
     "@babel/helper-module-imports": "^7.18.6",
-    "@babel/types": "^7.20.7"
+    "@babel/types": "^7.20.7",
+    "js-xxhash": "^2.0.0"
   }
 }

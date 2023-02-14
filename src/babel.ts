@@ -2,7 +2,7 @@ import * as babel from "@babel/core";
 import * as t from "@babel/types";
 import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
-import crypto from "crypto";
+import { xxHash32 } from 'js-xxhash';
 import { forEach } from "./utils";
 
 // https://github.com/babel/babel/issues/15269
@@ -192,7 +192,7 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
 
 function createSignatureValue(node: t.Node): string {
   const code = generator(node);
-  const result = crypto.createHash("sha256").update(code.code).digest("base64");
+  const result = xxHash32(code.code).toString(16);
   return result;
 }
 

@@ -10,6 +10,7 @@ specifiers:
   '@types/babel__core': ^7.20.0
   '@types/babel__generator': ^7.6.4
   '@types/node': ^18.13.0
+  js-xxhash: ^2.0.0
   prettier: ^2.8.4
   rollup: ^3.15.0
   solid-js: ^1.6.10
@@ -21,6 +22,7 @@ dependencies:
   '@babel/generator': 7.20.14
   '@babel/helper-module-imports': 7.18.6
   '@babel/types': 7.20.7
+  js-xxhash: 2.0.0
 
 devDependencies:
   '@babel/core': 7.20.12
@@ -873,6 +875,11 @@ packages:
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: true
+
+  /js-xxhash/2.0.0:
+    resolution: {integrity: sha512-R7Gad0Y0grmuF/WRBUmxgQA1bGpbmRWM/OwNJZQPVdJBAteJIdBYOBYcHbuJeJwxdddqBVIdP3EfrDNFqahJ2A==}
+    engines: {node: '>=14.0.0'}
+    dev: false
 
   /jsesc/2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
