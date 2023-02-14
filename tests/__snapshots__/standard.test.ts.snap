@@ -6,7 +6,11 @@ export default function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  module.hot.decline ? module.hot.decline() : window.location.reload();
+  if (module.hot.decline) {
+    module.hot.decline();
+  } else {
+    window.location.reload();
+  }
 }"
 `;
 
@@ -144,7 +148,11 @@ export function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  module.hot.decline ? module.hot.decline() : window.location.reload();
+  if (module.hot.decline) {
+    module.hot.decline();
+  } else {
+    window.location.reload();
+  }
 }"
 `;
 
@@ -276,7 +284,11 @@ function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  module.hot.decline ? module.hot.decline() : window.location.reload();
+  if (module.hot.decline) {
+    module.hot.decline();
+  } else {
+    window.location.reload();
+  }
 }"
 `;
 
@@ -398,7 +410,11 @@ const Foo = () => {
   return <h1>Foo</h1>;
 };
 if (module.hot) {
-  module.hot.decline ? module.hot.decline() : window.location.reload();
+  if (module.hot.decline) {
+    module.hot.decline();
+  } else {
+    window.location.reload();
+  }
 }"
 `;
 
@@ -520,7 +536,11 @@ const Foo = function () {
   return <h1>Foo</h1>;
 };
 if (module.hot) {
-  module.hot.decline ? module.hot.decline() : window.location.reload();
+  if (module.hot.decline) {
+    module.hot.decline();
+  } else {
+    window.location.reload();
+  }
 }"
 `;
 

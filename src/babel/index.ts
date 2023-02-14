@@ -108,7 +108,9 @@ function getWindowReloadCall() {
 function getHMRDeclineCall(state: State) {
   const pathToHot = getHotIdentifier(state);
   const hmrDecline = t.memberExpression(pathToHot, t.identifier("decline"));
-  const hmrDeclineCall = t.callExpression(hmrDecline, []);
+  const hmrDeclineCall = t.blockStatement([
+    t.expressionStatement(t.callExpression(hmrDecline, [])),
+  ]);
 
   if (isESMHMR(state.opts.bundler) || state.opts.bundler === 'webpack5') {
     // if (import.meta.hot) {
@@ -119,9 +121,7 @@ function getHMRDeclineCall(state: State) {
     // }
     return t.ifStatement(
       pathToHot,
-      t.blockStatement([
-        t.expressionStatement(hmrDeclineCall)
-      ]),
+      hmrDeclineCall,
     );
   }
 
@@ -137,8 +137,10 @@ function getHMRDeclineCall(state: State) {
     t.blockStatement([
       t.ifStatement(
         hmrDecline,
-        t.expressionStatement(hmrDeclineCall),
-        t.expressionStatement(getWindowReloadCall()),
+        hmrDeclineCall,
+        t.blockStatement([
+          t.expressionStatement(getWindowReloadCall()),
+        ]),
       ),
     ]),
   );
