@@ -1,5 +1,5 @@
 
-import { Context, createSignal, DEV, JSX, Ref } from "solid-js";
+import { Context, createSignal, DEV, JSX } from "solid-js";
 import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
