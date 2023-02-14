@@ -9,6 +9,7 @@ specifiers:
   '@rollup/plugin-typescript': ^11.0.0
   '@types/babel__core': ^7.20.0
   '@types/babel__generator': ^7.6.4
+  '@types/babel__traverse': ^7.18.3
   '@types/node': ^18.13.0
   prettier: ^2.8.4
   rollup: ^3.15.0
@@ -28,6 +29,7 @@ devDependencies:
   '@rollup/plugin-typescript': 11.0.0_fvqkzcb4hs3uargqzossetbx6u
   '@types/babel__core': 7.20.0
   '@types/babel__generator': 7.6.4
+  '@types/babel__traverse': 7.18.3
   '@types/node': 18.13.0
   prettier: 2.8.4
   rollup: 3.15.0
