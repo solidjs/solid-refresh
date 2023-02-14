@@ -34,6 +34,9 @@ interface State extends babel.PluginPass {
   imports: ImportIdentifiers;
 }
 
+// This is just a Pascal heuristic
+// we only assume a function is a component
+// if the first character is in uppercase
 function isComponentishName(name: string) {
   return name[0] >= "A" && name[0] <= "Z";
 }
@@ -45,8 +48,10 @@ function isESMHMR(bundler: Options["bundler"]) {
   return bundler === "esm" || bundler === "vite";
 }
 
+// Source of solid-refresh (for import)
 const SOLID_REFRESH_MODULE = 'solid-refresh';
 
+// Exported names from solid-refresh that will be imported
 const IMPORTS = {
   registry: '$$registry',
   refresh: '$$refresh',
@@ -89,6 +94,7 @@ function getHotIdentifier(state: State): t.MemberExpression {
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
 }
 
+// Basically generates `window.location.reload()`
 function getWindowReloadCall() {
   return t.callExpression(
     t.memberExpression(
@@ -119,15 +125,20 @@ function getHMRDeclineCall(state: State) {
     );
   }
 
+  // if (module.hot) {
+  //   if (module.hot.decline) {
+  //     module.hot.decline()
+  //   } else {
+  //     window.location.reload()
+  //   }
+  // }
   return t.ifStatement(
     pathToHot,
     t.blockStatement([
-      t.expressionStatement(
-        t.conditionalExpression(
-          hmrDecline,
-          hmrDeclineCall,
-          getWindowReloadCall(),
-        ),
+      t.ifStatement(
+        hmrDecline,
+        t.expressionStatement(hmrDeclineCall),
+        t.expressionStatement(getWindowReloadCall()),
       ),
     ]),
   );
@@ -209,17 +220,31 @@ function isForeignBinding(source: babel.NodePath, current: babel.NodePath, name:
   return true;
 }
 
+function isInTypescript(path: babel.NodePath): boolean {
+  const parent = path.parentPath;
+  if (!parent) {
+    return false;
+  }
+  if (t.isTypeScript(parent.node)) {
+    return true;
+  }
+  return isInTypescript(parent);
+}
+
 function getBindings(path: babel.NodePath): t.Identifier[] {
   const identifiers = new Set<string>();
   path.traverse({
     Expression(p) {
+      // Check identifiers that aren't in a TS expression
       if (
         t.isIdentifier(p.node) &&
-        !t.isTypeScript(p.parentPath.node) &&
+        !isInTypescript(p) &&
         isForeignBinding(path, p, p.node.name)
       ) {
         identifiers.add(p.node.name);
       }
+      // for the JSX, only use JSXMemberExpression's object
+      // as a foreign binding
       if (t.isJSXElement(p.node) && t.isJSXMemberExpression(p.node.openingElement.name)) {
         let base: t.JSXMemberExpression | t.JSXIdentifier = p.node.openingElement.name;
         while (t.isJSXMemberExpression(base)) {
@@ -256,22 +281,52 @@ function isValidSpecifier(specifier: t.ImportSpecifier, keyword: string): boolea
 function captureIdentifiers(state: State, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
-      forEach(IMPORT_IDENTITIES, (id) => {
-        if (p.node.source.value === id.source) {
-          forEach(p.node.specifiers, (specifier) => {
-            if (
-              t.isImportSpecifier(specifier)
-              && isValidSpecifier(specifier, id.name)
-            ) {
-              state.imports.identifiers.set(specifier.local, id);
-            } else if (t.isImportNamespaceSpecifier(specifier)) {
-              state.imports.namespaces.set(specifier.local, id);
-            }
-          });
-        }
-      });
+      if (p.node.importKind === 'value') {
+        forEach(IMPORT_IDENTITIES, (id) => {
+          if (p.node.source.value === id.source) {
+            forEach(p.node.specifiers, (specifier) => {
+              if (
+                t.isImportSpecifier(specifier)
+                && isValidSpecifier(specifier, id.name)
+              ) {
+                state.imports.identifiers.set(specifier.local, id);
+              } else if (t.isImportNamespaceSpecifier(specifier)) {
+                state.imports.namespaces.set(specifier.local, id);
+              }
+            });
+          }
+        });
+      }
     }
   });
+}
+
+type TypeCheck<K> = 
+  K extends (node: t.Expression) => node is (infer U extends t.Expression)
+    ? U
+    : never;
+
+function unwrapExpression<
+  K extends ((node: t.Expression) => boolean),
+>(
+  node: t.Expression,
+  key: K,
+): TypeCheck<K> | undefined {
+  if (key(node)) {
+    return node as TypeCheck<K>;
+  }
+  if (
+    t.isParenthesizedExpression(node)
+    || t.isTypeCastExpression(node)
+    || t.isTSAsExpression(node)
+    || t.isTSSatisfiesExpression(node)
+    || t.isTSNonNullExpression(node)
+    || t.isTSTypeAssertion(node)
+    || t.isTSInstantiationExpression(node)
+  ) {
+    return unwrapExpression(node.expression, key);
+  }
+  return undefined;
 }
 
 function isValidCallee(
@@ -280,8 +335,12 @@ function isValidCallee(
   { callee }: t.CallExpression,
   target: string,
 ) {
-  if (t.isIdentifier(callee)) {
-    const binding = path.scope.getBindingIdentifier(callee.name);
+  if (t.isV8IntrinsicIdentifier(callee)) {
+    return false;
+  }
+  const trueCallee = unwrapExpression(callee, t.isIdentifier);
+  if (trueCallee) {
+    const binding = path.scope.getBindingIdentifier(trueCallee.name);
     if (binding) {
       const result = state.imports.identifiers.get(binding);
       if (result && result.name === target) {
@@ -290,19 +349,16 @@ function isValidCallee(
     }
     return false;
   }
-
-  if (
-    t.isMemberExpression(callee) &&
-    !callee.computed &&
-    t.isIdentifier(callee.object) &&
-    t.isIdentifier(callee.property)
-  ) {
-    const binding = path.scope.getBinding(callee.object.name);
-    return (
-      binding
-      && state.imports.namespaces.has(binding.identifier)
-      && callee.property.name === target
-    );
+  if (t.isMemberExpression(callee) && !callee.computed && t.isIdentifier(callee.property)) {
+    const trueObject = unwrapExpression(callee.object, t.isIdentifier);
+    if (trueObject) {
+      const binding = path.scope.getBinding(trueObject.name);
+      return (
+        binding
+        && state.imports.namespaces.has(binding.identifier)
+        && callee.property.name === target
+      );
+    }
   }
 
   return false;
@@ -330,11 +386,14 @@ function fixRenderCalls(
 ) {
   path.traverse({
     ExpressionStatement(p) {
+      const trueCallExpr = unwrapExpression(p.node.expression, t.isCallExpression);
       if (
-        t.isCallExpression(p.node.expression)&&
-        checkValidRenderCall(p) &&
-        (isValidCallee(state, p, p.node.expression, 'render') ||
-        isValidCallee(state, p, p.node.expression, 'hydrate'))
+        trueCallExpr
+        && checkValidRenderCall(p)
+        && (
+          isValidCallee(state, p, trueCallExpr, 'render')
+          || isValidCallee(state, p, trueCallExpr, 'hydrate')
+        )
       ) {
         // Replace with variable declaration
         const id = p.scope.generateUidIdentifier("cleanup");
@@ -515,26 +574,32 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         if (t.isProgram(grandParentNode) || t.isExportNamedDeclaration(grandParentNode)) {
           const identifier = path.node.id;
           const init = path.node.init;
-
-          if (
-            t.isIdentifier(identifier) &&
-            isComponentishName(identifier.name) &&
-            // Check for valid FunctionExpression
-            ((t.isFunctionExpression(init) && !(init.async || init.generator)) ||
-              // Check for valid ArrowFunctionExpression
-              (t.isArrowFunctionExpression(init) && !(init.async || init.generator))) &&
-            // Might be component-like, but the only valid components
-            // have zero or one parameter
-            init.params.length < 2
-          ) {
-            path.node.init = wrapComponent(state, path, identifier, init);
+          if (!init) {
+            return;
           }
-          if (t.isCallExpression(init) && isValidCallee(state, path, init, 'createContext')) {
+          if (t.isIdentifier(identifier) && isComponentishName(identifier.name)) {
+            const trueFuncExpr = unwrapExpression(init, t.isFunctionExpression)
+              || unwrapExpression(init, t.isArrowFunctionExpression);
+            // Check for valid FunctionExpression or ArrowFunctionExpression
+            if (
+              trueFuncExpr
+              // Must not be async or generator
+              && !(trueFuncExpr.async || trueFuncExpr.generator)
+              // Might be component-like, but the only valid components
+              // have zero or one parameter
+              && trueFuncExpr.params.length < 2
+            ) {
+              path.node.init = wrapComponent(state, path, identifier, trueFuncExpr);
+            }
+          }
+          // For `createContext` calls
+          const trueCallExpr = unwrapExpression(init, t.isCallExpression);
+          if (trueCallExpr && isValidCallee(state, path, trueCallExpr, 'createContext')) {
             path.node.init = wrapContext(
               state,
               path,
               t.isIdentifier(identifier) ? identifier : undefined,
-              init,
+              trueCallExpr,
             );
           }
         }
