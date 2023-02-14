@@ -174,21 +174,37 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
     ),
   });
   const hotPath = getHotIdentifier(state);
+  const statements: t.Statement[] = [
+    t.expressionStatement(
+      t.callExpression(
+        getSolidRefreshIdentifier(state, path, IMPORTS.refresh),
+        [
+          t.stringLiteral(state.opts.bundler ?? 'standard'),
+          hotPath,
+          identifier,
+        ],
+      ),
+    ),
+  ];
+
+  if (state.opts.bundler === 'vite') {
+    // Vite requires that the owner module has an `import.meta.hot.accept()` call
+    statements.push(
+      t.expressionStatement(
+        t.callExpression(
+          t.memberExpression(
+            hotPath,
+            t.identifier('accept'),
+          ),
+          [t.arrowFunctionExpression([], t.blockStatement([]))],
+        ),
+      )
+    );
+  }
   (program.path as babel.NodePath<t.Program>).pushContainer('body', [
     t.ifStatement(
       hotPath,
-      t.blockStatement([
-        t.expressionStatement(
-          t.callExpression(
-            getSolidRefreshIdentifier(state, path, IMPORTS.refresh),
-            [
-              t.stringLiteral(state.opts.bundler ?? 'standard'),
-              hotPath,
-              identifier,
-            ],
-          ),
-        ),
-      ]),
+      t.blockStatement(statements),
     ),
   ]);
   state.hooks.set(REGISTRY, identifier);
