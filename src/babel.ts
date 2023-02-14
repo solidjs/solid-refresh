@@ -2,8 +2,8 @@ import * as babel from "@babel/core";
 import * as t from "@babel/types";
 import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
-import { xxHash32 } from 'js-xxhash';
 import { forEach } from "./utils";
+import { xxHash32 } from "./xxhash32";
 
 // https://github.com/babel/babel/issues/15269
 let generator: typeof _generator;
