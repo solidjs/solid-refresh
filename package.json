@@ -4,7 +4,7 @@
   "description": "Universal HMR for SolidJS",
   "author": "Ryan Carniato",
   "license": "MIT",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "homepage": "https://github.com/solidjs/solid-refresh#readme",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
       "default": "./dist/babel.cjs",
       "types": "./dist/src/babel/index.d.ts"
     },
-    "./dist": "./dist/*"
+    "./dist/*": "./dist/*"
   },
   "typesVersions": {
     "*": {
