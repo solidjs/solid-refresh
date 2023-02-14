@@ -41,10 +41,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -62,10 +59,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -83,10 +77,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [Example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -99,10 +90,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -115,10 +103,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -148,10 +133,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -173,10 +155,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -194,10 +173,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -215,10 +191,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [Example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -231,10 +204,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -247,10 +217,7 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -295,10 +262,7 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -316,10 +280,7 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -337,10 +298,7 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   dependencies: [Example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -353,10 +311,7 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -369,10 +324,7 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -417,10 +369,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   signature: \\"dd474849\\"
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -438,10 +387,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   dependencies: [example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -459,10 +405,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   dependencies: [Example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -475,10 +418,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -491,10 +431,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", props => {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -539,10 +476,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   signature: \\"a8bc6ac4\\"
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -560,10 +494,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   dependencies: [example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -581,10 +512,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   dependencies: [Example]
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -597,10 +525,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -613,10 +538,7 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function (props) {
   return <h1>Foo</h1>;
 });
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;
 
@@ -660,9 +582,6 @@ const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
 const Example = _$$context(_REGISTRY, \\"Example\\", createContext());
 if (import.meta.hot) {
-  _$$refresh({
-    type: \\"vite\\",
-    hot: import.meta.hot
-  }, _REGISTRY);
+  _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
 }"
 `;

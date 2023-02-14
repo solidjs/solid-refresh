@@ -1,5 +1,5 @@
 
-import { Context, createSignal, DEV, JSX } from "solid-js";
+import { Context, createSignal, DEV, JSX, Ref } from "solid-js";
 import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
@@ -197,9 +197,13 @@ interface StandardHot {
   decline?: () => void;
 }
 
-function hotDecline(hot: StandardHot) {
+function hotDecline(hot: StandardHot, timeout = false) {
   if (hot.decline) {
     hot.decline();
+  } else if (timeout) {
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
   } else {
     window.location.reload();
   }
@@ -242,15 +246,6 @@ function $$refreshStandard(hot: StandardHot, registry: Registry) {
   hot.accept();
 }
 
-interface ESMHotContext {
-  type: 'esm' | 'vite';
-  hot: ESMHot;
-}
-interface StandardHotContext {
-  type: 'standard' | 'webpack5';
-  hot: StandardHot;
-}
-
 let warned = false;
 
 function shouldWarnAndDecline() {
@@ -269,12 +264,13 @@ function shouldWarnAndDecline() {
   return true;
 }
 
-export function $$refresh(ctx: ESMHotContext, registry: Registry): void;
-export function $$refresh(ctx: StandardHotContext, registry: Registry): void;
-export function $$refresh(
-  { type, hot }: ESMHotContext | StandardHotContext,
-  registry: Registry,
-) {
+type ESMRefresh = [type: 'esm' | 'vite', hot: ESMHot, registry: Registry];
+type StandardRefresh = [type: 'standard' | 'webpack5', hot: StandardHot, registry: Registry];
+
+type Refresh = ESMRefresh
+  | StandardRefresh;
+
+export function $$refresh(...[type, hot, registry]: Refresh) {
   switch (type) {
     case 'esm':
     case 'vite':
@@ -286,7 +282,7 @@ export function $$refresh(
     case 'standard':
     case 'webpack5':
       if (shouldWarnAndDecline()) {
-        hotDecline(hot);
+        hotDecline(hot, true);
       }
       $$refreshStandard(hot, registry);
       break;

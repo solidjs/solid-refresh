@@ -182,16 +182,8 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
           t.callExpression(
             getSolidRefreshIdentifier(state, path, IMPORTS.refresh),
             [
-              t.objectExpression([
-                t.objectProperty(
-                  t.identifier('type'),
-                  t.stringLiteral(state.opts.bundler ?? 'standard'),
-                ),
-                t.objectProperty(
-                  t.identifier('hot'),
-                  hotPath,
-                ),
-              ]),
+              t.stringLiteral(state.opts.bundler ?? 'standard'),
+              hotPath,
               identifier,
             ],
           ),
