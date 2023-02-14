@@ -420,13 +420,13 @@ function fixRenderCalls(
 function wrapComponent(
   state: State,
   path: babel.NodePath,
-  identifier: t.Identifier | undefined,
+  identifier: t.Identifier,
   component: t.FunctionExpression | t.ArrowFunctionExpression,
 ) {
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
-    const hotID = identifier ? `Component$$${identifier.name}` : `HotComponent`;
+    const hotID = `Component$$${identifier.name}`;
     const hotComponent = path.scope.generateUidIdentifier(hotID);
     const hotName = t.stringLiteral(hotComponent.name);
     const componentCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.component);
@@ -618,41 +618,27 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         const decl = path.node;
         // Check if declaration is FunctionDeclaration
         if (
-          !(decl.generator || decl.async) &&
+          // Check if the declaration has an identifier, and then check
+          decl.id
+          // if the name is component-ish
+          && isComponentishName(decl.id.name)
+          && !(decl.generator || decl.async) &&
           // Might be component-like, but the only valid components
           // have zero or one parameter
           decl.params.length < 2
         ) {
-          // Check if the declaration has an identifier, and then check
-          // if the name is component-ish
-          if (decl.id && isComponentishName(decl.id.name)) {
-            const replacement = wrapComponent(
-              state,
-              path,
-              decl.id,
-              t.functionExpression(decl.id, decl.params, decl.body)
-            );
-            if (t.isExportDefaultDeclaration(path.parentPath.node)) {
-              path.replaceWith(replacement);
-            } else {
-              path.replaceWith(
-                t.variableDeclaration("var", [t.variableDeclarator(decl.id, replacement)])
-              );
-            }
-          } else if (
-            !decl.id &&
-            decl.params.length === 1 &&
-            t.isIdentifier(decl.params[0]) &&
-            decl.params[0].name === "props" &&
-            t.isExportDefaultDeclaration(path.parentPath.node)
-          ) {
-            const replacement = wrapComponent(
-              state,
-              path,
-              undefined,
-              t.functionExpression(null, decl.params, decl.body)
-            );
+          const replacement = wrapComponent(
+            state,
+            path,
+            decl.id,
+            t.functionExpression(decl.id, decl.params, decl.body)
+          );
+          if (t.isExportDefaultDeclaration(path.parentPath.node)) {
             path.replaceWith(replacement);
+          } else {
+            path.replaceWith(
+              t.variableDeclaration("var", [t.variableDeclarator(decl.id, replacement)])
+            );
           }
         }
       }

@@ -118,15 +118,6 @@ function Foo() {
 const Bar = () => <h1>Hello Bar</h1>;
 ```
 
-Anonymous functions with `props` as the only parameter are also supported.
-
-```js
-// This also works
-export default function (props) {
-  return <h1>Hello Anonymous!</h1>;
-}
-```
-
 The components are wrapped and memoized. When the module receives an update, it replaces the old components from the old module with the new components.
 
 ## Automatic Render Cleanup

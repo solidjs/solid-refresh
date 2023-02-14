@@ -372,15 +372,6 @@ describe("vite", () => {
       `)
       ).toMatchSnapshot();
     });
-    it("should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params", async () => {
-      expect(
-        await transform(`
-      export default function (props) {
-        return <h1>Foo</h1>;
-      }
-      `)
-      ).toMatchSnapshot();
-    });
     it("should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params", async () => {
       expect(
         await transform(`
