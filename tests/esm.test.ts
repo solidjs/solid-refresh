@@ -393,7 +393,7 @@ describe("esm", () => {
     it("should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name", async () => {
       expect(
         await transform(`
-      export default function Foo() {
+      export default function foo() {
         return <h1>Foo</h1>;
       }
       `)
