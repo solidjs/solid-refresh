@@ -18,33 +18,16 @@ pnpm add -D solid-refresh
 
 This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Over time I hope to add different bundlers. Today it supports:
 
-* Webpack (for strict ESM, use option `bundler: "webpack5"`)
-* Parcel
-* Nollup
 * Vite (with option `bundler: "vite"`)
 * Snowpack (with option `bundler: "esm"`)
+* Webpack (for strict ESM, use option `bundler: "webpack5"`)
+* Nollup
 
 ## Setup
 
 ### Vite
 
 `solid-refresh` is already built into [`vite-plugin-solid`](https://github.com/solidjs/vite-plugin-solid).
-
-### Parcel
-
-You can add the following to `.babelrc`:
-
-```json
-{
-  "env": {
-    "development": {
-      "plugins": [
-        ["module:solid-refresh/babel"]
-      ]
-    }
-  }
-}
-```
 
 ### Webpack
 
@@ -60,7 +43,7 @@ Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader)
 }
 ```
 
-If you're using strict ESM:
+If you're using strict ESM a.k.a. `import.meta.webpackHot`:
 
 ```json
 {
@@ -111,6 +94,7 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 
 ### Other dev servers
 
+* [`Parcel`](https://parceljs.org/) - ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build.
 * [`wmr`](https://wmr.dev/) - SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
 * [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot) - The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
 
