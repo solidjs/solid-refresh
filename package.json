@@ -16,12 +16,21 @@
     ".": {
       "import": "./dist/solid-refresh.mjs",
       "require": "./dist/solid-refresh.cjs",
-      "default": "./dist/solid-refresh.cjs"
+      "default": "./dist/solid-refresh.cjs",
+      "types": "./dist/src/runtime/index.d.ts"
     },
     "./babel": {
       "import": "./dist/babel.mjs",
       "require": "./dist/babel.cjs",
-      "default": "./dist/babel.cjs"
+      "default": "./dist/babel.cjs",
+      "types": "./dist/src/babel/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "babel": [
+        "./dist/src/babel/index.d.ts"
+      ]
     }
   },
   "files": [
