@@ -370,22 +370,28 @@ function wrapComponent(
     const hotName = t.stringLiteral(hotComponent.name);
     const componentCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.component);
     if (state.granular) {
+      const properties: t.ObjectProperty[] = [
+        t.objectProperty(
+          t.identifier('signature'),
+          t.stringLiteral(createSignatureValue(component)),
+        ),
+      ];
+      const dependencies = getBindings(path);
+      if (dependencies.length) {
+        properties.push(
+          t.objectProperty(
+            t.identifier('dependencies'),
+            t.arrayExpression(dependencies),
+          ),
+        );
+      }
       return t.callExpression(
         componentCall,
         [
           registry,
           hotName,
           component,
-          t.objectExpression([
-            t.objectProperty(
-              t.identifier('signature'),
-              t.stringLiteral(createSignatureValue(component)),
-            ),
-            t.objectProperty(
-              t.identifier('dependencies'),
-              t.arrayExpression(getBindings(path)),
-            ),
-         ]),
+          t.objectExpression(properties),
         ],
       );
     }

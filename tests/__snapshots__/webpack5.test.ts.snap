@@ -18,18 +18,8 @@ export default function Foo() {
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
-const _REGISTRY = _$$registry();
-export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
+"export default function foo() {
   return <h1>Foo</h1>;
-});
-if (import.meta.webpackHot) {
-  _$$refresh({
-    type: \\"webpack5\\",
-    hot: import.meta.webpackHot
-  }, _REGISTRY);
 }"
 `;
 
@@ -48,8 +38,7 @@ const _REGISTRY = _$$registry();
 export default _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  signature: \\"83fbb41\\",
-  dependencies: []
+  signature: \\"83fbb41\\"
 });
 if (import.meta.webpackHot) {
   _$$refresh({
@@ -197,8 +186,7 @@ const _REGISTRY = _$$registry();
 export const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  signature: \\"83fbb41\\",
-  dependencies: []
+  signature: \\"83fbb41\\"
 });
 if (import.meta.webpackHot) {
   _$$refresh({
@@ -320,8 +308,7 @@ const _REGISTRY = _$$registry();
 var Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  signature: \\"83fbb41\\",
-  dependencies: []
+  signature: \\"83fbb41\\"
 });
 if (import.meta.webpackHot) {
   _$$refresh({
@@ -443,8 +430,7 @@ const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", () => {
   return <h1>Foo</h1>;
 }, {
-  signature: \\"dd474849\\",
-  dependencies: []
+  signature: \\"dd474849\\"
 });
 if (import.meta.webpackHot) {
   _$$refresh({
@@ -566,8 +552,7 @@ const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"_Component$$Foo\\", function () {
   return <h1>Foo</h1>;
 }, {
-  signature: \\"a8bc6ac4\\",
-  dependencies: []
+  signature: \\"a8bc6ac4\\"
 });
 if (import.meta.webpackHot) {
   _$$refresh({

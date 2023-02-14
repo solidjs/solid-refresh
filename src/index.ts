@@ -91,19 +91,20 @@ function patchComponent<P>(
   newData: ComponentRegistrationData<P>,
 ) {
   // Check if incoming module has signature
-  if (newData.signature && newData.dependencies) {
-    // Compare old signature and dependencies
+  if (newData.signature ) {
+    // Compare signatures
     if (
-      newData.signature !== oldData.signature ||
-      isListUpdated(newData.dependencies, oldData.dependencies)
+      newData.signature !== oldData.signature
+      || isListUpdated(newData.dependencies, oldData.dependencies)
     ) {
-      // Remount
+      // Replace signatures and dependencies
       oldData.dependencies = newData.dependencies;
       oldData.signature = newData.signature;
+      // Remount
       oldData.update(() => newData.component);
     }
-  // No granular update, remount
   } else {
+    // No granular update, remount
     oldData.update(() => newData.component);
   }
 }
