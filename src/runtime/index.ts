@@ -164,9 +164,10 @@ function patchRegistry(
 }
 
 const SOLID_REFRESH = 'solid-refresh';
+const SOLID_REFRESH_PREV = 'solid-refresh-prev';
 
 type HotData = {
-  [key in typeof SOLID_REFRESH]?: Registry;
+  [key in (typeof SOLID_REFRESH | typeof SOLID_REFRESH_PREV)]: Registry;
 };
 
 interface ESMHot {
@@ -208,11 +209,11 @@ function hotInvalidate(hot: StandardHot) {
 }
 
 function $$refreshESM(hot: ESMHot, registry: Registry) {
-  hot.data[SOLID_REFRESH] = registry;
+  hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
+  hot.data[SOLID_REFRESH_PREV] = registry;
 
   hot.accept(() => {
-    const nextRegistry = hot.data[SOLID_REFRESH];
-    if (nextRegistry && patchRegistry(registry, nextRegistry)) {
+    if (patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
       hot.invalidate();
     }
   });
