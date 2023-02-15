@@ -157,8 +157,8 @@ function patchRegistry(
   oldRegistry: Registry,
   newRegistry: Registry
 ) {
-  const shouldInvalidateByComponents = patchComponents(oldRegistry, newRegistry);
   const shouldInvalidateByContext = patchContexts(oldRegistry, newRegistry);
+  const shouldInvalidateByComponents = patchComponents(oldRegistry, newRegistry);
   // In the future we may add other HMR features here
   return shouldInvalidateByComponents || shouldInvalidateByContext;
 }
