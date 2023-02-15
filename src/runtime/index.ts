@@ -27,8 +27,6 @@ export interface ContextRegistrationData<T> {
   id: string;
   // The context instance
   context: Context<T>;
-  // This function replaces the previous context with the new context
-  update: (action: () => Context<T>) => void;
 }
 
 export interface Registry {
@@ -70,20 +68,11 @@ export function $$context<T>(
   id: string,
   context: Context<T>,
 ): Context<T> {
-  const [ctx, setCtx] = createSignal(context, { internal: true });
-  const proxyContext: Context<T> = {
-    get defaultValue() {
-      return ctx().defaultValue;
-    },
-    id: ctx().id,
-    Provider: ctx().Provider,
-  };
   registry.contexts.set(id, {
     id,
-    context: proxyContext,
-    update: setCtx,
+    context,
   });
-  return proxyContext;
+  return context;
 }
 
 function patchComponent<P>(
@@ -136,11 +125,9 @@ function patchContext<T>(
   oldData: ContextRegistrationData<T>,
   newData: ContextRegistrationData<T>,
 ) {
-  if (oldData.update) {
-    newData.context.id = oldData.context.id;
-    newData.context.Provider = oldData.context.Provider;
-    oldData.update(() => newData.context);
-  }
+  oldData.context.defaultValue = newData.context.defaultValue;
+  newData.context.id = oldData.context.id;
+  newData.context.Provider = oldData.context.Provider;
 }
 
 function patchContexts(
@@ -267,7 +254,8 @@ function shouldWarnAndDecline() {
 type ESMRefresh = [type: 'esm' | 'vite', hot: ESMHot, registry: Registry];
 type StandardRefresh = [type: 'standard' | 'webpack5', hot: StandardHot, registry: Registry];
 
-type Refresh = ESMRefresh
+type Refresh = 
+  | ESMRefresh
   | StandardRefresh;
 
 export function $$refresh(...[type, hot, registry]: Refresh) {
