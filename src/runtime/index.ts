@@ -1,10 +1,19 @@
 
 import { Context, createSignal, DEV, JSX } from "solid-js";
-import createProxy from "./create-proxy";
+import createProxy, { setComponentProperty } from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
+interface ComponentOptions {
+  location?: string;
+  // In granular mode. This signature is a hash
+  // generated from the component's JS string
+  signature?: string;
+  // An array of foreign bindings (values that aren't locally declared in the component)
+  dependencies?: any[];
+}
+
 // The registration data for the components
-export interface ComponentRegistrationData<P> {
+export interface ComponentRegistrationData<P> extends ComponentOptions {
   // A compile-time ID generated for the component, this is usually
   // derived from the component's name
   id: string;
@@ -13,11 +22,6 @@ export interface ComponentRegistrationData<P> {
   // This function replaces the previous component
   // with the new component.
   update: (action: () => (props: P) => JSX.Element) => void;
-  // In granular mode. This signature is a hash
-  // generated from the component's JS string
-  signature?: string;
-  // An array of foreign bindings (values that aren't locally declared in the component)
-  dependencies?: any[];
 }
 
 // The registration data for the context
@@ -41,19 +45,20 @@ export function $$registry(): Registry {
   };
 }
 
-interface ComponentOptions {
-  signature?: string;
-  dependencies?: any[];
-}
-
 export function $$component<P>(
   registry: Registry,
   id: string,
   component: (props: P) => JSX.Element,
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
+  if (!component.name) {
+    setComponentProperty(component, 'name', id);
+  }
+  if (options.location) {
+    setComponentProperty(component, 'location', options.location);
+  }
   const [comp, setComp] = createSignal(component, { internal: true });
-  const proxyComponent = createProxy<(props: P) => JSX.Element, P>(comp);
+  const proxyComponent = createProxy<(props: P) => JSX.Element, P>(comp, id);
   registry.components.set(id, {
     id,
     component: proxyComponent,

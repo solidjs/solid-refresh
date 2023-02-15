@@ -38,6 +38,7 @@ const _REGISTRY = _$$registry();
 export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
+  location: \\"example.jsx:3:21\\",
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
@@ -56,6 +57,7 @@ const example = 'Foo';
 export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
+  location: \\"example.jsx:4:21\\",
   signature: \\"c479f38e\\",
   dependencies: [example]
 });
@@ -75,6 +77,7 @@ const Example = createContext();
 export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
+  location: \\"example.jsx:4:21\\",
   signature: \\"f8fa9630\\",
   dependencies: [Example]
 });
@@ -91,6 +94,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:21\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -105,6 +110,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 export default _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:21\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -136,6 +143,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:13\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -158,6 +167,7 @@ const _REGISTRY = _$$registry();
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
+  location: \\"example.jsx:3:13\\",
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
@@ -176,6 +186,7 @@ const example = 'Foo';
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
+  location: \\"example.jsx:4:13\\",
   signature: \\"c479f38e\\",
   dependencies: [example]
 });
@@ -195,6 +206,7 @@ const Example = createContext();
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
+  location: \\"example.jsx:4:13\\",
   signature: \\"f8fa9630\\",
   dependencies: [Example]
 });
@@ -211,6 +223,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:13\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -225,6 +239,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:13\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -270,6 +286,7 @@ const _REGISTRY = _$$registry();
 var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
+  location: \\"example.jsx:3:6\\",
   signature: \\"83fbb41\\"
 });
 if (import.meta.hot) {
@@ -288,6 +305,7 @@ const example = 'Foo';
 var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
+  location: \\"example.jsx:4:6\\",
   signature: \\"c479f38e\\",
   dependencies: [example]
 });
@@ -307,6 +325,7 @@ const Example = createContext();
 var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
+  location: \\"example.jsx:4:6\\",
   signature: \\"f8fa9630\\",
   dependencies: [Example]
 });
@@ -323,6 +342,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:6\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -337,6 +358,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:6\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -382,6 +405,7 @@ const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
 }, {
+  location: \\"example.jsx:3:20\\",
   signature: \\"dd474849\\"
 });
 if (import.meta.hot) {
@@ -400,6 +424,7 @@ const example = 'Foo';
 const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>{example}</h1>;
 }, {
+  location: \\"example.jsx:4:20\\",
   signature: \\"42ac2326\\",
   dependencies: [example]
 });
@@ -419,6 +444,7 @@ const Example = createContext();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
+  location: \\"example.jsx:4:20\\",
   signature: \\"23378462\\",
   dependencies: [Example]
 });
@@ -435,6 +461,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:20\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -449,6 +477,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", props => {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:20\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -494,6 +524,7 @@ const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
 }, {
+  location: \\"example.jsx:3:20\\",
   signature: \\"a8bc6ac4\\"
 });
 if (import.meta.hot) {
@@ -512,6 +543,7 @@ const example = 'Foo';
 const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>{example}</h1>;
 }, {
+  location: \\"example.jsx:4:20\\",
   signature: \\"2264ba41\\",
   dependencies: [example]
 });
@@ -531,6 +563,7 @@ const Example = createContext();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
+  location: \\"example.jsx:4:20\\",
   signature: \\"b3df1897\\",
   dependencies: [Example]
 });
@@ -547,6 +580,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:20\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -561,6 +596,8 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 const Foo = _$$component(_REGISTRY, \\"Foo\\", function (props) {
   return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:2:20\\"
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);

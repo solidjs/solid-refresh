@@ -1,3 +1,4 @@
+import path from 'path';
 import * as babel from "@babel/core";
 import * as t from "@babel/types";
 import _generator from "@babel/generator";
@@ -11,6 +12,12 @@ if (typeof _generator !== 'function') {
   generator = (_generator as any).default;
 } else {
   generator = _generator;
+}
+
+const CWD = process.cwd();
+
+function getFile(filename: string) {
+  return path.relative(CWD, filename);
 }
 
 interface Options {
@@ -430,19 +437,30 @@ function wrapComponent(
   path: babel.NodePath,
   identifier: t.Identifier,
   component: t.FunctionExpression | t.ArrowFunctionExpression,
+  original: t.Node = component,
 ) {
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
     const hotName = t.stringLiteral(identifier.name);
     const componentCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.component);
+    const properties: t.ObjectProperty[] = [];
+    if (state.filename && original.loc) {
+      const filePath = getFile(state.filename);
+      properties.push(
+        t.objectProperty(
+          t.identifier('location'),
+          t.stringLiteral(`${filePath}:${original.loc.start.line}:${original.loc.start.column}`),
+        ),
+      );
+    }
     if (state.granular) {
-      const properties: t.ObjectProperty[] = [
+      properties.push(
         t.objectProperty(
           t.identifier('signature'),
           t.stringLiteral(createSignatureValue(component)),
         ),
-      ];
+      );
       const dependencies = getBindings(path);
       if (dependencies.length) {
         properties.push(
@@ -468,6 +486,7 @@ function wrapComponent(
         registry,
         hotName,
         component,
+        ...(properties.length ? [t.objectExpression(properties)] : []),
       ],
     );
   }
@@ -563,7 +582,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                   state,
                   path,
                   decl.id,
-                  t.functionExpression(decl.id, decl.params, decl.body)
+                  t.functionExpression(decl.id, decl.params, decl.body),
+                  decl,
                 )
               )
             ]);
@@ -635,7 +655,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             state,
             path,
             decl.id,
-            t.functionExpression(decl.id, decl.params, decl.body)
+            t.functionExpression(decl.id, decl.params, decl.body),
+            decl,
           );
           if (t.isExportDefaultDeclaration(path.parentPath.node)) {
             path.replaceWith(replacement);

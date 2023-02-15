@@ -7,7 +7,8 @@ async function transform(code: string) {
     plugins: [[plugin, { bundler: "standard" }]],
     parserOpts: {
       plugins: ["jsx", "typescript"]
-    }
+    },
+    filename: 'example.jsx',
   });
 
   if (result && result.code) {
