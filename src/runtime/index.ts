@@ -9,7 +9,7 @@ interface ComponentOptions {
   // generated from the component's JS string
   signature?: string;
   // An array of foreign bindings (values that aren't locally declared in the component)
-  dependencies?: any[];
+  dependencies?: Record<string, any>;
 }
 
 // The registration data for the components

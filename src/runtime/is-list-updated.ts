@@ -1,4 +1,7 @@
-export default function isListUpdated(a: any[] | undefined, b: any[] | undefined): boolean {
+export default function (
+  a: Record<string, any> | undefined, 
+  b: Record<string, any> | undefined,
+): boolean {
   if (a == null && b != null) {
     return true;
   }
@@ -6,11 +9,25 @@ export default function isListUpdated(a: any[] | undefined, b: any[] | undefined
     return true;
   }
   if (a && b) {
-    if (a.length !== b.length) {
+    const aKeys = Object.keys(a);
+    const bKeys = Object.keys(b);
+    // Check if both objects has the same amount of keys
+    if (aKeys.length !== bKeys.length) {
       return true;
     }
-    for (let i = 0, len = a.length; i < len; i++) {
-      if (!Object.is(a[i], b[i])) {
+    // Merge keys
+    const keys = new Set([
+      ...aKeys,
+      ...bKeys,
+    ]);
+    // Now check if merged keys has the same amount of keys as the other two
+    // for example: { a, b } and { a, c } produces { a, b, c }
+    if (keys.size !== aKeys.length) {
+      return true;
+    }
+    // Now compare each items
+    for (const key of keys.keys()) {
+      if (!Object.is(a[key], b[key])) {
         return true;
       }
     }

@@ -59,7 +59,9 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:21\\",
   signature: \\"c479f38e\\",
-  dependencies: [example]
+  dependencies: {
+    example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -79,7 +81,9 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:21\\",
   signature: \\"f8fa9630\\",
-  dependencies: [Example]
+  dependencies: {
+    Example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -188,7 +192,9 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:13\\",
   signature: \\"c479f38e\\",
-  dependencies: [example]
+  dependencies: {
+    example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -208,7 +214,9 @@ export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:13\\",
   signature: \\"f8fa9630\\",
-  dependencies: [Example]
+  dependencies: {
+    Example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -307,7 +315,9 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:6\\",
   signature: \\"c479f38e\\",
-  dependencies: [example]
+  dependencies: {
+    example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -327,7 +337,9 @@ var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
 }, {
   location: \\"example.jsx:4:6\\",
   signature: \\"f8fa9630\\",
-  dependencies: [Example]
+  dependencies: {
+    Example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -426,7 +438,9 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
 }, {
   location: \\"example.jsx:4:20\\",
   signature: \\"42ac2326\\",
-  dependencies: [example]
+  dependencies: {
+    example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -446,7 +460,9 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
 }, {
   location: \\"example.jsx:4:20\\",
   signature: \\"23378462\\",
-  dependencies: [Example]
+  dependencies: {
+    Example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -545,7 +561,9 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
 }, {
   location: \\"example.jsx:4:20\\",
   signature: \\"2264ba41\\",
-  dependencies: [example]
+  dependencies: {
+    example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
@@ -565,7 +583,9 @@ const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
 }, {
   location: \\"example.jsx:4:20\\",
   signature: \\"b3df1897\\",
-  dependencies: [Example]
+  dependencies: {
+    Example
+  }
 });
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);

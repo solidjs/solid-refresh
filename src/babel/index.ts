@@ -3,7 +3,7 @@ import * as babel from "@babel/core";
 import * as t from "@babel/types";
 import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
-import { forEach } from "./utils";
+import { forEach, map } from "./utils";
 import { xxHash32 } from "./xxhash32";
 
 // https://github.com/babel/babel/issues/15269
@@ -273,7 +273,7 @@ function getBindings(path: babel.NodePath): t.Identifier[] {
       }
     }
   });
-  return [...identifiers].map(value => t.identifier(value));
+  return map([...identifiers], value => t.identifier(value));
 }
 
 interface ImportIdentity {
@@ -466,7 +466,9 @@ function wrapComponent(
         properties.push(
           t.objectProperty(
             t.identifier('dependencies'),
-            t.arrayExpression(dependencies),
+            t.objectExpression(
+              map(dependencies, (id) => t.objectProperty(id, id, false, true))
+            ),
           ),
         );
       }
