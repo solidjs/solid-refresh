@@ -19,6 +19,7 @@ export interface ComponentRegistrationData<P> extends ComponentOptions {
   id: string;
   // The component itself
   component: (props: P) => JSX.Element;
+  proxy: (props: P) => JSX.Element;
   // This function replaces the previous component
   // with the new component.
   update: (action: () => (props: P) => JSX.Element) => void;
@@ -52,14 +53,15 @@ export function $$component<P>(
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
   const [comp, setComp] = createSignal(component, { internal: true });
-  const proxyComponent = createProxy<(props: P) => JSX.Element, P>(comp, id, options.location);
+  const proxy = createProxy<(props: P) => JSX.Element, P>(comp, id, options.location);
   registry.components.set(id, {
     id,
-    component: proxyComponent,
+    component,
+    proxy,
     update: setComp,
     ...options,
   });
-  return proxyComponent;
+  return proxy;
 }
 
 export function $$context<T>(
@@ -95,6 +97,13 @@ function patchComponent<P>(
     // No granular update, remount
     oldData.update(() => newData.component);
   }
+
+  // Always rely on the first proxy
+  // This is to allow modules newly importing
+  // the updated version to still be able
+  // to render the latest version despite
+  // not receiving the first proxy
+  newData.update(() => oldData.proxy);
 }
 
 function patchComponents(
