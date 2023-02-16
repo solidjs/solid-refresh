@@ -1,6 +1,6 @@
 
 import { Context, createSignal, DEV, JSX } from "solid-js";
-import createProxy, { setComponentProperty } from "./create-proxy";
+import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
 interface ComponentOptions {
@@ -51,14 +51,8 @@ export function $$component<P>(
   component: (props: P) => JSX.Element,
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
-  if (!component.name) {
-    setComponentProperty(component, 'name', id);
-  }
-  if (options.location) {
-    setComponentProperty(component, 'location', options.location);
-  }
   const [comp, setComp] = createSignal(component, { internal: true });
-  const proxyComponent = createProxy<(props: P) => JSX.Element, P>(comp, id);
+  const proxyComponent = createProxy<(props: P) => JSX.Element, P>(comp, id, options.location);
   registry.components.set(id, {
     id,
     component: proxyComponent,

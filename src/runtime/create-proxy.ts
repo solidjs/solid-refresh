@@ -4,7 +4,7 @@ export interface BaseComponent<P> {
   (props: P): JSX.Element;
 }
 
-export function setComponentProperty<P>(component: BaseComponent<P>, key: string, value: string) {
+function setComponentProperty<P>(component: BaseComponent<P>, key: string, value: string) {
   const descriptor = Object.getOwnPropertyDescriptor(component, key);
   if (descriptor) {
     Object.defineProperty(component, key, {
@@ -24,6 +24,7 @@ export function setComponentProperty<P>(component: BaseComponent<P>, key: string
 export default function createProxy<C extends BaseComponent<P>, P>(
   source: Accessor<C>,
   name: string,
+  location?: string,
 ): (props: P) => JSX.Element {
   const refreshName = `[solid-refresh]${name}`;
   function HMRComp(props: P) {
@@ -44,6 +45,9 @@ export default function createProxy<C extends BaseComponent<P>, P>(
   }
 
   setComponentProperty(HMRComp, 'name', refreshName);
+  if (location) {
+    setComponentProperty(HMRComp, 'location', location);
+  }
 
   return new Proxy(
     HMRComp,
