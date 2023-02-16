@@ -238,14 +238,14 @@ function isForeignBinding(source: babel.NodePath, current: babel.NodePath, name:
 }
 
 function isInTypescript(path: babel.NodePath): boolean {
-  const parent = path.parentPath;
-  if (!parent) {
-    return false;
+  let parent = path.parentPath;
+  while (parent) {
+    if (t.isTypeScript(parent.node)) {
+      return true;
+    }
+    parent = parent.parentPath;
   }
-  if (t.isTypeScript(parent.node)) {
-    return true;
-  }
-  return isInTypescript(parent);
+  return false;
 }
 
 function getBindings(path: babel.NodePath): t.Identifier[] {
