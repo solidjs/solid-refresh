@@ -31,6 +31,8 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 
 ### Webpack
 
+You can follow [this guide](https://webpack.js.org/guides/hot-module-replacement#enabling-hmr) first.
+
 Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader). Add the following to `.babelrc`:
 
 ```json

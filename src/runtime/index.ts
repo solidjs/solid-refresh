@@ -177,7 +177,7 @@ type HotData = {
 
 interface ESMHot {
   data: HotData;
-  accept: (cb: () => void) => void;
+  accept: (cb: (module?: unknown) => void) => void;
   invalidate: () => void;
   decline: () => void;
 }
@@ -217,8 +217,8 @@ function $$refreshESM(hot: ESMHot, registry: Registry) {
   hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
   hot.data[SOLID_REFRESH_PREV] = registry;
 
-  hot.accept(() => {
-    if (patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
+  hot.accept((mod) => {
+    if (mod == null || patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
       hot.invalidate();
     }
   });
