@@ -110,7 +110,10 @@ function patchComponents(
   oldData: Registry,
   newData: Registry,
 ) {
-  const components = oldData.components.keys();
+  const components = new Set([
+    ...oldData.components.keys(),
+    ...newData.components.keys(),
+  ]);
   for (const key of components) {
     const oldComponent = oldData.components.get(key);
     const newComponent = newData.components.get(key);
@@ -142,8 +145,11 @@ function patchContexts(
   oldData: Registry,
   newData: Registry,
 ) {
-  const contexts = oldData.contexts.keys();
-  for (const key of contexts) {
+  const contexts = new Set([
+    ...oldData.contexts.keys(),
+    ...newData.contexts.keys(),
+  ]);
+  for (const key of contexts.keys()) {
     const oldContext = oldData.contexts.get(key);
     const newContext = newData.contexts.get(key);
 
