@@ -1,12 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.decline();
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
 }"
 `;
 
@@ -119,12 +120,13 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.decline();
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
 }"
 `;
 
@@ -246,12 +248,13 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.decline();
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
 }"
 `;
 
@@ -364,12 +367,13 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.decline();
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
 }"
 `;
 
@@ -482,12 +486,13 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.decline();
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
 }"
 `;
 

@@ -1,16 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  if (module.hot.decline) {
-    module.hot.decline();
-  } else {
-    window.location.reload();
-  }
+  _$$decline(\\"standard\\", module.hot);
 }"
 `;
 
@@ -123,16 +120,13 @@ if (module.hot) {
 `;
 
 exports[`vite > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  if (module.hot.decline) {
-    module.hot.decline();
-  } else {
-    window.location.reload();
-  }
+  _$$decline(\\"standard\\", module.hot);
 }"
 `;
 
@@ -254,16 +248,13 @@ if (module.hot) {
 `;
 
 exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 if (module.hot) {
-  if (module.hot.decline) {
-    module.hot.decline();
-  } else {
-    window.location.reload();
-  }
+  _$$decline(\\"standard\\", module.hot);
 }"
 `;
 
@@ -376,16 +367,13 @@ if (module.hot) {
 `;
 
 exports[`vite > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 if (module.hot) {
-  if (module.hot.decline) {
-    module.hot.decline();
-  } else {
-    window.location.reload();
-  }
+  _$$decline(\\"standard\\", module.hot);
 }"
 `;
 
@@ -498,16 +486,13 @@ if (module.hot) {
 `;
 
 exports[`vite > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 if (module.hot) {
-  if (module.hot.decline) {
-    module.hot.decline();
-  } else {
-    window.location.reload();
-  }
+  _$$decline(\\"standard\\", module.hot);
 }"
 `;
 

@@ -1,12 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.hot) {
-  import.meta.hot.decline();
+  _$$decline(\\"esm\\", import.meta.hot);
 }"
 `;
 
@@ -119,12 +120,13 @@ if (import.meta.hot) {
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.hot) {
-  import.meta.hot.decline();
+  _$$decline(\\"esm\\", import.meta.hot);
 }"
 `;
 
@@ -246,12 +248,13 @@ if (import.meta.hot) {
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.hot) {
-  import.meta.hot.decline();
+  _$$decline(\\"esm\\", import.meta.hot);
 }"
 `;
 
@@ -364,12 +367,13 @@ if (import.meta.hot) {
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 if (import.meta.hot) {
-  import.meta.hot.decline();
+  _$$decline(\\"esm\\", import.meta.hot);
 }"
 `;
 
@@ -482,12 +486,13 @@ if (import.meta.hot) {
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"// @refresh reload
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 if (import.meta.hot) {
-  import.meta.hot.decline();
+  _$$decline(\\"esm\\", import.meta.hot);
 }"
 `;
 
