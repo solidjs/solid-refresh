@@ -64,6 +64,7 @@ const IMPORTS = {
   refresh: '$$refresh',
   component: '$$component',
   context: '$$context',
+  decline: '$$decline',
 }
 
 function getSolidRefreshIdentifier(
@@ -101,55 +102,40 @@ function getHotIdentifier(state: State): t.MemberExpression {
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
 }
 
-// Basically generates `window.location.reload()`
-function getWindowReloadCall() {
-  return t.callExpression(
-    t.memberExpression(
-      t.memberExpression(t.identifier("window"), t.identifier("location")),
-      t.identifier("reload")
-    ),
-    []
-  );
-}
-
-function getHMRDeclineCall(state: State) {
+function getHMRDeclineCall(state: State, path: babel.NodePath) {
   const pathToHot = getHotIdentifier(state);
-  const hmrDecline = t.memberExpression(pathToHot, t.identifier("decline"));
-  const hmrDeclineCall = t.blockStatement([
-    t.expressionStatement(t.callExpression(hmrDecline, [])),
-  ]);
-
-  if (isESMHMR(state.opts.bundler) || state.opts.bundler === 'webpack5') {
-    // if (import.meta.hot) {
-    //   import.meta.hot.decline();
-    // }
-    // if (import.meta.webpackHot) {
-    //   import.meta.webpackHot.decline();
-    // }
-    return t.ifStatement(
-      pathToHot,
-      hmrDeclineCall,
+  const statements = [
+    t.expressionStatement(
+      t.callExpression(
+        getSolidRefreshIdentifier(state, path, IMPORTS.decline),
+        [
+          t.stringLiteral(state.opts.bundler ?? 'standard'),
+          pathToHot,
+        ],
+      )
+    ),
+  ];
+  
+  if (state.opts.bundler === 'vite') {
+    // Vite requires that the owner module has an `import.meta.hot.accept()` call
+    statements.push(
+      t.expressionStatement(
+        t.callExpression(
+          t.memberExpression(
+            pathToHot,
+            t.identifier('accept'),
+          ),
+          [],
+        ),
+      )
     );
   }
 
-  // if (module.hot) {
-  //   if (module.hot.decline) {
-  //     module.hot.decline()
-  //   } else {
-  //     window.location.reload()
-  //   }
-  // }
+  const hmrDeclineCall = t.blockStatement(statements);
+
   return t.ifStatement(
     pathToHot,
-    t.blockStatement([
-      t.ifStatement(
-        hmrDecline,
-        hmrDeclineCall,
-        t.blockStatement([
-          t.expressionStatement(getWindowReloadCall()),
-        ]),
-      ),
-    ]),
+    hmrDeclineCall,
   );
 }
 
@@ -180,14 +166,14 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
       [],
     ),
   });
-  const hotPath = getHotIdentifier(state);
+  const pathToHot = getHotIdentifier(state);
   const statements: t.Statement[] = [
     t.expressionStatement(
       t.callExpression(
         getSolidRefreshIdentifier(state, path, IMPORTS.refresh),
         [
           t.stringLiteral(state.opts.bundler ?? 'standard'),
-          hotPath,
+          pathToHot,
           identifier,
         ],
       ),
@@ -200,17 +186,17 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
       t.expressionStatement(
         t.callExpression(
           t.memberExpression(
-            hotPath,
+            pathToHot,
             t.identifier('accept'),
           ),
-          [t.arrowFunctionExpression([], t.blockStatement([]))],
+          [],
         ),
       )
     );
   }
   (program.path as babel.NodePath<t.Program>).pushContainer('body', [
     t.ifStatement(
-      hotPath,
+      pathToHot,
       t.blockStatement(statements),
     ),
   ]);
@@ -550,7 +536,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             if (/^\s*@refresh reload\s*$/.test(comment)) {
               state.processed = true;
               shouldReload = true;
-              path.pushContainer("body", getHMRDeclineCall(state));
+              path.pushContainer("body", getHMRDeclineCall(state, path));
               break;
             }
           }

@@ -193,60 +193,60 @@ interface ESMHot {
 
 interface StandardHot {
   data: HotData;
-  accept: () => void;
+  accept: (cb?: () => void) => void;
   dispose: (cb: (data: HotData) => void) => void;
   invalidate?: () => void;
   decline?: () => void;
 }
 
-function hotDecline(hot: StandardHot, timeout = false) {
-  if (hot.decline) {
-    hot.decline();
-  } else if (timeout) {
-    setTimeout(() => {
-      window.location.reload();
-    }, 5000);
-  } else {
-    window.location.reload();
-  }
-}
+// For HMRs that follows Snowpack's spec
+// https://github.com/FredKSchott/esm-hmr
+type ESMType = 'esm' | 'vite';
 
-function hotInvalidate(hot: StandardHot) {
-  // Some bundlers have no invalidate/decline
-  // so try `invalidate` first, then `decline`
-  // and if none of it exists, reload the page
-  if (hot.invalidate) {
-    hot.invalidate();
-  } else {
-    hotDecline(hot);
-  }
-}
+// For HMRs that follow Webpack's design
+type StandardType = 'standard' | 'webpack5';
 
-function $$refreshESM(hot: ESMHot, registry: Registry) {
-  hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
-  hot.data[SOLID_REFRESH_PREV] = registry;
+type ESMDecline = [type: ESMType, hot: ESMHot, inline?: boolean];
+type StandardDecline = [type: StandardType, hot: StandardHot, inline?: boolean];
+type Decline =
+  | ESMDecline
+  | StandardDecline;
 
-  hot.accept((mod) => {
-    if (mod == null || patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
+export function $$decline(...[type, hot, inline]: Decline) {
+  switch (type) {
+    case 'esm':
+      // Snowpack's ESM assumes invalidate as a normal page reload
+      // decline should be better
+      hot.decline();
+      break;
+    case 'vite':
+      // Vite is no-op on decline, just call invalidate
       hot.invalidate();
-    }
-  });
-
-  return false;
-}
-
-function $$refreshStandard(hot: StandardHot, registry: Registry) {
-  const current = hot.data;
-  if (current && current[SOLID_REFRESH]) {
-    if (patchRegistry(current[SOLID_REFRESH], registry)) {
-      hotInvalidate(hot);
-    }
+      break;
+    case 'webpack5':
+      // Webpack has invalidate however it may lead to recursion
+      // decline is safer
+      if (inline) {
+        hot.invalidate!();
+      } else {
+        hot.decline!();
+      }
+      break;
+    case 'standard':
+      // Some implementations do not have decline
+      if (hot.decline) {
+        hot.decline();
+      } else if (inline) {
+        window.location.reload();
+      } else {
+        hot.accept(() => {
+          window.location.reload();
+        });
+      }
+      break;
   }
-  hot.dispose((data: HotData) => {
-    data[SOLID_REFRESH] = current ? current[SOLID_REFRESH] : registry;
-  });
-  hot.accept();
 }
+
 
 let warned = false;
 
@@ -266,8 +266,40 @@ function shouldWarnAndDecline() {
   return true;
 }
 
-type ESMRefresh = [type: 'esm' | 'vite', hot: ESMHot, registry: Registry];
-type StandardRefresh = [type: 'standard' | 'webpack5', hot: StandardHot, registry: Registry];
+function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
+  if (shouldWarnAndDecline()) {
+    $$decline(type, hot);
+  } else {
+    hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
+    hot.data[SOLID_REFRESH_PREV] = registry;
+  
+    hot.accept((mod) => {
+      if (mod == null || patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
+        hot.invalidate();
+      }
+    });
+  }
+}
+
+function $$refreshStandard(type: StandardType, hot: StandardHot, registry: Registry) {
+  if (shouldWarnAndDecline()) {
+    $$decline(type, hot);
+  } else {
+    const current = hot.data;
+    if (current && current[SOLID_REFRESH]) {
+      if (patchRegistry(current[SOLID_REFRESH], registry)) {
+        $$decline(type, hot, true);
+      }
+    }
+    hot.dispose((data: HotData) => {
+      data[SOLID_REFRESH] = current ? current[SOLID_REFRESH] : registry;
+    });
+    hot.accept();
+  }
+}
+
+type ESMRefresh = [type: ESMType, hot: ESMHot, registry: Registry];
+type StandardRefresh = [type: StandardType, hot: StandardHot, registry: Registry];
 
 type Refresh = 
   | ESMRefresh
@@ -277,21 +309,11 @@ export function $$refresh(...[type, hot, registry]: Refresh) {
   switch (type) {
     case 'esm':
     case 'vite':
-      if (shouldWarnAndDecline()) {
-        hot.decline();
-      }
-      $$refreshESM(hot, registry);
+      $$refreshESM(type, hot, registry);
       break;
     case 'standard':
     case 'webpack5':
-      if (shouldWarnAndDecline()) {
-        hotDecline(hot, true);
-      }
-      $$refreshStandard(hot, registry);
+      $$refreshStandard(type, hot, registry);
       break;
   }
 }
-// if (import.meta.hot) {
-//   $$refresh({ type, hot: import.meta.hot }, registry);
-// }
-
