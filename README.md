@@ -99,6 +99,7 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 * [`Parcel`](https://parceljs.org/) - ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build.
 * [`wmr`](https://wmr.dev/) - SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
 * [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot) - The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
+* [`@web/dev-server`](https://modern-web.dev/docs/dev-server) - The library supports HMR through their [HMR Plugin](https://modern-web.dev/docs/dev-server/plugins/hmr). The HMR interface is basically the same as Snowpack's.
 
 ### Development Environment
 
