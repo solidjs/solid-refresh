@@ -1,15 +1,15 @@
-declare module "@babel/helper-module-imports" {
-  import { NodePath } from "@babel/traverse";
-  import * as t from "@babel/types";
+declare module '@babel/helper-module-imports' {
+  import { NodePath } from '@babel/traverse';
+  import * as t from '@babel/types';
 
   interface ImportOptions {
     importedSource: string | null;
-    importedType: "es6" | "commonjs";
-    importedInterop: "babel" | "node" | "compiled" | "uncompiled";
-    importingInterop: "babel" | "node";
+    importedType: 'es6' | 'commonjs';
+    importedInterop: 'babel' | 'node' | 'compiled' | 'uncompiled';
+    importingInterop: 'babel' | 'node';
     ensureLiveReference: boolean;
     ensureNoContext: boolean;
-    importPosition: "before" | "after";
+    importPosition: 'before' | 'after';
     nameHint: string;
     blockHoist: number;
   }

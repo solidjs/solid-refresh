@@ -3,9 +3,9 @@ import typescript from '@rollup/plugin-typescript'
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/runtime/index.ts',
     output: [{
-      file: 'dist/solid-refresh.js',
+      file: 'dist/solid-refresh.cjs',
       format: 'cjs'
     }, {
       file: 'dist/solid-refresh.mjs',
@@ -18,10 +18,13 @@ export default [
     ]
   },
   {
-    input: 'src/babel.ts',
+    input: 'src/babel/index.ts',
     output: [{
-      file: './babel.js',
+      file: './dist/babel.cjs',
       format: 'cjs',
+    }, {
+      file: './dist/babel.mjs',
+      format: 'es'
     }],
     external: ['@babel/core', '@babel/types', '@babel/helper-module-imports', '@babel/generator', 'crypto'],
     plugins: [

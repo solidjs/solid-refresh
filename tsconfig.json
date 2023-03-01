@@ -1,7 +1,7 @@
 
   {
-  "exclude": ["node_modules"],
-  "include": ["src", "babel", "types"],
+  "exclude": ["node_modules", "tests"],
+  "include": ["src"],
   "compilerOptions": {
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
@@ -16,6 +16,8 @@
     "moduleResolution": "node",
     "jsx": "react",
     "esModuleInterop": true,
-    "target": "ES2017"
+    "target": "ES2017",
+    "declaration": true,
+    "outDir": "types"
   }
 }

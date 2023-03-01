@@ -18,11 +18,10 @@ pnpm add -D solid-refresh
 
 This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Over time I hope to add different bundlers. Today it supports:
 
-* Webpack (for strict ESM, use option `bundler: "webpack5"`)
-* Parcel
-* Nollup
 * Vite (with option `bundler: "vite"`)
 * Snowpack (with option `bundler: "esm"`)
+* Webpack (for strict ESM, use option `bundler: "webpack5"`)
+* Nollup
 
 ## Setup
 
@@ -30,23 +29,9 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 
 `solid-refresh` is already built into [`vite-plugin-solid`](https://github.com/solidjs/vite-plugin-solid).
 
-### Parcel
-
-You can add the following to `.babelrc`:
-
-```json
-{
-  "env": {
-    "development": {
-      "plugins": [
-        ["module:solid-refresh/babel"]
-      ]
-    }
-  }
-}
-```
-
 ### Webpack
+
+You can follow [this guide](https://webpack.js.org/guides/hot-module-replacement#enabling-hmr) first.
 
 Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader). Add the following to `.babelrc`:
 
@@ -60,7 +45,7 @@ Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader)
 }
 ```
 
-If you're using strict ESM:
+If you're using strict ESM a.k.a. `import.meta.webpackHot`:
 
 ```json
 {
@@ -111,8 +96,10 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 
 ### Other dev servers
 
+* [`Parcel`](https://parceljs.org/) - ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build.
 * [`wmr`](https://wmr.dev/) - SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
 * [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot) - The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
+* [`@web/dev-server`](https://modern-web.dev/docs/dev-server) - The library supports HMR through their [HMR Plugin](https://modern-web.dev/docs/dev-server/plugins/hmr). The HMR interface is basically the same as Snowpack's.
 
 ### Development Environment
 
@@ -132,15 +119,6 @@ function Foo() {
 
 // This also works
 const Bar = () => <h1>Hello Bar</h1>;
-```
-
-Anonymous functions with `props` as the only parameter are also supported.
-
-```js
-// This also works
-export default function (props) {
-  return <h1>Hello Anonymous!</h1>;
-}
 ```
 
 The components are wrapped and memoized. When the module receives an update, it replaces the old components from the old module with the new components.

@@ -1,13 +1,14 @@
 // Vitest Snapshot v1
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
 // @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.hot) import.meta.hot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$decline(\\"esm\\", import.meta.hot);
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -18,214 +19,115 @@ export default function Foo() {
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+"export default function foo() {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export default function Foo(a, b) {
+"export default function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:3:21\\",
+  signature: \\"83fbb41\\"
+});
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:21\\",
+  signature: \\"c479f38e\\",
+  dependencies: {
+    example
+  }
 });
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:21\\",
+  signature: \\"f8fa9630\\",
+  dependencies: {
+    Example
+  }
 });
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
-`;
-
-exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with anonymous name and props params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _HotComponent = function (props) {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._HotComponent = {
-  component: _HotComponent,
-  id: \\"_HotComponent\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._HotComponent, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:21\\"
 });
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export default _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:21\\"
 });
-export default _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
 // @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
-if (import.meta.hot) import.meta.hot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$decline(\\"esm\\", import.meta.hot);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
@@ -236,190 +138,124 @@ export function Foo() {
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:13\\"
 });
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export function Foo(a, b) {
+"export function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:3:13\\",
+  signature: \\"83fbb41\\"
+});
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:13\\",
+  signature: \\"c479f38e\\",
+  dependencies: {
+    example
+  }
 });
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:13\\",
+  signature: \\"f8fa9630\\",
+  dependencies: {
+    Example
+  }
 });
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:13\\"
 });
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:13\\"
 });
-export const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
 // @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
-
-if (import.meta.hot) import.meta.hot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$decline(\\"esm\\", import.meta.hot);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
@@ -430,176 +266,115 @@ function Foo() {
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-function foo() {
+"function foo() {
   return <h1>Foo</h1>;
-}
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-function Foo(a, b) {
+"function Foo(a, b) {
   return <h1>Foo</h1>;
-}
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"yAHb0udBha7BGUjS2Z2+tXWx5fnCeotXRi2gkOb9d9c=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-var Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+  return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:3:6\\",
+  signature: \\"83fbb41\\"
+});
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"ltEP2yNaCMZLU7bvx1Zh/ikQVR3MFiGWcvIanRQfqz8=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:6\\",
+  signature: \\"c479f38e\\",
+  dependencies: {
+    example
+  }
 });
-var Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"BjfgFp2WQNIUnSD5pRPMh1COeTIGhGqX9fHwGkphA8U=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:6\\",
+  signature: \\"f8fa9630\\",
+  dependencies: {
+    Example
+  }
 });
-var Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo() {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:6\\"
 });
-var Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function Foo(props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:6\\"
 });
-var Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
 // @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
-
-if (import.meta.hot) import.meta.hot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$decline(\\"esm\\", import.meta.hot);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
@@ -610,176 +385,115 @@ const Foo = () => {
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const foo = () => {
+"const foo = () => {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+};"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const Foo = (a, b) => {
+"const Foo = (a, b) => {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+};"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = () => {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"mstVfKv3uz6XjwkaOLS4zraGxXxkdUOp9+exIQ4npo4=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
+  return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:3:20\\",
+  signature: \\"dd474849\\"
+});
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"1SWiV+lU64AlUU9eiHEFipJjIrctbqrYcHMEY7zZiFo=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:20\\",
+  signature: \\"42ac2326\\",
+  dependencies: {
+    example
+  }
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = () => {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"dQiuYQAlzCahARjuRVN6z65Qj1JiVdAe0Sq8ciCDdrA=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:20\\",
+  signature: \\"23378462\\",
+  dependencies: {
+    Example
+  }
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = () => {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:20\\"
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = props => {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"Foo\\", props => {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:20\\"
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
 // @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
-
-if (import.meta.hot) import.meta.hot.decline();
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$decline(\\"esm\\", import.meta.hot);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
@@ -790,162 +504,146 @@ const Foo = function () {
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const foo = function () {
+"const foo = function () {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+};"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-
-const Foo = function (a, b) {
+"const Foo = function (a, b) {
   return <h1>Foo</h1>;
-};
-
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+};"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function () {
-  return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"xv7CGzpxHC7/CLzklv+iwfoR+pKdKekvKolo/GKkNuQ=\\",
-  dependencies: []
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
-});
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
+  return <h1>Foo</h1>;
+}, {
+  location: \\"example.jsx:3:20\\",
+  signature: \\"a8bc6ac4\\"
+});
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const $$registrations = {};
-
-const _Hot$$Foo = function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>{example}</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"7rXg3DneZHL9ozuY+ZAbnKOeoyP5pjuAm9wUNDw5t28=\\",
-  dependencies: [example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:20\\",
+  signature: \\"2264ba41\\",
+  dependencies: {
+    example
+  }
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const $$registrations = {};
-
-const _Hot$$Foo = function () {
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <Example.Provider>Foo</Example.Provider>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\",
-  signature: \\"vKmzNxCOgMqSEgVkCC+8QtNJscCYZHLMybFr4+QRHg0=\\",
-  dependencies: [Example]
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:4:20\\",
+  signature: \\"b3df1897\\",
+  dependencies: {
+    Example
+  }
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function () {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:20\\"
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { esm as _esm } from \\"solid-refresh\\";
-import { shouldWarnAndDecline as _shouldWarnAndDecline } from \\"solid-refresh\\";
-export const $$registrations = {};
-
-const _Hot$$Foo = function (props) {
+"import { $$component as _$$component } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+const Foo = _$$component(_REGISTRY, \\"Foo\\", function (props) {
   return <h1>Foo</h1>;
-};
-
-$$registrations._Hot$$Foo = {
-  component: _Hot$$Foo,
-  id: \\"_Hot$$Foo\\"
-};
-
-const {
-  handler: _handler,
-  Component: _Component
-} = _esm($$registrations._Hot$$Foo, import.meta.hot);
-
-if (import.meta.hot) import.meta.hot.accept(_mod => {
-  _handler(_mod.module) && import.meta.hot.invalidate();
+}, {
+  location: \\"example.jsx:2:20\\"
 });
-const Foo = _Component;
-if (_shouldWarnAndDecline()) if (import.meta.hot) import.meta.hot.decline();"
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
+"import * as solidWeb from 'solid-js/web';
+const _cleanup = solidWeb.render(() => <App />, root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
+"import { render } from 'solid-js/web';
+const _cleanup = render(() => <App />, root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
+"import { render as Render } from 'solid-js/web';
+const _cleanup = Render(() => <App />, root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
+"import { 'render' as Render } from 'solid-js/web';
+const _cleanup = Render(() => <App />, root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm > fix render > top-level statements > should work with IfStatement 1`] = `
+"import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => <App />, root);
+  if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}"
+`;
+
+exports[`esm > should support Context API 1`] = `
+"import { $$context as _$$context } from \\"solid-refresh\\";
+import { $$refresh as _$$refresh } from \\"solid-refresh\\";
+import { $$registry as _$$registry } from \\"solid-refresh\\";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+const Example = _$$context(_REGISTRY, \\"Example\\", createContext());
+if (import.meta.hot) {
+  _$$refresh(\\"esm\\", import.meta.hot, _REGISTRY);
+}"
 `;
