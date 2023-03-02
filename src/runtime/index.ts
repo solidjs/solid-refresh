@@ -217,11 +217,21 @@ export function $$decline(...[type, hot, inline]: Decline) {
     case 'esm':
       // Snowpack's ESM assumes invalidate as a normal page reload
       // decline should be better
-      hot.decline();
+      if (inline) {
+        hot.decline();
+      } else {
+        hot.invalidate();
+      }
       break;
     case 'vite':
       // Vite is no-op on decline, just call invalidate
-      hot.invalidate();
+      if (inline) {
+        hot.invalidate();
+      } else {
+        hot.accept(() => {
+          hot.invalidate();
+        });
+      }
       break;
     case 'webpack5':
       // Webpack has invalidate however it may lead to recursion
