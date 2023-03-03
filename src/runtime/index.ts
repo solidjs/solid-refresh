@@ -218,9 +218,9 @@ export function $$decline(...[type, hot, inline]: Decline) {
       // Snowpack's ESM assumes invalidate as a normal page reload
       // decline should be better
       if (inline) {
-        hot.decline();
-      } else {
         hot.invalidate();
+      } else {
+        hot.decline();
       }
       break;
     case 'vite':
