@@ -245,12 +245,20 @@ export function $$decline(...[type, hot, inline]: Decline) {
     case 'standard':
       // Some implementations do not have decline
       if (inline) {
-        window.location.reload();
+        if (hot.invalidate) {
+          hot.invalidate();
+        } else {
+          window.location.reload();
+        }
       } else if (hot.decline) {
         hot.decline();
       } else {
         hot.accept(() => {
-          window.location.reload();
+          if (hot.invalidate) {
+            hot.invalidate();
+          } else {
+            window.location.reload();
+          }
         });
       }
       break;
