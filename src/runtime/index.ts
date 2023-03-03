@@ -244,10 +244,10 @@ export function $$decline(...[type, hot, inline]: Decline) {
       break;
     case 'standard':
       // Some implementations do not have decline
-      if (hot.decline) {
-        hot.decline();
-      } else if (inline) {
+      if (inline) {
         window.location.reload();
+      } else if (hot.decline) {
+        hot.decline();
       } else {
         hot.accept(() => {
           window.location.reload();
