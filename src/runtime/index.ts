@@ -279,7 +279,7 @@ function shouldWarnAndDecline() {
 function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
-  } else {
+  } else if (hot.data) {
     hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
     hot.data[SOLID_REFRESH_PREV] = registry;
   
@@ -288,6 +288,9 @@ function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
         hot.invalidate();
       }
     });
+  } else {
+    // I guess just decline if hot.data doesn't exist
+    $$decline(type, hot);
   }
 }
 
