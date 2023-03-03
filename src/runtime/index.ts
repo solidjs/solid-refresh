@@ -217,11 +217,21 @@ export function $$decline(...[type, hot, inline]: Decline) {
     case 'esm':
       // Snowpack's ESM assumes invalidate as a normal page reload
       // decline should be better
-      hot.decline();
+      if (inline) {
+        hot.invalidate();
+      } else {
+        hot.decline();
+      }
       break;
     case 'vite':
       // Vite is no-op on decline, just call invalidate
-      hot.invalidate();
+      if (inline) {
+        hot.invalidate();
+      } else {
+        hot.accept(() => {
+          hot.invalidate();
+        });
+      }
       break;
     case 'webpack5':
       // Webpack has invalidate however it may lead to recursion
@@ -234,13 +244,21 @@ export function $$decline(...[type, hot, inline]: Decline) {
       break;
     case 'standard':
       // Some implementations do not have decline
-      if (hot.decline) {
+      if (inline) {
+        if (hot.invalidate) {
+          hot.invalidate();
+        } else {
+          window.location.reload();
+        }
+      } else if (hot.decline) {
         hot.decline();
-      } else if (inline) {
-        window.location.reload();
       } else {
         hot.accept(() => {
-          window.location.reload();
+          if (hot.invalidate) {
+            hot.invalidate();
+          } else {
+            window.location.reload();
+          }
         });
       }
       break;
@@ -269,7 +287,7 @@ function shouldWarnAndDecline() {
 function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
-  } else {
+  } else if (hot.data) {
     hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
     hot.data[SOLID_REFRESH_PREV] = registry;
   
@@ -278,6 +296,9 @@ function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
         hot.invalidate();
       }
     });
+  } else {
+    // I guess just decline if hot.data doesn't exist
+    $$decline(type, hot);
   }
 }
 
