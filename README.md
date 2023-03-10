@@ -35,6 +35,7 @@ You can read the following guides first, respectively:
 
 * [Webpack](https://webpack.js.org/guides/hot-module-replacement#enabling-hmr)
 * [Rspack](https://www.rspack.dev/guide/dev-server.html#hmr)
+* [Rspack SolidJS guide](https://www.rspack.dev/guide/solid.html)
 
 > **Note**
 > Rspack has HMR already enabled by default. The guide only tells you how to disable it or run the dev server on a proxy server.
