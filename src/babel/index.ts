@@ -5,6 +5,7 @@ import _generator from "@babel/generator";
 import { addNamed } from "@babel/helper-module-imports";
 import { forEach, map } from "./utils";
 import { xxHash32 } from "./xxhash32";
+import { RuntimeType } from '../shared/types';
 
 // https://github.com/babel/babel/issues/15269
 let generator: typeof _generator;
@@ -21,7 +22,7 @@ function getFile(filename: string) {
 }
 
 interface Options {
-  bundler?: "esm" | "standard" | "vite" | "webpack5";
+  bundler?: RuntimeType;
   fixRender?: boolean;
 }
 
@@ -92,7 +93,8 @@ function getHotIdentifier(state: State): t.MemberExpression {
     );
   }
   // webpack 5 uses `import.meta.webpackHot`
-  if (bundler === "webpack5") {
+  // rspack does as well
+  if (bundler === "webpack5" || bundler === "rspack") {
     return t.memberExpression(
       t.memberExpression(t.identifier("import"), t.identifier("meta")),
       t.identifier("webpackHot")
@@ -100,6 +102,27 @@ function getHotIdentifier(state: State): t.MemberExpression {
   }
   // `module.hot` is the default.
   return t.memberExpression(t.identifier("module"), t.identifier("hot"));
+}
+
+function generateViteRequirement(
+  state: State,
+  statements: t.Statement[],
+  pathToHot: t.Expression,
+) {
+  if (state.opts.bundler === 'vite') {
+    // Vite requires that the owner module has an `import.meta.hot.accept()` call
+    statements.push(
+      t.expressionStatement(
+        t.callExpression(
+          t.memberExpression(
+            pathToHot,
+            t.identifier('accept'),
+          ),
+          [],
+        ),
+      )
+    );
+  }
 }
 
 function getHMRDeclineCall(state: State, path: babel.NodePath) {
@@ -115,21 +138,8 @@ function getHMRDeclineCall(state: State, path: babel.NodePath) {
       )
     ),
   ];
-  
-  if (state.opts.bundler === 'vite') {
-    // Vite requires that the owner module has an `import.meta.hot.accept()` call
-    statements.push(
-      t.expressionStatement(
-        t.callExpression(
-          t.memberExpression(
-            pathToHot,
-            t.identifier('accept'),
-          ),
-          [],
-        ),
-      )
-    );
-  }
+
+  generateViteRequirement(state, statements, pathToHot);
 
   const hmrDeclineCall = t.blockStatement(statements);
 
@@ -180,20 +190,9 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
     ),
   ];
 
-  if (state.opts.bundler === 'vite') {
-    // Vite requires that the owner module has an `import.meta.hot.accept()` call
-    statements.push(
-      t.expressionStatement(
-        t.callExpression(
-          t.memberExpression(
-            pathToHot,
-            t.identifier('accept'),
-          ),
-          [],
-        ),
-      )
-    );
-  }
+
+  generateViteRequirement(state, statements, pathToHot);
+
   (program.path as babel.NodePath<t.Program>).pushContainer('body', [
     t.ifStatement(
       pathToHot,
@@ -226,7 +225,7 @@ function isForeignBinding(source: babel.NodePath, current: babel.NodePath, name:
 function isInTypescript(path: babel.NodePath): boolean {
   let parent = path.parentPath;
   while (parent) {
-    if (t.isTypeScript(parent.node)) {
+    if (t.isTypeScript(parent.node) && !t.isExpression(parent.node)) {
       return true;
     }
     parent = parent.parentPath;
@@ -274,11 +273,11 @@ const IMPORT_IDENTITIES: ImportIdentity[] = [
   { name: 'hydrate', source: 'solid-js/web' },
 ];
 
-function isValidSpecifier(specifier: t.ImportSpecifier, keyword: string): boolean {
-  return (
-    (t.isIdentifier(specifier.imported) && specifier.imported.name === keyword) ||
-    (t.isStringLiteral(specifier.imported) && specifier.imported.value === keyword)
-  );
+function getImportSpecifierName(specifier: t.ImportSpecifier): string {
+  if (t.isIdentifier(specifier.imported)) {
+    return specifier.imported.name;
+  }
+  return specifier.imported.value;
 }
 
 function captureIdentifiers(state: State, path: babel.NodePath) {
@@ -290,7 +289,7 @@ function captureIdentifiers(state: State, path: babel.NodePath) {
             forEach(p.node.specifiers, (specifier) => {
               if (
                 t.isImportSpecifier(specifier)
-                && isValidSpecifier(specifier, id.name)
+                && getImportSpecifierName(specifier) === id.name
               ) {
                 state.imports.identifiers.set(specifier.local, id);
               } else if (t.isImportNamespaceSpecifier(specifier)) {

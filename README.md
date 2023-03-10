@@ -29,9 +29,15 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 
 `solid-refresh` is already built into [`vite-plugin-solid`](https://github.com/solidjs/vite-plugin-solid).
 
-### Webpack
+### Webpack & Rspack
 
-You can follow [this guide](https://webpack.js.org/guides/hot-module-replacement#enabling-hmr) first.
+You can read the following guides first, respectively:
+
+* [Webpack](https://webpack.js.org/guides/hot-module-replacement#enabling-hmr)
+* [Rspack](https://www.rspack.dev/guide/dev-server.html#hmr)
+
+> **Note**
+> Rspack has HMR already enabled by default. The guide only tells you how to disable it or run the dev server on a proxy server.
 
 Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader). Add the following to `.babelrc`:
 
@@ -51,7 +57,9 @@ If you're using strict ESM a.k.a. `import.meta.webpackHot`:
 {
   "env": {
     "development": {
-      "plugins": [["solid-refresh/babel", { "bundler": "webpack5" }]]
+      "plugins": [["solid-refresh/babel", {
+        "bundler": "webpack5" // or "rspack"
+      }]]
     }
   }
 }
@@ -96,16 +104,20 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 
 ### Other dev servers
 
-* [`Parcel`](https://parceljs.org/) - ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build.
-* [`wmr`](https://wmr.dev/) - SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
-* [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot) - The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
-* [`@web/dev-server`](https://modern-web.dev/docs/dev-server) - The library supports HMR through their [HMR Plugin](https://modern-web.dev/docs/dev-server/plugins/hmr). The HMR interface is basically the same as Snowpack's.
+* [`Parcel`](https://parceljs.org/)
+  * ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build. Solid Refresh requires the SolidJS development build to work.
+* [`wmr`](https://wmr.dev/)
+  * SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
+* [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot)
+  * The library uses almost an ESM HMR-like API however it behaves the same way as Parcel. Supporting this library is still unclear.
+* [`@web/dev-server`](https://modern-web.dev/docs/dev-server)
+  * The library supports HMR through their [HMR Plugin](https://modern-web.dev/docs/dev-server/plugins/hmr). The HMR interface is basically the same as Snowpack's.
 
 ### Development Environment
 
 In any case, your build system needs to support conditional exports and have the `development` condition set.
 
-**Note**: in some standard HMR implementations, this may cause your app to reload frequently if the development environment isn't properly set!
+**Warning**: in some standard HMR implementations, this may cause your app to reload the full page if the development environment isn't properly set!
 
 ## How it works
 
@@ -151,5 +163,5 @@ Adding `@refresh granular` comment pragma in the file allows components to opt-i
 
 ## Limitations
 
-- Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
-- No HOC support.
+* Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
+* No HOC support.

@@ -1,5 +1,6 @@
 
 import { Context, createSignal, DEV, JSX } from "solid-js";
+import { ESMRuntimeType, StandardRuntimeType } from "../shared/types";
 import createProxy from "./create-proxy";
 import isListUpdated from "./is-list-updated";
 
@@ -199,15 +200,8 @@ interface StandardHot {
   decline?: () => void;
 }
 
-// For HMRs that follows Snowpack's spec
-// https://github.com/FredKSchott/esm-hmr
-type ESMType = 'esm' | 'vite';
-
-// For HMRs that follow Webpack's design
-type StandardType = 'standard' | 'webpack5';
-
-type ESMDecline = [type: ESMType, hot: ESMHot, inline?: boolean];
-type StandardDecline = [type: StandardType, hot: StandardHot, inline?: boolean];
+type ESMDecline = [type: ESMRuntimeType, hot: ESMHot, inline?: boolean];
+type StandardDecline = [type: StandardRuntimeType, hot: StandardHot, inline?: boolean];
 type Decline =
   | ESMDecline
   | StandardDecline;
@@ -233,9 +227,8 @@ export function $$decline(...[type, hot, inline]: Decline) {
         });
       }
       break;
+    case 'rspack':
     case 'webpack5':
-      // Webpack has invalidate however it may lead to recursion
-      // decline is safer
       if (inline) {
         hot.invalidate!();
       } else {
@@ -243,7 +236,7 @@ export function $$decline(...[type, hot, inline]: Decline) {
       }
       break;
     case 'standard':
-      // Some implementations do not have decline
+      // Some implementations do not have decline/invalidate
       if (inline) {
         if (hot.invalidate) {
           hot.invalidate();
@@ -284,7 +277,7 @@ function shouldWarnAndDecline() {
   return true;
 }
 
-function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
+function $$refreshESM(type: ESMRuntimeType, hot: ESMHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
   } else if (hot.data) {
@@ -302,7 +295,7 @@ function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
   }
 }
 
-function $$refreshStandard(type: StandardType, hot: StandardHot, registry: Registry) {
+function $$refreshStandard(type: StandardRuntimeType, hot: StandardHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
   } else {
@@ -319,8 +312,8 @@ function $$refreshStandard(type: StandardType, hot: StandardHot, registry: Regis
   }
 }
 
-type ESMRefresh = [type: ESMType, hot: ESMHot, registry: Registry];
-type StandardRefresh = [type: StandardType, hot: StandardHot, registry: Registry];
+type ESMRefresh = [type: ESMRuntimeType, hot: ESMHot, registry: Registry];
+type StandardRefresh = [type: StandardRuntimeType, hot: StandardHot, registry: Registry];
 
 type Refresh = 
   | ESMRefresh
@@ -334,6 +327,7 @@ export function $$refresh(...[type, hot, registry]: Refresh) {
       break;
     case 'standard':
     case 'webpack5':
+    case 'rspack':
       $$refreshStandard(type, hot, registry);
       break;
   }
