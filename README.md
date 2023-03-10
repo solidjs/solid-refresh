@@ -58,7 +58,7 @@ If you're using strict ESM a.k.a. `import.meta.webpackHot`:
   "env": {
     "development": {
       "plugins": [["solid-refresh/babel", {
-        "bundler": "webpack5" // or "rspack"
+        "bundler": "webpack5" // or "rspack-esm"
       }]]
     }
   }

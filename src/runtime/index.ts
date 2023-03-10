@@ -202,7 +202,7 @@ export function $$decline(...[type, hot, inline]: Decline) {
         });
       }
       break;
-    case 'rspack':
+    case 'rspack-esm':
     case 'webpack5':
       if (inline) {
         hot.invalidate!();
@@ -299,7 +299,7 @@ export function $$refresh(...[type, hot, registry]: Refresh) {
       break;
     case 'standard':
     case 'webpack5':
-    case 'rspack':
+    case 'rspack-esm':
       $$refreshStandard(type, hot, registry);
       break;
   }

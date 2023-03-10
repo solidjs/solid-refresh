@@ -89,7 +89,7 @@ function getHotIdentifier(state: State): t.MemberExpression {
   }
   // webpack 5 uses `import.meta.webpackHot`
   // rspack does as well
-  if (bundler === 'webpack5' || bundler === 'rspack') {
+  if (bundler === 'webpack5' || bundler === 'rspack-esm') {
     return t.memberExpression(
       t.memberExpression(t.identifier('import'), t.identifier('meta')),
       t.identifier('webpackHot')
