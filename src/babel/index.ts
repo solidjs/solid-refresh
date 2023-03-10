@@ -1,10 +1,10 @@
 import path from 'path';
-import * as babel from "@babel/core";
-import * as t from "@babel/types";
-import _generator from "@babel/generator";
-import { addNamed } from "@babel/helper-module-imports";
-import { forEach, map } from "./utils";
-import { xxHash32 } from "./xxhash32";
+import * as babel from '@babel/core';
+import * as t from '@babel/types';
+import _generator from '@babel/generator';
+import { addNamed } from '@babel/helper-module-imports';
+import { forEach, map } from './utils';
+import { xxHash32 } from './xxhash32';
 import { RuntimeType } from '../shared/types';
 
 // https://github.com/babel/babel/issues/15269
@@ -28,7 +28,6 @@ interface Options {
 
 type ImportHook = Map<string, t.Identifier>;
 
-
 interface ImportIdentifiers {
   identifiers: Map<t.Identifier, ImportIdentity>;
   namespaces: Map<t.Identifier, ImportIdentity>;
@@ -46,14 +45,14 @@ interface State extends babel.PluginPass {
 // we only assume a function is a component
 // if the first character is in uppercase
 function isComponentishName(name: string) {
-  return name[0] >= "A" && name[0] <= "Z";
+  return name[0] >= 'A' && name[0] <= 'Z';
 }
 
-function isESMHMR(bundler: Options["bundler"]) {
+function isESMHMR(bundler: Options['bundler']) {
   // The currently known ESM HMR implementations
   // esm - the original ESM HMR Spec
   // vite - Vite's implementation
-  return bundler === "esm" || bundler === "vite";
+  return bundler === 'esm' || bundler === 'vite';
 }
 
 // Source of solid-refresh (for import)
@@ -65,14 +64,10 @@ const IMPORTS = {
   refresh: '$$refresh',
   component: '$$component',
   context: '$$context',
-  decline: '$$decline',
-}
+  decline: '$$decline'
+};
 
-function getSolidRefreshIdentifier(
-  state: State,
-  path: babel.NodePath,
-  name: string
-): t.Identifier {
+function getSolidRefreshIdentifier(state: State, path: babel.NodePath, name: string): t.Identifier {
   const target = `${name}`;
   const current = state.hooks.get(target);
   if (current) {
@@ -88,38 +83,28 @@ function getHotIdentifier(state: State): t.MemberExpression {
   // vite/esm uses `import.meta.hot`
   if (isESMHMR(bundler)) {
     return t.memberExpression(
-      t.memberExpression(t.identifier("import"), t.identifier("meta")),
-      t.identifier("hot")
+      t.memberExpression(t.identifier('import'), t.identifier('meta')),
+      t.identifier('hot')
     );
   }
   // webpack 5 uses `import.meta.webpackHot`
   // rspack does as well
-  if (bundler === "webpack5" || bundler === "rspack") {
+  if (bundler === 'webpack5' || bundler === 'rspack') {
     return t.memberExpression(
-      t.memberExpression(t.identifier("import"), t.identifier("meta")),
-      t.identifier("webpackHot")
+      t.memberExpression(t.identifier('import'), t.identifier('meta')),
+      t.identifier('webpackHot')
     );
   }
   // `module.hot` is the default.
-  return t.memberExpression(t.identifier("module"), t.identifier("hot"));
+  return t.memberExpression(t.identifier('module'), t.identifier('hot'));
 }
 
-function generateViteRequirement(
-  state: State,
-  statements: t.Statement[],
-  pathToHot: t.Expression,
-) {
+function generateViteRequirement(state: State, statements: t.Statement[], pathToHot: t.Expression) {
   if (state.opts.bundler === 'vite') {
     // Vite requires that the owner module has an `import.meta.hot.accept()` call
     statements.push(
       t.expressionStatement(
-        t.callExpression(
-          t.memberExpression(
-            pathToHot,
-            t.identifier('accept'),
-          ),
-          [],
-        ),
+        t.callExpression(t.memberExpression(pathToHot, t.identifier('accept')), [])
       )
     );
   }
@@ -129,24 +114,18 @@ function getHMRDeclineCall(state: State, path: babel.NodePath) {
   const pathToHot = getHotIdentifier(state);
   const statements = [
     t.expressionStatement(
-      t.callExpression(
-        getSolidRefreshIdentifier(state, path, IMPORTS.decline),
-        [
-          t.stringLiteral(state.opts.bundler ?? 'standard'),
-          pathToHot,
-        ],
-      )
-    ),
+      t.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.decline), [
+        t.stringLiteral(state.opts.bundler ?? 'standard'),
+        pathToHot
+      ])
+    )
   ];
 
   generateViteRequirement(state, statements, pathToHot);
 
   const hmrDeclineCall = t.blockStatement(statements);
 
-  return t.ifStatement(
-    pathToHot,
-    hmrDeclineCall,
-  );
+  return t.ifStatement(pathToHot, hmrDeclineCall);
 }
 
 function getStatementPath(path: babel.NodePath): babel.NodePath | null {
@@ -171,33 +150,23 @@ function createRegistry(state: State, path: babel.NodePath): t.Identifier {
   program.push({
     id: identifier,
     kind: 'const',
-    init: t.callExpression(
-      getSolidRefreshIdentifier(state, path, IMPORTS.registry),
-      [],
-    ),
+    init: t.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.registry), [])
   });
   const pathToHot = getHotIdentifier(state);
   const statements: t.Statement[] = [
     t.expressionStatement(
-      t.callExpression(
-        getSolidRefreshIdentifier(state, path, IMPORTS.refresh),
-        [
-          t.stringLiteral(state.opts.bundler ?? 'standard'),
-          pathToHot,
-          identifier,
-        ],
-      ),
-    ),
+      t.callExpression(getSolidRefreshIdentifier(state, path, IMPORTS.refresh), [
+        t.stringLiteral(state.opts.bundler ?? 'standard'),
+        pathToHot,
+        identifier
+      ])
+    )
   ];
-
 
   generateViteRequirement(state, statements, pathToHot);
 
   (program.path as babel.NodePath<t.Program>).pushContainer('body', [
-    t.ifStatement(
-      pathToHot,
-      t.blockStatement(statements),
-    ),
+    t.ifStatement(pathToHot, t.blockStatement(statements))
   ]);
   state.hooks.set(REGISTRY, identifier);
   return identifier;
@@ -238,11 +207,7 @@ function getBindings(path: babel.NodePath): t.Identifier[] {
   path.traverse({
     Expression(p) {
       // Check identifiers that aren't in a TS expression
-      if (
-        t.isIdentifier(p.node) &&
-        !isInTypescript(p) &&
-        isForeignBinding(path, p, p.node.name)
-      ) {
+      if (t.isIdentifier(p.node) && !isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
         identifiers.add(p.node.name);
       }
       // for the JSX, only use JSXMemberExpression's object
@@ -270,7 +235,7 @@ const IMPORT_IDENTITIES: ImportIdentity[] = [
   { name: 'createContext', source: 'solid-js' },
   { name: 'createContext', source: 'solid-js/web' },
   { name: 'render', source: 'solid-js/web' },
-  { name: 'hydrate', source: 'solid-js/web' },
+  { name: 'hydrate', source: 'solid-js/web' }
 ];
 
 function getImportSpecifierName(specifier: t.ImportSpecifier): string {
@@ -284,13 +249,10 @@ function captureIdentifiers(state: State, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
       if (p.node.importKind === 'value') {
-        forEach(IMPORT_IDENTITIES, (id) => {
+        forEach(IMPORT_IDENTITIES, id => {
           if (p.node.source.value === id.source) {
-            forEach(p.node.specifiers, (specifier) => {
-              if (
-                t.isImportSpecifier(specifier)
-                && getImportSpecifierName(specifier) === id.name
-              ) {
+            forEach(p.node.specifiers, specifier => {
+              if (t.isImportSpecifier(specifier) && getImportSpecifierName(specifier) === id.name) {
                 state.imports.identifiers.set(specifier.local, id);
               } else if (t.isImportNamespaceSpecifier(specifier)) {
                 state.imports.namespaces.set(specifier.local, id);
@@ -303,28 +265,25 @@ function captureIdentifiers(state: State, path: babel.NodePath) {
   });
 }
 
-type TypeCheck<K> = 
-  K extends (node: t.Expression) => node is (infer U extends t.Expression)
-    ? U
-    : never;
+type TypeCheck<K> = K extends ((node: t.Expression) => node is infer U extends t.Expression)
+  ? U
+  : never;
 
-function unwrapExpression<
-  K extends ((node: t.Expression) => boolean),
->(
+function unwrapExpression<K extends (node: t.Expression) => boolean>(
   node: t.Expression,
-  key: K,
+  key: K
 ): TypeCheck<K> | undefined {
   if (key(node)) {
     return node as TypeCheck<K>;
   }
   if (
-    t.isParenthesizedExpression(node)
-    || t.isTypeCastExpression(node)
-    || t.isTSAsExpression(node)
-    || t.isTSSatisfiesExpression(node)
-    || t.isTSNonNullExpression(node)
-    || t.isTSTypeAssertion(node)
-    || t.isTSInstantiationExpression(node)
+    t.isParenthesizedExpression(node) ||
+    t.isTypeCastExpression(node) ||
+    t.isTSAsExpression(node) ||
+    t.isTSSatisfiesExpression(node) ||
+    t.isTSNonNullExpression(node) ||
+    t.isTSTypeAssertion(node) ||
+    t.isTSInstantiationExpression(node)
   ) {
     return unwrapExpression(node.expression, key);
   }
@@ -335,7 +294,7 @@ function isValidCallee(
   state: State,
   path: babel.NodePath,
   { callee }: t.CallExpression,
-  target: string,
+  target: string
 ) {
   if (t.isV8IntrinsicIdentifier(callee)) {
     return false;
@@ -356,9 +315,9 @@ function isValidCallee(
     if (trueObject) {
       const binding = path.scope.getBinding(trueObject.name);
       return (
-        binding
-        && state.imports.namespaces.has(binding.identifier)
-        && callee.property.name === target
+        binding &&
+        state.imports.namespaces.has(binding.identifier) &&
+        callee.property.name === target
       );
     }
   }
@@ -382,32 +341,27 @@ function checkValidRenderCall(path: babel.NodePath): boolean {
   return false;
 }
 
-function fixRenderCalls(
-  state: State,
-  path: babel.NodePath<t.Program>,
-) {
+function fixRenderCalls(state: State, path: babel.NodePath<t.Program>) {
   path.traverse({
     ExpressionStatement(p) {
       const trueCallExpr = unwrapExpression(p.node.expression, t.isCallExpression);
       if (
-        trueCallExpr
-        && checkValidRenderCall(p)
-        && (
-          isValidCallee(state, p, trueCallExpr, 'render')
-          || isValidCallee(state, p, trueCallExpr, 'hydrate')
-        )
+        trueCallExpr &&
+        checkValidRenderCall(p) &&
+        (isValidCallee(state, p, trueCallExpr, 'render') ||
+          isValidCallee(state, p, trueCallExpr, 'hydrate'))
       ) {
         // Replace with variable declaration
-        const id = p.scope.generateUidIdentifier("cleanup");
+        const id = p.scope.generateUidIdentifier('cleanup');
         p.replaceWith(
-          t.variableDeclaration("const", [t.variableDeclarator(id, p.node.expression)])
+          t.variableDeclaration('const', [t.variableDeclarator(id, p.node.expression)])
         );
         const pathToHot = getHotIdentifier(state);
         p.insertAfter(
           t.ifStatement(
             pathToHot,
             t.expressionStatement(
-              t.callExpression(t.memberExpression(pathToHot, t.identifier("dispose")), [id])
+              t.callExpression(t.memberExpression(pathToHot, t.identifier('dispose')), [id])
             )
           )
         );
@@ -422,7 +376,7 @@ function wrapComponent(
   path: babel.NodePath,
   identifier: t.Identifier,
   component: t.FunctionExpression | t.ArrowFunctionExpression,
-  original: t.Node = component,
+  original: t.Node = component
 ) {
   const statementPath = getStatementPath(path);
   if (statementPath) {
@@ -435,86 +389,70 @@ function wrapComponent(
       properties.push(
         t.objectProperty(
           t.identifier('location'),
-          t.stringLiteral(`${filePath}:${original.loc.start.line}:${original.loc.start.column}`),
-        ),
+          t.stringLiteral(`${filePath}:${original.loc.start.line}:${original.loc.start.column}`)
+        )
       );
     }
     if (state.granular) {
       properties.push(
         t.objectProperty(
           t.identifier('signature'),
-          t.stringLiteral(createSignatureValue(component)),
-        ),
+          t.stringLiteral(createSignatureValue(component))
+        )
       );
       const dependencies = getBindings(path);
       if (dependencies.length) {
         properties.push(
           t.objectProperty(
             t.identifier('dependencies'),
-            t.objectExpression(
-              map(dependencies, (id) => t.objectProperty(id, id, false, true))
-            ),
-          ),
+            t.objectExpression(map(dependencies, id => t.objectProperty(id, id, false, true)))
+          )
         );
       }
-      return t.callExpression(
-        componentCall,
-        [
-          registry,
-          hotName,
-          component,
-          t.objectExpression(properties),
-        ],
-      );
-    }
-    return t.callExpression(
-      componentCall,
-      [
+      return t.callExpression(componentCall, [
         registry,
         hotName,
         component,
-        ...(properties.length ? [t.objectExpression(properties)] : []),
-      ],
-    );
+        t.objectExpression(properties)
+      ]);
+    }
+    return t.callExpression(componentCall, [
+      registry,
+      hotName,
+      component,
+      ...(properties.length ? [t.objectExpression(properties)] : [])
+    ]);
   }
   return component;
 }
-
 
 function wrapContext(
   state: State,
   path: babel.NodePath,
   identifier: t.Identifier,
-  context: t.CallExpression,
+  context: t.CallExpression
 ) {
   const statementPath = getStatementPath(path);
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
     const hotName = t.stringLiteral(identifier.name);
     const contextCall = getSolidRefreshIdentifier(state, statementPath, IMPORTS.context);
-    
-    return t.callExpression(
-      contextCall,
-      [
-        registry,
-        hotName,
-        context,
-      ],
-    );
+
+    return t.callExpression(contextCall, [registry, hotName, context]);
   }
   return context;
 }
 
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
   return {
-    name: "Solid Refresh",
+    name: 'Solid Refresh',
     pre() {
       this.hooks = new Map();
       this.processed = false;
       this.granular = false;
       this.imports = {
         identifiers: new Map(),
-        namespaces: new Map(),
+        namespaces: new Map()
       };
     },
     visitor: {
@@ -535,7 +473,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             if (/^\s*@refresh reload\s*$/.test(comment)) {
               state.processed = true;
               shouldReload = true;
-              path.pushContainer("body", getHMRDeclineCall(state, path));
+              path.pushContainer('body', getHMRDeclineCall(state, path));
               break;
             }
           }
@@ -562,7 +500,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           // Check if the declaration has an identifier, and then check
           // if the name is component-ish
           if (decl.id && isComponentishName(decl.id.name)) {
-            path.node.declaration = t.variableDeclaration("const", [
+            path.node.declaration = t.variableDeclaration('const', [
               t.variableDeclarator(
                 decl.id,
                 wrapComponent(
@@ -570,7 +508,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
                   path,
                   decl.id,
                   t.functionExpression(decl.id, decl.params, decl.body),
-                  decl,
+                  decl
                 )
               )
             ]);
@@ -591,16 +529,17 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             return;
           }
           if (isComponentishName(identifier.name)) {
-            const trueFuncExpr = unwrapExpression(init, t.isFunctionExpression)
-              || unwrapExpression(init, t.isArrowFunctionExpression);
+            const trueFuncExpr =
+              unwrapExpression(init, t.isFunctionExpression) ||
+              unwrapExpression(init, t.isArrowFunctionExpression);
             // Check for valid FunctionExpression or ArrowFunctionExpression
             if (
-              trueFuncExpr
+              trueFuncExpr &&
               // Must not be async or generator
-              && !(trueFuncExpr.async || trueFuncExpr.generator)
+              !(trueFuncExpr.async || trueFuncExpr.generator) &&
               // Might be component-like, but the only valid components
               // have zero or one parameter
-              && trueFuncExpr.params.length < 2
+              trueFuncExpr.params.length < 2
             ) {
               path.node.init = wrapComponent(state, path, identifier, trueFuncExpr);
             }
@@ -608,12 +547,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           // For `createContext` calls
           const trueCallExpr = unwrapExpression(init, t.isCallExpression);
           if (trueCallExpr && isValidCallee(state, path, trueCallExpr, 'createContext')) {
-            path.node.init = wrapContext(
-              state,
-              path,
-              identifier,
-              trueCallExpr,
-            );
+            path.node.init = wrapContext(state, path, identifier, trueCallExpr);
           }
         }
       },
@@ -630,10 +564,10 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         // Check if declaration is FunctionDeclaration
         if (
           // Check if the declaration has an identifier, and then check
-          decl.id
+          decl.id &&
           // if the name is component-ish
-          && isComponentishName(decl.id.name)
-          && !(decl.generator || decl.async) &&
+          isComponentishName(decl.id.name) &&
+          !(decl.generator || decl.async) &&
           // Might be component-like, but the only valid components
           // have zero or one parameter
           decl.params.length < 2
@@ -643,13 +577,13 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             path,
             decl.id,
             t.functionExpression(decl.id, decl.params, decl.body),
-            decl,
+            decl
           );
           if (t.isExportDefaultDeclaration(path.parentPath.node)) {
             path.replaceWith(replacement);
           } else {
             path.replaceWith(
-              t.variableDeclaration("var", [t.variableDeclarator(decl.id, replacement)])
+              t.variableDeclaration('var', [t.variableDeclarator(decl.id, replacement)])
             );
           }
         }
