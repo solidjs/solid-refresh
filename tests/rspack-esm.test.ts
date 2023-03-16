@@ -4,7 +4,7 @@ import plugin from '../src/babel';
 
 async function transform(code: string) {
   const result = await babel.transformAsync(code, {
-    plugins: [[plugin, { bundler: 'vite' }]],
+    plugins: [[plugin, { bundler: 'rspack-esm' }]],
     parserOpts: {
       plugins: ['jsx', 'typescript']
     },
@@ -17,7 +17,7 @@ async function transform(code: string) {
   throw new Error('Missing code');
 }
 
-describe('vite', () => {
+describe('rspack-esm', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(

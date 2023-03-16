@@ -1,7 +1,7 @@
-
-import { Context, createSignal, DEV, JSX } from "solid-js";
-import createProxy from "./create-proxy";
-import isListUpdated from "./is-list-updated";
+import { Context, createSignal, DEV, JSX } from 'solid-js';
+import { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
+import createProxy from './create-proxy';
+import isListUpdated from './is-list-updated';
 
 interface ComponentOptions {
   location?: string;
@@ -42,7 +42,7 @@ export interface Registry {
 export function $$registry(): Registry {
   return {
     components: new Map(),
-    contexts: new Map(),
+    contexts: new Map()
   };
 }
 
@@ -50,7 +50,7 @@ export function $$component<P>(
   registry: Registry,
   id: string,
   component: (props: P) => JSX.Element,
-  options: ComponentOptions = {},
+  options: ComponentOptions = {}
 ): (props: P) => JSX.Element {
   const [comp, setComp] = createSignal(component, { internal: true });
   const proxy = createProxy<(props: P) => JSX.Element, P>(comp, id, options.location);
@@ -59,33 +59,29 @@ export function $$component<P>(
     component,
     proxy,
     update: setComp,
-    ...options,
+    ...options
   });
   return proxy;
 }
 
-export function $$context<T>(
-  registry: Registry,
-  id: string,
-  context: Context<T>,
-): Context<T> {
+export function $$context<T>(registry: Registry, id: string, context: Context<T>): Context<T> {
   registry.contexts.set(id, {
     id,
-    context,
+    context
   });
   return context;
 }
 
 function patchComponent<P>(
   oldData: ComponentRegistrationData<P>,
-  newData: ComponentRegistrationData<P>,
+  newData: ComponentRegistrationData<P>
 ) {
   // Check if incoming module has signature
-  if (newData.signature ) {
+  if (newData.signature) {
     // Compare signatures
     if (
-      newData.signature !== oldData.signature
-      || isListUpdated(newData.dependencies, oldData.dependencies)
+      newData.signature !== oldData.signature ||
+      isListUpdated(newData.dependencies, oldData.dependencies)
     ) {
       // Replace signatures and dependencies
       oldData.dependencies = newData.dependencies;
@@ -106,14 +102,8 @@ function patchComponent<P>(
   newData.update(() => oldData.proxy);
 }
 
-function patchComponents(
-  oldData: Registry,
-  newData: Registry,
-) {
-  const components = new Set([
-    ...oldData.components.keys(),
-    ...newData.components.keys(),
-  ]);
+function patchComponents(oldData: Registry, newData: Registry) {
+  const components = new Set([...oldData.components.keys(), ...newData.components.keys()]);
   for (const key of components) {
     const oldComponent = oldData.components.get(key);
     const newComponent = newData.components.get(key);
@@ -132,23 +122,14 @@ function patchComponents(
   return false;
 }
 
-function patchContext<T>(
-  oldData: ContextRegistrationData<T>,
-  newData: ContextRegistrationData<T>,
-) {
+function patchContext<T>(oldData: ContextRegistrationData<T>, newData: ContextRegistrationData<T>) {
   oldData.context.defaultValue = newData.context.defaultValue;
   newData.context.id = oldData.context.id;
   newData.context.Provider = oldData.context.Provider;
 }
 
-function patchContexts(
-  oldData: Registry,
-  newData: Registry,
-) {
-  const contexts = new Set([
-    ...oldData.contexts.keys(),
-    ...newData.contexts.keys(),
-  ]);
+function patchContexts(oldData: Registry, newData: Registry) {
+  const contexts = new Set([...oldData.contexts.keys(), ...newData.contexts.keys()]);
   for (const key of contexts.keys()) {
     const oldContext = oldData.contexts.get(key);
     const newContext = newData.contexts.get(key);
@@ -167,10 +148,7 @@ function patchContexts(
   return false;
 }
 
-function patchRegistry(
-  oldRegistry: Registry,
-  newRegistry: Registry
-) {
+function patchRegistry(oldRegistry: Registry, newRegistry: Registry) {
   const shouldInvalidateByContext = patchContexts(oldRegistry, newRegistry);
   const shouldInvalidateByComponents = patchComponents(oldRegistry, newRegistry);
   // In the future we may add other HMR features here
@@ -181,7 +159,7 @@ const SOLID_REFRESH = 'solid-refresh';
 const SOLID_REFRESH_PREV = 'solid-refresh-prev';
 
 type HotData = {
-  [key in (typeof SOLID_REFRESH | typeof SOLID_REFRESH_PREV)]: Registry;
+  [key in typeof SOLID_REFRESH | typeof SOLID_REFRESH_PREV]: Registry;
 };
 
 interface ESMHot {
@@ -199,18 +177,9 @@ interface StandardHot {
   decline?: () => void;
 }
 
-// For HMRs that follows Snowpack's spec
-// https://github.com/FredKSchott/esm-hmr
-type ESMType = 'esm' | 'vite';
-
-// For HMRs that follow Webpack's design
-type StandardType = 'standard' | 'webpack5';
-
-type ESMDecline = [type: ESMType, hot: ESMHot, inline?: boolean];
-type StandardDecline = [type: StandardType, hot: StandardHot, inline?: boolean];
-type Decline =
-  | ESMDecline
-  | StandardDecline;
+type ESMDecline = [type: ESMRuntimeType, hot: ESMHot, inline?: boolean];
+type StandardDecline = [type: StandardRuntimeType, hot: StandardHot, inline?: boolean];
+type Decline = ESMDecline | StandardDecline;
 
 export function $$decline(...[type, hot, inline]: Decline) {
   switch (type) {
@@ -233,9 +202,8 @@ export function $$decline(...[type, hot, inline]: Decline) {
         });
       }
       break;
+    case 'rspack-esm':
     case 'webpack5':
-      // Webpack has invalidate however it may lead to recursion
-      // decline is safer
       if (inline) {
         hot.invalidate!();
       } else {
@@ -243,7 +211,7 @@ export function $$decline(...[type, hot, inline]: Decline) {
       }
       break;
     case 'standard':
-      // Some implementations do not have decline
+      // Some implementations do not have decline/invalidate
       if (inline) {
         if (hot.invalidate) {
           hot.invalidate();
@@ -265,7 +233,6 @@ export function $$decline(...[type, hot, inline]: Decline) {
   }
 }
 
-
 let warned = false;
 
 function shouldWarnAndDecline() {
@@ -284,14 +251,14 @@ function shouldWarnAndDecline() {
   return true;
 }
 
-function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
+function $$refreshESM(type: ESMRuntimeType, hot: ESMHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
   } else if (hot.data) {
     hot.data[SOLID_REFRESH] = hot.data[SOLID_REFRESH] || registry;
     hot.data[SOLID_REFRESH_PREV] = registry;
-  
-    hot.accept((mod) => {
+
+    hot.accept(mod => {
       if (mod == null || patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])) {
         hot.invalidate();
       }
@@ -302,7 +269,7 @@ function $$refreshESM(type: ESMType, hot: ESMHot, registry: Registry) {
   }
 }
 
-function $$refreshStandard(type: StandardType, hot: StandardHot, registry: Registry) {
+function $$refreshStandard(type: StandardRuntimeType, hot: StandardHot, registry: Registry) {
   if (shouldWarnAndDecline()) {
     $$decline(type, hot);
   } else {
@@ -319,12 +286,10 @@ function $$refreshStandard(type: StandardType, hot: StandardHot, registry: Regis
   }
 }
 
-type ESMRefresh = [type: ESMType, hot: ESMHot, registry: Registry];
-type StandardRefresh = [type: StandardType, hot: StandardHot, registry: Registry];
+type ESMRefresh = [type: ESMRuntimeType, hot: ESMHot, registry: Registry];
+type StandardRefresh = [type: StandardRuntimeType, hot: StandardHot, registry: Registry];
 
-type Refresh = 
-  | ESMRefresh
-  | StandardRefresh;
+type Refresh = ESMRefresh | StandardRefresh;
 
 export function $$refresh(...[type, hot, registry]: Refresh) {
   switch (type) {
@@ -334,6 +299,7 @@ export function $$refresh(...[type, hot, registry]: Refresh) {
       break;
     case 'standard':
     case 'webpack5':
+    case 'rspack-esm':
       $$refreshStandard(type, hot, registry);
       break;
   }
