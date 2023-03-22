@@ -130,7 +130,7 @@ function patchContext<T>(oldData: ContextRegistrationData<T>, newData: ContextRe
 
 function patchContexts(oldData: Registry, newData: Registry) {
   const contexts = new Set([...oldData.contexts.keys(), ...newData.contexts.keys()]);
-  for (const key of contexts.keys()) {
+  for (const key of contexts) {
     const oldContext = oldData.contexts.get(key);
     const newContext = newData.contexts.get(key);
 

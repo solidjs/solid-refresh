@@ -23,8 +23,9 @@ export default function isListUpdated(
       return true;
     }
     // Now compare each items
-    for (const key of keys.keys()) {
-      if (!Object.is(a[key], b[key])) {
+    for (const key of keys) {
+      // This covers NaN. No need for Object.is since it's extreme for -0
+      if (a[key] !== b[key] || (a[key] !== a[key] && b[key] !== b[key])) {
         return true;
       }
     }

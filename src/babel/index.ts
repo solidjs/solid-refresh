@@ -3,7 +3,6 @@ import * as babel from '@babel/core';
 import * as t from '@babel/types';
 import _generator from '@babel/generator';
 import { addNamed } from '@babel/helper-module-imports';
-import { forEach, map } from './utils';
 import { xxHash32 } from './xxhash32';
 import { RuntimeType } from '../shared/types';
 
@@ -202,12 +201,23 @@ function isInTypescript(path: babel.NodePath): boolean {
   return false;
 }
 
+function isIdentifierReserved(node: t.Identifier) {
+  switch (node.name) {
+    case 'undefined':
+    case 'NaN':
+    case 'Infinity':
+      return true;
+    default:
+      return false;
+  }
+}
+
 function getBindings(path: babel.NodePath): t.Identifier[] {
   const identifiers = new Set<string>();
   path.traverse({
     Expression(p) {
       // Check identifiers that aren't in a TS expression
-      if (t.isIdentifier(p.node) && !isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
+      if (t.isIdentifier(p.node) && !isIdentifierReserved(p.node) && !isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
         identifiers.add(p.node.name);
       }
       // for the JSX, only use JSXMemberExpression's object
@@ -223,7 +233,11 @@ function getBindings(path: babel.NodePath): t.Identifier[] {
       }
     }
   });
-  return map([...identifiers], value => t.identifier(value));
+  const collected = [];
+  for (const identifier of identifiers) {
+    collected.push(t.identifier(identifier));
+  }
+  return collected;
 }
 
 interface ImportIdentity {
@@ -239,27 +253,43 @@ const IMPORT_IDENTITIES: ImportIdentity[] = [
 ];
 
 function getImportSpecifierName(specifier: t.ImportSpecifier): string {
-  if (t.isIdentifier(specifier.imported)) {
-    return specifier.imported.name;
+  switch (specifier.imported.type) {
+    case 'Identifier':
+      return specifier.imported.name;
+    case 'StringLiteral':
+      return specifier.imported.value;
+    default:
+      return '';
   }
-  return specifier.imported.value;
 }
 
 function captureIdentifiers(state: State, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
       if (p.node.importKind === 'value') {
-        forEach(IMPORT_IDENTITIES, id => {
+        let id: ImportIdentity;
+        let specifier: (babel.types.ImportDefaultSpecifier | babel.types.ImportNamespaceSpecifier | babel.types.ImportSpecifier);
+        for (let i = 0, len = IMPORT_IDENTITIES.length; i < len; i++) {
+          id = IMPORT_IDENTITIES[i];
           if (p.node.source.value === id.source) {
-            forEach(p.node.specifiers, specifier => {
-              if (t.isImportSpecifier(specifier) && getImportSpecifierName(specifier) === id.name) {
-                state.imports.identifiers.set(specifier.local, id);
-              } else if (t.isImportNamespaceSpecifier(specifier)) {
-                state.imports.namespaces.set(specifier.local, id);
+            for (let k = 0, klen = p.node.specifiers.length; k < klen; k++) {
+              specifier = p.node.specifiers[k];
+
+              switch (specifier.type) {
+                case 'ImportSpecifier':
+                  if (getImportSpecifierName(specifier) === id.name) {
+                    state.imports.identifiers.set(specifier.local, id);
+                  }
+                  break;
+                case 'ImportNamespaceSpecifier':
+                  state.imports.namespaces.set(specifier.local, id);
+                  break;
+                default:
+                  break;
               }
-            });
+            }
           }
-        });
+        }
       }
     }
   });
@@ -402,10 +432,16 @@ function wrapComponent(
       );
       const dependencies = getBindings(path);
       if (dependencies.length) {
+        const dependencyKeys: t.ObjectProperty[] = [];
+        let id: t.Identifier;
+        for (let i = 0, len = dependencies.length; i < len; i++) {
+          id = dependencies[i];
+          dependencyKeys.push(t.objectProperty(id, id, false, true));
+        }
         properties.push(
           t.objectProperty(
             t.identifier('dependencies'),
-            t.objectExpression(map(dependencies, id => t.objectProperty(id, id, false, true)))
+            t.objectExpression(dependencyKeys)
           )
         );
       }
