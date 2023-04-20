@@ -54,6 +54,9 @@ export default function createProxy<C extends BaseComponent<P>, P>(
 
   return new Proxy(HMRComp, {
     get(_, property) {
+      if (property === 'location' || property === 'name') {
+        return (HMRComp as any)[property];
+      }
       return source()[property as keyof C];
     },
     set(_, property, value) {
