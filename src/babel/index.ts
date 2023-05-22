@@ -493,7 +493,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     },
     visitor: {
       Program(path, state) {
-        let shouldReload = false;
+        let shouldSkip = false;
         const comments = state.file.ast.comments;
         if (comments) {
           for (let i = 0; i < comments.length; i++) {
@@ -504,11 +504,11 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             }
             if (/^\s*@refresh skip\s*$/.test(comment)) {
               state.processed = true;
+              shouldSkip = true;
               break;
             }
             if (/^\s*@refresh reload\s*$/.test(comment)) {
               state.processed = true;
-              shouldReload = true;
               path.pushContainer('body', getHMRDeclineCall(state, path));
               break;
             }
@@ -516,7 +516,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
 
         captureIdentifiers(state, path);
-        if (!shouldReload && (state.opts.fixRender ?? true)) {
+        if (!shouldSkip && (state.opts.fixRender ?? true)) {
           fixRenderCalls(state, path);
         }
       },
