@@ -501,5 +501,19 @@ describe('vite', () => {
         ).toMatchSnapshot();
       });
     });
+    describe('@refresh reload', () => {
+      it('should work', async () => {
+        expect(
+          await transform(`
+          // @refresh reload
+          import { render } from 'solid-js/web';
+
+          if (root) {
+            render(() => <App />, root);
+          }
+        `)
+        ).toMatchSnapshot();
+      });
+    });
   });
 });
