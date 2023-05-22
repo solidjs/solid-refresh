@@ -591,35 +591,30 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         if (state.processed) {
           return;
         }
-        if (
-          !(t.isProgram(path.parentPath.node) || t.isExportDefaultDeclaration(path.parentPath.node))
-        ) {
-          return;
-        }
-        const decl = path.node;
-        // Check if declaration is FunctionDeclaration
-        if (
-          // Check if the declaration has an identifier, and then check
-          decl.id &&
-          // if the name is component-ish
-          isComponentishName(decl.id.name) &&
-          !(decl.generator || decl.async) &&
-          // Might be component-like, but the only valid components
-          // have zero or one parameter
-          decl.params.length < 2
-        ) {
-          const replacement = wrapComponent(
-            state,
-            path,
-            decl.id,
-            t.functionExpression(decl.id, decl.params, decl.body),
-            decl
-          );
-          if (t.isExportDefaultDeclaration(path.parentPath.node)) {
-            path.replaceWith(replacement);
-          } else {
+        if (path.parentPath.isProgram() || path.parentPath.isExportDefaultDeclaration()) {
+          const decl = path.node;
+          // Check if declaration is FunctionDeclaration
+          if (
+            // Check if the declaration has an identifier, and then check
+            decl.id &&
+            // if the name is component-ish
+            isComponentishName(decl.id.name) &&
+            !(decl.generator || decl.async) &&
+            // Might be component-like, but the only valid components
+            // have zero or one parameter
+            decl.params.length < 2
+          ) {
+            const replacement = wrapComponent(
+              state,
+              path,
+              decl.id,
+              t.functionExpression(decl.id, decl.params, decl.body),
+              decl
+            );
             path.replaceWith(
-              t.variableDeclaration('var', [t.variableDeclarator(decl.id, replacement)])
+              path.parentPath.isExportDefaultDeclaration()
+                ? replacement
+                : t.variableDeclaration('var', [t.variableDeclarator(decl.id, replacement)])
             );
           }
         }
