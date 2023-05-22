@@ -122,9 +122,7 @@ function getHMRDeclineCall(state: State, path: babel.NodePath) {
 
   generateViteRequirement(state, statements, pathToHot);
 
-  const hmrDeclineCall = t.blockStatement(statements);
-
-  return t.ifStatement(pathToHot, hmrDeclineCall);
+  return t.ifStatement(pathToHot, t.blockStatement(statements));
 }
 
 function getStatementPath(path: babel.NodePath): babel.NodePath | null {
@@ -303,21 +301,21 @@ function unwrapExpression<K extends (node: t.Expression) => boolean>(
   node: t.Expression,
   key: K
 ): TypeCheck<K> | undefined {
-  if (key(node)) {
-    return node as TypeCheck<K>;
+  switch (node.type) {
+    case 'ParenthesizedExpression':
+    case 'TypeCastExpression':
+    case 'TSAsExpression':
+    case 'TSSatisfiesExpression':
+    case 'TSNonNullExpression':
+    case 'TSInstantiationExpression':
+    case 'TSTypeAssertion':
+      return unwrapExpression(node.expression, key);
+    default:
+      if (key(node)) {
+        return node as TypeCheck<K>;
+      }
+      return undefined;
   }
-  if (
-    t.isParenthesizedExpression(node) ||
-    t.isTypeCastExpression(node) ||
-    t.isTSAsExpression(node) ||
-    t.isTSSatisfiesExpression(node) ||
-    t.isTSNonNullExpression(node) ||
-    t.isTSTypeAssertion(node) ||
-    t.isTSInstantiationExpression(node)
-  ) {
-    return unwrapExpression(node.expression, key);
-  }
-  return undefined;
 }
 
 function isValidCallee(
@@ -340,14 +338,15 @@ function isValidCallee(
     }
     return false;
   }
-  if (t.isMemberExpression(callee) && !callee.computed && t.isIdentifier(callee.property)) {
-    const trueObject = unwrapExpression(callee.object, t.isIdentifier);
+  const trueMember = unwrapExpression(callee, t.isMemberExpression);
+  if (trueMember && !trueMember.computed && t.isIdentifier(trueMember.property)) {
+    const trueObject = unwrapExpression(trueMember.object, t.isIdentifier);
     if (trueObject) {
       const binding = path.scope.getBinding(trueObject.name);
       return (
         binding &&
         state.imports.namespaces.has(binding.identifier) &&
-        callee.property.name === target
+        trueMember.property.name === target
       );
     }
   }
