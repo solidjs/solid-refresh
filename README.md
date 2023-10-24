@@ -167,3 +167,24 @@ Adding `@refresh granular` comment pragma in the file allows components to opt-i
 
 * Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
 * No HOC support.
+
+## Custom `render`/`createContext`
+
+You can define custom `render`/`createContext` calls by using the `imports` option
+
+```js
+{
+  "imports": [
+    {
+      // Only either "render" or "createContext"
+      "type": "render",
+      // Import identifier
+      "name": "render",
+      // Kind of import (named or default)
+      "kind": "named",
+      // Module source
+      "source": "my-solid-library"
+    }
+  ],
+}
+```

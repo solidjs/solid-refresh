@@ -1,5 +1,6 @@
-import { Context, createSignal, DEV, JSX } from 'solid-js';
-import { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
+import type { Context, JSX } from 'solid-js';
+import { createSignal, DEV } from 'solid-js';
+import type { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
 import createProxy from './create-proxy';
 import isListUpdated from './is-list-updated';
 

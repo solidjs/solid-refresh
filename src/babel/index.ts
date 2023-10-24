@@ -4,7 +4,7 @@ import * as t from '@babel/types';
 import _generator from '@babel/generator';
 import { addNamed } from '@babel/helper-module-imports';
 import { xxHash32 } from './xxhash32';
-import { RuntimeType } from '../shared/types';
+import type { RuntimeType } from '../shared/types';
 
 // https://github.com/babel/babel/issues/15269
 let generator: typeof _generator;
@@ -23,13 +23,14 @@ function getFile(filename: string) {
 interface Options {
   bundler?: RuntimeType;
   fixRender?: boolean;
+  imports?: ImportIdentity[];
 }
 
 type ImportHook = Map<string, t.Identifier>;
 
 interface ImportIdentifiers {
   identifiers: Map<t.Identifier, ImportIdentity>;
-  namespaces: Map<t.Identifier, ImportIdentity>;
+  namespaces: Map<t.Identifier, ImportIdentity[]>;
 }
 
 interface State extends babel.PluginPass {
@@ -37,7 +38,9 @@ interface State extends babel.PluginPass {
   opts: Options;
   processed: boolean;
   granular: boolean;
-  imports: ImportIdentifiers;
+  registrations: ImportIdentifiers;
+  fixRender?: boolean;
+  imports: ImportIdentity[];
 }
 
 // This is just a Pascal heuristic
@@ -241,13 +244,15 @@ function getBindings(path: babel.NodePath): t.Identifier[] {
 interface ImportIdentity {
   name: string;
   source: string;
+  kind: 'named' | 'default';
+  type: 'createContext' | 'render';
 }
 
 const IMPORT_IDENTITIES: ImportIdentity[] = [
-  { name: 'createContext', source: 'solid-js' },
-  { name: 'createContext', source: 'solid-js/web' },
-  { name: 'render', source: 'solid-js/web' },
-  { name: 'hydrate', source: 'solid-js/web' }
+  { type: 'createContext', name: 'createContext', kind: 'named', source: 'solid-js' },
+  { type: 'createContext', name: 'createContext', kind: 'named',source: 'solid-js/web' },
+  { type: 'render', name: 'render', kind: 'named', source: 'solid-js/web' },
+  { type: 'render', name: 'hydrate', kind: 'named', source: 'solid-js/web' },
 ];
 
 function getImportSpecifierName(specifier: t.ImportSpecifier): string {
@@ -261,33 +266,60 @@ function getImportSpecifierName(specifier: t.ImportSpecifier): string {
   }
 }
 
+function registerImportSpecifier(
+  state: State,
+  p: babel.NodePath<t.ImportDeclaration>,
+) {
+  let id: ImportIdentity;
+  let specifier: (babel.types.ImportDefaultSpecifier | babel.types.ImportNamespaceSpecifier | babel.types.ImportSpecifier);
+
+  for (let i = 0, len = state.imports.length; i < len; i++) {
+    id = state.imports[i];
+    if (p.node.source.value === id.source) {
+      for (let k = 0, klen = p.node.specifiers.length; k < klen; k++) {
+        specifier = p.node.specifiers[k];
+
+        switch (specifier.type) {
+          case 'ImportDefaultSpecifier':
+            if (id.kind === 'default') {
+              state.registrations.identifiers.set(specifier.local, id);
+            }
+            break;
+          case 'ImportSpecifier':
+            if (
+              (
+                id.kind === 'named'
+                && getImportSpecifierName(specifier) === id.name
+              )
+              || (
+                id.kind === 'default'
+                && getImportSpecifierName(specifier) === 'default'
+              )
+            ) {
+              state.registrations.identifiers.set(specifier.local, id);
+            }
+            break;
+          case 'ImportNamespaceSpecifier':
+            let current = state.registrations.namespaces.get(specifier.local);
+            if (!current) {
+              current = [];
+            }
+            current.push(id);
+            state.registrations.namespaces.set(specifier.local, current);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+}
+
 function captureIdentifiers(state: State, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
       if (p.node.importKind === 'value') {
-        let id: ImportIdentity;
-        let specifier: (babel.types.ImportDefaultSpecifier | babel.types.ImportNamespaceSpecifier | babel.types.ImportSpecifier);
-        for (let i = 0, len = IMPORT_IDENTITIES.length; i < len; i++) {
-          id = IMPORT_IDENTITIES[i];
-          if (p.node.source.value === id.source) {
-            for (let k = 0, klen = p.node.specifiers.length; k < klen; k++) {
-              specifier = p.node.specifiers[k];
-
-              switch (specifier.type) {
-                case 'ImportSpecifier':
-                  if (getImportSpecifierName(specifier) === id.name) {
-                    state.imports.identifiers.set(specifier.local, id);
-                  }
-                  break;
-                case 'ImportNamespaceSpecifier':
-                  state.imports.namespaces.set(specifier.local, id);
-                  break;
-                default:
-                  break;
-              }
-            }
-          }
-        }
+        registerImportSpecifier(state, p);
       }
     }
   });
@@ -322,7 +354,7 @@ function isValidCallee(
   state: State,
   path: babel.NodePath,
   { callee }: t.CallExpression,
-  target: string
+  target: ImportIdentity['type'],
 ) {
   if (t.isV8IntrinsicIdentifier(callee)) {
     return false;
@@ -331,8 +363,8 @@ function isValidCallee(
   if (trueCallee) {
     const binding = path.scope.getBindingIdentifier(trueCallee.name);
     if (binding) {
-      const result = state.imports.identifiers.get(binding);
-      if (result && result.name === target) {
+      const result = state.registrations.identifiers.get(binding);
+      if (result && result.type === target) {
         return true;
       }
     }
@@ -342,12 +374,25 @@ function isValidCallee(
   if (trueMember && !trueMember.computed && t.isIdentifier(trueMember.property)) {
     const trueObject = unwrapExpression(trueMember.object, t.isIdentifier);
     if (trueObject) {
-      const binding = path.scope.getBinding(trueObject.name);
-      return (
-        binding &&
-        state.imports.namespaces.has(binding.identifier) &&
-        trueMember.property.name === target
-      );
+      const binding = path.scope.getBindingIdentifier(trueObject.name);
+      if (binding) {
+        const result = state.registrations.namespaces.get(binding);
+        if (result) {
+          const propName = trueMember.property.name;
+          for (let i = 0, len = result.length; i < len; i++) {
+            const registration = result[i];
+            if (registration.type === target) {
+              if (registration.kind === 'default') {
+                if (propName === 'default') {
+                  return true;
+                }
+              } else if (registration.kind === 'named' && registration.name === propName) {
+                return true;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -377,8 +422,7 @@ function fixRenderCalls(state: State, path: babel.NodePath<t.Program>) {
       if (
         trueCallExpr &&
         checkValidRenderCall(p) &&
-        (isValidCallee(state, p, trueCallExpr, 'render') ||
-          isValidCallee(state, p, trueCallExpr, 'hydrate'))
+        (isValidCallee(state, p, trueCallExpr, 'render'))
       ) {
         // Replace with variable declaration
         const id = p.scope.generateUidIdentifier('cleanup');
@@ -485,10 +529,14 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       this.hooks = new Map();
       this.processed = false;
       this.granular = false;
-      this.imports = {
+      this.registrations = {
         identifiers: new Map(),
         namespaces: new Map()
       };
+      this.imports = [
+        ...IMPORT_IDENTITIES,
+        ...(this.opts.imports || []),
+      ];
     },
     visitor: {
       Program(path, state) {

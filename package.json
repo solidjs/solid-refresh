@@ -52,26 +52,26 @@
     "format": "prettier -w \"{tests,src}/**/*.{js,ts}\""
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@types/babel__core": "^7.20.0",
-    "@types/babel__generator": "^7.6.4",
-    "@types/babel__traverse": "^7.18.3",
-    "@types/node": "^18.13.0",
-    "prettier": "^2.8.4",
-    "rollup": "^3.19.0",
-    "solid-js": "^1.6.10",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.5",
-    "vitest": "^0.29.2"
+    "@babel/core": "^7.23.2",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/babel__core": "^7.20.3",
+    "@types/babel__generator": "^7.6.6",
+    "@types/babel__traverse": "^7.20.3",
+    "@types/node": "^20.8.8",
+    "prettier": "^3.0.3",
+    "rollup": "^4.1.4",
+    "solid-js": "^1.8.3",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   },
   "peerDependencies": {
     "solid-js": "^1.3"
   },
   "dependencies": {
-    "@babel/generator": "^7.21.1",
-    "@babel/helper-module-imports": "^7.18.6",
-    "@babel/types": "^7.21.2"
+    "@babel/generator": "^7.23.0",
+    "@babel/helper-module-imports": "^7.22.15",
+    "@babel/types": "^7.23.0"
   }
 }
