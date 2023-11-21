@@ -635,6 +635,20 @@ if (import.meta.hot) {
 }"
 `;
 
+exports[`vite > fix render > @refresh reload > should work 1`] = `
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => <App />, root);
+  if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}
+if (import.meta.hot) {
+  _$$decline(\\"vite\\", import.meta.hot);
+  import.meta.hot.accept();
+}"
+`;
+
 exports[`vite > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
 "import * as solidWeb from 'solid-js/web';
 const _cleanup = solidWeb.render(() => <App />, root);

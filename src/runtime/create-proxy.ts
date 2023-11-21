@@ -1,4 +1,5 @@
-import { JSX, createMemo, untrack, $DEVCOMP, Accessor } from 'solid-js';
+import type { JSX, Accessor } from 'solid-js';
+import { createMemo, untrack, $DEVCOMP } from 'solid-js';
 
 export interface BaseComponent<P> {
   (props: P): JSX.Element;
@@ -27,7 +28,7 @@ export default function createProxy<C extends BaseComponent<P>, P>(
   location?: string
 ): (props: P) => JSX.Element {
   const refreshName = `[solid-refresh]${name}`;
-  function HMRComp(props: P) {
+  function HMRComp(props: P): JSX.Element {
     const s = source();
     if (!s || $DEVCOMP in s) {
       return createMemo(
@@ -41,7 +42,7 @@ export default function createProxy<C extends BaseComponent<P>, P>(
         {
           name: refreshName
         }
-      );
+      ) as unknown as JSX.Element;
     }
     // no $DEVCOMP means it did not go through devComponent so source() is a regular function, not a component
     return s(props);

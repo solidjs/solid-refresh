@@ -604,6 +604,19 @@ if (import.meta.webpackHot) {
 }"
 `;
 
+exports[`webpack5 > fix render > @refresh reload > should work 1`] = `
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => <App />, root);
+  if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);
+}
+if (import.meta.webpackHot) {
+  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+}"
+`;
+
 exports[`webpack5 > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
 "import * as solidWeb from 'solid-js/web';
 const _cleanup = solidWeb.render(() => <App />, root);

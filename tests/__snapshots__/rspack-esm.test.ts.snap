@@ -604,6 +604,19 @@ if (import.meta.webpackHot) {
 }"
 `;
 
+exports[`rspack-esm > fix render > @refresh reload > should work 1`] = `
+"import { $$decline as _$$decline } from \\"solid-refresh\\";
+// @refresh reload
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => <App />, root);
+  if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);
+}
+if (import.meta.webpackHot) {
+  _$$decline(\\"rspack-esm\\", import.meta.webpackHot);
+}"
+`;
+
 exports[`rspack-esm > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
 "import * as solidWeb from 'solid-js/web';
 const _cleanup = solidWeb.render(() => <App />, root);

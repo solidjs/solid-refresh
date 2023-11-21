@@ -1,5 +1,6 @@
-import { Context, createSignal, DEV, JSX } from 'solid-js';
-import { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
+import type { Context, JSX } from 'solid-js';
+import { createSignal, DEV } from 'solid-js';
+import type { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
 import createProxy from './create-proxy';
 import isListUpdated from './is-list-updated';
 
@@ -130,7 +131,7 @@ function patchContext<T>(oldData: ContextRegistrationData<T>, newData: ContextRe
 
 function patchContexts(oldData: Registry, newData: Registry) {
   const contexts = new Set([...oldData.contexts.keys(), ...newData.contexts.keys()]);
-  for (const key of contexts.keys()) {
+  for (const key of contexts) {
     const oldContext = oldData.contexts.get(key);
     const newContext = newData.contexts.get(key);
 
