@@ -658,11 +658,15 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               t.functionExpression(decl.id, decl.params, decl.body),
               decl
             );
-            path.replaceWith(
-              path.parentPath.isExportDefaultDeclaration()
-                ? replacement
-                : t.variableDeclaration('var', [t.variableDeclarator(decl.id, replacement)])
-            );
+            const newDecl = t.variableDeclaration('var', [t.variableDeclarator(decl.id, replacement)]);
+            if (path.parentPath.isExportDefaultDeclaration()) {
+              path.parentPath.insertBefore(
+                newDecl,
+              );
+              path.replaceWith(decl.id);
+            } else {
+              path.replaceWith(newDecl);
+            }
           }
         }
       }

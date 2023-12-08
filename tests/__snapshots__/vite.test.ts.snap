@@ -36,13 +36,14 @@ exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transfor
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-// @refresh granular
-export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
   location: \\"example.jsx:3:21\\",
   signature: \\"83fbb41\\"
 });
+// @refresh granular
+export default Foo;
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -56,7 +57,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>{example}</h1>;
 }, {
   location: \\"example.jsx:4:21\\",
@@ -65,6 +66,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
     example
   }
 });
+export default Foo;
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -78,7 +80,7 @@ import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
   location: \\"example.jsx:4:21\\",
@@ -87,6 +89,7 @@ export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
     Example
   }
 });
+export default Foo;
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -98,11 +101,12 @@ exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transfor
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export default _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
   return <h1>Foo</h1>;
 }, {
   location: \\"example.jsx:2:21\\"
 });
+export default Foo;
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -114,11 +118,12 @@ exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transfor
 import { $$refresh as _$$refresh } from \\"solid-refresh\\";
 import { $$registry as _$$registry } from \\"solid-refresh\\";
 const _REGISTRY = _$$registry();
-export default _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
+var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
   return <h1>Foo</h1>;
 }, {
   location: \\"example.jsx:2:21\\"
 });
+export default Foo;
 if (import.meta.hot) {
   _$$refresh(\\"vite\\", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
