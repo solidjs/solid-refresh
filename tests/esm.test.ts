@@ -6,9 +6,9 @@ async function transform(code: string) {
   const result = await babel.transformAsync(code, {
     plugins: [[plugin, { bundler: 'esm' }]],
     parserOpts: {
-      plugins: ['jsx', 'typescript']
+      plugins: ['jsx', 'typescript'],
     },
-    filename: 'example.jsx'
+    filename: 'example.jsx',
   });
 
   if (result && result.code) {
@@ -25,14 +25,14 @@ describe('esm', () => {
       function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
       function Foo(props) {
       return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip FunctionDeclaration with valid Component name and >1 params', async () => {
@@ -41,7 +41,7 @@ describe('esm', () => {
       function Foo(a, b) {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip FunctionDeclaration with invalid Component name', async () => {
@@ -50,7 +50,7 @@ describe('esm', () => {
       function foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip FunctionDeclaration with @refresh skip', async () => {
@@ -60,7 +60,7 @@ describe('esm', () => {
       function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip FunctionDeclaration with @refresh reload', async () => {
@@ -70,7 +70,7 @@ describe('esm', () => {
       function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should transform FunctionDeclaration with @refresh granular', async () => {
@@ -80,7 +80,7 @@ describe('esm', () => {
       function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -89,7 +89,7 @@ describe('esm', () => {
       function Foo() {
         return <h1>{example}</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -98,7 +98,7 @@ describe('esm', () => {
       function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
   });
@@ -110,14 +110,14 @@ describe('esm', () => {
         const Foo = function () {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
         const Foo = function (props) {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params', async () => {
@@ -126,7 +126,7 @@ describe('esm', () => {
         const Foo = function (a, b) {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ FunctionExpression with invalid Component name', async () => {
@@ -135,7 +135,7 @@ describe('esm', () => {
         const foo = function () {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ FunctionExpression with @refresh skip', async () => {
@@ -145,7 +145,7 @@ describe('esm', () => {
         const Foo = function() {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ FunctionExpression with @refresh reload', async () => {
@@ -155,7 +155,7 @@ describe('esm', () => {
         const Foo = function() {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should transform VariableDeclarator w/ FunctionExpression with @refresh granular', async () => {
@@ -165,7 +165,7 @@ describe('esm', () => {
         const Foo = function() {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
@@ -174,7 +174,7 @@ describe('esm', () => {
         const Foo = function() {
           return <h1>{example}</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
@@ -183,7 +183,7 @@ describe('esm', () => {
         const Foo = function() {
           return <Example.Provider>Foo</Example.Provider>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
     });
@@ -194,14 +194,14 @@ describe('esm', () => {
         const Foo = () => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
         const Foo = (props) => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params', async () => {
@@ -210,7 +210,7 @@ describe('esm', () => {
         const Foo = (a, b) => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name', async () => {
@@ -219,7 +219,7 @@ describe('esm', () => {
         const foo = () => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip', async () => {
@@ -229,7 +229,7 @@ describe('esm', () => {
         const Foo = () => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload', async () => {
@@ -239,7 +239,7 @@ describe('esm', () => {
         const Foo = () => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular', async () => {
@@ -249,7 +249,7 @@ describe('esm', () => {
         const Foo = () => {
           return <h1>Foo</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
@@ -258,7 +258,7 @@ describe('esm', () => {
         const Foo = () => {
           return <h1>{example}</h1>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
         expect(
           await transform(`
@@ -267,7 +267,7 @@ describe('esm', () => {
         const Foo = () => {
           return <Example.Provider>Foo</Example.Provider>;
         }
-        `)
+        `),
         ).toMatchSnapshot();
       });
     });
@@ -279,14 +279,14 @@ describe('esm', () => {
       export function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
       export function Foo(props) {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params', async () => {
@@ -295,7 +295,7 @@ describe('esm', () => {
       export function Foo(a, b) {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name', async () => {
@@ -304,7 +304,7 @@ describe('esm', () => {
       export function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip', async () => {
@@ -314,7 +314,7 @@ describe('esm', () => {
       export function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload', async () => {
@@ -324,7 +324,7 @@ describe('esm', () => {
       export function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular', async () => {
@@ -334,7 +334,7 @@ describe('esm', () => {
       export function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -343,7 +343,7 @@ describe('esm', () => {
       export function Foo() {
         return <h1>{example}</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -352,7 +352,7 @@ describe('esm', () => {
       export function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
   });
@@ -363,14 +363,14 @@ describe('esm', () => {
       export default function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
       export default function Foo(props) {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params', async () => {
@@ -379,7 +379,7 @@ describe('esm', () => {
       export default function Foo(a, b) {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name', async () => {
@@ -388,7 +388,7 @@ describe('esm', () => {
       export default function foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip', async () => {
@@ -398,7 +398,7 @@ describe('esm', () => {
       export default function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload', async () => {
@@ -408,7 +408,7 @@ describe('esm', () => {
       export default function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
     it('should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular', async () => {
@@ -418,7 +418,7 @@ describe('esm', () => {
       export default function Foo() {
         return <h1>Foo</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -427,7 +427,7 @@ describe('esm', () => {
       export default function Foo() {
         return <h1>{example}</h1>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
       expect(
         await transform(`
@@ -436,18 +436,40 @@ describe('esm', () => {
       export default function Foo() {
         return <Example.Provider>Foo</Example.Provider>;
       }
-      `)
+      `),
       ).toMatchSnapshot();
     });
   });
-  it('should support Context API', async () => {
-    expect(
-      await transform(`
-      import { createContext } from 'solid-js';
-
-      const Example = createContext();
-    `)
-    ).toMatchSnapshot();
+  describe('Context API', () => {
+    it('should support top-level VariableDeclaration', async () => {
+      expect(
+        await transform(`
+        import { createContext } from 'solid-js';
+  
+        const Example = createContext();
+      `),
+      ).toMatchSnapshot();
+    });
+    it('should support ExportNamedDeclaration', async () => {
+      expect(
+        await transform(`
+        import { createContext } from 'solid-js';
+  
+        export const Example = createContext();
+      `),
+      ).toMatchSnapshot();
+    });
+    it('should not support VariableDeclaration that is not top-level', async () => {
+      expect(
+        await transform(`
+        import { createContext } from 'solid-js';
+  
+        if (someCond) {
+          const Example = createContext();
+        }
+      `),
+      ).toMatchSnapshot();
+    });
   });
   describe('fix render', () => {
     describe('import specifiers', () => {
@@ -457,7 +479,7 @@ describe('esm', () => {
           import { render } from 'solid-js/web';
     
           render(() => <App />, root);
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should work with ImportSpecifier + aliased Identifier', async () => {
@@ -466,7 +488,7 @@ describe('esm', () => {
           import { render as Render } from 'solid-js/web';
     
           Render(() => <App />, root);
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should work with ImportSpecifier + aliased Identifier from StringLiteral', async () => {
@@ -475,7 +497,7 @@ describe('esm', () => {
           import { 'render' as Render } from 'solid-js/web';
     
           Render(() => <App />, root);
-        `)
+        `),
         ).toMatchSnapshot();
       });
       it('should work with ImportNamespaceSpecifier', async () => {
@@ -484,11 +506,11 @@ describe('esm', () => {
           import * as solidWeb from 'solid-js/web';
     
           solidWeb.render(() => <App />, root);
-        `)
+        `),
         ).toMatchSnapshot();
       });
     });
-    describe('top-level statements', async () => {
+    describe('top-level statements', () => {
       it('should work with IfStatement', async () => {
         expect(
           await transform(`
@@ -497,7 +519,7 @@ describe('esm', () => {
           if (root) {
             render(() => <App />, root);
           }
-        `)
+        `),
         ).toMatchSnapshot();
       });
     });
@@ -511,7 +533,7 @@ describe('esm', () => {
           if (root) {
             render(() => <App />, root);
           }
-        `)
+        `),
         ).toMatchSnapshot();
       });
     });

@@ -1,13 +1,49 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`webpack5 > Context API > should not support VariableDeclaration that is not top-level 1`] = `
+"import { createContext } from 'solid-js';
+if (someCond) {
+  const Example = createContext();
+}"
+`;
+
+exports[`webpack5 > Context API > should support ExportDefaultDeclaration 1`] = `
+"import { createContext } from 'solid-js';
+export default createContext();"
+`;
+
+exports[`webpack5 > Context API > should support ExportNamedDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+export const Example = _$$context(_REGISTRY, "Example", createContext());
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 > Context API > should support top-level VariableDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+const Example = _$$context(_REGISTRY, "Example", createContext());
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export default function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -31,107 +67,107 @@ exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should skip
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:3:21\\",
-  signature: \\"83fbb41\\"
+  location: "example.jsx:3:21",
+  signature: "83fbb41"
 });
 // @refresh granular
 export default Foo;
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>{example}</h1>;
 }, {
-  location: \\"example.jsx:4:21\\",
-  signature: \\"c479f38e\\",
+  location: "example.jsx:4:21",
+  signature: "c479f38e",
   dependencies: {
     example
   }
 });
 export default Foo;
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
-  location: \\"example.jsx:4:21\\",
-  signature: \\"f8fa9630\\",
+  location: "example.jsx:4:21",
+  signature: "f8fa9630",
   dependencies: {
     Example
   }
 });
 export default Foo;
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:21\\"
+  location: "example.jsx:2:21"
 });
 export default Foo;
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:21\\"
+  location: "example.jsx:2:21"
 });
 export default Foo;
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -143,17 +179,17 @@ export function Foo() {
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:13\\"
+  location: "example.jsx:2:13"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
@@ -164,102 +200,102 @@ exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should skip E
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:3:13\\",
-  signature: \\"83fbb41\\"
+  location: "example.jsx:3:13",
+  signature: "83fbb41"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>{example}</h1>;
 }, {
-  location: \\"example.jsx:4:13\\",
-  signature: \\"c479f38e\\",
+  location: "example.jsx:4:13",
+  signature: "c479f38e",
   dependencies: {
     example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
-  location: \\"example.jsx:4:13\\",
-  signature: \\"f8fa9630\\",
+  location: "example.jsx:4:13",
+  signature: "f8fa9630",
   dependencies: {
     Example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:13\\"
+  location: "example.jsx:2:13"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-export const Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:13\\"
+  location: "example.jsx:2:13"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 function Foo() {
   return <h1>Foo</h1>;
 }
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -283,102 +319,102 @@ exports[`webpack5 > FunctionDeclaration > should skip FunctionDeclaration with v
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:3:6\\",
-  signature: \\"83fbb41\\"
+  location: "example.jsx:3:6",
+  signature: "83fbb41"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>{example}</h1>;
 }, {
-  location: \\"example.jsx:4:6\\",
-  signature: \\"c479f38e\\",
+  location: "example.jsx:4:6",
+  signature: "c479f38e",
   dependencies: {
     example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
-  location: \\"example.jsx:4:6\\",
-  signature: \\"f8fa9630\\",
+  location: "example.jsx:4:6",
+  signature: "f8fa9630",
   dependencies: {
     Example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:6\\"
+  location: "example.jsx:2:6"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, \\"Foo\\", function Foo(props) {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:6\\"
+  location: "example.jsx:2:6"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = () => {
   return <h1>Foo</h1>;
 };
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -402,102 +438,102 @@ exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should skip V
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
+const Foo = _$$component(_REGISTRY, "Foo", () => {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:3:20\\",
-  signature: \\"dd474849\\"
+  location: "example.jsx:3:20",
+  signature: "dd474849"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
+const Foo = _$$component(_REGISTRY, "Foo", () => {
   return <h1>{example}</h1>;
 }, {
-  location: \\"example.jsx:4:20\\",
-  signature: \\"42ac2326\\",
+  location: "example.jsx:4:20",
+  signature: "42ac2326",
   dependencies: {
     example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
+const Foo = _$$component(_REGISTRY, "Foo", () => {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
-  location: \\"example.jsx:4:20\\",
-  signature: \\"23378462\\",
+  location: "example.jsx:4:20",
+  signature: "23378462",
   dependencies: {
     Example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", () => {
+const Foo = _$$component(_REGISTRY, "Foo", () => {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:20\\"
+  location: "example.jsx:2:20"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", props => {
+const Foo = _$$component(_REGISTRY, "Foo", props => {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:20\\"
+  location: "example.jsx:2:20"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = function () {
   return <h1>Foo</h1>;
 };
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -521,96 +557,96 @@ exports[`webpack5 > VariableDeclarator > FunctionExpression > should skip Variab
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
-const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
+const Foo = _$$component(_REGISTRY, "Foo", function () {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:3:20\\",
-  signature: \\"a8bc6ac4\\"
+  location: "example.jsx:3:20",
+  signature: "a8bc6ac4"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const example = 'Foo';
-const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
+const Foo = _$$component(_REGISTRY, "Foo", function () {
   return <h1>{example}</h1>;
 }, {
-  location: \\"example.jsx:4:20\\",
-  signature: \\"2264ba41\\",
+  location: "example.jsx:4:20",
+  signature: "2264ba41",
   dependencies: {
     example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 // @refresh granular
 const Example = createContext();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
+const Foo = _$$component(_REGISTRY, "Foo", function () {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
-  location: \\"example.jsx:4:20\\",
-  signature: \\"b3df1897\\",
+  location: "example.jsx:4:20",
+  signature: "b3df1897",
   dependencies: {
     Example
   }
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", function () {
+const Foo = _$$component(_REGISTRY, "Foo", function () {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:20\\"
+  location: "example.jsx:2:20"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { $$component as _$$component } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
+"import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Foo = _$$component(_REGISTRY, \\"Foo\\", function (props) {
+const Foo = _$$component(_REGISTRY, "Foo", function (props) {
   return <h1>Foo</h1>;
 }, {
-  location: \\"example.jsx:2:20\\"
+  location: "example.jsx:2:20"
 });
 if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
 }"
 `;
 
 exports[`webpack5 > fix render > @refresh reload > should work 1`] = `
-"import { $$decline as _$$decline } from \\"solid-refresh\\";
+"import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 import { render } from 'solid-js/web';
 if (root) {
@@ -618,7 +654,7 @@ if (root) {
   if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);
 }
 if (import.meta.webpackHot) {
-  _$$decline(\\"webpack5\\", import.meta.webpackHot);
+  _$$decline("webpack5", import.meta.webpackHot);
 }"
 `;
 
@@ -651,17 +687,5 @@ exports[`webpack5 > fix render > top-level statements > should work with IfState
 if (root) {
   const _cleanup = render(() => <App />, root);
   if (import.meta.webpackHot) import.meta.webpackHot.dispose(_cleanup);
-}"
-`;
-
-exports[`webpack5 > should support Context API 1`] = `
-"import { $$context as _$$context } from \\"solid-refresh\\";
-import { $$refresh as _$$refresh } from \\"solid-refresh\\";
-import { $$registry as _$$registry } from \\"solid-refresh\\";
-const _REGISTRY = _$$registry();
-import { createContext } from 'solid-js';
-const Example = _$$context(_REGISTRY, \\"Example\\", createContext());
-if (import.meta.webpackHot) {
-  _$$refresh(\\"webpack5\\", import.meta.webpackHot, _REGISTRY);
 }"
 `;
