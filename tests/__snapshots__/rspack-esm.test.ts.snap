@@ -7,11 +7,6 @@ if (someCond) {
 }"
 `;
 
-exports[`rspack-esm > Context API > should support ExportDefaultDeclaration 1`] = `
-"import { createContext } from 'solid-js';
-export default createContext();"
-`;
-
 exports[`rspack-esm > Context API > should support ExportNamedDeclaration 1`] = `
 "import { $$context as _$$context } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
