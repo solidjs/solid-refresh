@@ -223,44 +223,13 @@ function isInTypescript(path: babel.NodePath): boolean {
   return false;
 }
 
-function isIdentifierReserved(node: t.Identifier) {
-  switch (node.name) {
-    case 'undefined':
-    case 'NaN':
-    case 'Infinity':
-      return true;
-    default:
-      return false;
-  }
-}
-
 function getBindings(path: babel.NodePath): t.Identifier[] {
   const identifiers = new Set<string>();
   path.traverse({
-    Expression(p) {
+    ReferencedIdentifier(p) {
       // Check identifiers that aren't in a TS expression
-      if (
-        t.isIdentifier(p.node) &&
-        !isIdentifierReserved(p.node) &&
-        !isInTypescript(p) &&
-        isForeignBinding(path, p, p.node.name)
-      ) {
+      if (!isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
         identifiers.add(p.node.name);
-      }
-      // for the JSX, only use JSXMemberExpression's object
-      // as a foreign binding
-      if (
-        t.isJSXElement(p.node) &&
-        t.isJSXMemberExpression(p.node.openingElement.name)
-      ) {
-        let base: t.JSXMemberExpression | t.JSXIdentifier =
-          p.node.openingElement.name;
-        while (t.isJSXMemberExpression(base)) {
-          base = base.object;
-        }
-        if (isForeignBinding(path, p, base.name)) {
-          identifiers.add(base.name);
-        }
       }
     },
   });
@@ -301,8 +270,6 @@ function getImportSpecifierName(specifier: t.ImportSpecifier): string {
       return specifier.imported.name;
     case 'StringLiteral':
       return specifier.imported.value;
-    default:
-      return '';
   }
 }
 
@@ -751,9 +718,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       ExportNamedDeclaration(path, state) {
         transformExportNamedDeclaration(state, path);
       },
-      ExportDefaultDeclaration(path, state) {
-        
-      },
       VariableDeclarator(path, state) {
         transformVariableDeclarator(state, path);
       },
@@ -788,10 +752,16 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               t.variableDeclarator(decl.id, replacement),
             ]);
             if (path.parentPath.isExportDefaultDeclaration()) {
-              path.parentPath.insertBefore(newDecl);
+              const parent = path.parentPath
+                .parentPath as babel.NodePath<t.Program>;
+              const first = parent.get('body')[0];
+              first.insertBefore(newDecl);
               path.replaceWith(decl.id);
             } else {
-              path.replaceWith(newDecl);
+              const parent = path.parentPath as babel.NodePath<t.Program>;
+              const first = parent.get('body')[0];
+              first.insertBefore(newDecl);
+              path.remove();
             }
           }
         }

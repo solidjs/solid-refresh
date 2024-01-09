@@ -88,8 +88,6 @@ exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transfor
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-// @refresh granular
-const example = 'Foo';
 var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>{example}</h1>;
 }, {
@@ -99,6 +97,8 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     example
   }
 });
+// @refresh granular
+const example = 'Foo';
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -111,8 +111,6 @@ exports[`vite > ExportDefaultDeclaration w/ FunctionExpression > should transfor
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
 var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
@@ -122,6 +120,8 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Example
   }
 });
+// @refresh granular
+const Example = createContext();
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -332,9 +332,8 @@ exports[`vite > FunctionDeclaration > should skip FunctionDeclaration with valid
 exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
 "import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
 const _REGISTRY = _$$registry();
-// @refresh granular
 var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>Foo</h1>;
 }, {
@@ -352,8 +351,6 @@ exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with 
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-// @refresh granular
-const example = 'Foo';
 var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <h1>{example}</h1>;
 }, {
@@ -363,6 +360,8 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     example
   }
 });
+// @refresh granular
+const example = 'Foo';
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -374,8 +373,6 @@ exports[`vite > FunctionDeclaration > should transform FunctionDeclaration with 
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
 var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return <Example.Provider>Foo</Example.Provider>;
 }, {
@@ -385,6 +382,8 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Example
   }
 });
+// @refresh granular
+const Example = createContext();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
