@@ -47,7 +47,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "vitest",
-    "test:CI": "vitest --no-threads",
+    "test:CI": "vitest",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
