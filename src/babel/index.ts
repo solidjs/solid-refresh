@@ -24,6 +24,7 @@ interface Options {
   bundler?: RuntimeType;
   fixRender?: boolean;
   imports?: ImportIdentity[];
+  moduleName?: string;
 }
 
 type ImportHook = Map<string, t.Identifier>;
@@ -79,7 +80,7 @@ function getSolidRefreshIdentifier(
   if (current) {
     return current;
   }
-  const newID = addNamed(path, name, SOLID_REFRESH_MODULE);
+  const newID = addNamed(path, name, state.opts.moduleName || SOLID_REFRESH_MODULE);
   state.hooks.set(target, newID);
   return newID;
 }
