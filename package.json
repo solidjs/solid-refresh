@@ -29,20 +29,14 @@
   },
   "typesVersions": {
     "*": {
-      "babel": [
-        "./dist/src/babel/index.d.ts"
-      ]
+      "babel": ["./dist/src/babel/index.d.ts"]
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public"
   },
-  "contributors": [
-    "Alexis Munsayac"
-  ],
+  "contributors": ["Alexis Munsayac"],
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
@@ -52,11 +46,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
-    "@biomejs/biome": "^1.4.1",
+    "@biomejs/biome": "^1.5.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/babel__core": "^7.20.5",
     "@types/babel__generator": "^7.6.8",
+    "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__traverse": "^7.20.4",
     "@types/node": "^20.10.5",
     "rollup": "^4.9.1",

@@ -1,5 +1,5 @@
 import path from 'path';
-import * as babel from '@babel/core';
+import type * as babel from '@babel/core';
 import * as t from '@babel/types';
 import _generator from '@babel/generator';
 import { addNamed } from '@babel/helper-module-imports';
