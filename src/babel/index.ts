@@ -712,59 +712,62 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
       this.imports = [...IMPORT_IDENTITIES, ...(this.opts.imports || [])];
     },
     visitor: {
-      Program(path, state) {
-        setupProgram(state, path);
-      },
-      ExportNamedDeclaration(path, state) {
-        transformExportNamedDeclaration(state, path);
-      },
-      VariableDeclarator(path, state) {
-        transformVariableDeclarator(state, path);
-      },
-      FunctionDeclaration(path, state) {
-        if (state.processed) {
-          return;
-        }
-        if (
-          path.parentPath.isProgram() ||
-          path.parentPath.isExportDefaultDeclaration()
-        ) {
-          const decl = path.node;
-          // Check if declaration is FunctionDeclaration
-          if (
-            // Check if the declaration has an identifier, and then check
-            decl.id &&
-            // if the name is component-ish
-            isComponentishName(decl.id.name) &&
-            !(decl.generator || decl.async) &&
-            // Might be component-like, but the only valid components
-            // have zero or one parameter
-            decl.params.length < 2
-          ) {
-            const replacement = wrapComponent(
-              state,
-              path,
-              decl.id,
-              t.functionExpression(decl.id, decl.params, decl.body),
-              decl,
-            );
-            const newDecl = t.variableDeclaration('var', [
-              t.variableDeclarator(decl.id, replacement),
-            ]);
-            if (path.parentPath.isExportDefaultDeclaration()) {
-              const parent = path.parentPath
-                .parentPath as babel.NodePath<t.Program>;
-              const first = parent.get('body')[0];
-              first.insertBefore(newDecl);
-              path.replaceWith(decl.id);
-            } else {
-              const parent = path.parentPath as babel.NodePath<t.Program>;
-              const first = parent.get('body')[0];
-              first.insertBefore(newDecl);
-              path.remove();
+      Program(programPath, state) {
+        setupProgram(state, programPath);
+
+        programPath.traverse({
+          ExportNamedDeclaration(path) {
+            transformExportNamedDeclaration(state, path);
+          },
+          VariableDeclarator(path) {
+            transformVariableDeclarator(state, path);
+          },
+          FunctionDeclaration(path) {
+            if (state.processed) {
+              return;
             }
-          }
-        }
+            if (
+              path.parentPath.isProgram() ||
+              path.parentPath.isExportDefaultDeclaration()
+            ) {
+              const decl = path.node;
+              // Check if declaration is FunctionDeclaration
+              if (
+                // Check if the declaration has an identifier, and then check
+                decl.id &&
+                // if the name is component-ish
+                isComponentishName(decl.id.name) &&
+                !(decl.generator || decl.async) &&
+                // Might be component-like, but the only valid components
+                // have zero or one parameter
+                decl.params.length < 2
+              ) {
+                const replacement = wrapComponent(
+                  state,
+                  path,
+                  decl.id,
+                  t.functionExpression(decl.id, decl.params, decl.body),
+                  decl,
+                );
+                const newDecl = t.variableDeclaration('var', [
+                  t.variableDeclarator(decl.id, replacement),
+                ]);
+                if (path.parentPath.isExportDefaultDeclaration()) {
+                  const parent = path.parentPath
+                    .parentPath as babel.NodePath<t.Program>;
+                  const first = parent.get('body')[0];
+                  first.insertBefore(newDecl);
+                  path.replaceWith(decl.id);
+                } else {
+                  const parent = path.parentPath as babel.NodePath<t.Program>;
+                  const first = parent.get('body')[0];
+                  first.insertBefore(newDecl);
+                  path.remove();
+                }
+              }
+            }
+          },
+        });
       },
     },
   };
