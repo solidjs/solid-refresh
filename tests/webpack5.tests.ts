@@ -9,7 +9,7 @@ async function transform(
   hydratable: boolean,
 ) {
   const result = await babel.transformAsync(code, {
-    plugins: [[plugin, { bundler: 'standard' }]],
+    plugins: [[plugin, { bundler: 'webpack5' }]],
     presets: [
       [solid, { generate: mode === 'server' ? 'ssr' : 'dom', hydratable }],
     ],
@@ -25,7 +25,7 @@ async function transform(
   throw new Error('Missing code');
 }
 
-describe('standard (client, non-hydratable)', () => {
+describe('webpack5 (client, non-hydratable)', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(
@@ -764,7 +764,7 @@ describe('standard (client, non-hydratable)', () => {
   });
 });
 
-describe('standard (client, hydratable)', () => {
+describe('webpack5 (client, hydratable)', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(
@@ -1503,7 +1503,7 @@ describe('standard (client, hydratable)', () => {
   });
 });
 
-describe('standard (server, non-hydratable)', () => {
+describe('webpack5 (server, non-hydratable)', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(
@@ -2242,7 +2242,7 @@ describe('standard (server, non-hydratable)', () => {
   });
 });
 
-describe('standard (server, hydratable)', () => {
+describe('webpack5 (server, hydratable)', () => {
   describe('FunctionDeclaration', () => {
     it('should transform FunctionDeclaration with valid Component name and params', async () => {
       expect(
