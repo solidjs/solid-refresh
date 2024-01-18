@@ -1,0 +1,965 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`esm (server, hydratable) > Context API > should not support VariableDeclaration that is not top-level 1`] = `
+"import { createContext } from 'solid-js';
+if (someCond) {
+  const Example = createContext();
+}"
+`;
+
+exports[`esm (server, hydratable) > Context API > should support ExportNamedDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+export const Example = _$$context(_REGISTRY, "Example", createContext());
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > Context API > should support top-level VariableDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+const Example = _$$context(_REGISTRY, "Example", createContext());
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh reload
+export default function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh skip
+export default function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export default function foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export default function Foo(a, b) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:21",
+  signature: "83fbb41"
+});
+// @refresh granular
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:4:21",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+// @refresh granular
+const example = 'Foo';
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:21",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+// @refresh granular
+const Example = createContext();
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<div", ">foo</div>"],
+  _tmpl$2 = ["<div", ">bar</div>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$ssr(_tmpl$, _$ssrHydrationKey()), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:21",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$ssr(_tmpl$2, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:6",
+  signature: "f879654a"
+});
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:21"
+});
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:21"
+});
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh reload
+export function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh skip
+export function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:13"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export function Foo(a, b) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:13",
+  signature: "83fbb41"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+const example = 'Foo';
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:4:13",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:13",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
+// @refresh granular
+export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:13",
+  signature: "f879654a"
+});
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$ssr(_tmpl$2, _$ssrHydrationKey()), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:13",
+  signature: "82c7011e"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:13"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:13"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh reload
+function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh skip
+function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+function foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+function Foo(a, b) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:6",
+  signature: "83fbb41"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:4:6",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+// @refresh granular
+const example = 'Foo';
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:6",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+// @refresh granular
+const Example = createContext();
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<div", ">foo</div>"],
+  _tmpl$2 = ["<div", ">bar</div>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$ssr(_tmpl$, _$ssrHydrationKey()), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:6",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$ssr(_tmpl$2, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:6",
+  signature: "f879654a"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:6"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:6"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh reload
+const Foo = () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh skip
+const Foo = () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const foo = () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = (a, b) => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:20",
+  signature: "dd474849"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:4:20",
+  signature: "42ac2326",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:20",
+  signature: "23378462",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
+// @refresh granular
+const Bar = _$$component(_REGISTRY, "Bar", () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:20",
+  signature: "6bd8b1b2"
+});
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return [_$ssr(_tmpl$2, _$ssrHydrationKey()), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:20",
+  signature: "254beb54"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:20"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = _$$component(_REGISTRY, "Foo", props => {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:20"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh reload
+const Foo = function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh skip
+const Foo = function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const foo = function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = function (a, b) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+};"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:20",
+  signature: "a8bc6ac4"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+// @refresh granular
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:4:20",
+  signature: "2264ba41",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:20",
+  signature: "b3df1897",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
+// @refresh granular
+const Bar = _$$component(_REGISTRY, "Bar", function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:3:20",
+  signature: "42920a21"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return [_$ssr(_tmpl$2, _$ssrHydrationKey()), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:20",
+  signature: "698c9728"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:20"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+"import { ssr as _$ssr } from "solid-js/web";
+import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = ["<h1", ">Foo</h1>"];
+const Foo = _$$component(_REGISTRY, "Foo", function (props) {
+  return _$ssr(_tmpl$, _$ssrHydrationKey());
+}, {
+  location: "example.jsx:2:20"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (server, hydratable) > fix render > @refresh reload > should work 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+// @refresh reload
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => _$createComponent(App, {}), root);
+  if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}
+if (import.meta.hot) {
+  _$$decline("esm", import.meta.hot);
+}"
+`;
+
+exports[`esm (server, hydratable) > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import * as solidWeb from 'solid-js/web';
+const _cleanup = solidWeb.render(() => _$createComponent(App, {}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm (server, hydratable) > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render } from 'solid-js/web';
+const _cleanup = render(() => _$createComponent(App, {}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm (server, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render as Render } from 'solid-js/web';
+const _cleanup = Render(() => _$createComponent(App, {}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm (server, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { 'render' as Render } from 'solid-js/web';
+const _cleanup = Render(() => _$createComponent(App, {}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+`;
+
+exports[`esm (server, hydratable) > fix render > top-level statements > should work with IfStatement 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => _$createComponent(App, {}), root);
+  if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}"
+`;
