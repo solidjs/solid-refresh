@@ -229,7 +229,9 @@ function getBindings(path: babel.NodePath): t.Identifier[] {
     ReferencedIdentifier(p) {
       // Check identifiers that aren't in a TS expression
       if (!isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
-        identifiers.add(p.node.name);
+        if (p.isIdentifier() || p.parentPath.isJSXMemberExpression()) {
+          identifiers.add(p.node.name);
+        }
       }
     },
   });
