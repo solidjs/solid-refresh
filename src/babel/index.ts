@@ -541,7 +541,7 @@ function wrapComponent(
         properties.push(
           t.objectProperty(
             t.identifier('dependencies'),
-            t.objectExpression(dependencyKeys),
+            t.arrowFunctionExpression([], t.objectExpression(dependencyKeys)),
           ),
         );
       }

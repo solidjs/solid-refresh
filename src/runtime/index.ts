@@ -10,7 +10,7 @@ interface ComponentOptions {
   // generated from the component's JS string
   signature?: string;
   // An array of foreign bindings (values that aren't locally declared in the component)
-  dependencies?: Record<string, any>;
+  dependencies?: () => Record<string, any>;
 }
 
 // The registration data for the components
@@ -88,12 +88,14 @@ function patchComponent<P>(
   // Check if incoming module has signature
   if (newData.signature) {
     // Compare signatures
+    const oldDeps = oldData.dependencies?.();
+    const newDeps = newData.dependencies?.();
     if (
       newData.signature !== oldData.signature ||
-      isListUpdated(newData.dependencies, oldData.dependencies)
+      isListUpdated(newDeps, oldDeps)
     ) {
       // Replace signatures and dependencies
-      oldData.dependencies = newData.dependencies;
+      oldData.dependencies = newDeps ? () => newDeps : undefined;
       oldData.signature = newData.signature;
       // Remount
       oldData.update(() => newData.component);
