@@ -587,8 +587,7 @@ function setupProgram(state: State, path: babel.NodePath<t.Program>): void {
   let shouldSkip = false;
   const comments = state.file.ast.comments;
   if (comments) {
-    for (let i = 0; i < comments.length; i++) {
-      const comment = comments[i].value;
+    for (const { value: comment } of comments) {
       if (/^\s*@refresh granular\s*$/.test(comment)) {
         state.granular = true;
         break;
