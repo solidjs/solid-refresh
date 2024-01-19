@@ -11,8 +11,8 @@ exports[`vite (server, non-hydratable) > Context API > should support ExportName
 "import { $$context as _$$context } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
+const _REGISTRY = _$$registry();
 export const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -24,8 +24,8 @@ exports[`vite (server, non-hydratable) > Context API > should support top-level 
 "import { $$context as _$$context } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
+const _REGISTRY = _$$registry();
 const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -57,18 +57,42 @@ export default function Foo() {
 `;
 
 exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export default function foo() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
 
 exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export default function Foo(a, b) {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
 
@@ -77,14 +101,14 @@ exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExp
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:2:21",
   signature: "e90d2c3d"
 });
+const _REGISTRY = _$$registry();
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -97,14 +121,14 @@ exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExp
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:2:21",
   signature: "83fbb41"
 });
+const _REGISTRY = _$$registry();
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -117,9 +141,8 @@ exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExp
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:3:21",
@@ -128,6 +151,7 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     example
   })
 });
+const _REGISTRY = _$$registry();
 const example = 'Foo';
 export default Foo;
 if (import.meta.hot) {
@@ -141,8 +165,7 @@ exports[`vite (server, non-hydratable) > ExportDefaultDeclaration w/ FunctionExp
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$createComponent(Example.Provider, {
     children: "Foo"
   });
@@ -153,6 +176,7 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Example
   })
 });
+const _REGISTRY = _$$registry();
 const Example = createContext();
 export default Foo;
 if (import.meta.hot) {
@@ -167,21 +191,21 @@ import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = "<div>foo</div>",
-  _tmpl$2 = "<div>bar</div>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$ssr(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:5:21",
-  signature: "82c7011e"
-});
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$ssr(_tmpl$2);
+var _tmpl$ = "<div>bar</div>",
+  _tmpl$2 = "<div>foo</div>";
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:2:6",
   signature: "f879654a"
 });
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$ssr(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:21",
+  signature: "82c7011e"
+});
+const _REGISTRY = _$$registry();
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -213,17 +237,21 @@ export function Foo() {
 `;
 
 exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "83fbb41"
+  signature: "42951e"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -232,25 +260,41 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export function Foo(a, b) {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
 
 exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "e90d2c3d"
+  signature: "e386cacd"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -259,17 +303,21 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "83fbb41"
+  signature: "42951e"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -278,18 +326,25 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { escape as _$escape } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = "<h1>Foo</h1>";
+var _tmpl$ = ["<h1>", "</h1>"];
 const example = 'Foo';
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$escape(_props.v0)), {
+  signature: "ae0f2a31"
+});
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: example
+  });
 }, {
   location: "example.jsx:3:13",
-  signature: "c479f38e",
+  signature: "f3f3d2f7",
   dependencies: () => ({
     example
   })
@@ -305,15 +360,22 @@ exports[`vite (server, non-hydratable) > ExportNamedDeclaration w/ FunctionExpre
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 const Example = createContext();
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  signature: "23a9c5eb"
+});
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
   location: "example.jsx:3:13",
-  signature: "f8fa9630",
+  signature: "f37e2c4b",
   dependencies: () => ({
     Example
   })
@@ -330,20 +392,41 @@ import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<div>bar</div>",
   _tmpl$2 = "<div>foo</div>";
+const _REGISTRY = _$$registry();
+const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "61dd3182"
+});
 export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "f879654a"
+  signature: "d2f9acc2"
+});
+const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2), {
+  signature: "241c14a4"
+});
+const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "12549a65"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$ssr(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: Bar
+  });
 }, {
   location: "example.jsx:5:13",
-  signature: "82c7011e"
+  signature: "ace16a8f",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -375,18 +458,42 @@ function Foo() {
 `;
 
 exports[`vite (server, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 function foo() {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
 
 exports[`vite (server, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 function Foo(a, b) {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
 
@@ -395,14 +502,14 @@ exports[`vite (server, non-hydratable) > FunctionDeclaration > should transform 
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:2:6",
   signature: "e90d2c3d"
 });
+const _REGISTRY = _$$registry();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -414,14 +521,14 @@ exports[`vite (server, non-hydratable) > FunctionDeclaration > should transform 
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:2:6",
   signature: "83fbb41"
 });
+const _REGISTRY = _$$registry();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -433,9 +540,8 @@ exports[`vite (server, non-hydratable) > FunctionDeclaration > should transform 
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$ssr(_tmpl$);
 }, {
   location: "example.jsx:3:6",
@@ -445,6 +551,7 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   })
 });
 const example = 'Foo';
+const _REGISTRY = _$$registry();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -456,8 +563,7 @@ exports[`vite (server, non-hydratable) > FunctionDeclaration > should transform 
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$createComponent(Example.Provider, {
     children: "Foo"
   });
@@ -469,6 +575,7 @@ var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   })
 });
 const Example = createContext();
+const _REGISTRY = _$$registry();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -481,21 +588,21 @@ import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<div>foo</div>",
   _tmpl$2 = "<div>bar</div>";
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return [_$ssr(_tmpl$), _$createComponent(Bar, {})];
 }, {
   location: "example.jsx:5:6",
   signature: "82c7011e"
 });
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   return _$ssr(_tmpl$2);
 }, {
   location: "example.jsx:2:6",
   signature: "f879654a"
 });
+const _REGISTRY = _$$registry();
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
   import.meta.hot.accept();
@@ -526,33 +633,61 @@ const Foo = () => {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
-var _tmpl$ = "<h1>Foo</h1>";
-const foo = () => {
-  return _$ssr(_tmpl$);
-};"
-`;
-
-exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
-var _tmpl$ = "<h1>Foo</h1>";
-const Foo = (a, b) => {
-  return _$ssr(_tmpl$);
-};"
-`;
-
-exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
+const foo = () => {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
+`;
+
+exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
+const Foo = (a, b) => {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
+`;
+
+exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", props => {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "1169895d"
+  signature: "6e433ed7"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -561,17 +696,21 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "dd474849"
+  signature: "92befce2"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -580,18 +719,25 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 3`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { escape as _$escape } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = "<h1>Foo</h1>";
+var _tmpl$ = ["<h1>", "</h1>"];
 const example = 'Foo';
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$escape(_props.v0)), {
+  signature: "ae0f2a31"
+});
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: example
+  });
 }, {
   location: "example.jsx:3:20",
-  signature: "42ac2326",
+  signature: "9eeb4ed6",
   dependencies: () => ({
     example
   })
@@ -607,15 +753,22 @@ exports[`vite (server, non-hydratable) > VariableDeclarator > ArrowFunctionExpre
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 const Example = createContext();
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "23378462",
+  signature: "aece0111",
   dependencies: () => ({
     Example
   })
@@ -632,20 +785,41 @@ import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<div>bar</div>",
   _tmpl$2 = "<div>foo</div>";
+const _REGISTRY = _$$registry();
+const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "61dd3182"
+});
 const Bar = _$$component(_REGISTRY, "Bar", () => {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "6bd8b1b2"
+  signature: "175c85bf"
+});
+const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2), {
+  signature: "241c14a4"
+});
+const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "533f507f"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return [_$ssr(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: Bar
+  });
 }, {
   location: "example.jsx:5:20",
-  signature: "254beb54"
+  signature: "e32c8f87",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -677,33 +851,61 @@ const Foo = function () {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
-var _tmpl$ = "<h1>Foo</h1>";
-const foo = function () {
-  return _$ssr(_tmpl$);
-};"
-`;
-
-exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
-var _tmpl$ = "<h1>Foo</h1>";
-const Foo = function (a, b) {
-  return _$ssr(_tmpl$);
-};"
-`;
-
-exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
+const foo = function () {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
+`;
+
+exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
+const Foo = function (a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
+`;
+
+exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function (props) {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "dd6ac415"
+  signature: "dc5281f3"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -712,17 +914,21 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<h1>Foo</h1>";
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "a8bc6ac4"
+  signature: "2fb01ebf"
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -731,18 +937,25 @@ if (import.meta.hot) {
 `;
 
 exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 3`] = `
-"import { ssr as _$ssr } from "solid-js/web";
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { ssr as _$ssr } from "solid-js/web";
+import { escape as _$escape } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = "<h1>Foo</h1>";
+var _tmpl$ = ["<h1>", "</h1>"];
 const example = 'Foo';
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$escape(_props.v0)), {
+  signature: "ae0f2a31"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: example
+  });
 }, {
   location: "example.jsx:3:20",
-  signature: "2264ba41",
+  signature: "5ff0d2a1",
   dependencies: () => ({
     example
   })
@@ -758,15 +971,22 @@ exports[`vite (server, non-hydratable) > VariableDeclarator > FunctionExpression
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 const Example = createContext();
+const _REGISTRY = _$$registry();
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "b3df1897",
+  signature: "7d21aa6e",
   dependencies: () => ({
     Example
   })
@@ -783,20 +1003,41 @@ import { ssr as _$ssr } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = "<div>bar</div>",
   _tmpl$2 = "<div>foo</div>";
+const _REGISTRY = _$$registry();
+const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$), {
+  signature: "61dd3182"
+});
 const Bar = _$$component(_REGISTRY, "Bar", function () {
-  return _$ssr(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "42920a21"
+  signature: "5b24ed95"
+});
+const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2), {
+  signature: "241c14a4"
+});
+const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "533f507f"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return [_$ssr(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+    v0: Bar
+  });
 }, {
   location: "example.jsx:5:20",
-  signature: "698c9728"
+  signature: "e7751d2b",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
@@ -821,37 +1062,102 @@ if (import.meta.hot) {
 
 exports[`vite (server, non-hydratable) > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import * as solidWeb from 'solid-js/web';
-const _cleanup = solidWeb.render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  signature: "1fdef89b"
+});
+const _cleanup = solidWeb.render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
 `;
 
 exports[`vite (server, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
-const _cleanup = render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  signature: "1fdef89b"
+});
+const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
 `;
 
 exports[`vite (server, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render as Render } from 'solid-js/web';
-const _cleanup = Render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  signature: "1fdef89b"
+});
+const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
 `;
 
 exports[`vite (server, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { 'render' as Render } from 'solid-js/web';
-const _cleanup = Render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  signature: "1fdef89b"
+});
+const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
+}"
 `;
 
 exports[`vite (server, non-hydratable) > fix render > top-level statements > should work with IfStatement 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  signature: "1fdef89b"
+});
 if (root) {
-  const _cleanup = render(() => _$createComponent(App, {}), root);
+  const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+    v0: App
+  }), root);
   if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}
+if (import.meta.hot) {
+  _$$refresh("vite", import.meta.hot, _REGISTRY);
+  import.meta.hot.accept();
 }"
 `;
