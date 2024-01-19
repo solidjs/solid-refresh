@@ -1,0 +1,965 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`standard (client, hydratable) > Context API > should not support VariableDeclaration that is not top-level 1`] = `
+"import { createContext } from 'solid-js';
+if (someCond) {
+  const Example = createContext();
+}"
+`;
+
+exports[`standard (client, hydratable) > Context API > should support ExportNamedDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+export const Example = _$$context(_REGISTRY, "Example", createContext());
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > Context API > should support top-level VariableDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+import { createContext } from 'solid-js';
+const Example = _$$context(_REGISTRY, "Example", createContext());
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh reload
+export default function Foo() {
+  return _$getNextElement(_tmpl$);
+}
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh skip
+export default function Foo() {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export default function foo() {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export default function Foo(a, b) {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:21",
+  signature: "83fbb41"
+});
+// @refresh granular
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:4:21",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+// @refresh granular
+const example = 'Foo';
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:21",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+// @refresh granular
+const Example = createContext();
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 4`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:21",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$2);
+}, {
+  location: "example.jsx:3:6",
+  signature: "f879654a"
+});
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:21"
+});
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:21"
+});
+export default Foo;
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh reload
+export function Foo() {
+  return _$getNextElement(_tmpl$);
+}
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh skip
+export function Foo() {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:13"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export function Foo(a, b) {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:13",
+  signature: "83fbb41"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+const example = 'Foo';
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:4:13",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:13",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 4`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+// @refresh granular
+export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:13",
+  signature: "f879654a"
+});
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:13",
+  signature: "82c7011e"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:13"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:13"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh reload
+function Foo() {
+  return _$getNextElement(_tmpl$);
+}
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh skip
+function Foo() {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+function foo() {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+function Foo(a, b) {
+  return _$getNextElement(_tmpl$);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:6",
+  signature: "83fbb41"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:4:6",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+// @refresh granular
+const example = 'Foo';
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:6",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+// @refresh granular
+const Example = createContext();
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 4`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:6",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$2);
+}, {
+  location: "example.jsx:3:6",
+  signature: "f879654a"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:6"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:6"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh reload
+const Foo = () => {
+  return _$getNextElement(_tmpl$);
+};
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh skip
+const Foo = () => {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const foo = () => {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = (a, b) => {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "dd474849"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:4:20",
+  signature: "42ac2326",
+  dependencies: () => ({
+    example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:20",
+  signature: "23378462",
+  dependencies: () => ({
+    Example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 4`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+// @refresh granular
+const Bar = _$$component(_REGISTRY, "Bar", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "6bd8b1b2"
+});
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:20",
+  signature: "254beb54"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = _$$component(_REGISTRY, "Foo", props => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh reload
+const Foo = function () {
+  return _$getNextElement(_tmpl$);
+};
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh skip
+const Foo = function () {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const foo = function () {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = function (a, b) {
+  return _$getNextElement(_tmpl$);
+};"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "a8bc6ac4"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+// @refresh granular
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:4:20",
+  signature: "2264ba41",
+  dependencies: () => ({
+    example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+// @refresh granular
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:4:20",
+  signature: "b3df1897",
+  dependencies: () => ({
+    Example
+  })
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 4`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+// @refresh granular
+const Bar = _$$component(_REGISTRY, "Bar", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "42920a21"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:6:20",
+  signature: "698c9728"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const Foo = _$$component(_REGISTRY, "Foo", function (props) {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20"
+});
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, hydratable) > fix render > @refresh reload > should work 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$decline as _$$decline } from "solid-refresh";
+// @refresh reload
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => _$createComponent(App, {}), root);
+  if (module.hot) module.hot.dispose(_cleanup);
+}
+if (module.hot) {
+  _$$decline("standard", module.hot);
+}"
+`;
+
+exports[`standard (client, hydratable) > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import * as solidWeb from 'solid-js/web';
+const _cleanup = solidWeb.render(() => _$createComponent(App, {}), root);
+if (module.hot) module.hot.dispose(_cleanup);"
+`;
+
+exports[`standard (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render } from 'solid-js/web';
+const _cleanup = render(() => _$createComponent(App, {}), root);
+if (module.hot) module.hot.dispose(_cleanup);"
+`;
+
+exports[`standard (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render as Render } from 'solid-js/web';
+const _cleanup = Render(() => _$createComponent(App, {}), root);
+if (module.hot) module.hot.dispose(_cleanup);"
+`;
+
+exports[`standard (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { 'render' as Render } from 'solid-js/web';
+const _cleanup = Render(() => _$createComponent(App, {}), root);
+if (module.hot) module.hot.dispose(_cleanup);"
+`;
+
+exports[`standard (client, hydratable) > fix render > top-level statements > should work with IfStatement 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { render } from 'solid-js/web';
+if (root) {
+  const _cleanup = render(() => _$createComponent(App, {}), root);
+  if (module.hot) module.hot.dispose(_cleanup);
+}"
+`;
