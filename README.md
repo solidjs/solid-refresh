@@ -155,17 +155,10 @@ Or force reload:
 
 ```js
 /* @refresh reload */
-```
-
-### `@refresh granular`
-
-By default, components from the old module are replaced with the new ones from the replacement module, which might cause components that hasn't really changed to unmount abruptly.
-
-Adding `@refresh granular` comment pragma in the file allows components to opt-in to granular replacement: If the component has changed *code-wise*, it will be replaced, otherwise, it will be retained, which allows unchanged ancestor components to preserve lifecycles.
 
 ## Limitations
 
-* Preserving state: The default mode does not allow preserving state through module replacement. `@refresh granular` allows this partially.
+* Preserving state is applied partially.
 * No HOC support.
 
 ## Custom `render`/`createContext`

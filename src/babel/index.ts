@@ -37,7 +37,6 @@ interface State extends babel.PluginPass {
   hooks: ImportHook;
   opts: Options;
   processed: boolean;
-  granular: boolean;
   registrations: ImportIdentifiers;
   fixRender?: boolean;
   imports: ImportIdentity[];
@@ -525,40 +524,32 @@ function wrapComponent(
         ),
       );
     }
-    if (state.granular) {
+    properties.push(
+      t.objectProperty(
+        t.identifier('signature'),
+        t.stringLiteral(createSignatureValue(component)),
+      ),
+    );
+    const dependencies = getBindings(path);
+    if (dependencies.length) {
+      const dependencyKeys: t.ObjectProperty[] = [];
+      let id: t.Identifier;
+      for (let i = 0, len = dependencies.length; i < len; i++) {
+        id = dependencies[i];
+        dependencyKeys.push(t.objectProperty(id, id, false, true));
+      }
       properties.push(
         t.objectProperty(
-          t.identifier('signature'),
-          t.stringLiteral(createSignatureValue(component)),
+          t.identifier('dependencies'),
+          t.arrowFunctionExpression([], t.objectExpression(dependencyKeys)),
         ),
       );
-      const dependencies = getBindings(path);
-      if (dependencies.length) {
-        const dependencyKeys: t.ObjectProperty[] = [];
-        let id: t.Identifier;
-        for (let i = 0, len = dependencies.length; i < len; i++) {
-          id = dependencies[i];
-          dependencyKeys.push(t.objectProperty(id, id, false, true));
-        }
-        properties.push(
-          t.objectProperty(
-            t.identifier('dependencies'),
-            t.arrowFunctionExpression([], t.objectExpression(dependencyKeys)),
-          ),
-        );
-      }
-      return t.callExpression(componentCall, [
-        registry,
-        hotName,
-        component,
-        t.objectExpression(properties),
-      ]);
     }
     return t.callExpression(componentCall, [
       registry,
       hotName,
       component,
-      ...(properties.length ? [t.objectExpression(properties)] : []),
+      t.objectExpression(properties),
     ]);
   }
   return component;
@@ -590,10 +581,6 @@ function setupProgram(state: State, path: babel.NodePath<t.Program>): void {
   const comments = state.file.ast.comments;
   if (comments) {
     for (const { value: comment } of comments) {
-      if (/^\s*@refresh granular\s*$/.test(comment)) {
-        state.granular = true;
-        break;
-      }
       if (/^\s*@refresh skip\s*$/.test(comment)) {
         state.processed = true;
         shouldSkip = true;
@@ -705,7 +692,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     pre() {
       this.hooks = new Map();
       this.processed = false;
-      this.granular = false;
       this.registrations = {
         identifiers: new Map(),
         namespaces: new Map(),
