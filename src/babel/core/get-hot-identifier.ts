@@ -2,7 +2,7 @@ import type { StateContext } from './types';
 import * as t from '@babel/types';
 
 export function getHotIdentifier(state: StateContext): t.MemberExpression {
-  switch (state.opts.bundler) {
+  switch (state.bundler) {
     // vite/esm uses `import.meta.hot`
     case 'esm':
     case 'vite':

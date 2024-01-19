@@ -6,7 +6,7 @@ export function generateViteHMRRequirement(
   statements: t.Statement[],
   pathToHot: t.Expression,
 ) {
-  if (state.opts.bundler === 'vite') {
+  if (state.bundler === 'vite') {
     // Vite requires that the owner module has an `import.meta.hot.accept()` call
     statements.push(
       t.expressionStatement(

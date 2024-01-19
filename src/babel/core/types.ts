@@ -40,4 +40,6 @@ export interface StateContext {
   };
   processed: boolean;
   filename: string | undefined;
+  bundler: RuntimeType;
+  fixRender: boolean;
 }

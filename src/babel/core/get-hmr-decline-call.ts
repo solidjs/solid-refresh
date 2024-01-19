@@ -11,7 +11,7 @@ export function getHMRDeclineCall(state: StateContext, path: babel.NodePath) {
   const statements = [
     t.expressionStatement(
       t.callExpression(getImportIdentifier(state, path, IMPORT_DECLINE), [
-        t.stringLiteral(state.opts.bundler ?? 'standard'),
+        t.stringLiteral(state.bundler),
         pathToHot,
       ]),
     ),

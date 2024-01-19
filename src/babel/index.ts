@@ -195,7 +195,7 @@ function setupProgram(
   }
 
   captureIdentifiers(state, path);
-  if (!shouldSkip && (state.opts.fixRender ?? true)) {
+  if (!shouldSkip && state.fixRender) {
     fixRenderCalls(state, path);
   }
 }
@@ -382,6 +382,8 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           },
           processed: false,
           filename: context.filename,
+          bundler: context.opts.bundler || 'standard',
+          fixRender: context.opts.fixRender ?? true,
         };
         setupProgram(state, programPath, context.file.ast.comments);
         if (state.processed) {

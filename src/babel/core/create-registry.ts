@@ -32,7 +32,7 @@ export function createRegistry(
   const statements: t.Statement[] = [
     t.expressionStatement(
       t.callExpression(getImportIdentifier(state, path, IMPORT_REFRESH), [
-        t.stringLiteral(state.opts.bundler ?? 'standard'),
+        t.stringLiteral(state.bundler),
         pathToHot,
         identifier,
       ]),
