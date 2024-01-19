@@ -73,105 +73,6 @@ export default function Foo(a, b) {
 }"
 `;
 
-exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:21",
-  signature: "83fbb41"
-});
-// @refresh granular
-export default Foo;
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:21",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-// @refresh granular
-const example = 'Foo';
-export default Foo;
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:21",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-// @refresh granular
-const Example = createContext();
-export default Foo;
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:21",
-  signature: "82c7011e"
-});
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$2);
-}, {
-  location: "example.jsx:3:6",
-  signature: "f879654a"
-});
-export default Foo;
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
 exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
@@ -180,10 +81,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:21"
+  location: "example.jsx:2:21",
+  signature: "e90d2c3d"
 });
 export default Foo;
 if (import.meta.webpackHot) {
@@ -199,10 +101,87 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:21"
+  location: "example.jsx:2:21",
+  signature: "83fbb41"
+});
+export default Foo;
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:21",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+const example = 'Foo';
+export default Foo;
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:3:21",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+const Example = createContext();
+export default Foo;
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:21",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$2);
+}, {
+  location: "example.jsx:2:6",
+  signature: "f879654a"
 });
 export default Foo;
 if (import.meta.webpackHot) {
@@ -245,7 +224,8 @@ var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:13"
+  location: "example.jsx:2:13",
+  signature: "83fbb41"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -261,102 +241,6 @@ export function Foo(a, b) {
 }"
 `;
 
-exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:13",
-  signature: "83fbb41"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:13",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:13",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
-export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:13",
-  signature: "f879654a"
-});
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:13",
-  signature: "82c7011e"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
 exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
@@ -365,10 +249,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:13"
+  location: "example.jsx:2:13",
+  signature: "e90d2c3d"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -383,10 +268,84 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:13"
+  location: "example.jsx:2:13",
+  signature: "83fbb41"
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const example = 'Foo';
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:13",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Example = createContext();
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:3:13",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:13",
+  signature: "f879654a"
+});
+export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:13",
+  signature: "82c7011e"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -435,100 +394,6 @@ function Foo(a, b) {
 }"
 `;
 
-exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:6",
-  signature: "83fbb41"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:6",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-// @refresh granular
-const example = 'Foo';
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:6",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-// @refresh granular
-const Example = createContext();
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:6",
-  signature: "82c7011e"
-});
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$2);
-}, {
-  location: "example.jsx:3:6",
-  signature: "f879654a"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
 exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
@@ -537,10 +402,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:6"
+  location: "example.jsx:2:6",
+  signature: "e90d2c3d"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -555,10 +421,84 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:6"
+  location: "example.jsx:2:6",
+  signature: "83fbb41"
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:6",
+  signature: "c479f38e",
+  dependencies: () => ({
+    example
+  })
+});
+const example = 'Foo';
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:3:6",
+  signature: "f8fa9630",
+  dependencies: () => ({
+    Example
+  })
+});
+const Example = createContext();
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:6",
+  signature: "82c7011e"
+});
+var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return _$getNextElement(_tmpl$2);
+}, {
+  location: "example.jsx:2:6",
+  signature: "f879654a"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -607,102 +547,6 @@ const Foo = (a, b) => {
 };"
 `;
 
-exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:20",
-  signature: "dd474849"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:20",
-  signature: "42ac2326",
-  dependencies: () => ({
-    example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:20",
-  signature: "23378462",
-  dependencies: () => ({
-    Example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
-const Bar = _$$component(_REGISTRY, "Bar", () => {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:20",
-  signature: "6bd8b1b2"
-});
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:20",
-  signature: "254beb54"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
 exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
@@ -711,10 +555,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", () => {
+const Foo = _$$component(_REGISTRY, "Foo", props => {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:2:20",
+  signature: "1169895d"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -729,10 +574,84 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", props => {
+const Foo = _$$component(_REGISTRY, "Foo", () => {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:2:20",
+  signature: "dd474849"
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "42ac2326",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:3:20",
+  signature: "23378462",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+const Bar = _$$component(_REGISTRY, "Bar", () => {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20",
+  signature: "6bd8b1b2"
+});
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:20",
+  signature: "254beb54"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -781,102 +700,6 @@ const Foo = function (a, b) {
 };"
 `;
 
-exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:20",
-  signature: "a8bc6ac4"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:20",
-  signature: "2264ba41",
-  dependencies: () => ({
-    example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:20",
-  signature: "b3df1897",
-  dependencies: () => ({
-    Example
-  })
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
-exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
-const Bar = _$$component(_REGISTRY, "Bar", function () {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:20",
-  signature: "42920a21"
-});
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:20",
-  signature: "698c9728"
-});
-if (import.meta.webpackHot) {
-  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
-}"
-`;
-
 exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
@@ -885,10 +708,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", function () {
+const Foo = _$$component(_REGISTRY, "Foo", function (props) {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:2:20",
+  signature: "dd6ac415"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -903,10 +727,84 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", function (props) {
+const Foo = _$$component(_REGISTRY, "Foo", function () {
   return _$getNextElement(_tmpl$);
 }, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:2:20",
+  signature: "a8bc6ac4"
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const example = 'Foo';
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:3:20",
+  signature: "2264ba41",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Example = createContext();
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return _$createComponent(Example.Provider, {
+    children: "Foo"
+  });
+}, {
+  location: "example.jsx:3:20",
+  signature: "b3df1897",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.webpackHot) {
+  _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
+}"
+`;
+
+exports[`webpack5 (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+const Bar = _$$component(_REGISTRY, "Bar", function () {
+  return _$getNextElement(_tmpl$);
+}, {
+  location: "example.jsx:2:20",
+  signature: "42920a21"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+}, {
+  location: "example.jsx:5:20",
+  signature: "698c9728"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
