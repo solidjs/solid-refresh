@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
 import type * as babel from '@babel/core';
 import { getDescriptiveName } from './get-descriptive-name';
-import { isPathValid } from './unwrap';
+import { isPathValid, unwrapNode } from './unwrap';
 import { generateUniqueName } from './generate-unique-name';
 import { getRootStatementPath } from './get-root-statement-path';
 
@@ -27,8 +27,7 @@ interface JSXState {
   props: t.Identifier;
   attributes: t.JSXAttribute[];
 }
-
-function extractJSXExpressionFromAttribute(
+function extractJSXExpressionFromNormalAttribute(
   state: JSXState,
   attr: babel.NodePath<t.JSXAttribute>,
 ): void {
@@ -56,6 +55,72 @@ function extractJSXExpressionFromAttribute(
       );
       expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
     }
+  }
+}
+
+function extractJSXExpressionFromRef(
+  state: JSXState,
+  attr: babel.NodePath<t.JSXAttribute>,
+): void {
+  const value = attr.get('value');
+
+  if (isPathValid(value, t.isJSXExpressionContainer)) {
+    const expr = value.get('expression');
+    if (isPathValid(expr, t.isExpression)) {
+      const unwrappedIdentifier = unwrapNode(expr.node, t.isIdentifier);
+      let replacement: t.Expression;
+      if (unwrappedIdentifier) {
+        const arg = expr.scope.generateUidIdentifier('arg');
+        replacement = t.arrowFunctionExpression(
+          [arg],
+          t.blockStatement([
+            t.ifStatement(
+              t.binaryExpression(
+                '===',
+                t.unaryExpression('typeof', unwrappedIdentifier),
+                t.stringLiteral('function'),
+              ),
+              t.blockStatement([
+                t.expressionStatement(
+                  t.callExpression(unwrappedIdentifier, [arg]),
+                ),
+              ]),
+              t.blockStatement([
+                t.expressionStatement(
+                  t.assignmentExpression('=', unwrappedIdentifier, arg),
+                ),
+              ]),
+            ),
+          ]),
+        );
+      } else {
+        replacement = expr.node;
+      }
+      const key = 'v' + state.attributes.length;
+      state.attributes.push(
+        t.jsxAttribute(
+          t.jsxIdentifier(key),
+          t.jsxExpressionContainer(replacement),
+        ),
+      );
+      expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+    }
+  }
+}
+
+function extractJSXExpressionFromAttribute(
+  state: JSXState,
+  attr: babel.NodePath<t.JSXAttribute>,
+): void {
+  const key = attr.get('name');
+  if (isPathValid(key, t.isJSXIdentifier)) {
+    if (key.node.name === 'ref') {
+      extractJSXExpressionFromRef(state, attr);
+    } else {
+      extractJSXExpressionFromNormalAttribute(state, attr);
+    }
+  } else if (isPathValid(key, t.isJSXNamespacedName)) {
+    extractJSXExpressionFromNormalAttribute(state, attr);
   }
 }
 
