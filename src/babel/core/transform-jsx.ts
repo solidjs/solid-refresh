@@ -29,6 +29,24 @@ interface JSXState {
   attributes: t.JSXAttribute[];
   vars: t.VariableDeclarator[];
 }
+
+function pushAttribute(state: JSXState, replacement: t.Expression): string {
+  const key = 'v' + state.attributes.length;
+  state.attributes.push(
+    t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(replacement)),
+  );
+  return key;
+}
+
+function pushAttributeAndReplace(
+  state: JSXState,
+  target: babel.NodePath<t.Expression>,
+  replacement: t.Expression,
+) {
+  const key = pushAttribute(state, replacement);
+  target.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+}
+
 function extractJSXExpressionFromNormalAttribute(
   state: JSXState,
   attr: babel.NodePath<t.JSXAttribute>,
@@ -83,16 +101,29 @@ function extractJSXExpressionFromRef(
       } else {
         replacement = expr.node;
       }
-      const key = 'v' + state.attributes.length;
-      state.attributes.push(
-        t.jsxAttribute(
-          t.jsxIdentifier(key),
-          t.jsxExpressionContainer(replacement),
-        ),
-      );
-      expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+      pushAttributeAndReplace(state, expr, replacement);
     }
   }
+}
+
+function extractJSXExpressionFromUseDirective(
+  state: JSXState,
+  id: t.JSXIdentifier,
+  attr: babel.NodePath<t.JSXAttribute>,
+): void {
+  const value = attr.get('value');
+
+  if (isPathValid(value, t.isJSXExpressionContainer)) {
+    extractJSXExpressionsFromJSXExpressionContainer(state, value);
+  }
+
+  const key = pushAttribute(state, t.identifier(id.name));
+  state.vars.push(
+    t.variableDeclarator(
+      t.identifier(id.name),
+      t.memberExpression(state.props, t.identifier(key)),
+    ),
+  );
 }
 
 function extractJSXExpressionFromAttribute(
@@ -107,7 +138,11 @@ function extractJSXExpressionFromAttribute(
       extractJSXExpressionFromNormalAttribute(state, attr);
     }
   } else if (isPathValid(key, t.isJSXNamespacedName)) {
-    extractJSXExpressionFromNormalAttribute(state, attr);
+    if (key.node.namespace.name === 'use') {
+      extractJSXExpressionFromUseDirective(state, key.node.name, attr);
+    } else {
+      extractJSXExpressionFromNormalAttribute(state, attr);
+    }
   }
 }
 
@@ -131,14 +166,7 @@ function extractJSXExpressionsFromAttributes(
       ) {
         extractJSXExpressions(state, arg);
       } else {
-        const key = 'v' + state.attributes.length;
-        state.attributes.push(
-          t.jsxAttribute(
-            t.jsxIdentifier(key),
-            t.jsxExpressionContainer(arg.node),
-          ),
-        );
-        arg.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+        pushAttributeAndReplace(state, arg, arg.node);
       }
     }
   }
@@ -167,14 +195,9 @@ function extractJSXExpressionsFromJSXElement(
       /^[A-Z_]/.test(openingName.node.name)) ||
     isPathValid(openingName, t.isJSXMemberExpression)
   ) {
-    const key = 'v' + state.attributes.length;
-    state.attributes.push(
-      t.jsxAttribute(
-        t.jsxIdentifier(key),
-        t.jsxExpressionContainer(
-          convertJSXOpeningToExpression(openingName.node),
-        ),
-      ),
+    const key = pushAttribute(
+      state,
+      convertJSXOpeningToExpression(openingName.node),
     );
     const replacement = t.jsxMemberExpression(
       t.jsxIdentifier(state.props.name),
@@ -202,14 +225,7 @@ function extractJSXExpressionsFromJSXExpressionContainer(
     ) {
       extractJSXExpressions(state, expr);
     } else {
-      const key = 'v' + state.attributes.length;
-      state.attributes.push(
-        t.jsxAttribute(
-          t.jsxIdentifier(key),
-          t.jsxExpressionContainer(expr.node),
-        ),
-      );
-      expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+      pushAttributeAndReplace(state, expr, expr.node);
     }
   }
 }
@@ -222,11 +238,7 @@ function extractJSXExpressionsFromJSXSpreadChild(
   if (isPathValid(arg, t.isJSXElement) || isPathValid(arg, t.isJSXFragment)) {
     extractJSXExpressions(state, arg);
   } else {
-    const key = 'v' + state.attributes.length;
-    state.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(arg.node)),
-    );
-    arg.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+    pushAttributeAndReplace(state, arg, arg.node);
   }
 }
 
@@ -279,14 +291,22 @@ export function transformJSX(
 
   const rootPath = getRootStatementPath(path);
 
+  let template: t.Expression | t.BlockStatement = skippableJSX(
+    t.cloneNode(path.node),
+  );
+
+  if (state.vars.length) {
+    template = t.blockStatement([
+      t.variableDeclaration('const', state.vars),
+      t.returnStatement(template),
+    ]);
+  }
+
   rootPath.insertBefore(
     t.variableDeclaration('const', [
       t.variableDeclarator(
         id,
-        t.arrowFunctionExpression(
-          [state.props],
-          skippableJSX(t.cloneNode(path.node)),
-        ),
+        t.arrowFunctionExpression([state.props], template),
       ),
     ]),
   );
