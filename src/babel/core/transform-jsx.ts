@@ -27,6 +27,7 @@ function skippableJSX<T extends t.Node>(node: T): T {
 interface JSXState {
   props: t.Identifier;
   attributes: t.JSXAttribute[];
+  vars: t.VariableDeclarator[];
 }
 function extractJSXExpressionFromNormalAttribute(
   state: JSXState,
@@ -40,22 +41,7 @@ function extractJSXExpressionFromNormalAttribute(
     extractJSXExpressions(state, value);
   }
   if (isPathValid(value, t.isJSXExpressionContainer)) {
-    const expr = value.get('expression');
-    if (
-      isPathValid(expr, t.isJSXElement) ||
-      isPathValid(expr, t.isJSXFragment)
-    ) {
-      extractJSXExpressions(state, expr);
-    } else if (isPathValid(expr, t.isExpression)) {
-      const key = 'v' + state.attributes.length;
-      state.attributes.push(
-        t.jsxAttribute(
-          t.jsxIdentifier(key),
-          t.jsxExpressionContainer(expr.node),
-        ),
-      );
-      expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
-    }
+    extractJSXExpressionsFromJSXExpressionContainer(state, value);
   }
 }
 
@@ -209,14 +195,22 @@ function extractJSXExpressionsFromJSXExpressionContainer(
   child: babel.NodePath<t.JSXExpressionContainer>,
 ): void {
   const expr = child.get('expression');
-  if (isPathValid(expr, t.isJSXElement) || isPathValid(expr, t.isJSXFragment)) {
-    extractJSXExpressions(state, expr);
-  } else if (isPathValid(expr, t.isExpression)) {
-    const key = 'v' + state.attributes.length;
-    state.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier(key), t.jsxExpressionContainer(expr.node)),
-    );
-    expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+  if (isPathValid(expr, t.isExpression)) {
+    if (
+      isPathValid(child, t.isJSXElement) ||
+      isPathValid(child, t.isJSXFragment)
+    ) {
+      extractJSXExpressions(state, child);
+    } else {
+      const key = 'v' + state.attributes.length;
+      state.attributes.push(
+        t.jsxAttribute(
+          t.jsxIdentifier(key),
+          t.jsxExpressionContainer(expr.node),
+        ),
+      );
+      expr.replaceWith(t.memberExpression(state.props, t.identifier(key)));
+    }
   }
 }
 
@@ -225,8 +219,11 @@ function extractJSXExpressionsFromJSXSpreadChild(
   child: babel.NodePath<t.JSXSpreadChild>,
 ): void {
   const arg = child.get('expression');
-  if (isPathValid(arg, t.isJSXElement) || isPathValid(arg, t.isJSXFragment)) {
-    extractJSXExpressions(state, arg);
+  if (
+    isPathValid(child, t.isJSXElement) ||
+    isPathValid(child, t.isJSXFragment)
+  ) {
+    extractJSXExpressions(state, child);
   } else {
     const key = 'v' + state.attributes.length;
     state.attributes.push(
@@ -270,6 +267,7 @@ export function transformJSX(
   const state: JSXState = {
     props: path.scope.generateUidIdentifier('props'),
     attributes: [],
+    vars: [],
   };
 
   extractJSXExpressions(state, path);
