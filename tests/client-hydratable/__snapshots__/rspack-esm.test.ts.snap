@@ -84,11 +84,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 export default function Foo(a, b) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -97,18 +97,22 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:21",
-  signature: "e90d2c3d"
+  signature: "1f7be6ec"
 });
-const _REGISTRY = _$$registry();
 export default Foo;
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -117,18 +121,22 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:21",
-  signature: "83fbb41"
+  signature: "c963b907"
 });
-const _REGISTRY = _$$registry();
 export default Foo;
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -137,21 +145,32 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  signature: "ae0f2a31"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
 }, {
   location: "example.jsx:3:21",
-  signature: "c479f38e",
+  signature: "27e4cbbb",
   dependencies: () => ({
     example
   })
 });
-const _REGISTRY = _$$registry();
 const example = 'Foo';
 export default Foo;
 if (import.meta.webpackHot) {
@@ -164,18 +183,25 @@ exports[`rspack-esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionE
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
   location: "example.jsx:3:21",
-  signature: "f8fa9630",
+  signature: "b4605599",
   dependencies: () => ({
     Example
   })
 });
-const _REGISTRY = _$$registry();
 const Example = createContext();
 export default Foo;
 if (import.meta.webpackHot) {
@@ -190,21 +216,32 @@ import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:6",
-  signature: "f879654a"
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$getNextElement(_tmpl$), _$createComponent(_props.v0, {})], {
+  signature: "1eacc68"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
 }, {
   location: "example.jsx:5:21",
-  signature: "82c7011e"
+  signature: "2f861eed",
+  dependencies: () => ({
+    Bar
+  })
 });
-const _REGISTRY = _$$registry();
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  signature: "fad4daa8"
+});
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "e93ca257"
+});
 export default Foo;
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -244,14 +281,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "42951e"
+  signature: "c963b907"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -267,11 +304,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 export function Foo(a, b) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -287,14 +324,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "e386cacd"
+  signature: "1f7be6ec"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -310,14 +347,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "42951e"
+  signature: "c963b907"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -335,7 +372,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 const example = 'Foo';
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/(() => {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _$getNextElement(_tmpl$);
   _$insert(_el$, () => _props.v0);
   return _el$;
@@ -343,12 +380,12 @@ const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-
   signature: "ae0f2a31"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: example
   });
 }, {
   location: "example.jsx:3:13",
-  signature: "f3f3d2f7",
+  signature: "27e4cbbb",
   dependencies: () => ({
     example
   })
@@ -365,20 +402,20 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const Example = createContext();
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
   signature: "23a9c5eb"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     get v0() {
       return Example.Provider;
     }
   });
 }, {
   location: "example.jsx:3:13",
-  signature: "f37e2c4b",
+  signature: "b4605599",
   dependencies: () => ({
     Example
   })
@@ -398,35 +435,25 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "61dd3182"
 });
 export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
   location: "example.jsx:2:13",
-  signature: "d2f9acc2"
+  signature: "e93ca257"
 });
-const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
-  signature: "241c14a4"
-});
-const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
-  signature: "9a24e06b"
-});
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
-  signature: "12549a65"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$getNextElement(_tmpl$2), _$createComponent(_props2.v0, {})], {
+  signature: "1f1efec9"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: Bar
   });
 }, {
   location: "example.jsx:5:13",
-  signature: "ace16a8f",
+  signature: "2f861eed",
   dependencies: () => ({
     Bar
   })
@@ -489,11 +516,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 function Foo(a, b) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -502,18 +529,22 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:6",
-  signature: "e90d2c3d"
+  signature: "1f7be6ec"
 });
-const _REGISTRY = _$$registry();
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -521,18 +552,22 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:6",
-  signature: "83fbb41"
+  signature: "c963b907"
 });
-const _REGISTRY = _$$registry();
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -540,22 +575,33 @@ if (import.meta.webpackHot) {
 
 exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 3`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  signature: "ae0f2a31"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
 }, {
   location: "example.jsx:3:6",
-  signature: "c479f38e",
+  signature: "27e4cbbb",
   dependencies: () => ({
     example
   })
 });
-const example = 'Foo';
-const _REGISTRY = _$$registry();
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -566,19 +612,26 @@ exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transfor
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
+const Example = createContext();
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
   location: "example.jsx:3:6",
-  signature: "f8fa9630",
+  signature: "b4605599",
   dependencies: () => ({
     Example
   })
 });
-const Example = createContext();
-const _REGISTRY = _$$registry();
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -591,21 +644,32 @@ import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:5:6",
-  signature: "82c7011e"
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+const _REGISTRY = _$$registry();
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$2);
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
   location: "example.jsx:2:6",
-  signature: "f879654a"
+  signature: "e93ca257"
 });
-const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$getNextElement(_tmpl$2), _$createComponent(_props2.v0, {})], {
+  signature: "1f1efec9"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
+}, {
+  location: "example.jsx:5:6",
+  signature: "2f861eed",
+  dependencies: () => ({
+    Bar
+  })
+});
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -664,11 +728,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = (a, b) => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 };
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -684,14 +748,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", props => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "6e433ed7"
+  signature: "afe16871"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -707,14 +771,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "92befce2"
+  signature: "82d7f8e8"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -732,7 +796,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 const example = 'Foo';
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/(() => {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _$getNextElement(_tmpl$);
   _$insert(_el$, () => _props.v0);
   return _el$;
@@ -740,12 +804,12 @@ const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: example
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "9eeb4ed6",
+  signature: "40bf5e47",
   dependencies: () => ({
     example
   })
@@ -762,20 +826,20 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const Example = createContext();
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     get v0() {
       return Example.Provider;
     }
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "aece0111",
+  signature: "7d38e403",
   dependencies: () => ({
     Example
   })
@@ -795,35 +859,25 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", () => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "175c85bf"
+  signature: "d1c6ca9b"
 });
-const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
-  signature: "241c14a4"
-});
-const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
-  signature: "9a24e06b"
-});
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
-  signature: "533f507f"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$getNextElement(_tmpl$2), _$createComponent(_props2.v0, {})], {
+  signature: "3b124f81"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: Bar
   });
 }, {
   location: "example.jsx:5:20",
-  signature: "e32c8f87",
+  signature: "74574e98",
   dependencies: () => ({
     Bar
   })
@@ -886,11 +940,11 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = function (a, b) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 };
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -906,14 +960,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function (props) {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "dc5281f3"
+  signature: "a6a4d450"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -929,14 +983,14 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "2fb01ebf"
+  signature: "a0860447"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
@@ -954,7 +1008,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 const example = 'Foo';
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/(() => {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _$getNextElement(_tmpl$);
   _$insert(_el$, () => _props.v0);
   return _el$;
@@ -962,12 +1016,12 @@ const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: example
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "5ff0d2a1",
+  signature: "dc846265",
   dependencies: () => ({
     example
   })
@@ -984,20 +1038,20 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const Example = createContext();
 const _REGISTRY = _$$registry();
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     get v0() {
       return Example.Provider;
     }
   });
 }, {
   location: "example.jsx:3:20",
-  signature: "7d21aa6e",
+  signature: "5dc2d058",
   dependencies: () => ({
     Example
   })
@@ -1017,35 +1071,25 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 const _REGISTRY = _$$registry();
-const JSX_Bar_1 = _$$component(_REGISTRY, "JSX_Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function () {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Bar_1, {});
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
   location: "example.jsx:2:20",
-  signature: "5b24ed95"
+  signature: "1fb34faa"
 });
-const JSX_JSX_Foo_1_1 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
-  signature: "241c14a4"
-});
-const JSX_JSX_Foo_1_2 = _$$component(_REGISTRY, "JSX_JSX_Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
-  signature: "9a24e06b"
-});
-const JSX_Foo_1 = _$$component(_REGISTRY, "JSX_Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(JSX_JSX_Foo_1_1, {}), _$createComponent(JSX_JSX_Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
-  signature: "533f507f"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$getNextElement(_tmpl$2), _$createComponent(_props2.v0, {})], {
+  signature: "3b124f81"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return /*@refresh jsx-skip*/_$createComponent(JSX_Foo_1, {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
     v0: Bar
   });
 }, {
   location: "example.jsx:5:20",
-  signature: "e7751d2b",
+  signature: "ad7301a",
   dependencies: () => ({
     Bar
   })
