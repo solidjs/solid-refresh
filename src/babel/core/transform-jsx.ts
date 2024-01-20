@@ -4,6 +4,7 @@ import { getDescriptiveName } from './get-descriptive-name';
 import { isPathValid, unwrapNode } from './unwrap';
 import { generateUniqueName } from './generate-unique-name';
 import { getRootStatementPath } from './get-root-statement-path';
+import { isComponentishName } from './checks';
 
 const REFRESH_JSX_SKIP = /^\s*@refresh jsx-skip\s*$/;
 
@@ -263,6 +264,7 @@ export function transformJSX(
   path: babel.NodePath<t.JSXElement | t.JSXFragment>,
 ): void {
   if (shouldSkipJSX(path.node)) {
+    path.skip();
     return;
   }
 
@@ -273,9 +275,12 @@ export function transformJSX(
 
   extractJSXExpressions(state, path);
 
+  const descriptiveName = getDescriptiveName(path, 'template');
   const id = generateUniqueName(
     path,
-    'JSX_' + getDescriptiveName(path, 'template'),
+    isComponentishName(descriptiveName)
+      ? descriptiveName
+      : 'JSX_' + descriptiveName,
   );
 
   const rootPath = getRootStatementPath(path);
