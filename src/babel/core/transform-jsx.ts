@@ -197,10 +197,10 @@ function extractJSXExpressionsFromJSXExpressionContainer(
   const expr = child.get('expression');
   if (isPathValid(expr, t.isExpression)) {
     if (
-      isPathValid(child, t.isJSXElement) ||
-      isPathValid(child, t.isJSXFragment)
+      isPathValid(expr, t.isJSXElement) ||
+      isPathValid(expr, t.isJSXFragment)
     ) {
-      extractJSXExpressions(state, child);
+      extractJSXExpressions(state, expr);
     } else {
       const key = 'v' + state.attributes.length;
       state.attributes.push(
@@ -219,11 +219,8 @@ function extractJSXExpressionsFromJSXSpreadChild(
   child: babel.NodePath<t.JSXSpreadChild>,
 ): void {
   const arg = child.get('expression');
-  if (
-    isPathValid(child, t.isJSXElement) ||
-    isPathValid(child, t.isJSXFragment)
-  ) {
-    extractJSXExpressions(state, child);
+  if (isPathValid(arg, t.isJSXElement) || isPathValid(arg, t.isJSXFragment)) {
+    extractJSXExpressions(state, arg);
   } else {
     const key = 'v' + state.attributes.length;
     state.attributes.push(
