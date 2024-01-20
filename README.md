@@ -37,7 +37,7 @@ You can read the following guides first, respectively:
 * [Rspack](https://www.rspack.dev/guide/dev-server.html#hmr)
 * [Rspack SolidJS guide](https://www.rspack.dev/guide/solid.html)
 
-> **Note**
+> [!NOTE]
 > Rspack has HMR already enabled by default. The guide only tells you how to disable it or run the dev server on a proxy server.
 
 Requires the use of [`babel-loader`](https://www.npmjs.com/package/babel-loader). Add the following to `.babelrc`:
@@ -75,6 +75,42 @@ devServer: {
 }
 ```
 
+### Parcel
+
+Add the following to `.babelrc`:
+
+```json
+{
+  "env": {
+    "development": {
+      "presets": [
+        ["babel-preset-solid"]
+      ],
+      "plugins": [
+        ["module:solid-refresh/babel"]
+      ]
+    },
+    "production": {
+      "presets": [
+        ["babel-preset-solid"]
+      ],
+      "plugins": [
+      ]
+    }
+  }
+}
+```
+
+Parcel doesn't enable package exports by default, which allows loading the dev version of SolidJS. To enable it, the following must be added in `package.json` (in accordance with [this document](https://parceljs.org/features/dependency-resolution/#enabling-package-exports)):
+
+```json
+{
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
+```
+
 ### Nollup
 
 Requires the use of [`@rollup/plugin-babel`](https://www.npmjs.com/package/@rollup/plugin-babel). Add the following to `.babelrc`:
@@ -105,8 +141,6 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 
 ### Other dev servers
 
-* [`Parcel`](https://parceljs.org/)
-  * ParcelJS doesn't support [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) yet, which makes ParcelJS load the production build of SolidJS instead of its development build. Solid Refresh requires the SolidJS development build to work.
 * [`wmr`](https://wmr.dev/)
   * SolidJS is yet to be supported or isn't clear yet. It will use the same config as Snowpack.
 * [`rollup-plugin-hot`](https://github.com/rixo/rollup-plugin-hot)
@@ -155,6 +189,7 @@ Or force reload:
 
 ```js
 /* @refresh reload */
+```
 
 ## Limitations
 
