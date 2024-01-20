@@ -1,0 +1,20 @@
+{
+  "name": "solid-parcel-template",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "solid-js": "^1.8.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "babel-preset-solid": "^1.8.9",
+    "parcel": "^2.11.0",
+    "solid-refresh": "link:.."
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
