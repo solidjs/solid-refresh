@@ -65,6 +65,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export default function foo() {
@@ -85,6 +86,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export default function Foo(a, b) {
@@ -105,6 +107,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
@@ -129,6 +132,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -154,6 +158,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">", "</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
+  location: "example.jsx:4:15",
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -183,6 +188,7 @@ const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
+  location: "example.jsx:4:15",
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -216,9 +222,11 @@ var _tmpl$ = ["<div", ">foo</div>"],
   _tmpl$2 = ["<div", ">bar</div>"];
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:8:12",
   signature: "241c14a4"
 });
 const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
   signature: "9a24e06b"
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
@@ -226,6 +234,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_
     return _props.v0;
   }
 })], {
+  location: "example.jsx:7:10",
   signature: "f32afbbe"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -240,6 +249,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   })
 });
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "fad4daa8"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
@@ -288,6 +298,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -311,6 +322,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export function Foo(a, b) {
@@ -331,6 +343,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
@@ -354,6 +367,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -379,6 +393,7 @@ var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
+  location: "example.jsx:4:15",
   signature: "ae0f2a31"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -407,6 +422,7 @@ const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
+  location: "example.jsx:4:15",
   signature: "23a9c5eb"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -438,6 +454,7 @@ var _tmpl$ = ["<div", ">bar</div>"],
   _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "61dd3182"
 });
 export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
@@ -447,9 +464,11 @@ export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   signature: "e93ca257"
 });
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
+  location: "example.jsx:8:12",
   signature: "241c14a4"
 });
 const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
   signature: "9a24e06b"
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
@@ -457,6 +476,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[
     return _props2.v0;
   }
 })], {
+  location: "example.jsx:7:10",
   signature: "1eaac795"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -509,6 +529,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 function foo() {
@@ -529,6 +550,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 function Foo(a, b) {
@@ -549,6 +571,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
@@ -572,6 +595,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -597,6 +621,7 @@ var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
+  location: "example.jsx:4:15",
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -625,6 +650,7 @@ const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
+  location: "example.jsx:4:15",
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -656,6 +682,7 @@ var _tmpl$ = ["<div", ">bar</div>"],
   _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:15",
   signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
@@ -665,9 +692,11 @@ const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   signature: "e93ca257"
 });
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
+  location: "example.jsx:8:12",
   signature: "241c14a4"
 });
 const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
   signature: "9a24e06b"
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
@@ -675,6 +704,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[
     return _props2.v0;
   }
 })], {
+  location: "example.jsx:7:10",
   signature: "1eaac795"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
@@ -727,6 +757,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const foo = () => {
@@ -747,6 +778,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = (a, b) => {
@@ -767,6 +799,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", props => {
@@ -790,6 +823,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
@@ -815,6 +849,7 @@ var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
+  location: "example.jsx:4:17",
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
@@ -843,6 +878,7 @@ const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
+  location: "example.jsx:4:17",
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
@@ -874,6 +910,7 @@ var _tmpl$ = ["<div", ">bar</div>"],
   _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", () => {
@@ -883,9 +920,11 @@ const Bar = _$$component(_REGISTRY, "Bar", () => {
   signature: "d1c6ca9b"
 });
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
+  location: "example.jsx:8:14",
   signature: "241c14a4"
 });
 const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:14",
   signature: "9a24e06b"
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
@@ -893,6 +932,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[
     return _props2.v0;
   }
 })], {
+  location: "example.jsx:7:12",
   signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
@@ -945,6 +985,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const foo = function () {
@@ -965,6 +1006,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = function (a, b) {
@@ -985,6 +1027,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function (props) {
@@ -1008,6 +1051,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "4b145a58"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
@@ -1033,6 +1077,7 @@ var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
+  location: "example.jsx:4:17",
   signature: "ae0f2a31"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
@@ -1061,6 +1106,7 @@ const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
 }), {
+  location: "example.jsx:4:17",
   signature: "23a9c5eb"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
@@ -1092,6 +1138,7 @@ var _tmpl$ = ["<div", ">bar</div>"],
   _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
+  location: "example.jsx:3:17",
   signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function () {
@@ -1101,9 +1148,11 @@ const Bar = _$$component(_REGISTRY, "Bar", function () {
   signature: "1fb34faa"
 });
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
+  location: "example.jsx:8:14",
   signature: "241c14a4"
 });
 const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:14",
   signature: "9a24e06b"
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
@@ -1111,6 +1160,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[
     return _props2.v0;
   }
 })], {
+  location: "example.jsx:7:12",
   signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
@@ -1151,6 +1201,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 import * as solidWeb from 'solid-js/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:32",
   signature: "1fdef89b"
 });
 const _cleanup = solidWeb.render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
@@ -1170,6 +1221,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
   signature: "1fdef89b"
 });
 const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
@@ -1189,6 +1241,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 import { render as Render } from 'solid-js/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
   signature: "1fdef89b"
 });
 const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
@@ -1208,6 +1261,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 import { 'render' as Render } from 'solid-js/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
   signature: "1fdef89b"
 });
 const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
@@ -1227,6 +1281,7 @@ import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:5:25",
   signature: "1fdef89b"
 });
 if (root) {
