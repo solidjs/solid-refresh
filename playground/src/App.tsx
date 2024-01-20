@@ -1,5 +1,3 @@
-// @refresh granular
-
 import { createSignal, onCleanup, onMount } from 'solid-js';
 
 export default function App() {
@@ -21,7 +19,7 @@ export default function App() {
 
   return (
     <>
-      <h1>Counts: {count()}</h1>
+      <h1>Count: {count()}</h1>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
     </>

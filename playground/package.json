@@ -6,11 +6,11 @@
     "build": "parcel build"
   },
   "dependencies": {
-    "solid-js": "^1.8.11"
+    "solid-js": "link:../node_modules/solid-js"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "babel-preset-solid": "^1.8.9",
+    "@babel/core": "link:../node_modules/@babel/core",
+    "babel-preset-solid": "link:../node_modules/babel-preset-solid",
     "parcel": "^2.11.0",
     "solid-refresh": "link:.."
   },
