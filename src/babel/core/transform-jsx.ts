@@ -264,7 +264,6 @@ export function transformJSX(
   path: babel.NodePath<t.JSXElement | t.JSXFragment>,
 ): void {
   if (shouldSkipJSX(path.node)) {
-    path.skip();
     return;
   }
 
