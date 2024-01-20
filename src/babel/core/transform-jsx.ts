@@ -56,7 +56,7 @@ function extractJSXExpressionFromNormalAttribute(
     isPathValid(value, t.isJSXElement) ||
     isPathValid(value, t.isJSXFragment)
   ) {
-    extractJSXExpressions(state, value);
+    value.replaceWith(t.jsxExpressionContainer(value.node));
   }
   if (isPathValid(value, t.isJSXExpressionContainer)) {
     extractJSXExpressionsFromJSXExpressionContainer(state, value);
@@ -160,14 +160,7 @@ function extractJSXExpressionsFromAttributes(
     }
     if (isPathValid(attr, t.isJSXSpreadAttribute)) {
       const arg = attr.get('argument');
-      if (
-        isPathValid(arg, t.isJSXElement) ||
-        isPathValid(arg, t.isJSXFragment)
-      ) {
-        extractJSXExpressions(state, arg);
-      } else {
-        pushAttributeAndReplace(state, arg, arg.node);
-      }
+      pushAttributeAndReplace(state, arg, arg.node);
     }
   }
 }
@@ -219,14 +212,7 @@ function extractJSXExpressionsFromJSXExpressionContainer(
 ): void {
   const expr = child.get('expression');
   if (isPathValid(expr, t.isExpression)) {
-    if (
-      isPathValid(expr, t.isJSXElement) ||
-      isPathValid(expr, t.isJSXFragment)
-    ) {
-      extractJSXExpressions(state, expr);
-    } else {
-      pushAttributeAndReplace(state, expr, expr.node);
-    }
+    pushAttributeAndReplace(state, expr, expr.node);
   }
 }
 
@@ -235,11 +221,7 @@ function extractJSXExpressionsFromJSXSpreadChild(
   child: babel.NodePath<t.JSXSpreadChild>,
 ): void {
   const arg = child.get('expression');
-  if (isPathValid(arg, t.isJSXElement) || isPathValid(arg, t.isJSXFragment)) {
-    extractJSXExpressions(state, arg);
-  } else {
-    pushAttributeAndReplace(state, arg, arg.node);
-  }
+  pushAttributeAndReplace(state, arg, arg.node);
 }
 
 function extractJSXExpressions(
