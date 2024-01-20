@@ -4,10 +4,13 @@ import { readFile } from 'node:fs/promises';
 
 async function compile(code) {
   const result = await babel.transformAsync(code, {
-    plugins: [[plugin, {}]],
+    plugins: [[plugin, { bundler: 'vite' }]],
     parserOpts: {
-      plugins: ['jsx'],
+      plugins: ['jsx', 'typescript'],
     },
+    filename: 'input.js',
+    sourceFileName: 'input.js',
+    sourceMaps: true,
   });
 
   return result?.code ?? '';
