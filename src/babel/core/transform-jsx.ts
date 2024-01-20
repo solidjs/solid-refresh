@@ -284,13 +284,14 @@ export function transformJSX(
     ]);
   }
 
+  const templateComp = t.arrowFunctionExpression([state.props], template);
+
+  if (path.node.loc) {
+    templateComp.loc = path.node.loc;
+  }
+
   rootPath.insertBefore(
-    t.variableDeclaration('const', [
-      t.variableDeclarator(
-        id,
-        t.arrowFunctionExpression([state.props], template),
-      ),
-    ]),
+    t.variableDeclaration('const', [t.variableDeclarator(id, templateComp)]),
   );
 
   path.replaceWith(
