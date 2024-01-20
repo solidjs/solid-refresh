@@ -390,14 +390,17 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
           return;
         }
         programPath.traverse({
+          FunctionDeclaration(path) {
+            bubbleFunctionDeclaration(path);
+          },
+        });
+        programPath.scope.crawl();
+        programPath.traverse({
           JSXElement(path) {
             transformJSX(path);
           },
           JSXFragment(path) {
             transformJSX(path);
-          },
-          FunctionDeclaration(path) {
-            bubbleFunctionDeclaration(path);
           },
         });
         programPath.scope.crawl();
