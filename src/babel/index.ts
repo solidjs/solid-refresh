@@ -314,17 +314,7 @@ function transformFunctionDeclaration(
       const newDecl = t.variableDeclaration('const', [
         t.variableDeclarator(decl.id, replacement),
       ]);
-      if (path.parentPath.isExportDefaultDeclaration()) {
-        const parent = path.parentPath.parentPath as babel.NodePath<t.Program>;
-        const first = parent.get('body')[0];
-        first.insertBefore(newDecl);
-        path.replaceWith(decl.id);
-      } else {
-        const parent = path.parentPath as babel.NodePath<t.Program>;
-        const first = parent.get('body')[0];
-        first.insertBefore(newDecl);
-        path.remove();
-      }
+      path.replaceWith(newDecl);
     }
   }
 }
