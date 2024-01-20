@@ -220,8 +220,18 @@ import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
 const _REGISTRY = _$$registry();
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_tmpl$(), _$createComponent(_props.v0, {})], {
-  signature: "1eacc68"
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$(), {
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props.v0;
+  }
+})], {
+  signature: "f32afbbe"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
@@ -445,8 +455,18 @@ export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   location: "example.jsx:2:13",
   signature: "e93ca257"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_tmpl$2(), _$createComponent(_props2.v0, {})], {
-  signature: "1f1efec9"
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$2(), {
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "1eaac795"
 });
 export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
@@ -657,8 +677,18 @@ const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   location: "example.jsx:2:6",
   signature: "e93ca257"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_tmpl$2(), _$createComponent(_props2.v0, {})], {
-  signature: "1f1efec9"
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$2(), {
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "1eaac795"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
@@ -869,8 +899,18 @@ const Bar = _$$component(_REGISTRY, "Bar", () => {
   location: "example.jsx:2:20",
   signature: "d1c6ca9b"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_tmpl$2(), _$createComponent(_props2.v0, {})], {
-  signature: "3b124f81"
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$2(), {
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
@@ -1081,8 +1121,18 @@ const Bar = _$$component(_REGISTRY, "Bar", function () {
   location: "example.jsx:2:20",
   signature: "1fb34faa"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_tmpl$2(), _$createComponent(_props2.v0, {})], {
-  signature: "3b124f81"
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$2(), {
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
