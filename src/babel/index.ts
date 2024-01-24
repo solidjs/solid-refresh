@@ -122,26 +122,28 @@ function wrapComponent(
         ),
       );
     }
-    properties.push(
-      t.objectProperty(
-        t.identifier('signature'),
-        t.stringLiteral(createSignatureValue(component)),
-      ),
-    );
-    const dependencies = getForeignBindings(path);
-    if (dependencies.length) {
-      const dependencyKeys: t.ObjectProperty[] = [];
-      let id: t.Identifier;
-      for (let i = 0, len = dependencies.length; i < len; i++) {
-        id = dependencies[i];
-        dependencyKeys.push(t.objectProperty(id, id, false, true));
-      }
+    if (state.granular) {
       properties.push(
         t.objectProperty(
-          t.identifier('dependencies'),
-          t.arrowFunctionExpression([], t.objectExpression(dependencyKeys)),
+          t.identifier('signature'),
+          t.stringLiteral(createSignatureValue(component)),
         ),
       );
+      const dependencies = getForeignBindings(path);
+      if (dependencies.length) {
+        const dependencyKeys: t.ObjectProperty[] = [];
+        let id: t.Identifier;
+        for (let i = 0, len = dependencies.length; i < len; i++) {
+          id = dependencies[i];
+          dependencyKeys.push(t.objectProperty(id, id, false, true));
+        }
+        properties.push(
+          t.objectProperty(
+            t.identifier('dependencies'),
+            t.arrowFunctionExpression([], t.objectExpression(dependencyKeys)),
+          ),
+        );
+      }
     }
     return t.callExpression(componentCall, [
       registry,
