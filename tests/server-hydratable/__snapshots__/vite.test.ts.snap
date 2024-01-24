@@ -110,7 +110,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -137,7 +136,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -165,7 +163,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">", "</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
   location: "example.jsx:4:15",
@@ -195,7 +192,6 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
@@ -233,7 +229,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<div", ">foo</div>"],
   _tmpl$2 = ["<div", ">bar</div>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:8:12",
@@ -262,7 +257,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Bar
   })
 });
-Bar;
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$ssr(_tmpl$2, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
   signature: "fad4daa8"
@@ -313,7 +307,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -362,7 +355,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -389,7 +381,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -417,7 +408,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">", "</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
   location: "example.jsx:4:15",
@@ -447,7 +437,6 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
@@ -485,7 +474,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<div", ">foo</div>"],
   _tmpl$2 = ["<div", ">bar</div>"];
-Bar;
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:8:12",
@@ -609,7 +597,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -635,7 +622,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -662,7 +648,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<h1", ">", "</h1>"];
-Foo;
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
@@ -691,7 +676,6 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should transform Func
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const Example = createContext();
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
@@ -728,8 +712,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = ["<div", ">bar</div>"],
   _tmpl$2 = ["<div", ">foo</div>"];
-Foo;
-Bar;
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",

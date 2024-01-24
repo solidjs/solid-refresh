@@ -252,6 +252,7 @@ function transformVariableDeclarator(
   ) {
     path.node.init = wrapContext(state, path, identifier, trueCallExpr);
   }
+  path.skip();
 }
 
 function transformFunctionDeclaration(
@@ -271,22 +272,27 @@ function transformFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      const replacement = wrapComponent(
-        state,
-        path,
-        decl.id,
-        t.functionExpression(decl.id, decl.params, decl.body),
-        decl,
+      path.replaceWith(
+        t.variableDeclaration('const', [
+          t.variableDeclarator(
+            decl.id,
+            wrapComponent(
+              state,
+              path,
+              decl.id,
+              t.functionExpression(decl.id, decl.params, decl.body),
+              decl,
+            ),
+          ),
+        ]),
       );
-      const newDecl = t.variableDeclaration('const', [
-        t.variableDeclarator(decl.id, replacement),
-      ]);
-      path.replaceWith(newDecl);
+      path.skip();
     }
   }
 }
 
 function bubbleFunctionDeclaration(
+  program: babel.NodePath<t.Program>,
   path: babel.NodePath<t.FunctionDeclaration>,
 ): void {
   if (isStatementTopLevel(path)) {
@@ -302,18 +308,19 @@ function bubbleFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      const parent = path.scope.getProgramParent()
-        .path as babel.NodePath<t.Program>;
-      const first = parent.get('body')[0];
-      first.insertBefore(decl);
+      const first = program.get('body')[0];
+      const [tmp] = first.insertBefore(decl);
+      tmp.skip();
       if (path.parentPath.isExportNamedDeclaration()) {
         path.parentPath.replaceWith(
           t.exportNamedDeclaration(undefined, [
             t.exportSpecifier(decl.id, decl.id),
           ]),
         );
-      } else {
+      } else if (path.parentPath.isExportDefaultDeclaration()) {
         path.replaceWith(decl.id);
+      } else {
+        path.remove();
       }
     }
   }
@@ -348,7 +355,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         }
         programPath.traverse({
           FunctionDeclaration(path) {
-            bubbleFunctionDeclaration(path);
+            bubbleFunctionDeclaration(programPath, path);
           },
         });
         programPath.scope.crawl();

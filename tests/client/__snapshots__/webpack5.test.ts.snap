@@ -100,7 +100,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -125,7 +124,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -151,7 +149,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _tmpl$();
@@ -184,7 +181,6 @@ exports[`webpack5 (client, non-hydratable) > ExportDefaultDeclaration w/ Functio
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
@@ -220,7 +216,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:8:12",
@@ -249,7 +244,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Bar
   })
 });
-Bar;
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_tmpl$2(), {
   location: "example.jsx:3:15",
   signature: "fad4daa8"
@@ -295,7 +289,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -340,7 +333,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -365,7 +357,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -391,7 +382,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _tmpl$();
@@ -424,7 +414,6 @@ exports[`webpack5 (client, non-hydratable) > ExportNamedDeclaration w/ FunctionE
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
@@ -460,7 +449,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-Bar;
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:8:12",
@@ -575,7 +563,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -599,7 +586,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-Foo;
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
@@ -624,7 +610,6 @@ import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
-Foo;
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
@@ -656,7 +641,6 @@ exports[`webpack5 (client, non-hydratable) > FunctionDeclaration > should transf
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-Foo;
 const Example = createContext();
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
@@ -691,8 +675,6 @@ import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-Foo;
-Bar;
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
   location: "example.jsx:3:15",
