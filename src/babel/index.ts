@@ -405,6 +405,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             transformFunctionDeclaration(state, path);
           },
         });
+        programPath.scope.crawl();
       },
     },
   };
