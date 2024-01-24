@@ -20,7 +20,6 @@ import {
 import { getForeignBindings } from './core/get-foreign-bindings';
 import { transformJSX } from './core/transform-jsx';
 import { generateCode } from './core/generator';
-import { generateUniqueName } from './core/generate-unique-name';
 
 const CWD = process.cwd();
 
