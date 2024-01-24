@@ -179,27 +179,29 @@ function setupProgram(
   state: StateContext,
   path: babel.NodePath<t.Program>,
   comments: t.Comment[] | undefined | null,
-): void {
+): boolean {
   let shouldSkip = false;
+  let isDone = false;
   if (comments) {
     for (const { value: comment } of comments) {
       if (/^\s*@refresh skip\s*$/.test(comment)) {
-        state.processed = true;
+        isDone = true;
         shouldSkip = true;
         break;
       }
       if (/^\s*@refresh reload\s*$/.test(comment)) {
-        state.processed = true;
+        isDone = true;
         path.pushContainer('body', getHMRDeclineCall(state, path));
         break;
       }
     }
   }
 
-  captureIdentifiers(state, path);
   if (!shouldSkip && state.fixRender) {
+    captureIdentifiers(state, path);
     fixRenderCalls(state, path);
   }
+  return isDone;
 }
 
 function isStatementTopLevel(path: babel.NodePath<t.Statement>): boolean {
@@ -346,13 +348,11 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             identifiers: new Map(),
             namespaces: new Map(),
           },
-          processed: false,
           filename: context.filename,
           bundler: context.opts.bundler || 'standard',
           fixRender: context.opts.fixRender ?? true,
         };
-        setupProgram(state, programPath, context.file.ast.comments);
-        if (state.processed) {
+        if (setupProgram(state, programPath, context.file.ast.comments)) {
           return;
         }
         programPath.traverse({

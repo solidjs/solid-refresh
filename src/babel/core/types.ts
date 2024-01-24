@@ -40,7 +40,6 @@ export interface StateContext {
     identifiers: Map<t.Identifier, ImportIdentifierSpecifier>;
     namespaces: Map<t.Identifier, ImportIdentifierSpecifier[]>;
   };
-  processed: boolean;
   filename: string | undefined;
   bundler: RuntimeType;
   fixRender: boolean;
