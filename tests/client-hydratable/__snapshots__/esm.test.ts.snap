@@ -11,8 +11,8 @@ exports[`esm (client, hydratable) > Context API > should support ExportNamedDecl
 "import { $$context as _$$context } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
+const _REGISTRY = _$$registry();
 export const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -23,8 +23,8 @@ exports[`esm (client, hydratable) > Context API > should support top-level Varia
 "import { $$context as _$$context } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 import { createContext } from 'solid-js';
+const _REGISTRY = _$$registry();
 const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -57,116 +57,41 @@ export default function Foo() {
 
 exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
 export default function foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
 `;
 
 exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export default function Foo(a, b) {
-  return _$getNextElement(_tmpl$);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:21",
-  signature: "83fbb41"
-});
-// @refresh granular
-export default Foo;
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:21",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-// @refresh granular
-const example = 'Foo';
-export default Foo;
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:21",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-// @refresh granular
-const Example = createContext();
-export default Foo;
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:21",
-  signature: "82c7011e"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$2);
-}, {
-  location: "example.jsx:3:6",
-  signature: "f879654a"
-});
-export default Foo;
+export default function Foo(a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -174,16 +99,22 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:2:21"
+  location: "example.jsx:2:21",
+  signature: "1f7be6ec"
 });
 export default Foo;
 if (import.meta.hot) {
@@ -193,16 +124,143 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:2:21"
+  location: "example.jsx:2:21",
+  signature: "c963b907"
+});
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:15",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:21",
+  signature: "27e4cbbb",
+  dependencies: () => ({
+    example
+  })
+});
+const example = 'Foo';
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:15",
+  signature: "23a9c5eb"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
+  });
+}, {
+  location: "example.jsx:3:21",
+  signature: "b4605599",
+  dependencies: () => ({
+    Example
+  })
+});
+const Example = createContext();
+export default Foo;
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+const _REGISTRY = _$$registry();
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:8:12",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props.v0;
+  }
+})], {
+  location: "example.jsx:7:10",
+  signature: "f32afbbe"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
+}, {
+  location: "example.jsx:5:21",
+  signature: "2f861eed",
+  dependencies: () => ({
+    Bar
+  })
+});
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:3:15",
+  signature: "fad4daa8"
+});
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "e93ca257"
 });
 export default Foo;
 if (import.meta.hot) {
@@ -236,17 +294,24 @@ export function Foo() {
 
 exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:13"
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:13",
+  signature: "c963b907"
+});
+export { Foo };
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -254,104 +319,20 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
 "import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export function Foo(a, b) {
-  return _$getNextElement(_tmpl$);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:13",
-  signature: "83fbb41"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:13",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
-const Example = createContext();
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:13",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
-export const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:13",
-  signature: "f879654a"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:13",
-  signature: "82c7011e"
-});
+export function Foo(a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -359,17 +340,24 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:13"
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:13",
+  signature: "1f7be6ec"
+});
+export { Foo };
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -377,17 +365,146 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-export const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:13"
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:13",
+  signature: "c963b907"
+});
+export { Foo };
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:15",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:13",
+  signature: "27e4cbbb",
+  dependencies: () => ({
+    example
+  })
+});
+const example = 'Foo';
+export { Foo };
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:15",
+  signature: "23a9c5eb"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
+  });
+}, {
+  location: "example.jsx:3:13",
+  signature: "b4605599",
+  dependencies: () => ({
+    Example
+  })
+});
+const Example = createContext();
+export { Foo };
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+const _REGISTRY = _$$registry();
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:8:12",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props.v0;
+  }
+})], {
+  location: "example.jsx:7:10",
+  signature: "f32afbbe"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
+}, {
+  location: "example.jsx:5:13",
+  signature: "2f861eed",
+  dependencies: () => ({
+    Bar
+  })
+});
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:3:15",
+  signature: "fad4daa8"
+});
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
+}, {
+  location: "example.jsx:2:13",
+  signature: "e93ca257"
+});
+export { Bar };
+export { Foo };
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -419,111 +536,41 @@ function Foo() {
 
 exports[`esm (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
 function foo() {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+}
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
 `;
 
 exports[`esm (client, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
 "import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-function Foo(a, b) {
-  return _$getNextElement(_tmpl$);
-}"
-`;
-
-exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:3:6",
-  signature: "83fbb41"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:4:6",
-  signature: "c479f38e",
-  dependencies: () => ({
-    example
-  })
-});
-// @refresh granular
-const example = 'Foo';
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 3`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
-  });
-}, {
-  location: "example.jsx:4:6",
-  signature: "f8fa9630",
-  dependencies: () => ({
-    Example
-  })
-});
-// @refresh granular
-const Example = createContext();
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with @refresh granular 4`] = `
-"import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh"; // @refresh granular
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return [_$getNextElement(_tmpl$), _$createComponent(Bar, {})];
-}, {
-  location: "example.jsx:6:6",
-  signature: "82c7011e"
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
 });
-var Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return _$getNextElement(_tmpl$2);
-}, {
-  location: "example.jsx:3:6",
-  signature: "f879654a"
-});
+function Foo(a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
@@ -531,16 +578,22 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:2:6"
+  location: "example.jsx:2:6",
+  signature: "1f7be6ec"
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -549,16 +602,140 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-var Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:2:6"
+  location: "example.jsx:2:6",
+  signature: "c963b907"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:15",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:6",
+  signature: "27e4cbbb",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 4`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const Example = createContext();
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:15",
+  signature: "23a9c5eb"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
+  });
+}, {
+  location: "example.jsx:3:6",
+  signature: "b4605599",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 5`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+const _REGISTRY = _$$registry();
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:15",
+  signature: "61dd3182"
+});
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "e93ca257"
+});
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:8:12",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:12",
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  location: "example.jsx:7:10",
+  signature: "1eaac795"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
+}, {
+  location: "example.jsx:5:6",
+  signature: "2f861eed",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -591,57 +768,120 @@ const Foo = () => {
 
 exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
 "import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const foo = () => {
-  return _$getNextElement(_tmpl$);
-};"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = (a, b) => {
-  return _$getNextElement(_tmpl$);
-};"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const foo = () => {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = (a, b) => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", props => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:3:20",
-  signature: "dd474849"
+  location: "example.jsx:2:20",
+  signature: "afe16871"
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 2`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:4:20",
-  signature: "42ac2326",
+  location: "example.jsx:2:20",
+  signature: "82d7f8e8"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:17",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:20",
+  signature: "40bf5e47",
   dependencies: () => ({
     example
   })
@@ -651,21 +891,28 @@ if (import.meta.hot) {
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 3`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 4`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
 const Example = createContext();
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:17",
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
-  location: "example.jsx:4:20",
-  signature: "23378462",
+  location: "example.jsx:3:20",
+  signature: "7d38e403",
   dependencies: () => ({
     Example
   })
@@ -675,64 +922,52 @@ if (import.meta.hot) {
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular 4`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 5`] = `
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
+const _REGISTRY = _$$registry();
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "61dd3182"
+});
 const Bar = _$$component(_REGISTRY, "Bar", () => {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
-  location: "example.jsx:3:20",
-  signature: "6bd8b1b2"
+  location: "example.jsx:2:20",
+  signature: "d1c6ca9b"
+});
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:8:14",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:14",
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  location: "example.jsx:7:12",
+  signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
 }, {
-  location: "example.jsx:6:20",
-  signature: "254beb54"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:20"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", props => {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:5:20",
+  signature: "74574e98",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -765,57 +1000,120 @@ const Foo = function () {
 
 exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
 "import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const foo = function () {
-  return _$getNextElement(_tmpl$);
-};"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = function (a, b) {
-  return _$getNextElement(_tmpl$);
-};"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 1`] = `
-"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$getNextElement(_tmpl$);
+const _REGISTRY = _$$registry();
+const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const foo = function () {
+  return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = function (a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+};
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function (props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:3:20",
-  signature: "a8bc6ac4"
+  location: "example.jsx:2:20",
+  signature: "a6a4d450"
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 2`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
 "import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-// @refresh granular
-const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
-  location: "example.jsx:4:20",
-  signature: "2264ba41",
+  location: "example.jsx:2:20",
+  signature: "a0860447"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 3`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:17",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function () {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:20",
+  signature: "dc846265",
   dependencies: () => ({
     example
   })
@@ -825,21 +1123,28 @@ if (import.meta.hot) {
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 3`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 4`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-// @refresh granular
 const Example = createContext();
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:17",
+  signature: "23a9c5eb"
+});
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$createComponent(Example.Provider, {
-    children: "Foo"
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
   });
 }, {
-  location: "example.jsx:4:20",
-  signature: "b3df1897",
+  location: "example.jsx:3:20",
+  signature: "5dc2d058",
   dependencies: () => ({
     Example
   })
@@ -849,64 +1154,52 @@ if (import.meta.hot) {
 }"
 `;
 
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with @refresh granular 4`] = `
+exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 5`] = `
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
-// @refresh granular
+const _REGISTRY = _$$registry();
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
+  location: "example.jsx:3:17",
+  signature: "61dd3182"
+});
 const Bar = _$$component(_REGISTRY, "Bar", function () {
-  return _$getNextElement(_tmpl$);
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
-  location: "example.jsx:3:20",
-  signature: "42920a21"
+  location: "example.jsx:2:20",
+  signature: "1fb34faa"
+});
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:8:14",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+  location: "example.jsx:9:14",
+  signature: "9a24e06b"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
+  get v0() {
+    return _props2.v0;
+  }
+})], {
+  location: "example.jsx:7:12",
+  signature: "45fb33c3"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return [_$getNextElement(_tmpl$2), _$createComponent(Bar, {})];
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: Bar
+  });
 }, {
-  location: "example.jsx:6:20",
-  signature: "698c9728"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:20"
-});
-if (import.meta.hot) {
-  _$$refresh("esm", import.meta.hot, _REGISTRY);
-}"
-`;
-
-exports[`esm (client, hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { getNextElement as _$getNextElement } from "solid-js/web";
-import { $$component as _$$component } from "solid-refresh";
-import { $$refresh as _$$refresh } from "solid-refresh";
-import { $$registry as _$$registry } from "solid-refresh";
-const _REGISTRY = _$$registry();
-var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-const Foo = _$$component(_REGISTRY, "Foo", function (props) {
-  return _$getNextElement(_tmpl$);
-}, {
-  location: "example.jsx:2:20"
+  location: "example.jsx:5:20",
+  signature: "ad7301a",
+  dependencies: () => ({
+    Bar
+  })
 });
 if (import.meta.hot) {
   _$$refresh("esm", import.meta.hot, _REGISTRY);
@@ -929,37 +1222,102 @@ if (import.meta.hot) {
 
 exports[`esm (client, hydratable) > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import * as solidWeb from 'solid-js/web';
-const _cleanup = solidWeb.render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:32",
+  signature: "1fdef89b"
+});
+const _cleanup = solidWeb.render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
-const _cleanup = render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
+  signature: "1fdef89b"
+});
+const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render as Render } from 'solid-js/web';
-const _cleanup = Render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
+  signature: "1fdef89b"
+});
+const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm (client, hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { 'render' as Render } from 'solid-js/web';
-const _cleanup = Render(() => _$createComponent(App, {}), root);
-if (import.meta.hot) import.meta.hot.dispose(_cleanup);"
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
+  signature: "1fdef89b"
+});
+const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
 `;
 
 exports[`esm (client, hydratable) > fix render > top-level statements > should work with IfStatement 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
 import { render } from 'solid-js/web';
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:5:25",
+  signature: "1fdef89b"
+});
 if (root) {
-  const _cleanup = render(() => _$createComponent(App, {}), root);
+  const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+    v0: App
+  }), root);
   if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+}
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
 }"
 `;

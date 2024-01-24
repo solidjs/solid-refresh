@@ -7,6 +7,19 @@ describe('webpack5 (server, non-hydratable)', () => {
       expect(
         await transform(
           `
+      function Foo(props) {
+      return <h1>Foo</h1>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+
+      expect(
+        await transform(
+          `
       function Foo() {
         return <h1>Foo</h1>;
       }
@@ -19,8 +32,42 @@ describe('webpack5 (server, non-hydratable)', () => {
       expect(
         await transform(
           `
-      function Foo(props) {
-      return <h1>Foo</h1>;
+      const example = 'Foo';
+      function Foo() {
+        return <h1>{example}</h1>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      const Example = createContext();
+      function Foo() {
+        return <Example.Provider>Foo</Example.Provider>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      function Bar() {
+        return <div>bar</div>;
+      }
+      function Foo() {
+        return (
+          <>
+            <div>foo</div>
+            <Bar />
+          </>
+        );
       }
       `,
           'webpack5',
@@ -87,70 +134,6 @@ describe('webpack5 (server, non-hydratable)', () => {
         ),
       ).toMatchSnapshot();
     });
-    it('should transform FunctionDeclaration with @refresh granular', async () => {
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const example = 'Foo';
-      function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const Example = createContext();
-      function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      function Bar() {
-        return <div>bar</div>;
-      }
-      function Foo() {
-        return (
-          <>
-            <div>foo</div>
-            <Bar />
-          </>
-        );
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-    });
   });
   describe('VariableDeclarator', () => {
     describe('FunctionExpression', () => {
@@ -158,7 +141,20 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-        const Foo = function () {
+        const Foo = function (props) {
+          return <h1>Foo</h1>;
+        }
+        `,
+            'webpack5',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+
+        expect(
+          await transform(
+            `
+        const Foo = function() {
           return <h1>Foo</h1>;
         }
         `,
@@ -170,9 +166,43 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-        const Foo = function (props) {
-          return <h1>Foo</h1>;
+        const example = 'Foo';
+        const Foo = function() {
+          return <h1>{example}</h1>;
         }
+        `,
+            'webpack5',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+        expect(
+          await transform(
+            `
+        const Example = createContext();
+        const Foo = function() {
+          return <Example.Provider>Foo</Example.Provider>;
+        }
+        `,
+            'webpack5',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+        expect(
+          await transform(
+            `
+        const Bar = function() {
+          return <div>bar</div>;
+        };
+        const Foo = function() {
+          return (
+            <>
+              <div>foo</div>
+              <Bar />
+            </>
+          );
+        };
         `,
             'webpack5',
             'server',
@@ -238,12 +268,13 @@ describe('webpack5 (server, non-hydratable)', () => {
           ),
         ).toMatchSnapshot();
       });
-      it('should transform VariableDeclarator w/ FunctionExpression with @refresh granular', async () => {
+    });
+    describe('ArrowFunctionExpression', () => {
+      it('should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params', async () => {
         expect(
           await transform(
             `
-        // @refresh granular
-        const Foo = function() {
+        const Foo = (props) => {
           return <h1>Foo</h1>;
         }
         `,
@@ -252,59 +283,6 @@ describe('webpack5 (server, non-hydratable)', () => {
             false,
           ),
         ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const example = 'Foo';
-        const Foo = function() {
-          return <h1>{example}</h1>;
-        }
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const Example = createContext();
-        const Foo = function() {
-          return <Example.Provider>Foo</Example.Provider>;
-        }
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const Bar = function() {
-          return <div>bar</div>;
-        };
-        const Foo = function() {
-          return (
-            <>
-              <div>foo</div>
-              <Bar />
-            </>
-          );
-        };
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-      });
-    });
-    describe('ArrowFunctionExpression', () => {
-      it('should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params', async () => {
         expect(
           await transform(
             `
@@ -320,9 +298,43 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-        const Foo = (props) => {
-          return <h1>Foo</h1>;
+        const example = 'Foo';
+        const Foo = () => {
+          return <h1>{example}</h1>;
         }
+        `,
+            'webpack5',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+        expect(
+          await transform(
+            `
+        const Example = createContext();
+        const Foo = () => {
+          return <Example.Provider>Foo</Example.Provider>;
+        }
+        `,
+            'webpack5',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+        expect(
+          await transform(
+            `
+        const Bar = () => {
+          return <div>bar</div>;
+        }
+        const Foo = () => {
+          return (
+            <>
+              <div>foo</div>
+              <Bar />
+            </>
+          );
+        };
         `,
             'webpack5',
             'server',
@@ -388,74 +400,23 @@ describe('webpack5 (server, non-hydratable)', () => {
           ),
         ).toMatchSnapshot();
       });
-      it('should transform VariableDeclarator w/ ArrowFunctionExpression with @refresh granular', async () => {
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const Foo = () => {
-          return <h1>Foo</h1>;
-        }
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const example = 'Foo';
-        const Foo = () => {
-          return <h1>{example}</h1>;
-        }
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const Example = createContext();
-        const Foo = () => {
-          return <Example.Provider>Foo</Example.Provider>;
-        }
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-        expect(
-          await transform(
-            `
-        // @refresh granular
-        const Bar = () => {
-          return <div>bar</div>;
-        }
-        const Foo = () => {
-          return (
-            <>
-              <div>foo</div>
-              <Bar />
-            </>
-          );
-        };
-        `,
-            'webpack5',
-            'server',
-            false,
-          ),
-        ).toMatchSnapshot();
-      });
     });
   });
   describe('ExportNamedDeclaration w/ FunctionExpression', () => {
     it('should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params', async () => {
+      expect(
+        await transform(
+          `
+      export function Foo(props) {
+        return <h1>Foo</h1>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+
       expect(
         await transform(
           `
@@ -471,8 +432,42 @@ describe('webpack5 (server, non-hydratable)', () => {
       expect(
         await transform(
           `
-      export function Foo(props) {
-        return <h1>Foo</h1>;
+      const example = 'Foo';
+      export function Foo() {
+        return <h1>{example}</h1>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      const Example = createContext();
+      export function Foo() {
+        return <Example.Provider>Foo</Example.Provider>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      export function Bar() {
+        return <div>bar</div>;
+      }
+      export function Foo() {
+        return (
+          <>
+            <div>foo</div>
+            <Bar />
+          </>
+        );
       }
       `,
           'webpack5',
@@ -539,12 +534,13 @@ describe('webpack5 (server, non-hydratable)', () => {
         ),
       ).toMatchSnapshot();
     });
-    it('should transform ExportNamedDeclaration w/ FunctionExpression with @refresh granular', async () => {
+  });
+  describe('ExportDefaultDeclaration w/ FunctionExpression', () => {
+    it('should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params', async () => {
       expect(
         await transform(
           `
-      // @refresh granular
-      export function Foo() {
+      export default function Foo(props) {
         return <h1>Foo</h1>;
       }
       `,
@@ -553,59 +549,6 @@ describe('webpack5 (server, non-hydratable)', () => {
           false,
         ),
       ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const example = 'Foo';
-      export function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const Example = createContext();
-      export function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      export function Bar() {
-        return <div>bar</div>;
-      }
-      export function Foo() {
-        return (
-          <>
-            <div>foo</div>
-            <Bar />
-          </>
-        );
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-    });
-  });
-  describe('ExportDefaultDeclaration w/ FunctionExpression', () => {
-    it('should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params', async () => {
       expect(
         await transform(
           `
@@ -621,8 +564,42 @@ describe('webpack5 (server, non-hydratable)', () => {
       expect(
         await transform(
           `
-      export default function Foo(props) {
-        return <h1>Foo</h1>;
+      const example = 'Foo';
+      export default function Foo() {
+        return <h1>{example}</h1>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      const Example = createContext();
+      export default function Foo() {
+        return <Example.Provider>Foo</Example.Provider>;
+      }
+      `,
+          'webpack5',
+          'server',
+          false,
+        ),
+      ).toMatchSnapshot();
+      expect(
+        await transform(
+          `
+      function Bar() {
+        return <div>bar</div>;
+      }
+      export default function Foo() {
+        return (
+          <>
+            <div>foo</div>
+            <Bar />
+          </>
+        );
       }
       `,
           'webpack5',
@@ -681,70 +658,6 @@ describe('webpack5 (server, non-hydratable)', () => {
       // @refresh reload
       export default function Foo() {
         return <h1>Foo</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-    });
-    it('should transform ExportDefaultDeclaration w/ FunctionExpression with @refresh granular', async () => {
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      export default function Foo() {
-        return <h1>Foo</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const example = 'Foo';
-      export default function Foo() {
-        return <h1>{example}</h1>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      const Example = createContext();
-      export default function Foo() {
-        return <Example.Provider>Foo</Example.Provider>;
-      }
-      `,
-          'webpack5',
-          'server',
-          false,
-        ),
-      ).toMatchSnapshot();
-      expect(
-        await transform(
-          `
-      // @refresh granular
-      function Bar() {
-        return <div>bar</div>;
-      }
-      export default function Foo() {
-        return (
-          <>
-            <div>foo</div>
-            <Bar />
-          </>
-        );
       }
       `,
           'webpack5',
