@@ -330,6 +330,8 @@ interface State extends babel.PluginPass {
   opts: Options;
 }
 
+export type { Options };
+
 export default function solidRefreshPlugin(): babel.PluginObj<State> {
   return {
     name: 'solid-refresh',
