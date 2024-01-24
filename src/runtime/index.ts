@@ -294,7 +294,8 @@ function $$refreshESM(type: ESMRuntimeType, hot: ESMHot, registry: Registry) {
         mod == null ||
         patchRegistry(hot.data[SOLID_REFRESH], hot.data[SOLID_REFRESH_PREV])
       ) {
-        hot.invalidate();
+        // hot.invalidate();
+        window.location.reload();
       }
     });
   } else {
