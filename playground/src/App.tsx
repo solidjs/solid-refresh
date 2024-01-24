@@ -1,6 +1,6 @@
 import { createSignal, onCleanup, onMount } from 'solid-js';
 
-export default function App() {
+export function App() {
   const [count, setCount] = createSignal(0);
 
   function increment() {
