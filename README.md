@@ -152,7 +152,7 @@ Requires the use of [`@snowpack/plugin-babel`](https://www.npmjs.com/package/@sn
 
 In any case, your build system needs to support conditional exports and have the `development` condition set.
 
-> **Warning**
+> [!WARNING]
 > In some standard HMR implementations, this may cause your app to reload the full page if the development environment isn't properly set!
 
 ## How it works
