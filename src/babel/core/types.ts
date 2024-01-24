@@ -15,6 +15,7 @@ export interface DefaultImportDefinition {
 export type ImportDefinition = DefaultImportDefinition | NamedImportDefinition;
 
 export interface Options {
+  granular?: boolean;
   bundler?: RuntimeType;
   fixRender?: boolean;
   imports?: {
@@ -31,6 +32,7 @@ export interface ImportIdentifierSpecifier {
 }
 
 export interface StateContext {
+  granular: boolean;
   opts: Options;
   specifiers: ImportIdentifierSpecifier[];
   imports: Map<string, t.Identifier>;

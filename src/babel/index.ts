@@ -20,6 +20,7 @@ import {
 import { getForeignBindings } from './core/get-foreign-bindings';
 import { transformJSX } from './core/transform-jsx';
 import { generateCode } from './core/generator';
+import { generateUniqueName } from './core/generate-unique-name';
 
 const CWD = process.cwd();
 
@@ -200,38 +201,6 @@ function setupProgram(
   }
 }
 
-function transformExportNamedDeclaration(
-  state: StateContext,
-  path: babel.NodePath<t.ExportNamedDeclaration>,
-): void {
-  const decl = path.node.declaration;
-  // Check if declaration is FunctionDeclaration
-  if (
-    t.isFunctionDeclaration(decl) &&
-    !(decl.generator || decl.async) &&
-    // Might be component-like, but the only valid components
-    // have zero or one parameter
-    decl.params.length < 2
-  ) {
-    // Check if the declaration has an identifier, and then check
-    // if the name is component-ish
-    if (decl.id && isComponentishName(decl.id.name)) {
-      path.node.declaration = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          decl.id,
-          wrapComponent(
-            state,
-            path,
-            decl.id,
-            t.functionExpression(decl.id, decl.params, decl.body),
-            decl,
-          ),
-        ),
-      ]);
-    }
-  }
-}
-
 function isStatementTopLevel(path: babel.NodePath<t.Statement>): boolean {
   let blockParent = path.scope.getBlockParent();
   const programParent = path.scope.getProgramParent();
@@ -288,10 +257,7 @@ function transformFunctionDeclaration(
   state: StateContext,
   path: babel.NodePath<t.FunctionDeclaration>,
 ): void {
-  if (
-    path.parentPath.isProgram() ||
-    path.parentPath.isExportDefaultDeclaration()
-  ) {
+  if (isStatementTopLevel(path)) {
     const decl = path.node;
     // Check if declaration is FunctionDeclaration
     if (
@@ -322,10 +288,7 @@ function transformFunctionDeclaration(
 function bubbleFunctionDeclaration(
   path: babel.NodePath<t.FunctionDeclaration>,
 ): void {
-  if (
-    path.parentPath.isProgram() ||
-    path.parentPath.isExportDefaultDeclaration()
-  ) {
+  if (isStatementTopLevel(path)) {
     const decl = path.node;
     // Check if declaration is FunctionDeclaration
     if (
@@ -338,16 +301,18 @@ function bubbleFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      if (path.parentPath.isExportDefaultDeclaration()) {
-        const parent = path.parentPath.parentPath as babel.NodePath<t.Program>;
-        const first = parent.get('body')[0];
-        first.insertBefore(decl);
-        path.replaceWith(decl.id);
+      const parent = path.scope.getProgramParent()
+        .path as babel.NodePath<t.Program>;
+      const first = parent.get('body')[0];
+      first.insertBefore(decl);
+      if (path.parentPath.isExportNamedDeclaration()) {
+        path.parentPath.replaceWith(
+          t.exportNamedDeclaration(undefined, [
+            t.exportSpecifier(decl.id, decl.id),
+          ]),
+        );
       } else {
-        const parent = path.parentPath as babel.NodePath<t.Program>;
-        const first = parent.get('body')[0];
-        first.insertBefore(decl);
-        path.remove();
+        path.replaceWith(decl.id);
       }
     }
   }
@@ -363,6 +328,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     visitor: {
       Program(programPath, context) {
         const state: StateContext = {
+          granular: context.opts.granular ?? true,
           opts: context.opts,
           specifiers: [...IMPORT_SPECIFIERS],
           imports: new Map(),
@@ -395,9 +361,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
         });
         programPath.scope.crawl();
         programPath.traverse({
-          ExportNamedDeclaration(path) {
-            transformExportNamedDeclaration(state, path);
-          },
           VariableDeclarator(path) {
             transformVariableDeclarator(state, path);
           },
