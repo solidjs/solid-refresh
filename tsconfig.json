@@ -14,7 +14,7 @@
     ],
     "importHelpers": true,
     "sourceMap": true,
-    "rootDir": "./",
+    "rootDir": "./src",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -25,7 +25,7 @@
     "esModuleInterop": true,
     "target": "ES2017",
     "declaration": true,
-    "declarationDir": "./",
+    "declarationDir": "src",
     "useDefineForClassFields": false,
     "declarationMap": true
   }
