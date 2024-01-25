@@ -8,10 +8,12 @@ export default [
       {
         file: 'dist/solid-refresh.cjs',
         format: 'cjs',
+        sourcemap: true,
       },
       {
         file: 'dist/solid-refresh.mjs',
         format: 'es',
+        sourcemap: true,
       },
     ],
     external: ['solid-js'],
@@ -23,10 +25,12 @@ export default [
       {
         file: './dist/babel.cjs',
         format: 'cjs',
+        sourcemap: true,
       },
       {
         file: './dist/babel.mjs',
         format: 'es',
+        sourcemap: true,
       },
     ],
     external: [
