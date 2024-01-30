@@ -36,8 +36,8 @@ if (import.meta.hot) {
 exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
+import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export default function Foo() {
   return _$ssr(_tmpl$, _$ssrHydrationKey());
@@ -62,10 +62,10 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -84,10 +84,10 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -106,10 +106,10 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -132,10 +132,10 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -159,10 +159,10 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 import { ssr as _$ssr } from "solid-js/web";
 import { escape as _$escape } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">", "</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">", "</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
   location: "example.jsx:4:15",
@@ -224,11 +224,11 @@ exports[`vite (server, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<div", ">foo</div>"],
+  _tmpl$2 = ["<div", ">bar</div>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<div", ">foo</div>"],
-  _tmpl$2 = ["<div", ">bar</div>"];
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:8:12",
@@ -277,8 +277,8 @@ if (import.meta.hot) {
 exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
 "import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
+import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export function Foo() {
   return _$ssr(_tmpl$, _$ssrHydrationKey());
@@ -303,10 +303,10 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -329,10 +329,10 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -351,10 +351,10 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -377,10 +377,10 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -404,10 +404,10 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 import { ssr as _$ssr } from "solid-js/web";
 import { escape as _$escape } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">", "</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">", "</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
   location: "example.jsx:4:15",
@@ -469,11 +469,11 @@ exports[`vite (server, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<div", ">foo</div>"],
+  _tmpl$2 = ["<div", ">bar</div>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<div", ">foo</div>"],
-  _tmpl$2 = ["<div", ">bar</div>"];
 const _REGISTRY = _$$registry();
 const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:8:12",
@@ -523,8 +523,8 @@ if (import.meta.hot) {
 exports[`vite (server, hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
 "import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
+import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 function Foo() {
   return _$ssr(_tmpl$, _$ssrHydrationKey());
@@ -549,10 +549,10 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should skip FunctionD
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -571,10 +571,10 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should skip FunctionD
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -593,10 +593,10 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should transform Func
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -618,10 +618,10 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should transform Func
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -644,10 +644,10 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should transform Func
 import { ssr as _$ssr } from "solid-js/web";
 import { escape as _$escape } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">", "</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
@@ -707,11 +707,11 @@ exports[`vite (server, hydratable) > FunctionDeclaration > should transform Func
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<div", ">bar</div>"],
-  _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:15",
@@ -759,8 +759,8 @@ if (import.meta.hot) {
 exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
 "import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
+import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = () => {
   return _$ssr(_tmpl$, _$ssrHydrationKey());
@@ -785,10 +785,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -807,10 +807,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -829,10 +829,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -854,10 +854,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -880,10 +880,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 import { ssr as _$ssr } from "solid-js/web";
 import { escape as _$escape } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">", "</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
@@ -943,11 +943,11 @@ exports[`vite (server, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<div", ">bar</div>"],
-  _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -995,8 +995,8 @@ if (import.meta.hot) {
 exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
 "import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 var _tmpl$ = ["<h1", ">Foo</h1>"];
+import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = function () {
   return _$ssr(_tmpl$, _$ssrHydrationKey());
@@ -1021,10 +1021,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const JSX_foo_1 = _$$component(_REGISTRY, "JSX_foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -1043,10 +1043,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -1065,10 +1065,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -1090,10 +1090,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">Foo</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">Foo</h1>"];
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
@@ -1116,10 +1116,10 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 import { ssr as _$ssr } from "solid-js/web";
 import { escape as _$escape } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<h1", ">", "</h1>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<h1", ">", "</h1>"];
 const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey(), _$escape(_props.v0)), {
@@ -1179,11 +1179,11 @@ exports[`vite (server, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { ssr as _$ssr } from "solid-js/web";
 import { ssrHydrationKey as _$ssrHydrationKey } from "solid-js/web";
+var _tmpl$ = ["<div", ">bar</div>"],
+  _tmpl$2 = ["<div", ">foo</div>"];
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-var _tmpl$ = ["<div", ">bar</div>"],
-  _tmpl$2 = ["<div", ">foo</div>"];
 const _REGISTRY = _$$registry();
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$ssr(_tmpl$, _$ssrHydrationKey()), {
   location: "example.jsx:3:17",
