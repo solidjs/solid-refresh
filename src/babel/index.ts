@@ -1,25 +1,25 @@
-import path from 'path';
 import type * as babel from '@babel/core';
 import * as t from '@babel/types';
-import { xxHash32 } from './core/xxhash32';
-import { registerImportSpecifiers } from './core/register-import-specifiers';
-import type { Options, StateContext } from './core/types';
+import path from 'path';
 import { isComponentishName } from './core/checks';
-import { getHMRDeclineCall } from './core/get-hmr-decline-call';
-import { unwrapNode } from './core/unwrap';
-import { isValidCallee } from './core/is-valid-callee';
-import { getHotIdentifier } from './core/get-hot-identifier';
-import { getStatementPath } from './core/get-statement-path';
-import { createRegistry } from './core/create-registry';
-import { getImportIdentifier } from './core/get-import-identifier';
 import {
   IMPORT_COMPONENT,
   IMPORT_CONTEXT,
   IMPORT_SPECIFIERS,
 } from './core/constants';
-import { getForeignBindings } from './core/get-foreign-bindings';
-import { transformJSX } from './core/transform-jsx';
+import { createRegistry } from './core/create-registry';
 import { generateCode } from './core/generator';
+import { getForeignBindings } from './core/get-foreign-bindings';
+import { getHMRDeclineCall } from './core/get-hmr-decline-call';
+import { getHotIdentifier } from './core/get-hot-identifier';
+import { getImportIdentifier } from './core/get-import-identifier';
+import { getStatementPath } from './core/get-statement-path';
+import { isValidCallee } from './core/is-valid-callee';
+import { registerImportSpecifiers } from './core/register-import-specifiers';
+import { transformJSX } from './core/transform-jsx';
+import type { Options, StateContext } from './core/types';
+import { unwrapNode } from './core/unwrap';
+import { xxHash32 } from './core/xxhash32';
 
 const CWD = process.cwd();
 
@@ -36,7 +36,7 @@ function createSignatureValue(node: t.Node): string {
 function captureIdentifiers(state: StateContext, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
-      if (p.node.importKind === 'value') {
+      if (!(p.node.importKind === 'type' || p.node.importKind === 'typeof')) {
         registerImportSpecifiers(state, p, state.specifiers);
       }
     },

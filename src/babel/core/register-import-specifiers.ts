@@ -1,7 +1,7 @@
+import type * as babel from '@babel/core';
+import * as t from '@babel/types';
 import { getImportSpecifierName } from './checks';
 import type { ImportIdentifierSpecifier, StateContext } from './types';
-import * as t from '@babel/types';
-import type * as babel from '@babel/core';
 
 function registerImportSpecifier(
   state: StateContext,
@@ -19,7 +19,10 @@ function registerImportSpecifier(
   }
   if (t.isImportSpecifier(specifier)) {
     if (
-      (id.definition.kind === 'named' &&
+      (!(
+        specifier.importKind === 'type' || specifier.importKind === 'typeof'
+      ) &&
+        id.definition.kind === 'named' &&
         getImportSpecifierName(specifier) === id.definition.name) ||
       (id.definition.kind === 'default' &&
         getImportSpecifierName(specifier) === 'default')
