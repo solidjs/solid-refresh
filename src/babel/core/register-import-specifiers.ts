@@ -18,14 +18,13 @@ function registerImportSpecifier(
     return;
   }
   if (t.isImportSpecifier(specifier)) {
+    if (specifier.importKind === 'type' || specifier.importKind === 'typeof') {
+      return;
+    }
+    const name = getImportSpecifierName(specifier);
     if (
-      (!(
-        specifier.importKind === 'type' || specifier.importKind === 'typeof'
-      ) &&
-        id.definition.kind === 'named' &&
-        getImportSpecifierName(specifier) === id.definition.name) ||
-      (id.definition.kind === 'default' &&
-        getImportSpecifierName(specifier) === 'default')
+      (id.definition.kind === 'named' && name === id.definition.name) ||
+      (id.definition.kind === 'default' && name === 'default')
     ) {
       state.registrations.identifiers.set(specifier.local, id);
     }
