@@ -1,11 +1,11 @@
-import type { StateContext } from './types';
 import type * as babel from '@babel/core';
 import * as t from '@babel/types';
-import { getImportIdentifier } from './get-import-identifier';
 import { IMPORT_REFRESH, IMPORT_REGISTRY } from './constants';
 import { getHotIdentifier } from './get-hot-identifier';
-import { generateViteHMRRequirement } from './get-vite-hmr-requirement';
+import { getImportIdentifier } from './get-import-identifier';
 import { getRootStatementPath } from './get-root-statement-path';
+import { generateViteHMRRequirement } from './get-vite-hmr-requirement';
+import type { StateContext } from './types';
 
 const REGISTRY = 'REGISTRY';
 
@@ -20,7 +20,7 @@ export function createRegistry(
   const root = getRootStatementPath(path);
   const identifier = path.scope.generateUidIdentifier(REGISTRY);
 
-  root.insertBefore(
+  const [tmp] = root.insertBefore(
     t.variableDeclaration('const', [
       t.variableDeclarator(
         identifier,
@@ -28,6 +28,7 @@ export function createRegistry(
       ),
     ]),
   );
+  root.scope.registerDeclaration(tmp);
   const pathToHot = getHotIdentifier(state);
   const statements: t.Statement[] = [
     t.expressionStatement(

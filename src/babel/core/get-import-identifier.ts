@@ -1,6 +1,5 @@
-import { addDefault, addNamed } from '@babel/helper-module-imports';
 import type * as babel from '@babel/core';
-import type * as t from '@babel/types';
+import * as t from '@babel/types';
 import type { ImportDefinition, StateContext } from './types';
 
 export function getImportIdentifier(
@@ -14,10 +13,24 @@ export function getImportIdentifier(
   if (current) {
     return current;
   }
-  const newID =
-    registration.kind === 'named'
-      ? addNamed(path, registration.name, registration.source)
-      : addDefault(path, registration.source);
-  state.imports.set(target, newID);
-  return newID;
+  const programParent = path.scope.getProgramParent();
+  const uid = programParent.generateUidIdentifier(
+    registration.kind === 'named' ? registration.name : 'default',
+  );
+  const newPath = (
+    programParent.path as babel.NodePath<t.Program>
+  ).unshiftContainer(
+    'body',
+    t.importDeclaration(
+      [
+        registration.kind === 'named'
+          ? t.importSpecifier(uid, t.identifier(registration.name))
+          : t.importDefaultSpecifier(uid),
+      ],
+      t.stringLiteral(registration.source),
+    ),
+  )[0];
+  programParent.registerDeclaration(newPath);
+  state.imports.set(target, uid);
+  return uid;
 }

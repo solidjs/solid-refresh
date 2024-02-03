@@ -36,7 +36,6 @@ export default [
     external: [
       '@babel/core',
       '@babel/types',
-      '@babel/helper-module-imports',
       '@babel/generator',
       'crypto',
     ],

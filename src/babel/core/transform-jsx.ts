@@ -290,9 +290,11 @@ export function transformJSX(
     templateComp.loc = path.node.loc;
   }
 
-  rootPath.insertBefore(
+  const [tmp] = rootPath.insertBefore(
     t.variableDeclaration('const', [t.variableDeclarator(id, templateComp)]),
   );
+
+  rootPath.scope.registerDeclaration(tmp);
 
   path.replaceWith(
     skippableJSX(

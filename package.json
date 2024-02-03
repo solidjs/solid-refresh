@@ -51,28 +51,25 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.6",
-    "@biomejs/biome": "^1.5.1",
+    "@babel/core": "^7.23.9",
+    "@biomejs/biome": "^1.5.3",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/babel__core": "^7.20.5",
     "@types/babel__generator": "^7.6.8",
-    "@types/babel__helper-module-imports": "^7.18.3",
-    "@types/babel__traverse": "^7.20.4",
-    "@types/node": "^20.10.5",
-    "babel-preset-solid": "^1.8.9",
-    "rollup": "^4.9.1",
-    "solid-js": "^1.8.7",
+    "@types/node": "^20.11.10",
+    "babel-preset-solid": "^1.8.12",
+    "rollup": "^4.9.6",
+    "solid-js": "^1.8.12",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.2"
   },
   "peerDependencies": {
     "solid-js": "^1.3"
   },
   "dependencies": {
     "@babel/generator": "^7.23.6",
-    "@babel/helper-module-imports": "^7.22.15",
     "@babel/types": "^7.23.6"
   }
 }

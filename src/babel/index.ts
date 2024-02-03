@@ -1,25 +1,25 @@
-import path from 'path';
 import type * as babel from '@babel/core';
 import * as t from '@babel/types';
-import { xxHash32 } from './core/xxhash32';
-import { registerImportSpecifiers } from './core/register-import-specifiers';
-import type { Options, StateContext } from './core/types';
+import path from 'path';
 import { isComponentishName } from './core/checks';
-import { getHMRDeclineCall } from './core/get-hmr-decline-call';
-import { unwrapNode } from './core/unwrap';
-import { isValidCallee } from './core/is-valid-callee';
-import { getHotIdentifier } from './core/get-hot-identifier';
-import { getStatementPath } from './core/get-statement-path';
-import { createRegistry } from './core/create-registry';
-import { getImportIdentifier } from './core/get-import-identifier';
 import {
   IMPORT_COMPONENT,
   IMPORT_CONTEXT,
   IMPORT_SPECIFIERS,
 } from './core/constants';
-import { getForeignBindings } from './core/get-foreign-bindings';
-import { transformJSX } from './core/transform-jsx';
+import { createRegistry } from './core/create-registry';
 import { generateCode } from './core/generator';
+import { getForeignBindings } from './core/get-foreign-bindings';
+import { getHMRDeclineCall } from './core/get-hmr-decline-call';
+import { getHotIdentifier } from './core/get-hot-identifier';
+import { getImportIdentifier } from './core/get-import-identifier';
+import { getStatementPath } from './core/get-statement-path';
+import { isValidCallee } from './core/is-valid-callee';
+import { registerImportSpecifiers } from './core/register-import-specifiers';
+import { transformJSX } from './core/transform-jsx';
+import type { Options, StateContext } from './core/types';
+import { unwrapNode } from './core/unwrap';
+import { xxHash32 } from './core/xxhash32';
 
 const CWD = process.cwd();
 
@@ -36,7 +36,7 @@ function createSignatureValue(node: t.Node): string {
 function captureIdentifiers(state: StateContext, path: babel.NodePath) {
   path.traverse({
     ImportDeclaration(p) {
-      if (p.node.importKind === 'value') {
+      if (!(p.node.importKind === 'type' || p.node.importKind === 'typeof')) {
         registerImportSpecifiers(state, p, state.specifiers);
       }
     },
@@ -215,6 +215,12 @@ function isStatementTopLevel(path: babel.NodePath<t.Statement>): boolean {
   return programParent === blockParent;
 }
 
+function isValidFunction(
+  node: t.Node,
+): node is t.ArrowFunctionExpression | t.FunctionExpression {
+  return t.isArrowFunctionExpression(node) || t.isFunctionExpression(node);
+}
+
 function transformVariableDeclarator(
   state: StateContext,
   path: babel.NodePath<t.VariableDeclarator>,
@@ -231,9 +237,7 @@ function transformVariableDeclarator(
     return;
   }
   if (isComponentishName(identifier.name)) {
-    const trueFuncExpr =
-      unwrapNode(init, t.isFunctionExpression) ||
-      unwrapNode(init, t.isArrowFunctionExpression);
+    const trueFuncExpr = unwrapNode(init, isValidFunction);
     // Check for valid FunctionExpression or ArrowFunctionExpression
     if (
       trueFuncExpr &&
@@ -274,7 +278,7 @@ function transformFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      path.replaceWith(
+      const [tmp] = path.replaceWith(
         t.variableDeclaration('const', [
           t.variableDeclarator(
             decl.id,
@@ -288,6 +292,7 @@ function transformFunctionDeclaration(
           ),
         ]),
       );
+      path.scope.registerDeclaration(tmp);
       path.skip();
     }
   }
@@ -312,6 +317,7 @@ function bubbleFunctionDeclaration(
     ) {
       const first = program.get('body')[0];
       const [tmp] = first.insertBefore(decl);
+      program.scope.registerDeclaration(tmp);
       tmp.skip();
       if (path.parentPath.isExportNamedDeclaration()) {
         path.parentPath.replaceWith(
@@ -360,7 +366,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             bubbleFunctionDeclaration(programPath, path);
           },
         });
-        programPath.scope.crawl();
         programPath.traverse({
           JSXElement(path) {
             transformJSX(path);
@@ -369,7 +374,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             transformJSX(path);
           },
         });
-        programPath.scope.crawl();
         programPath.traverse({
           VariableDeclarator(path) {
             transformVariableDeclarator(state, path);
@@ -378,7 +382,6 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             transformFunctionDeclaration(state, path);
           },
         });
-        programPath.scope.crawl();
       },
     },
   };
