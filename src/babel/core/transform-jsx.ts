@@ -1,10 +1,11 @@
-import * as t from '@babel/types';
 import type * as babel from '@babel/core';
-import { getDescriptiveName } from './get-descriptive-name';
-import { isPathValid, unwrapNode } from './unwrap';
-import { generateUniqueName } from './generate-unique-name';
-import { getRootStatementPath } from './get-root-statement-path';
+import * as t from '@babel/types';
 import { isComponentishName } from './checks';
+import { generateUniqueName } from './generate-unique-name';
+import { getDescriptiveName } from './get-descriptive-name';
+import { getRootStatementPath } from './get-root-statement-path';
+import { isStatementTopLevel } from './is-statement-top-level';
+import { isPathValid, unwrapNode } from './unwrap';
 
 const REFRESH_JSX_SKIP = /^\s*@refresh jsx-skip\s*$/;
 
@@ -188,6 +189,15 @@ function extractJSXExpressionsFromJSXElement(
       /^[A-Z_]/.test(openingName.node.name)) ||
     isPathValid(openingName, t.isJSXMemberExpression)
   ) {
+    if (isPathValid(openingName, t.isJSXIdentifier)) {
+      const binding = path.scope.getBinding(openingName.node.name);
+      if (binding) {
+        const statementPath = binding.path.getStatementParent();
+        if (statementPath && isStatementTopLevel(statementPath)) {
+          return;
+        }
+      }
+    }
     const key = pushAttribute(
       state,
       convertJSXOpeningToExpression(openingName.node),

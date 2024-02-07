@@ -8,4 +8,12 @@ function Example(props) {
   );
 }
 
+function App() {
+  return (
+    <div>
+      <Example />
+    </div>
+  );
+}
+
 const hello = <Example />;

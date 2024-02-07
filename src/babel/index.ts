@@ -14,6 +14,7 @@ import { getHMRDeclineCall } from './core/get-hmr-decline-call';
 import { getHotIdentifier } from './core/get-hot-identifier';
 import { getImportIdentifier } from './core/get-import-identifier';
 import { getStatementPath } from './core/get-statement-path';
+import { isStatementTopLevel } from './core/is-statement-top-level';
 import { isValidCallee } from './core/is-valid-callee';
 import { registerImportSpecifiers } from './core/register-import-specifiers';
 import { transformJSX } from './core/transform-jsx';
@@ -202,17 +203,6 @@ function setupProgram(
     fixRenderCalls(state, path);
   }
   return isDone;
-}
-
-function isStatementTopLevel(path: babel.NodePath<t.Statement>): boolean {
-  let blockParent = path.scope.getBlockParent();
-  const programParent = path.scope.getProgramParent();
-  // a FunctionDeclaration binding refers to itself as the block parent
-  if (blockParent.path === path) {
-    blockParent = blockParent.parent;
-  }
-
-  return programParent === blockParent;
 }
 
 function isValidFunction(
