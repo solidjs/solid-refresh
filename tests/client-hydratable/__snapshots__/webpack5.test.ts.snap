@@ -229,28 +229,19 @@ const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-ski
   location: "example.jsx:8:12",
   signature: "241c14a4"
 });
-const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(Bar, {}), {
   location: "example.jsx:9:12",
-  signature: "9a24e06b"
+  signature: "61d9a109"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
-  get v0() {
-    return _props.v0;
-  }
-})], {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:10",
-  signature: "f32afbbe"
+  signature: "f71aefc6"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
-    v0: Bar
-  });
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:5:21",
-  signature: "2f861eed",
-  dependencies: () => ({
-    Bar
-  })
+  signature: "c963b907"
 });
 const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
   location: "example.jsx:3:15",
@@ -714,28 +705,19 @@ const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-ski
   location: "example.jsx:8:12",
   signature: "241c14a4"
 });
-const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(Bar, {}), {
   location: "example.jsx:9:12",
-  signature: "9a24e06b"
+  signature: "61d9a109"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:10",
-  signature: "1eaac795"
+  signature: "ab3b4916"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
-    v0: Bar
-  });
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:5:6",
-  signature: "2f861eed",
-  dependencies: () => ({
-    Bar
-  })
+  signature: "c963b907"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -946,28 +928,19 @@ const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-ski
   location: "example.jsx:8:14",
   signature: "241c14a4"
 });
-const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(Bar, {}), {
   location: "example.jsx:9:14",
-  signature: "9a24e06b"
+  signature: "61d9a109"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:12",
-  signature: "45fb33c3"
+  signature: "e50aac71"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
-  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
-    v0: Bar
-  });
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:5:20",
-  signature: "74574e98",
-  dependencies: () => ({
-    Bar
-  })
+  signature: "82d7f8e8"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
@@ -1178,28 +1151,19 @@ const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-ski
   location: "example.jsx:8:14",
   signature: "241c14a4"
 });
-const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(Bar, {}), {
   location: "example.jsx:9:14",
-  signature: "9a24e06b"
+  signature: "61d9a109"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
-  get v0() {
-    return _props2.v0;
-  }
-})], {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:12",
-  signature: "45fb33c3"
+  signature: "e50aac71"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
-  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
-    v0: Bar
-  });
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:5:20",
-  signature: "ad7301a",
-  dependencies: () => ({
-    Bar
-  })
+  signature: "a0860447"
 });
 if (import.meta.webpackHot) {
   _$$refresh("webpack5", import.meta.webpackHot, _REGISTRY);
