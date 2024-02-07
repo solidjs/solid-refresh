@@ -1,5 +1,6 @@
 import type * as babel from '@babel/core';
 import * as t from '@babel/types';
+import { isPathValid } from './unwrap';
 
 function isForeignBinding(
   source: babel.NodePath,
@@ -35,7 +36,10 @@ export function getForeignBindings(path: babel.NodePath): t.Identifier[] {
     ReferencedIdentifier(p) {
       // Check identifiers that aren't in a TS expression
       if (!isInTypescript(p) && isForeignBinding(path, p, p.node.name)) {
-        if (p.isIdentifier()) {
+        if (
+          isPathValid(p, t.isIdentifier) ||
+          isPathValid(p.parentPath, t.isJSXMemberExpression)
+        ) {
           identifiers.add(p.node.name);
         }
       }
