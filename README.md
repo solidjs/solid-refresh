@@ -216,3 +216,13 @@ You can define custom `render`/`createContext` calls by using the `imports` opti
   ],
 }
 ```
+
+## Other Configs
+
+### Granular Mode
+
+Granular mode for HMR (which allows independent HMR for components and templates) is enabled by default. You can disable this by adding `granular: false`.
+
+### JSX HMR
+
+JSX, by default, is moved to a separate component to perform granular HMR. To disable this, add `jsx: false`.
