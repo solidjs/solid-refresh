@@ -213,7 +213,6 @@ function extractJSXExpressionsFromJSXElement(
       closingElement.get('name').replaceWith(replacement);
     }
   }
-  extractJSXExpressionsFromAttributes(state, path);
 }
 
 function extractJSXExpressionsFromJSXExpressionContainer(
@@ -240,6 +239,7 @@ function extractJSXExpressions(
 ): void {
   if (isPathValid(path, t.isJSXElement)) {
     extractJSXExpressionsFromJSXElement(state, path);
+    extractJSXExpressionsFromAttributes(state, path);
   }
   const children = path.get('children');
   for (let i = 0, len = children.length; i < len; i++) {
