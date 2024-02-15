@@ -336,6 +336,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
     visitor: {
       Program(programPath, context) {
         const state: StateContext = {
+          jsx: context.opts.jsx ?? true,
           granular: context.opts.granular ?? true,
           opts: context.opts,
           specifiers: [...IMPORT_SPECIFIERS],
@@ -356,14 +357,16 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             bubbleFunctionDeclaration(programPath, path);
           },
         });
-        programPath.traverse({
-          JSXElement(path) {
-            transformJSX(path);
-          },
-          JSXFragment(path) {
-            transformJSX(path);
-          },
-        });
+        if (state.jsx) {
+          programPath.traverse({
+            JSXElement(path) {
+              transformJSX(path);
+            },
+            JSXFragment(path) {
+              transformJSX(path);
+            },
+          });
+        }
         programPath.traverse({
           VariableDeclarator(path) {
             transformVariableDeclarator(state, path);
