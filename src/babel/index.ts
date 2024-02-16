@@ -268,21 +268,22 @@ function transformFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      const [tmp] = path.replaceWith(
-        t.variableDeclaration('const', [
-          t.variableDeclarator(
-            decl.id,
-            wrapComponent(
-              state,
-              path,
+      path.scope.registerDeclaration(
+        path.replaceWith(
+          t.variableDeclaration('const', [
+            t.variableDeclarator(
               decl.id,
-              t.functionExpression(decl.id, decl.params, decl.body),
-              decl,
+              wrapComponent(
+                state,
+                path,
+                decl.id,
+                t.functionExpression(decl.id, decl.params, decl.body),
+                decl,
+              ),
             ),
-          ),
-        ]),
+          ]),
+        )[0],
       );
-      path.scope.registerDeclaration(tmp);
       path.skip();
     }
   }
@@ -375,6 +376,9 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             transformFunctionDeclaration(state, path);
           },
         });
+        // TODO anything simpler than this?
+        // This is to fix an issue with webpack
+        programPath.scope.crawl();
       },
     },
   };

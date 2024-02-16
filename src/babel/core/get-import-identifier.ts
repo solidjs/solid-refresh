@@ -14,23 +14,20 @@ export function getImportIdentifier(
     return current;
   }
   const programParent = path.scope.getProgramParent();
-  const uid = programParent.generateUidIdentifier(
-    registration.kind === 'named' ? registration.name : 'default',
+  const uid = programParent.generateUidIdentifier(name);
+  programParent.registerDeclaration(
+    (programParent.path as babel.NodePath<t.Program>).unshiftContainer(
+      'body',
+      t.importDeclaration(
+        [
+          registration.kind === 'named'
+            ? t.importSpecifier(uid, t.identifier(registration.name))
+            : t.importDefaultSpecifier(uid),
+        ],
+        t.stringLiteral(registration.source),
+      ),
+    )[0],
   );
-  const newPath = (
-    programParent.path as babel.NodePath<t.Program>
-  ).unshiftContainer(
-    'body',
-    t.importDeclaration(
-      [
-        registration.kind === 'named'
-          ? t.importSpecifier(uid, t.identifier(registration.name))
-          : t.importDefaultSpecifier(uid),
-      ],
-      t.stringLiteral(registration.source),
-    ),
-  )[0];
-  programParent.registerDeclaration(newPath);
   state.imports.set(target, uid);
   return uid;
 }

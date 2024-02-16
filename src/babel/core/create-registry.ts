@@ -20,15 +20,19 @@ export function createRegistry(
   const root = getRootStatementPath(path);
   const identifier = path.scope.generateUidIdentifier(REGISTRY);
 
-  const [tmp] = root.insertBefore(
-    t.variableDeclaration('const', [
-      t.variableDeclarator(
-        identifier,
-        t.callExpression(getImportIdentifier(state, path, IMPORT_REGISTRY), []),
-      ),
-    ]),
+  root.scope.registerDeclaration(
+    root.insertBefore(
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          identifier,
+          t.callExpression(
+            getImportIdentifier(state, path, IMPORT_REGISTRY),
+            [],
+          ),
+        ),
+      ]),
+    )[0],
   );
-  root.scope.registerDeclaration(tmp);
   const pathToHot = getHotIdentifier(state);
   const statements: t.Statement[] = [
     t.expressionStatement(
