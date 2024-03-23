@@ -16,7 +16,6 @@ const _REGISTRY = _$$registry();
 export const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -29,7 +28,6 @@ const _REGISTRY = _$$registry();
 const Example = _$$context(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -37,14 +35,12 @@ exports[`vite (client, hydratable) > ExportDefaultDeclaration w/ FunctionExpress
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export default function Foo() {
   return _$getNextElement(_tmpl$);
 }
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -76,7 +72,6 @@ export default function foo() {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -98,7 +93,6 @@ export default function Foo(a, b) {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -124,7 +118,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -150,7 +143,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -187,7 +179,6 @@ const example = 'Foo';
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -220,7 +211,6 @@ const Example = createContext();
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -265,7 +255,6 @@ const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
 export default Foo;
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -273,14 +262,12 @@ exports[`vite (client, hydratable) > ExportNamedDeclaration w/ FunctionExpressio
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 export function Foo() {
   return _$getNextElement(_tmpl$);
 }
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -316,7 +303,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -338,7 +324,6 @@ export function Foo(a, b) {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -364,7 +349,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -390,7 +374,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -427,7 +410,6 @@ const example = 'Foo';
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -460,7 +442,6 @@ const Example = createContext();
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -515,7 +496,6 @@ export { Bar };
 export { Foo };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -523,14 +503,12 @@ exports[`vite (client, hydratable) > FunctionDeclaration > should skip FunctionD
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 function Foo() {
   return _$getNextElement(_tmpl$);
 }
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -562,7 +540,6 @@ function foo() {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -584,7 +561,6 @@ function Foo(a, b) {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -609,7 +585,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -634,7 +609,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -670,7 +644,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -702,7 +675,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -746,7 +718,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -754,14 +725,12 @@ exports[`vite (client, hydratable) > VariableDeclarator > ArrowFunctionExpressio
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = () => {
   return _$getNextElement(_tmpl$);
 };
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -793,7 +762,6 @@ const foo = () => {
 };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -815,7 +783,6 @@ const Foo = (a, b) => {
 };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -840,7 +807,6 @@ const Foo = _$$component(_REGISTRY, "Foo", props => {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -865,7 +831,6 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -901,7 +866,6 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -933,7 +897,6 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -977,7 +940,6 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -985,14 +947,12 @@ exports[`vite (client, hydratable) > VariableDeclarator > FunctionExpression > s
 "import { template as _$template } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 const Foo = function () {
   return _$getNextElement(_tmpl$);
 };
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -1024,7 +984,6 @@ const foo = function () {
 };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1046,7 +1005,6 @@ const Foo = function (a, b) {
 };
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1071,7 +1029,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function (props) {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1096,7 +1053,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1132,7 +1088,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1164,7 +1119,6 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1208,13 +1162,11 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
 });
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
 exports[`vite (client, hydratable) > fix render > @refresh reload > should work 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
-import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 import { render } from 'solid-js/web';
 if (root) {
@@ -1222,8 +1174,7 @@ if (root) {
   if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 }
 if (import.meta.hot) {
-  _$$decline("vite", import.meta.hot);
-  import.meta.hot.accept();
+  import.meta.hot.accept(() => import.meta.hot.invalidate());
 }"
 `;
 
@@ -1244,7 +1195,6 @@ const _cleanup = solidWeb.render(() => /*@refresh jsx-skip*/_$createComponent(JS
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1265,7 +1215,6 @@ const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1286,7 +1235,6 @@ const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1307,7 +1255,6 @@ const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
 
@@ -1330,6 +1277,5 @@ if (root) {
 }
 if (import.meta.hot) {
   _$$refresh("vite", import.meta.hot, _REGISTRY);
-  import.meta.hot.accept();
 }"
 `;
