@@ -77,6 +77,10 @@ function extractJSXExpressionFromRef(
       let replacement: t.Expression;
       if (unwrappedIdentifier) {
         const arg = expr.scope.generateUidIdentifier('arg');
+        const binding = expr.scope.getBinding(unwrappedIdentifier.name);
+        const cannotAssignKind = ['const', 'module'];
+        const isConst = binding && cannotAssignKind.includes(binding.kind);
+
         replacement = t.arrowFunctionExpression(
           [arg],
           t.blockStatement([
@@ -91,11 +95,17 @@ function extractJSXExpressionFromRef(
                   t.callExpression(unwrappedIdentifier, [arg]),
                 ),
               ]),
-              t.blockStatement([
-                t.expressionStatement(
-                  t.assignmentExpression('=', unwrappedIdentifier, arg),
-                ),
-              ]),
+              // fix the new usage of `ref` attribute,
+              // if use `Signals as refs`, the `else` branch will throw an errow with `Cannot assign to "setter" because it is a constant` message
+              // issue: https://github.com/solidjs/solid-refresh/issues/66
+              // docs: https://docs.solidjs.com/concepts/refs#signals-as-refs
+              isConst
+                ? null
+                : t.blockStatement([
+                    t.expressionStatement(
+                      t.assignmentExpression('=', unwrappedIdentifier, arg),
+                    ),
+                  ]),
             ),
           ]),
         );
