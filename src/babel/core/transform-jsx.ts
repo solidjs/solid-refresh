@@ -96,7 +96,7 @@ function extractJSXExpressionFromRef(
                 ),
               ]),
               // fix the new usage of `ref` attribute,
-              // if use `Signals as refs`, the `else` branch will throw an errow with `Cannot assign to "setter" because it is a constant` message
+              // if use `Signals as refs`, the `else` branch will throw an error with `Cannot assign to "setter" because it is a constant` message
               // issue: https://github.com/solidjs/solid-refresh/issues/66
               // docs: https://docs.solidjs.com/concepts/refs#signals-as-refs
               isConst
