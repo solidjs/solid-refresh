@@ -810,4 +810,57 @@ describe('standard (server, non-hydratable)', () => {
       });
     });
   });
+  describe('fix build', () => {
+    describe('refs', () => {
+      it('should work with a mutable variable', async () => {
+        expect(
+          await transform(
+            `
+          const Comp = () => {
+            let el;
+            return <div ref={el}>Comp</div>;
+          }
+        `,
+            'standard',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+      it('should work with a function', async () => {
+        expect(
+          await transform(
+            `
+          const Comp = () => {
+            let el;
+            return <div ref={(_el) => el = _el}>Comp</div>;
+          }
+        `,
+            'standard',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+    });
+    describe('signals as refs', () => {
+      it('should work', async () => {
+        expect(
+          await transform(
+            `
+          import { createSignal } from 'solid-js';
+          
+          const Comp = () => {
+            const [el, setEl] = createSignal();
+            return <div ref={setEl}>Comp</div>;
+          }
+        `,
+            'standard',
+            'server',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+    });
+  });
 });

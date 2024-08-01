@@ -810,4 +810,57 @@ describe('webpack5 (client, non-hydratable)', () => {
       });
     });
   });
+  describe('fix build', () => {
+    describe('refs', () => {
+      it('should work with a mutable variable', async () => {
+        expect(
+          await transform(
+            `
+          const Comp = () => {
+            let el;
+            return <div ref={el}>Comp</div>;
+          }
+        `,
+            'webpack5',
+            'client',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+      it('should work with a function', async () => {
+        expect(
+          await transform(
+            `
+          const Comp = () => {
+            let el;
+            return <div ref={(_el) => el = _el}>Comp</div>;
+          }
+        `,
+            'webpack5',
+            'client',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+    });
+    describe('signals as refs', () => {
+      it('should work', async () => {
+        expect(
+          await transform(
+            `
+          import { createSignal } from 'solid-js';
+          
+          const Comp = () => {
+            const [el, setEl] = createSignal();
+            return <div ref={setEl}>Comp</div>;
+          }
+        `,
+            'webpack5',
+            'client',
+            false,
+          ),
+        ).toMatchSnapshot();
+      });
+    });
+  });
 });

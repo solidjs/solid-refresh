@@ -1170,6 +1170,119 @@ if (import.meta.hot) {
 }"
 `;
 
+exports[`esm (client, hydratable) > fix build > refs > should work with a function 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { use as _$use } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  var _ref$ = _props.v0;
+  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  return _el$;
+})(), {
+  location: "example.jsx:4:19",
+  signature: "6f76290"
+});
+const Comp = _$$component(_REGISTRY, "Comp", () => {
+  let el;
+  return /*@refresh jsx-skip*/_$createComponent(Comp_1, {
+    v0: _el => el = _el
+  });
+}, {
+  location: "example.jsx:2:23",
+  signature: "726057ca"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > fix build > refs > should work with a mutable variable 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { use as _$use } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  var _ref$ = _props.v0;
+  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  return _el$;
+})(), {
+  location: "example.jsx:4:19",
+  signature: "6f76290"
+});
+const Comp = _$$component(_REGISTRY, "Comp", () => {
+  let el;
+  return /*@refresh jsx-skip*/_$createComponent(Comp_1, {
+    v0: _arg => {
+      if (typeof el === "function") {
+        el(_arg);
+      } else {
+        el = _arg;
+      }
+    }
+  });
+}, {
+  location: "example.jsx:2:23",
+  signature: "d3db0f89"
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
+exports[`esm (client, hydratable) > fix build > signals as refs > should work 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { getNextElement as _$getNextElement } from "solid-js/web";
+import { use as _$use } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+import { createSignal } from 'solid-js';
+const _REGISTRY = _$$registry();
+const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _$getNextElement(_tmpl$);
+  var _ref$ = _props.v0;
+  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  return _el$;
+})(), {
+  location: "example.jsx:6:19",
+  signature: "6f76290"
+});
+const Comp = _$$component(_REGISTRY, "Comp", () => {
+  const [el, setEl] = createSignal();
+  return /*@refresh jsx-skip*/_$createComponent(Comp_1, {
+    v0: _arg => {
+      if (typeof setEl === "function") {
+        setEl(_arg);
+      }
+    }
+  });
+}, {
+  location: "example.jsx:4:23",
+  signature: "57db44c6",
+  dependencies: () => ({
+    createSignal
+  })
+});
+if (import.meta.hot) {
+  _$$refresh("esm", import.meta.hot, _REGISTRY);
+}"
+`;
+
 exports[`esm (client, hydratable) > fix render > @refresh reload > should work 1`] = `
 "import { createComponent as _$createComponent } from "solid-js/web";
 import { $$decline as _$$decline } from "solid-refresh";
