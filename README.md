@@ -226,3 +226,22 @@ Granular mode for HMR (which allows independent HMR for components and templates
 ### JSX HMR
 
 JSX, by default, is moved to a separate component to perform granular HMR. To disable this, add `jsx: false`.
+
+## Troubleshooting
+
+### Webpack and dynamic exports
+
+If HMR doesn't work for you in webpack, and you see this warning in the browser's console:
+
+> To use solid-refresh, you need to use the dev build of SolidJS. Make sure your build system supports package.json conditional exports and has the 'development' condition turned on.
+
+Consider checking `resolve.mainFields` and `resolve.conditionNames`. If you only want to use SolidJS then you could safely remove them.
+
+Otherwise, append '...' to each array to also include webpack's default configuration, that is required for conditional exports and development condition to work properly. E.g.
+
+```js
+resolve: {
+  mainFields: ['something-else', 'browser', '...'],
+  conditionNames: ['something-else', 'browser', '...'],
+}                                             // ^^^ this includes default configuration
+```
