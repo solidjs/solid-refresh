@@ -307,7 +307,7 @@ function bubbleFunctionDeclaration(
       decl.params.length < 2
     ) {
       const first = program.get('body')[0];
-      const [tmp] = first.insertBefore(decl);
+      const [tmp] = first.insertBefore(t.cloneNode(decl));
       program.scope.registerDeclaration(tmp);
       tmp.skip();
       if (path.parentPath.isExportNamedDeclaration()) {
