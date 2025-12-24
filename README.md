@@ -16,9 +16,14 @@ yarn add -D solid-refresh
 pnpm add -D solid-refresh
 ```
 
+```bash
+bun add -D solid-refresh
+```
+
 This project aims to provide HMR for Solid for various bundlers. It comes with a babel plugin and a runtime. Over time I hope to add different bundlers. Today it supports:
 
 * Vite (with option `bundler: "vite"`)
+* Bun (with option `bundler: "bun"`)
 * Snowpack (with option `bundler: "esm"`)
 * Webpack (for strict ESM, use option `bundler: "webpack5"`)
 * Nollup
@@ -28,6 +33,29 @@ This project aims to provide HMR for Solid for various bundlers. It comes with a
 ### Vite
 
 `solid-refresh` is already built into [`vite-plugin-solid`](https://github.com/solidjs/vite-plugin-solid).
+
+### Bun
+
+When using Bun's built-in development server or bundler, add the following to `.babelrc`:
+
+```json
+{
+  "env": {
+    "development": {
+      "plugins": [["solid-refresh/babel", {
+        "bundler": "bun"
+      }]]
+    }
+  }
+}
+```
+
+> [!NOTE]
+> Bun requires direct calls to `import.meta.hot.*` methods and does not support passing `import.meta.hot` as an argument to functions. The `"bun"` bundler option generates inline HMR code that is compatible with Bun's requirements.
+>
+> Bun's HMR API does not currently support `import.meta.hot.invalidate()`. When a component cannot be hot-reloaded (e.g., due to structural changes), the page will perform a full reload using `window.location.reload()`.
+
+For more information about Bun's HMR implementation, see the [Bun HMR documentation](https://bun.com/docs/bundler/hot-reloading).
 
 ### Webpack & Rspack
 

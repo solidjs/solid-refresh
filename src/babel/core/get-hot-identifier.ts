@@ -3,9 +3,10 @@ import * as t from '@babel/types';
 
 export function getHotIdentifier(state: StateContext): t.MemberExpression {
   switch (state.bundler) {
-    // vite/esm uses `import.meta.hot`
+    // vite/esm/bun uses `import.meta.hot`
     case 'esm':
     case 'vite':
+    case 'bun':
       return t.memberExpression(
         t.memberExpression(t.identifier('import'), t.identifier('meta')),
         t.identifier('hot'),

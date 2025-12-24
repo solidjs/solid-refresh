@@ -34,6 +34,12 @@ export const IMPORT_DECLINE: ImportDefinition = {
   source: SOLID_REFRESH_MODULE,
 };
 
+export const IMPORT_PATCH_REGISTRY: ImportDefinition = {
+  kind: 'named',
+  name: '$$patchRegistry',
+  source: SOLID_REFRESH_MODULE,
+};
+
 export const IMPORT_SPECIFIERS: ImportIdentifierSpecifier[] = [
   {
     type: 'render',
