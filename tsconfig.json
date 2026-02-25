@@ -25,7 +25,7 @@
     "esModuleInterop": true,
     "target": "ES2017",
     "declaration": true,
-    "declarationDir": "src",
+    "declarationDir": "./dist/src",
     "useDefineForClassFields": false,
     "declarationMap": true
   }
