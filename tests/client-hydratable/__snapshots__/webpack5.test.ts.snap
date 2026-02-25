@@ -235,7 +235,7 @@ const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-ski
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:10",
-  signature: "f71aefc6"
+  signature: "825a754d"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
@@ -471,7 +471,7 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_
   }
 })], {
   location: "example.jsx:7:10",
-  signature: "f32afbbe"
+  signature: "77f4a4b9"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
@@ -711,7 +711,7 @@ const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-ski
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:10",
-  signature: "ab3b4916"
+  signature: "5302828d"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
@@ -934,7 +934,7 @@ const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-ski
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:12",
-  signature: "e50aac71"
+  signature: "7e707735"
 });
 const Foo = _$$component(_REGISTRY, "Foo", () => {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
@@ -1157,7 +1157,7 @@ const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-ski
 });
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:12",
-  signature: "e50aac71"
+  signature: "7e707735"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function () {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
