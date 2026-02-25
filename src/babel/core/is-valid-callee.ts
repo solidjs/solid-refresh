@@ -1,11 +1,11 @@
+import type * as babel from '@babel/core';
+import * as t from '@babel/types';
 import type {
   ImportIdentifierSpecifier,
   ImportIdentifierType,
   StateContext,
 } from './types';
 import { unwrapNode } from './unwrap';
-import type * as babel from '@babel/core';
-import * as t from '@babel/types';
 
 function isIdentifierValidCallee(
   state: StateContext,

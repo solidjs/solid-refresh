@@ -176,6 +176,9 @@ function wrapContext(
   return context;
 }
 
+const SKIP_PATTERN = /^\s*@refresh skip\s*$/;
+const RELOAD_PATTERN = /^\s*@refresh reload\s*$/;
+
 function setupProgram(
   state: StateContext,
   path: babel.NodePath<t.Program>,
@@ -185,12 +188,12 @@ function setupProgram(
   let isDone = false;
   if (comments) {
     for (const { value: comment } of comments) {
-      if (/^\s*@refresh skip\s*$/.test(comment)) {
+      if (SKIP_PATTERN.test(comment)) {
         isDone = true;
         shouldSkip = true;
         break;
       }
-      if (/^\s*@refresh reload\s*$/.test(comment)) {
+      if (RELOAD_PATTERN.test(comment)) {
         isDone = true;
         path.pushContainer('body', getHMRDeclineCall(state, path));
         break;

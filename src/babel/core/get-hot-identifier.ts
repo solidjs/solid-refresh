@@ -1,5 +1,5 @@
-import type { StateContext } from './types';
 import * as t from '@babel/types';
+import type { StateContext } from './types';
 
 export function getHotIdentifier(state: StateContext): t.MemberExpression {
   switch (state.bundler) {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2019 Jason Dent
  * https://github.com/Jason3S/xxhash

@@ -188,6 +188,8 @@ function convertJSXOpeningToExpression(
   );
 }
 
+const COMPONENT_PATTERN = /^[A-Z_]/;
+
 function extractJSXExpressionsFromJSXElement(
   state: JSXState,
   path: babel.NodePath<t.JSXElement>,
@@ -196,7 +198,7 @@ function extractJSXExpressionsFromJSXElement(
   const openingName = openingElement.get('name');
   if (
     (isPathValid(openingName, t.isJSXIdentifier) &&
-      /^[A-Z_]/.test(openingName.node.name)) ||
+      COMPONENT_PATTERN.test(openingName.node.name)) ||
     isPathValid(openingName, t.isJSXMemberExpression)
   ) {
     if (isPathValid(openingName, t.isJSXIdentifier)) {
