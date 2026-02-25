@@ -12,20 +12,22 @@ jobs:
  job:
   runs-on: ubuntu-latest
   steps:
-  - uses: actions/checkout@v3
-  - uses: pnpm/action-setup@v2.2.2
-    with:
-      version: 8
-  - uses: actions/setup-node@v3
-    with:
-      node-version: 20
-      cache: 'pnpm'
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+          run_install: true
 
-  - name: Installing deps
-    run: pnpm install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
 
-  - name: Building
-    run: pnpm run build
+      - name: Installing deps
+        run: pnpm install
 
-  - name: Testing
-    run: pnpm run test:CI
+      - name: Building
+        run: pnpm run build
+
+      - name: Testing
+        run: pnpm run test:CI
