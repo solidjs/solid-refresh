@@ -1,0 +1,268 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`bun (client, non-hydratable) > Context API > should support top-level VariableDeclaration 1`] = `
+"import { $$context as _$$context } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+import { createContext } from 'solid-js';
+const _REGISTRY = _$$registry();
+const Example = _$$context(_REGISTRY, "Example", createContext());
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > ExportNamedDeclaration > should transform ExportNamedDeclaration 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:13",
+  signature: "1f7be6ec"
+});
+export { Foo };
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > FunctionDeclaration > should generate inline HMR code for Bun 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "1f7be6ec"
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > FunctionDeclaration > should handle createContext 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const Example = createContext();
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
+  children: "Foo"
+}), {
+  location: "example.jsx:4:15",
+  signature: "23a9c5eb"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    get v0() {
+      return Example.Provider;
+    }
+  });
+}, {
+  location: "example.jsx:3:6",
+  signature: "b4605599",
+  dependencies: () => ({
+    Example
+  })
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > FunctionDeclaration > should handle external dependencies 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+import { insert as _$insert } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const example = 'Foo';
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
+  var _el$ = _tmpl$();
+  _$insert(_el$, () => _props.v0);
+  return _el$;
+})(), {
+  location: "example.jsx:4:15",
+  signature: "ae0f2a31"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
+    v0: example
+  });
+}, {
+  location: "example.jsx:3:6",
+  signature: "27e4cbbb",
+  dependencies: () => ({
+    example
+  })
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "c963b907"
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", props => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:20",
+  signature: "afe16871"
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression 2`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = _$$component(_REGISTRY, "Foo", () => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:2:20",
+  signature: "82d7f8e8"
+});
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;
+
+exports[`bun (client, non-hydratable) > fix render > should work with render + dispose 1`] = `
+"import { createComponent as _$createComponent } from "solid-js/web";
+import { $$component as _$$component } from "solid-refresh";
+import { $$patchRegistry as _$$patchRegistry } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+import { render } from 'solid-js/web';
+const _REGISTRY = _$$registry();
+const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
+  location: "example.jsx:4:23",
+  signature: "1fdef89b"
+});
+const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanup_1, {
+  v0: App
+}), root);
+if (import.meta.hot) import.meta.hot.dispose(_cleanup);
+if (import.meta.hot) {
+  import.meta.hot.data["solid-refresh"] = import.meta.hot.data["solid-refresh"] || _REGISTRY;
+  import.meta.hot.data["solid-refresh-prev"] = _REGISTRY;
+  import.meta.hot.accept(mod => {
+    if (mod == null || _$$patchRegistry(import.meta.hot.data["solid-refresh"], import.meta.hot.data["solid-refresh-prev"])) {
+      window.location.reload();
+    }
+  });
+}"
+`;

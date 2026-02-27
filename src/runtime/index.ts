@@ -178,6 +178,8 @@ function patchRegistry(oldRegistry: Registry, newRegistry: Registry) {
   return shouldInvalidateByComponents || shouldInvalidateByContext;
 }
 
+export const $$patchRegistry = patchRegistry;
+
 const SOLID_REFRESH = 'solid-refresh';
 const SOLID_REFRESH_PREV = 'solid-refresh-prev';
 
