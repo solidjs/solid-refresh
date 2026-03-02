@@ -4,7 +4,6 @@ import path from 'path';
 import { isComponentishName } from './core/checks';
 import {
   IMPORT_COMPONENT,
-  IMPORT_CONTEXT,
   IMPORT_SPECIFIERS,
 } from './core/constants';
 import { createRegistry } from './core/create-registry';
@@ -165,13 +164,13 @@ function wrapContext(
   if (statementPath) {
     const registry = createRegistry(state, statementPath);
     const hotName = t.stringLiteral(identifier.name);
-    const contextCall = getImportIdentifier(
+    const componentCall = getImportIdentifier(
       state,
       statementPath,
-      IMPORT_CONTEXT,
+      IMPORT_COMPONENT,
     );
 
-    return t.callExpression(contextCall, [registry, hotName, context]);
+    return t.callExpression(componentCall, [registry, hotName, context]);
   }
   return context;
 }

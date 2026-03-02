@@ -1,4 +1,4 @@
-import type { Context, JSX } from 'solid-js';
+import type { Accessor, JSX } from 'solid-js';
 import { createSignal, DEV } from 'solid-js';
 import type { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
 import createProxy from './create-proxy';
@@ -26,24 +26,13 @@ export interface ComponentRegistrationData<P> extends ComponentOptions {
   update: (action: () => (props: P) => JSX.Element) => void;
 }
 
-// The registration data for the context
-export interface ContextRegistrationData<T> {
-  // A compile-time ID generated for the context, this is usually
-  // derived from the context's name
-  id: string;
-  // The context instance
-  context: Context<T>;
-}
-
 export interface Registry {
   components: Map<string, ComponentRegistrationData<any>>;
-  contexts: Map<string, ContextRegistrationData<any>>;
 }
 
 export function $$registry(): Registry {
   return {
     components: new Map(),
-    contexts: new Map(),
   };
 }
 
@@ -53,9 +42,10 @@ export function $$component<P>(
   component: (props: P) => JSX.Element,
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
-  const [comp, setComp] = createSignal(component, { internal: true });
+  const [comp, setComp] = createSignal<(props: P) => JSX.Element>();
+  setComp(() => component);
   const proxy = createProxy<(props: P) => JSX.Element, P>(
-    comp,
+    comp as Accessor<(props: P) => JSX.Element>,
     id,
     options.location,
   );
@@ -69,22 +59,18 @@ export function $$component<P>(
   return proxy;
 }
 
-export function $$context<T>(
-  registry: Registry,
-  id: string,
-  context: Context<T>,
-): Context<T> {
-  registry.contexts.set(id, {
-    id,
-    context,
-  });
-  return context;
-}
-
 function patchComponent<P>(
   oldData: ComponentRegistrationData<P>,
   newData: ComponentRegistrationData<P>,
 ) {
+  // Preserve context identity: contexts (createContext) are components in Solid 2.0
+  // but useContext relies on a stable Symbol .id for lookups
+  const oldComp = oldData.component as any;
+  const newComp = newData.component as any;
+  if (oldComp.id != null && typeof oldComp.id === 'symbol') {
+    newComp.id = oldComp.id;
+  }
+
   // Check if incoming module has signature
   if (newData.signature) {
     // Compare signatures
@@ -136,46 +122,8 @@ function patchComponents(oldData: Registry, newData: Registry) {
   return false;
 }
 
-function patchContext<T>(
-  oldData: ContextRegistrationData<T>,
-  newData: ContextRegistrationData<T>,
-) {
-  oldData.context.defaultValue = newData.context.defaultValue;
-  newData.context.id = oldData.context.id;
-  newData.context.Provider = oldData.context.Provider;
-}
-
-function patchContexts(oldData: Registry, newData: Registry) {
-  const contexts = new Set([
-    ...oldData.contexts.keys(),
-    ...newData.contexts.keys(),
-  ]);
-  for (const key of contexts) {
-    const oldContext = oldData.contexts.get(key);
-    const newContext = newData.contexts.get(key);
-
-    if (oldContext) {
-      if (newContext) {
-        patchContext(oldContext, newContext);
-      } else {
-        // We need to invalidate
-        return true;
-      }
-    } else if (newContext) {
-      oldData.contexts.set(key, newContext);
-    }
-  }
-  return false;
-}
-
 function patchRegistry(oldRegistry: Registry, newRegistry: Registry) {
-  const shouldInvalidateByContext = patchContexts(oldRegistry, newRegistry);
-  const shouldInvalidateByComponents = patchComponents(
-    oldRegistry,
-    newRegistry,
-  );
-  // In the future we may add other HMR features here
-  return shouldInvalidateByComponents || shouldInvalidateByContext;
+  return patchComponents(oldRegistry, newRegistry);
 }
 
 const SOLID_REFRESH = 'solid-refresh';
