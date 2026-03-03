@@ -37,13 +37,13 @@ importers:
         specifier: ^25.3.0
         version: 25.3.0
       babel-preset-solid:
-        specifier: ^2.0.0-experimental.16
+        specifier: ^2.0.0-beta
         version: 2.0.0-experimental.16(@babel/core@7.29.0)(solid-js@2.0.0-experimental.16)
       rollup:
         specifier: ^4.59.0
         version: 4.59.0
       solid-js:
-        specifier: ^2.0.0-experimental.16
+        specifier: ^2.0.0-beta
         version: 2.0.0-experimental.16
       tslib:
         specifier: ^2.6.2
