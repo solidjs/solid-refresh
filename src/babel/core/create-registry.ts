@@ -33,21 +33,32 @@ export function createRegistry(
     )[0],
   );
   const pathToHot = getHotIdentifier(state);
+  const statements: t.Statement[] = [
+    t.expressionStatement(
+      t.callExpression(getImportIdentifier(state, path, IMPORT_REFRESH), [
+        t.stringLiteral(state.bundler),
+        pathToHot,
+        identifier,
+      ]),
+    ),
+  ];
+  // Vite's importAnalysis statically lexes for `import.meta.hot.accept` to
+  // mark modules as self-accepting. The actual accept logic is in $$refreshESM,
+  // but Vite needs this direct call for server-side HMR boundary detection.
+  if (state.bundler === 'vite') {
+    statements.unshift(
+      t.expressionStatement(
+        t.callExpression(
+          t.memberExpression(pathToHot, t.identifier('accept')),
+          [],
+        ),
+      ),
+    );
+  }
   (
     path.scope.getProgramParent().path as babel.NodePath<t.Program>
   ).pushContainer('body', [
-    t.ifStatement(
-      pathToHot,
-      t.blockStatement([
-        t.expressionStatement(
-          t.callExpression(getImportIdentifier(state, path, IMPORT_REFRESH), [
-            t.stringLiteral(state.bundler),
-            pathToHot,
-            identifier,
-          ]),
-        ),
-      ]),
-    ),
+    t.ifStatement(pathToHot, t.blockStatement(statements)),
   ]);
   state.imports.set(REGISTRY, identifier);
   return identifier;

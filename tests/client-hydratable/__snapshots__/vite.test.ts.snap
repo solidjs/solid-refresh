@@ -15,6 +15,7 @@ import { createContext } from 'solid-js';
 const _REGISTRY = _$$registry();
 export const Example = _$$component(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -27,6 +28,7 @@ import { createContext } from 'solid-js';
 const _REGISTRY = _$$registry();
 const Example = _$$component(_REGISTRY, "Example", createContext());
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -71,6 +73,7 @@ export default function foo() {
   return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -92,6 +95,7 @@ export default function Foo(a, b) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -117,6 +121,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
 });
 export default Foo;
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -142,6 +147,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 export default Foo;
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -178,6 +184,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 const example = 'Foo';
 export default Foo;
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -210,6 +217,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 const Example = createContext();
 export default Foo;
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -254,6 +262,7 @@ const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
 });
 export default Foo;
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -302,6 +311,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -323,6 +333,7 @@ export function Foo(a, b) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -348,6 +359,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
 });
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -373,6 +385,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 });
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -409,6 +422,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 const example = 'Foo';
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -441,6 +455,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
 const Example = createContext();
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -495,6 +510,7 @@ const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
 export { Bar };
 export { Foo };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -539,6 +555,7 @@ function foo() {
   return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -560,6 +577,7 @@ function Foo(a, b) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -584,6 +602,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo(props) {
   signature: "1f7be6ec"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -608,6 +627,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   signature: "c963b907"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -643,6 +663,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -674,6 +695,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -717,6 +739,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   signature: "c963b907"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -761,6 +784,7 @@ const foo = () => {
   return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
 };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -782,6 +806,7 @@ const Foo = (a, b) => {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -806,6 +831,7 @@ const Foo = _$$component(_REGISTRY, "Foo", props => {
   signature: "afe16871"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -830,6 +856,7 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
   signature: "82d7f8e8"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -865,6 +892,7 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -896,6 +924,7 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -939,6 +968,7 @@ const Foo = _$$component(_REGISTRY, "Foo", () => {
   signature: "82d7f8e8"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -983,6 +1013,7 @@ const foo = function () {
   return /*@refresh jsx-skip*/_$createComponent(JSX_foo_1, {});
 };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1004,6 +1035,7 @@ const Foo = function (a, b) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 };
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1028,6 +1060,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function (props) {
   signature: "a6a4d450"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1052,6 +1085,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
   signature: "a0860447"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1087,6 +1121,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1118,6 +1153,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1161,6 +1197,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function () {
   signature: "a0860447"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1194,6 +1231,7 @@ const Comp = _$$component(_REGISTRY, "Comp", () => {
   signature: "726057ca"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1233,6 +1271,7 @@ const Comp = _$$component(_REGISTRY, "Comp", () => {
   signature: "d3db0f89"
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1274,6 +1313,7 @@ const Comp = _$$component(_REGISTRY, "Comp", () => {
   })
 });
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1307,6 +1347,7 @@ const _cleanup = solidWeb.render(() => /*@refresh jsx-skip*/_$createComponent(JS
 }), root);
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1327,6 +1368,7 @@ const _cleanup = render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 }), root);
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1347,6 +1389,7 @@ const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 }), root);
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1367,6 +1410,7 @@ const _cleanup = Render(() => /*@refresh jsx-skip*/_$createComponent(JSX__cleanu
 }), root);
 if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
@@ -1389,6 +1433,7 @@ if (root) {
   if (import.meta.hot) import.meta.hot.dispose(_cleanup);
 }
 if (import.meta.hot) {
+  import.meta.hot.accept();
   _$$refresh("vite", import.meta.hot, _REGISTRY);
 }"
 `;
