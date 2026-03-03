@@ -1,4 +1,4 @@
-import type { Accessor, JSX } from 'solid-js';
+import type { JSX } from 'solid-js';
 import { createSignal, DEV } from 'solid-js';
 import type { ESMRuntimeType, StandardRuntimeType } from '../shared/types';
 import createProxy from './create-proxy';
@@ -42,10 +42,9 @@ export function $$component<P>(
   component: (props: P) => JSX.Element,
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
-  const [comp, setComp] = createSignal<(props: P) => JSX.Element>();
-  setComp(() => component);
+  const [comp, setComp] = createSignal(() => component);
   const proxy = createProxy<(props: P) => JSX.Element, P>(
-    comp as Accessor<(props: P) => JSX.Element>,
+    comp,
     id,
     options.location,
   );

@@ -33,7 +33,7 @@ export default function createProxy<C extends BaseComponent<P>, P>(
 ): (props: P) => JSX.Element {
   const refreshName = `[solid-refresh]${name}`;
   function HMRComp(props: P): JSX.Element {
-    const s = source();
+    const s = untrack(source);
     if (!s || $DEVCOMP in s) {
       return createMemo(
         () => {
