@@ -42,7 +42,12 @@ export function $$component<P>(
   component: (props: P) => JSX.Element,
   options: ComponentOptions = {},
 ): (props: P) => JSX.Element {
-  const [comp, setComp] = createSignal(() => component);
+  let current = component;
+  const [comp, setComp] = createSignal(() => current);
+  const update = (fn: () => (props: P) => JSX.Element) => {
+    current = fn();
+    setComp(() => current);
+  };
   const proxy = createProxy<(props: P) => JSX.Element, P>(
     comp,
     id,
@@ -52,7 +57,7 @@ export function $$component<P>(
     id,
     component,
     proxy,
-    update: setComp,
+    update,
     ...options,
   });
   return proxy;
