@@ -309,10 +309,6 @@ function bubbleFunctionDeclaration(
       // have zero or one parameter
       decl.params.length < 2
     ) {
-      const first = program.get('body')[0];
-      const [tmp] = first.insertBefore(decl);
-      program.scope.registerDeclaration(tmp);
-      tmp.skip();
       if (path.parentPath.isExportNamedDeclaration()) {
         path.parentPath.replaceWith(
           t.exportNamedDeclaration(undefined, [
@@ -324,6 +320,9 @@ function bubbleFunctionDeclaration(
       } else {
         path.remove();
       }
+      const [tmp] = program.unshiftContainer('body', [decl]);
+      program.scope.registerDeclaration(tmp);
+      tmp.skip();
     }
   }
 }
@@ -361,6 +360,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
             bubbleFunctionDeclaration(programPath, path);
           },
         });
+        programPath.scope.crawl();
         if (state.jsx) {
           programPath.traverse({
             JSXElement(path) {
@@ -370,6 +370,7 @@ export default function solidRefreshPlugin(): babel.PluginObj<State> {
               transformJSX(path);
             },
           });
+          programPath.scope.crawl();
         }
         programPath.traverse({
           VariableDeclarator(path) {
