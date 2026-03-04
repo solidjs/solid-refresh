@@ -32,7 +32,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
@@ -45,7 +45,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with @refresh skip 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 // @refresh skip
 export default function Foo() {
@@ -54,8 +54,8 @@ export default function Foo() {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -74,8 +74,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -94,8 +94,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -118,8 +118,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -142,9 +142,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { insert as _$insert } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { insert as _$insert } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -177,7 +177,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -209,8 +209,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
 import { $$component as _$$component } from "solid-refresh";
@@ -252,7 +252,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh reload 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
@@ -265,7 +265,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with @refresh skip 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 // @refresh skip
 export function Foo() {
@@ -274,8 +274,8 @@ export function Foo() {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -298,8 +298,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -318,8 +318,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -342,8 +342,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -366,9 +366,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 3`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { insert as _$insert } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { insert as _$insert } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -401,7 +401,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 4`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -433,8 +433,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should transform ExportNamedDeclaration w/ FunctionExpression with valid Component name and params 5`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 import { $$component as _$$component } from "solid-refresh";
@@ -477,7 +477,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh reload 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
@@ -490,7 +490,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with @refresh skip 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 // @refresh skip
 function Foo() {
@@ -499,8 +499,8 @@ function Foo() {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with invalid Component name 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -519,8 +519,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -539,8 +539,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -562,8 +562,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -585,9 +585,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 3`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { insert as _$insert } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { insert as _$insert } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -619,7 +619,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 4`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -650,8 +650,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 5`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
 import { $$component as _$$component } from "solid-refresh";
@@ -692,7 +692,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh reload 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
@@ -705,7 +705,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with @refresh skip 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 // @refresh skip
 const Foo = () => {
@@ -714,8 +714,8 @@ const Foo = () => {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with invalid Component name 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -734,8 +734,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -754,8 +754,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -777,8 +777,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -800,9 +800,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 3`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { insert as _$insert } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { insert as _$insert } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -834,7 +834,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 4`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -865,8 +865,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 5`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 import { $$component as _$$component } from "solid-refresh";
@@ -907,7 +907,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh reload 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
@@ -920,7 +920,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with @refresh skip 1`] = `
-"import { template as _$template } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 // @refresh skip
 const Foo = function () {
@@ -929,8 +929,8 @@ const Foo = function () {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with invalid Component name 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -949,8 +949,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and >1 params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -969,8 +969,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -992,8 +992,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 2`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -1015,9 +1015,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 3`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { insert as _$insert } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { insert as _$insert } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -1049,7 +1049,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 4`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -1080,8 +1080,8 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > VariableDeclarator > FunctionExpression > should transform VariableDeclarator w/ FunctionExpression with valid Component name and params 5`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
   _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 import { $$component as _$$component } from "solid-refresh";
@@ -1122,9 +1122,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix build > refs > should work with a function 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { use as _$use } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { ref as _$ref } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -1133,7 +1133,7 @@ const _REGISTRY = _$$registry();
 const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _tmpl$();
   var _ref$ = _props.v0;
-  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  typeof _ref$ === "function" || Array.isArray(_ref$) ? _$ref(() => _ref$, _el$) : _props.v0 = _el$;
   return _el$;
 })(), {
   location: "example.jsx:4:19",
@@ -1154,9 +1154,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix build > refs > should work with a mutable variable 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { use as _$use } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { ref as _$ref } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -1165,7 +1165,7 @@ const _REGISTRY = _$$registry();
 const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _tmpl$();
   var _ref$ = _props.v0;
-  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  typeof _ref$ === "function" || Array.isArray(_ref$) ? _$ref(() => _ref$, _el$) : _props.v0 = _el$;
   return _el$;
 })(), {
   location: "example.jsx:4:19",
@@ -1192,9 +1192,9 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix build > signals as refs > should work 1`] = `
-"import { template as _$template } from "solid-js/web";
-import { createComponent as _$createComponent } from "solid-js/web";
-import { use as _$use } from "solid-js/web";
+"import { template as _$template } from "@solidjs/web";
+import { createComponent as _$createComponent } from "@solidjs/web";
+import { ref as _$ref } from "@solidjs/web";
 var _tmpl$ = /*#__PURE__*/_$template(\`<div>Comp\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
@@ -1204,7 +1204,7 @@ const _REGISTRY = _$$registry();
 const Comp_1 = _$$component(_REGISTRY, "Comp_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _tmpl$();
   var _ref$ = _props.v0;
-  typeof _ref$ === "function" ? _$use(_ref$, _el$) : _props.v0 = _el$;
+  typeof _ref$ === "function" || Array.isArray(_ref$) ? _$ref(() => _ref$, _el$) : _props.v0 = _el$;
   return _el$;
 })(), {
   location: "example.jsx:6:19",
@@ -1232,7 +1232,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > @refresh reload > should work 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
 import { render } from 'solid-js/web';
@@ -1246,7 +1246,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > import specifiers > should work with ImportNamespaceSpecifier 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -1266,7 +1266,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + Identifier 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -1286,7 +1286,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -1306,7 +1306,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > import specifiers > should work with ImportSpecifier + aliased Identifier from StringLiteral 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
@@ -1326,7 +1326,7 @@ if (import.meta.webpackHot) {
 `;
 
 exports[`rspack-esm (client, non-hydratable) > fix render > top-level statements > should work with IfStatement 1`] = `
-"import { createComponent as _$createComponent } from "solid-js/web";
+"import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";

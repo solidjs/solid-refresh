@@ -37,14 +37,14 @@ importers:
         specifier: ^25.3.0
         version: 25.3.0
       babel-preset-solid:
-        specifier: ^2.0.0-beta
-        version: 2.0.0-experimental.16(@babel/core@7.29.0)(solid-js@2.0.0-experimental.16)
+        specifier: ^2.0.0-beta.0
+        version: 2.0.0-beta.0(@babel/core@7.29.0)(solid-js@2.0.0-beta.0)
       rollup:
         specifier: ^4.59.0
         version: 4.59.0
       solid-js:
-        specifier: ^2.0.0-beta
-        version: 2.0.0-experimental.16
+        specifier: ^2.0.0-beta.0
+        version: 2.0.0-beta.0
       tslib:
         specifier: ^2.6.2
         version: 2.8.1
@@ -1133,11 +1133,11 @@ packages:
     peerDependencies:
       '@babel/core': ^7.20.12
 
-  babel-preset-solid@2.0.0-experimental.16:
-    resolution: {integrity: sha512-I8UfX7Er2i3XaqC8pr7klEHl/AWUUFmpgWDvzipQofthcBwrlWUk8pVbQZ6PuBOnr4XRBVF3ijzOicfzmj4uBA==}
+  babel-preset-solid@2.0.0-beta.0:
+    resolution: {integrity: sha512-bPA3YnISn4cUyMjIPlC3QxbX5tqCKYBLK6zhChhiJ6wKmKt6yv8pB4FmwyxGf3tcb0eARhcIYnXpxZ+z58Bmww==}
     peerDependencies:
       '@babel/core': ^7.0.0
-      solid-js: 2.0.0-experimental.16
+      solid-js: ^2.0.0-beta.0
     peerDependenciesMeta:
       solid-js:
         optional: true
@@ -1509,8 +1509,8 @@ packages:
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
 
-  solid-js@2.0.0-experimental.16:
-    resolution: {integrity: sha512-zZ1dU7cR0EnvLnrYiRLQbCFiDw5blLdlqmofgLzKUYE1TCMWDcisBlSwz0Ez8l4yXB4adbdhtaYCuynH4xSq9A==}
+  solid-js@2.0.0-beta.0:
+    resolution: {integrity: sha512-SnOAA8QBC+TJ3dwN9xPRDYybCZJ6BSW6gPKnDRtJ0n0r96pg/KcbvSt/T/O6qaWI1pf+CMpYmdOxZfTQr2AhQg==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -2857,12 +2857,12 @@ snapshots:
       parse5: 7.3.0
       validate-html-nesting: 1.2.4
 
-  babel-preset-solid@2.0.0-experimental.16(@babel/core@7.29.0)(solid-js@2.0.0-experimental.16):
+  babel-preset-solid@2.0.0-beta.0(@babel/core@7.29.0)(solid-js@2.0.0-beta.0):
     dependencies:
       '@babel/core': 7.29.0
       babel-plugin-jsx-dom-expressions: 0.41.0-next.9(@babel/core@7.29.0)
     optionalDependencies:
-      solid-js: 2.0.0-experimental.16
+      solid-js: 2.0.0-beta.0
 
   base-x@3.0.11:
     dependencies:
@@ -3216,7 +3216,7 @@ snapshots:
 
   siginfo@2.0.0: {}
 
-  solid-js@2.0.0-experimental.16:
+  solid-js@2.0.0-beta.0:
     dependencies:
       '@solidjs/signals': 0.11.1
       csstype: 3.2.3
