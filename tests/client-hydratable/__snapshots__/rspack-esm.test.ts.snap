@@ -451,48 +451,39 @@ exports[`rspack-esm (client, hydratable) > ExportNamedDeclaration w/ FunctionExp
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
-  location: "example.jsx:8:12",
-  signature: "241c14a4"
-});
-const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(_props4.v0, {}), {
-  location: "example.jsx:9:12",
-  signature: "9a24e06b"
-});
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {
-  get v0() {
-    return _props.v0;
-  }
-})], {
-  location: "example.jsx:7:10",
-  signature: "77f4a4b9"
-});
-const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
-  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {
-    v0: Bar
-  });
-}, {
-  location: "example.jsx:5:13",
-  signature: "2f861eed",
-  dependencies: () => ({
-    Bar
-  })
-});
-const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   location: "example.jsx:3:15",
-  signature: "fad4daa8"
+  signature: "61dd3182"
 });
 const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
   return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
 }, {
   location: "example.jsx:2:13",
   signature: "e93ca257"
+});
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:8:12",
+  signature: "241c14a4"
+});
+const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-skip*/_$createComponent(Bar, {}), {
+  location: "example.jsx:9:12",
+  signature: "61d9a109"
+});
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
+  location: "example.jsx:7:10",
+  signature: "5302828d"
+});
+const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}, {
+  location: "example.jsx:5:13",
+  signature: "c963b907"
 });
 export { Bar };
 export { Foo };
@@ -624,7 +615,6 @@ var _tmpl$ = /*#__PURE__*/_$template(\`<h1>\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const example = 'Foo';
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/(() => {
   var _el$ = _$getNextElement(_tmpl$);
@@ -645,6 +635,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     example
   })
 });
+const example = 'Foo';
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -655,7 +646,6 @@ exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transfor
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-const Example = createContext();
 const _REGISTRY = _$$registry();
 const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {
   children: "Foo"
@@ -676,6 +666,7 @@ const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
     Example
   })
 });
+const Example = createContext();
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
 }"
@@ -685,23 +676,13 @@ exports[`rspack-esm (client, hydratable) > FunctionDeclaration > should transfor
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
 import { getNextElement as _$getNextElement } from "solid-js/web";
-var _tmpl$ = /*#__PURE__*/_$template(\`<div>bar\`),
-  _tmpl$2 = /*#__PURE__*/_$template(\`<div>foo\`);
+var _tmpl$ = /*#__PURE__*/_$template(\`<div>foo\`),
+  _tmpl$2 = /*#__PURE__*/_$template(\`<div>bar\`);
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
 const _REGISTRY = _$$registry();
-const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
-  location: "example.jsx:3:15",
-  signature: "61dd3182"
-});
-const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
-  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
-}, {
-  location: "example.jsx:2:6",
-  signature: "e93ca257"
-});
-const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+const Foo_1_1 = _$$component(_REGISTRY, "Foo_1_1", _props3 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$), {
   location: "example.jsx:8:12",
   signature: "241c14a4"
 });
@@ -709,15 +690,25 @@ const Foo_1_2 = _$$component(_REGISTRY, "Foo_1_2", _props4 => /*@refresh jsx-ski
   location: "example.jsx:9:12",
   signature: "61d9a109"
 });
-const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props2 => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/[_$createComponent(Foo_1_1, {}), _$createComponent(Foo_1_2, {})], {
   location: "example.jsx:7:10",
-  signature: "5302828d"
+  signature: "825a754d"
 });
 const Foo = _$$component(_REGISTRY, "Foo", function Foo() {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }, {
   location: "example.jsx:5:6",
   signature: "c963b907"
+});
+const Bar_1 = _$$component(_REGISTRY, "Bar_1", _props2 => /*@refresh jsx-skip*/_$getNextElement(_tmpl$2), {
+  location: "example.jsx:3:15",
+  signature: "fad4daa8"
+});
+const Bar = _$$component(_REGISTRY, "Bar", function Bar() {
+  return /*@refresh jsx-skip*/_$createComponent(Bar_1, {});
+}, {
+  location: "example.jsx:2:6",
+  signature: "e93ca257"
 });
 if (import.meta.webpackHot) {
   _$$refresh("rspack-esm", import.meta.webpackHot, _REGISTRY);
