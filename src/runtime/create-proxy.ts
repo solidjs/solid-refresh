@@ -67,10 +67,10 @@ export default function createProxy<C extends BaseComponent<P>, P>(
       if (property === 'location' || property === 'name') {
         return (HMRComp as any)[property];
       }
-      return source()[property as keyof C];
+      return untrack(source)[property as keyof C];
     },
     set(_, property, value) {
-      source()[property as keyof C] = value;
+      untrack(source)[property as keyof C] = value;
       return true;
     },
   });
