@@ -41,7 +41,7 @@ export default function createProxy<C extends BaseComponent<P>, P>(
           if (c) {
             return (untrack as Function)(
               () => c(props),
-              (c as any)[$DEVCOMP] && `<${c.name || 'Anonymous'}>`,
+              (c as any)[$DEVCOMP] && `<${name}>`,
             );
           }
           return undefined;
