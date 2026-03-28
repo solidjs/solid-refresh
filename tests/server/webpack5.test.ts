@@ -719,7 +719,7 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-          import { render } from 'solid-js/web';
+          import { render } from '@solidjs/web';
     
           render(() => <App />, root);
         `,
@@ -733,7 +733,7 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-          import { render as Render } from 'solid-js/web';
+          import { render as Render } from '@solidjs/web';
     
           Render(() => <App />, root);
         `,
@@ -747,7 +747,7 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-          import { 'render' as Render } from 'solid-js/web';
+          import { 'render' as Render } from '@solidjs/web';
     
           Render(() => <App />, root);
         `,
@@ -761,7 +761,7 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-          import * as solidWeb from 'solid-js/web';
+          import * as solidWeb from '@solidjs/web';
     
           solidWeb.render(() => <App />, root);
         `,
@@ -777,7 +777,7 @@ describe('webpack5 (server, non-hydratable)', () => {
         expect(
           await transform(
             `
-          import { render } from 'solid-js/web';
+          import { render } from '@solidjs/web';
 
           if (root) {
             render(() => <App />, root);
@@ -796,7 +796,7 @@ describe('webpack5 (server, non-hydratable)', () => {
           await transform(
             `
           // @refresh reload
-          import { render } from 'solid-js/web';
+          import { render } from '@solidjs/web';
 
           if (root) {
             render(() => <App />, root);

@@ -1397,7 +1397,7 @@ exports[`standard (server, hydratable) > fix render > @refresh reload > should w
 "import { createComponent as _$createComponent } from "@solidjs/web";
 import { $$decline as _$$decline } from "solid-refresh";
 // @refresh reload
-import { render } from 'solid-js/web';
+import { render } from '@solidjs/web';
 if (root) {
   const _cleanup = render(() => _$createComponent(App, {}), root);
   if (module.hot) module.hot.dispose(_cleanup);
@@ -1412,7 +1412,7 @@ exports[`standard (server, hydratable) > fix render > import specifiers > should
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-import * as solidWeb from 'solid-js/web';
+import * as solidWeb from '@solidjs/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
   location: "example.jsx:4:32",
@@ -1432,7 +1432,7 @@ exports[`standard (server, hydratable) > fix render > import specifiers > should
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-import { render } from 'solid-js/web';
+import { render } from '@solidjs/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
   location: "example.jsx:4:23",
@@ -1452,7 +1452,7 @@ exports[`standard (server, hydratable) > fix render > import specifiers > should
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-import { render as Render } from 'solid-js/web';
+import { render as Render } from '@solidjs/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
   location: "example.jsx:4:23",
@@ -1472,7 +1472,7 @@ exports[`standard (server, hydratable) > fix render > import specifiers > should
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-import { 'render' as Render } from 'solid-js/web';
+import { 'render' as Render } from '@solidjs/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
   location: "example.jsx:4:23",
@@ -1492,7 +1492,7 @@ exports[`standard (server, hydratable) > fix render > top-level statements > sho
 import { $$component as _$$component } from "solid-refresh";
 import { $$refresh as _$$refresh } from "solid-refresh";
 import { $$registry as _$$registry } from "solid-refresh";
-import { render } from 'solid-js/web';
+import { render } from '@solidjs/web';
 const _REGISTRY = _$$registry();
 const JSX__cleanup_1 = _$$component(_REGISTRY, "JSX__cleanup_1", _props => /*@refresh jsx-skip*/_$createComponent(_props.v0, {}), {
   location: "example.jsx:5:25",

@@ -37,11 +37,11 @@ export const IMPORT_DECLINE: ImportDefinition = {
 export const IMPORT_SPECIFIERS: ImportIdentifierSpecifier[] = [
   {
     type: 'render',
-    definition: { name: 'render', kind: 'named', source: 'solid-js/web' },
+    definition: { name: 'render', kind: 'named', source: '@solidjs/web' },
   },
   {
     type: 'render',
-    definition: { name: 'hydrate', kind: 'named', source: 'solid-js/web' },
+    definition: { name: 'hydrate', kind: 'named', source: '@solidjs/web' },
   },
   {
     type: 'createContext',
