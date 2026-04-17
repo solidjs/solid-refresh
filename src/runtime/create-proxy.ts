@@ -46,7 +46,6 @@ export default function createProxy<C extends BaseComponent<P>, P>(
           }
           return undefined;
         },
-        undefined,
         {
           name: refreshName,
           transparent: true,
