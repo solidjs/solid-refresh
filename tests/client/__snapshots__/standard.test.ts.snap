@@ -93,6 +93,26 @@ if (module.hot) {
 }"
 `;
 
+exports[`standard (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and a rest parameter 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+export default function Foo(...args) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
 exports[`standard (client, non-hydratable) > ExportDefaultDeclaration w/ FunctionExpression > should transform ExportDefaultDeclaration w/ FunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
@@ -310,6 +330,26 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_t
   signature: "4b145a58"
 });
 export function Foo(a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, non-hydratable) > ExportNamedDeclaration w/ FunctionExpression > should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and a rest parameter 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+export function Foo(...args) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 }
 if (module.hot) {
@@ -538,6 +578,26 @@ if (module.hot) {
 }"
 `;
 
+exports[`standard (client, non-hydratable) > FunctionDeclaration > should skip FunctionDeclaration with valid Component name and a rest parameter 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:15",
+  signature: "4b145a58"
+});
+function Foo(...args) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+}
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
 exports[`standard (client, non-hydratable) > FunctionDeclaration > should transform FunctionDeclaration with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
@@ -753,6 +813,26 @@ if (module.hot) {
 }"
 `;
 
+exports[`standard (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and a rest parameter 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = (...args) => {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+};
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
 exports[`standard (client, non-hydratable) > VariableDeclarator > ArrowFunctionExpression > should transform VariableDeclarator w/ ArrowFunctionExpression with valid Component name and params 1`] = `
 "import { template as _$template } from "solid-js/web";
 import { createComponent as _$createComponent } from "solid-js/web";
@@ -961,6 +1041,26 @@ const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_t
   signature: "4b145a58"
 });
 const Foo = function (a, b) {
+  return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
+};
+if (module.hot) {
+  _$$refresh("standard", module.hot, _REGISTRY);
+}"
+`;
+
+exports[`standard (client, non-hydratable) > VariableDeclarator > FunctionExpression > should skip VariableDeclarator w/ FunctionExpression with valid Component name and a rest parameter 1`] = `
+"import { template as _$template } from "solid-js/web";
+import { createComponent as _$createComponent } from "solid-js/web";
+var _tmpl$ = /*#__PURE__*/_$template(\`<h1>Foo\`);
+import { $$component as _$$component } from "solid-refresh";
+import { $$refresh as _$$refresh } from "solid-refresh";
+import { $$registry as _$$registry } from "solid-refresh";
+const _REGISTRY = _$$registry();
+const Foo_1 = _$$component(_REGISTRY, "Foo_1", _props => /*@refresh jsx-skip*/_tmpl$(), {
+  location: "example.jsx:3:17",
+  signature: "4b145a58"
+});
+const Foo = function (...args) {
   return /*@refresh jsx-skip*/_$createComponent(Foo_1, {});
 };
 if (module.hot) {

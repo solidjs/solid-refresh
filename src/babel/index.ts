@@ -1,7 +1,7 @@
 import type * as babel from '@babel/core';
 import * as t from '@babel/types';
 import path from 'path';
-import { isComponentishName } from './core/checks';
+import { isComponentishName, isComponentishParams } from './core/checks';
 import {
   IMPORT_COMPONENT,
   IMPORT_CONTEXT,
@@ -238,7 +238,7 @@ function transformVariableDeclarator(
       !(trueFuncExpr.async || trueFuncExpr.generator) &&
       // Might be component-like, but the only valid components
       // have zero or one parameter
-      trueFuncExpr.params.length < 2
+      isComponentishParams(trueFuncExpr.params)
     ) {
       path.node.init = wrapComponent(state, path, identifier, trueFuncExpr);
     }
@@ -269,7 +269,7 @@ function transformFunctionDeclaration(
       !(decl.generator || decl.async) &&
       // Might be component-like, but the only valid components
       // have zero or one parameter
-      decl.params.length < 2
+      isComponentishParams(decl.params)
     ) {
       path.scope.registerDeclaration(
         path.replaceWith(
@@ -307,7 +307,7 @@ function bubbleFunctionDeclaration(
       !(decl.generator || decl.async) &&
       // Might be component-like, but the only valid components
       // have zero or one parameter
-      decl.params.length < 2
+      isComponentishParams(decl.params)
     ) {
       if (path.parentPath.isExportNamedDeclaration()) {
         path.parentPath.replaceWith(

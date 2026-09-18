@@ -90,6 +90,20 @@ describe('esm (client, hydratable)', () => {
         ),
       ).toMatchSnapshot();
     });
+    it('should skip FunctionDeclaration with valid Component name and a rest parameter', async () => {
+      expect(
+        await transform(
+          `
+      function Foo(...args) {
+        return <h1>Foo</h1>;
+      }
+      `,
+          'esm',
+          'client',
+          true,
+        ),
+      ).toMatchSnapshot();
+    });
     it('should skip FunctionDeclaration with invalid Component name', async () => {
       expect(
         await transform(
@@ -224,6 +238,20 @@ describe('esm (client, hydratable)', () => {
           ),
         ).toMatchSnapshot();
       });
+      it('should skip VariableDeclarator w/ FunctionExpression with valid Component name and a rest parameter', async () => {
+        expect(
+          await transform(
+            `
+        const Foo = function (...args) {
+          return <h1>Foo</h1>;
+        }
+        `,
+            'esm',
+            'client',
+            true,
+          ),
+        ).toMatchSnapshot();
+      });
       it('should skip VariableDeclarator w/ FunctionExpression with invalid Component name', async () => {
         expect(
           await transform(
@@ -347,6 +375,20 @@ describe('esm (client, hydratable)', () => {
           await transform(
             `
         const Foo = (a, b) => {
+          return <h1>Foo</h1>;
+        }
+        `,
+            'esm',
+            'client',
+            true,
+          ),
+        ).toMatchSnapshot();
+      });
+      it('should skip VariableDeclarator w/ ArrowFunctionExpression with valid Component name and a rest parameter', async () => {
+        expect(
+          await transform(
+            `
+        const Foo = (...args) => {
           return <h1>Foo</h1>;
         }
         `,
@@ -490,6 +532,20 @@ describe('esm (client, hydratable)', () => {
         ),
       ).toMatchSnapshot();
     });
+    it('should skip ExportNamedDeclaration w/ FunctionExpression with valid Component name and a rest parameter', async () => {
+      expect(
+        await transform(
+          `
+      export function Foo(...args) {
+        return <h1>Foo</h1>;
+      }
+      `,
+          'esm',
+          'client',
+          true,
+        ),
+      ).toMatchSnapshot();
+    });
     it('should skip ExportNamedDeclaration w/ FunctionExpression with invalid Component name', async () => {
       expect(
         await transform(
@@ -613,6 +669,20 @@ describe('esm (client, hydratable)', () => {
         await transform(
           `
       export default function Foo(a, b) {
+        return <h1>Foo</h1>;
+      }
+      `,
+          'esm',
+          'client',
+          true,
+        ),
+      ).toMatchSnapshot();
+    });
+    it('should skip ExportDefaultDeclaration w/ FunctionExpression with valid Component name and a rest parameter', async () => {
+      expect(
+        await transform(
+          `
+      export default function Foo(...args) {
         return <h1>Foo</h1>;
       }
       `,
